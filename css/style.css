@@ -3285,7 +3285,7 @@ border-radius: 15px;
 :root {
   --size: clamp(1rem, 1rem + 20vmin, 30rem);
   --gap: calc(var(--size) / 14);
-  --duration: 60s;
+  --duration: 40s;
   --scroll-start: 0;
   --scroll-end: calc(-100% - var(--gap));
 }
