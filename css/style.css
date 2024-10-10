@@ -3271,7 +3271,7 @@ filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.5));
 
 body::after{
    position:absolute; width:0; height:0; overflow:hidden; z-index:-1; // hide images
-   content:url(https://nicothompson.github.io/img/portfolio/digital/find-the-jewel-thumb-s.jpg) url(https://nicothompson.github.io/img/portfolio/digital/digital-thumb-s.jpg) url(https://nicothompson.github.io/img/portfolio/digital/Stars-thumb-s.png) url(https://nicothompson.github.io/img/portfolio/digital/siente-i-know-better-s.jpg) url(https://nicothompson.github.io/img/portfolio/digital/bh-thumb-3-s.jpg) url(https://nicothompson.github.io/img/portfolio/digital/awards_thumb-s.jpg) url(https://nicothompson.github.io/img/portfolio/digital/pie-shop-s.jpg) url(https://nicothompson.github.io/img/portfolio/digital/ms-thumb-s.jpg);   // load images
+   content:url(https://nickthompsondesign.github.io/img/portfolio/digital/find-the-jewel-thumb-s.jpg) url(https://nickthompsondesign.github.io/img/portfolio/digital/digital-thumb-s.jpg) url(https://nickthompsondesign.github.io/img/portfolio/digital/Stars-thumb-s.png) url(https://nickthompsondesign.github.io/img/portfolio/digital/siente-i-know-better-s.jpg) url(https://nickthompsondesign.github.io/img/portfolio/digital/bh-thumb-3-s.jpg) url(https://nickthompsondesign.github.io/img/portfolio/digital/awards_thumb-s.jpg) url(https://nickthompsondesign.github.io/img/portfolio/digital/pie-shop-s.jpg) url(https://nickthompsondesign.github.io/img/portfolio/digital/ms-thumb-s.jpg);   // load images
 }
 
 .dizme_tm_about img {
@@ -3486,42 +3486,42 @@ padding: 0px 20px
     }
 
     .print .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/thumbnail/thumb-n-sheffield.png)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-sheffield.png)no-repeat;
     background-size: 100%;
     background-position: center;
     }
     .awards .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/thumbnail/thumb-n-festive.png)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-festive.png)no-repeat;
     background-size: 100%;
     background-position: center;
     }
     .video .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/thumbnail/thumb-n-ready.png)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-ready.png)no-repeat;
     background-size: 100%;
     background-position: center;
     }
     .website .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/thumbnail/thumb-n-swimteam.png)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-swimteam.png)no-repeat;
     background-size: 100%;
     background-position: center;
     }
     .logo .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/thumbnail/thumb-n-jewel.png)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-jewel.png)no-repeat;
     background-size: 100%;
     background-position: center;
     }
     .asda-web .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/thumbnail/thumb-n-festive.png)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-festive.png)no-repeat;
     background-size: 100%;
     background-position: center;
     }
     .ux .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/thumbnail/thumb-n-guidelines.png)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-guidelines.png)no-repeat;
     background-size: 100%;
     background-position: center;
     }
     .digital .card-img {
-    background: url(https://nicothompson.github.io/img/portfolio/digital/digital-thumb-s.jpg)no-repeat;
+    background: url(https://nickthompsondesign.github.io/img/portfolio/digital/digital-thumb-s.jpg)no-repeat;
     background-size: 100%;
     background-position: center;
     }
