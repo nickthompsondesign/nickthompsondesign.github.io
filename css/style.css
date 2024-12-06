@@ -3621,15 +3621,10 @@ width: 100%;
 border: 2px solid #000;
 }
 
-.digital-image-container-5 div:nth-child(1),
-.digital-image-container-5 div:nth-child(2) {
-width: 49%;
-}
-
-@media screen and (max-width:480px){
-.digital-image-container-5 div:nth-child(1), .digital-image-container-5 div:nth-child(2) {
-width: 100%;
-}
+.digital-image-container-5 div {
+width: 100%
+max-width: 380px;
+margin: auto;
 }
 
 .video-portfolio {
