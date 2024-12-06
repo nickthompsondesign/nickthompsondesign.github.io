@@ -3621,12 +3621,6 @@ width: 100%;
 border: 2px solid #000;
 }
 
-.digital-image-container-5 div {
-width: 100%;
-max-width: 380px;
-margin: auto;
-}
-
 .video-portfolio {
 border: 2px solid #FFD05E;
 }
@@ -3652,4 +3646,10 @@ padding: 10px;
 }
 .dizme_tm_feedback img{
 max-width: 200px;
+}
+
+.digital-image-container-5 div {
+width: 100%;
+max-width: 380px;
+margin: auto;
 }
