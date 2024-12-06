@@ -3552,7 +3552,8 @@ text-align: left !important;
 .digital-image-container-1,
 .digital-image-container-2,
 .digital-image-container-3,
-.digital-image-container-4 {
+.digital-image-container-4,
+.digital-image-container-5 {
 display: flex;
 flex-wrap: wrap;
 gap: 2%;
@@ -3618,6 +3619,17 @@ width: 100%;
 }
 .digital-image-container-4 div:nth-child(2) div:nth-child(2) {
 border: 2px solid #000;
+}
+
+.digital-image-container-5 div:nth-child(1),
+.digital-image-container-5 div:nth-child(2) {
+width: 49%;
+}
+
+@media screen and (max-width:480px){
+.digital-image-container-5 div:nth-child(1), .digital-image-container-5 div:nth-child(2) {
+width: 100%;
+}
 }
 
 .video-portfolio {
