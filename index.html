@@ -295,194 +295,149 @@
         
 
         <!-- CLIENT FEEDBACK -->
+        <div class="dizme_tm_section" id="feedback">
+
+
+        
+        <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+            
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+            
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              var dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";  
+              }
+              for (i = 0; i < dots.length; i++) {
+                  dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";  
+              dots[slideIndex-1].className += " active";
+            }
+            window.onload= function () {
+             setInterval(function(){ 
+                 plusSlides(1);
+             }, 3000);
+             }
+        </script>
+            
         <style>
-            #carousel {
-                max-width: 1200px;
-                display: flex;
-                flex-direction: column;
-                margin: 0 auto;
-                position: relative;
-            }  
-            .slide-indicators {
-                display: flex;
-                justify-content: center;
+            /* Slideshow container */
+            .slideshow-container {
+              position: relative;
+              background: #f1f1f1f1;
             }
-            .slide-indicator {
-                height: 44px;
-                width: 50px;
-                display: flex;
-                justify-items: center;
-                cursor: pointer;
+            
+            /* Slides */
+            .mySlides {
+              display: none;
+              padding: 80px;
+              text-align: center;
             }
-            .slide-indicator:after {
-                content: "";
-                background-color: #878787;
-                height: 10px;
-                margin-top: 10px;
-                width: 40px;
+            
+            /* Next & previous buttons */
+            .prev, .next {
+              cursor: pointer;
+              position: absolute;
+              top: 50%;
+              width: auto;
+              margin-top: -30px;
+              padding: 16px;
+              color: #888;
+              font-weight: bold;
+              font-size: 20px;
+              border-radius: 0 3px 3px 0;
+              user-select: none;
             }
-            .slide-indicator.active:after,
-            .slide-indicator:hover:after {
-                background-color: #000;
+            
+            /* Position the "next button" to the right */
+            .next {
+              position: absolute;
+              right: 0;
+              border-radius: 3px 0 0 3px;
             }
-            .slide-banner {
-                background-color: #000;
-                color: #fff;
-                position: absolute;
-                left: 0;
-                bottom: 20px;
-                padding: 15px;
-                font-size: 2.5vw;
+            
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+              background-color: rgba(0,0,0,0.8);
+              color: white;
             }
-            .slide-banner a {
-                color: #fff;
+            
+            /* The dot/bullet/indicator container */
+            .dot-container {
+                text-align: center;
+                padding: 20px;
+                background: #ddd;
             }
-            #slide-container {
-                scroll-snap-type: x mandatory;
-                overflow-x: scroll;
-                overflow-y: hidden;
-                display: flex;
-                align-items: center;
-                height: 100%;
-                gap: 10px;
-                -webkit-overflow-scrolling: touch;
-                scroll-behavior: smooth;
+            
+            /* The dots/bullets/indicators */
+            .dot {
+              cursor: pointer;
+              height: 15px;
+              width: 15px;
+              margin: 0 2px;
+              background-color: #bbb;
+              border-radius: 50%;
+              display: inline-block;
+              transition: background-color 0.6s ease;
             }
-            .slide {
-                scroll-snap-align: center;
-                position: relative;
-                min-width: 100%;
-                padding-top: 50%;
+            
+            /* Add a background color to the active dot/circle */
+            .active, .dot:hover {
+              background-color: #717171;
             }
-            .slide img {
-                height: 100%;
-                width: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-            .arrow {
-                color: #fff;
-                height: 20px;
-                width: 20px;
-                background-color: #000;
-                position: absolute;
-                padding: 10px;
-                opacity: .3;
-                cursor: pointer;
-            }
-            .arrow.back {
-                left: 10px;
-                top: 10px;
-            }
-            .arrow.forward {
-                right: 10px;
-                top: 10px;
-            }
-            .arrow:hover {
-                opacity: 1;
-            }
-                    
-        </style>
-            <div id="carousel">
-              <div id="slide-container">
-                  
-                <div class="slide" data-slideIndex="0">
-                  <div class="slide-banner">
-                    <p><i>“Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone, Nick was creative, adaptive, agile and knowledgable of what could be possible which allowed us to deliver and exceptional brand page, industry leading.“</i></p>
-                    <p>Caroline Buchanan</p>
-                    <p>E-commerce Customer Development Manager at Mondelez</p>
-                    <img src="img/brand-logos/mondelez.png" alt="Mondelez International Logo">
-                  </div>
-                </div>
-
-                <div class="slide" data-slideIndex="1">
-                  <div class="slide-banner">
-                    <p><i>“Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly! Nick was adaptive, creative, and collaborative throughout this project. Nick delivered an incredible digital activation, and I hope to work with him again soon.“</i></p>
-                    <p>Jonathan McRobb-Bishop</p>
-                    <p>Associate Trade Marketing Manager – The LEGO Group UK/I.</p>
-                    <img src="img/thumbs/lego-logo.png" alt="Lego Logo">
-                  </div>
-                </div>
-
-              </div>
-              <div id="back-button" class="arrow back">←</div>
-              <div id="forward-button" class="arrow forward">→</div>
-              <div class="slide-indicators">
-                <div class="slide-indicator active"></div>
-                <div class="slide-indicator"></div>
-              </div>
+            
+            /* Add an italic font style to all quotes */
+            q {font-style: italic;}
+            
+            /* Add a blue color to the author */
+            .author {color: cornflowerblue;}
+            </style>
+            
+            <div class="slideshow-container">
+            
+            <div class="dizme_tm_feedback">
+                <p><i>“Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone, Nick was creative, adaptive, agile and knowledgable of what could be possible which allowed us to deliver and exceptional brand page, industry leading.“</i></p>
+                <p>Caroline Buchanan</p>
+                <p>E-commerce Customer Development Manager at Mondelez</p>
+                <img src="img/brand-logos/mondelez.png" alt="Mondelez International Logo">
             </div>
-            <script>
-                function autoplayCarousel() {
-                const carouselEl = document.getElementById("carousel");
-                const slideContainerEl = carouselEl.querySelector("#slide-container");
-                const slideEl = carouselEl.querySelector(".slide");
-                let slideWidth = slideEl.offsetWidth;
-                // Add click handlers
-                document.querySelector("#back-button")
-                    .addEventListener("click", () => navigate("backward"));
-                document.querySelector("#forward-button")
-                    .addEventListener("click", () => navigate("forward"));
-                document.querySelectorAll(".slide-indicator")
-                    .forEach((dot, index) => {
-                        dot.addEventListener("click", () => navigate(index));
-                        dot.addEventListener("mouseenter", () => clearInterval(autoplay));
-                    });
-                // Add keyboard handlers
-                document.addEventListener('keydown', (e) => {
-                    if (e.code === 'ArrowLeft') {
-                        clearInterval(autoplay);
-                        navigate("backward");
-                    } else if (e.code === 'ArrowRight') {
-                        clearInterval(autoplay);
-                        navigate("forward");
-                    }
-                });
-                // Add resize handler
-                window.addEventListener('resize', () => {
-                    slideWidth = slideEl.offsetWidth;
-                });
-                // Autoplay
-                const autoplay = setInterval(() => navigate("forward"), 3000);
-                slideContainerEl.addEventListener("mouseenter", () => clearInterval(autoplay));
-                // Slide transition
-                const getNewScrollPosition = (arg) => {
-                    const gap = 10;
-                    const maxScrollLeft = slideContainerEl.scrollWidth - slideWidth;
-                    if (arg === "forward") {
-                        const x = slideContainerEl.scrollLeft + slideWidth + gap;
-                        return x <= maxScrollLeft ? x : 0;
-                    } else if (arg === "backward") {
-                        const x = slideContainerEl.scrollLeft - slideWidth - gap;
-                        return x >= 0 ? x : maxScrollLeft;
-                    } else if (typeof arg === "number") {
-                        const x = arg * (slideWidth + gap);
-                        return x;
-                    }
-                }
-                const navigate = (arg) => {
-                    slideContainerEl.scrollLeft = getNewScrollPosition(arg);
-                }
-                // Slide indicators
-                const slideObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const slideIndex = entry.target.dataset.slideindex;
-                            carouselEl.querySelector('.slide-indicator.active').classList.remove('active');
-                            carouselEl.querySelectorAll('.slide-indicator')[slideIndex].classList.add('active');
-                        }
-                    });
-                }, { root: slideContainerEl, threshold: .1 });
-                document.querySelectorAll('.slide').forEach((slide) => {
-                    slideObserver.observe(slide);
-                });
-            }
-            autoplayCarousel();
-            </script>
+            
+            <div class="dizme_tm_feedback">
+                <p><i>“Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly! Nick was adaptive, creative, and collaborative throughout this project. Nick delivered an incredible digital activation, and I hope to work with him again soon.“</i></p>
+                <p>Jonathan McRobb-Bishop</p>
+                <p>Associate Trade Marketing Manager – The LEGO Group UK/I.</p>
+                <img src="img/thumbs/lego-logo.png" alt="Lego Logo">
+            </div>
+                        
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+            
+            </div>
+            
+            <div class="dot-container">
+              <span class="dot" onclick="currentSlide(1)"></span> 
+              <span class="dot" onclick="currentSlide(2)"></span> 
+            </div>
+            
+            
+
+     
+        
        
         
-        <div class="dizme_tm_section" id="feedback">
             <div class="dizme_tm_feedback">
                     <h2>Client Feedback</h2>
                     <p><i>“Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone, Nick was creative, adaptive, agile and knowledgable of what could be possible which allowed us to deliver and exceptional brand page, industry leading.“</i></p>
