@@ -295,68 +295,196 @@
         
 
         <!-- CLIENT FEEDBACK -->
-            <!-- Slideshow container -->
-            <div class="slideshow-container">
-            
-              <!-- Full-width slides/quotes -->
-              <div class="mySlides">
-                <q>I love you the more in that I believe you had liked me for my own sake and for nothing else</q>
-                <p class="author">- John Keats</p>
+        <style>
+            #carousel {
+                max-width: 1200px;
+                display: flex;
+                flex-direction: column;
+                margin: 0 auto;
+                position: relative;
+            }  
+            .slide-indicators {
+                display: flex;
+                justify-content: center;
+            }
+            .slide-indicator {
+                height: 44px;
+                width: 50px;
+                display: flex;
+                justify-items: center;
+                cursor: pointer;
+            }
+            .slide-indicator:after {
+                content: "";
+                background-color: #878787;
+                height: 10px;
+                margin-top: 10px;
+                width: 40px;
+            }
+            .slide-indicator.active:after,
+            .slide-indicator:hover:after {
+                background-color: #000;
+            }
+            .slide-banner {
+                background-color: #000;
+                color: #fff;
+                position: absolute;
+                left: 0;
+                bottom: 20px;
+                padding: 15px;
+                font-size: 2.5vw;
+            }
+            .slide-banner a {
+                color: #fff;
+            }
+            #slide-container {
+                scroll-snap-type: x mandatory;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                display: flex;
+                align-items: center;
+                height: 100%;
+                gap: 10px;
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: smooth;
+            }
+            .slide {
+                scroll-snap-align: center;
+                position: relative;
+                min-width: 100%;
+                padding-top: 50%;
+            }
+            .slide img {
+                height: 100%;
+                width: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .arrow {
+                color: #fff;
+                height: 20px;
+                width: 20px;
+                background-color: #000;
+                position: absolute;
+                padding: 10px;
+                opacity: .3;
+                cursor: pointer;
+            }
+            .arrow.back {
+                left: 10px;
+                top: 10px;
+            }
+            .arrow.forward {
+                right: 10px;
+                top: 10px;
+            }
+            .arrow:hover {
+                opacity: 1;
+            }
+                    
+        </style>
+            <div id="carousel">
+              <div id="slide-container">
+                <div class="slide" data-slideIndex="0">
+                  <div class="slide-banner">Tour the Empire State Building! <a href="">Buy tickets now.</a></div>
+                  <img width="1200" height="600" src="./newyork.jpg">
+                </div>
+                <div class="slide" data-slideIndex="1">
+                  <div class="slide-banner">Ride the Shinkansen! <a href="">Buy tickets now.</a></div>
+                  <img width="1200" height="600" src="./tokyo.jpg">
+                </div>
+                <div class="slide" data-slideIndex="2">
+                  <div class="slide-banner">Discover relaxation! <a href="">Buy tickets now.</a></div>
+                  <img width="1200" height="600" src="./beach.jpg">
+                </div>
+                <div class="slide" data-slideIndex="3">
+                  <div class="slide-banner">See penguins! <a href="">Buy tickets now.</a></div>
+                  <img width="1200" height="600" src="./penguins.jpg">
+                </div>
+                <div class="slide" data-slideIndex="4">
+                  <div class="slide-banner">Take a ride on the wheel! <a href="">Buy tickets now.</a></div>
+                  <img width="1200" height="600" src="./wheel.jpg">
+                </div>
               </div>
-            
-              <div class="mySlides">
-                <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
-                <p class="author">- Ernest Hemingway</p>
+              <div id="back-button" class="arrow back">←</div>
+              <div id="forward-button" class="arrow forward">→</div>
+              <div class="slide-indicators">
+                <div class="slide-indicator active"></div>
+                <div class="slide-indicator"></div>
+                <div class="slide-indicator"></div>
+                <div class="slide-indicator"></div>
+                <div class="slide-indicator"></div>
               </div>
-            
-              <div class="mySlides">
-                <q>I have not failed. I've just found 10,000 ways that won't work.</q>
-                <p class="author">- Thomas A. Edison</p>
-              </div>
-            
-              <!-- Next/prev buttons -->
-              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-              <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            
-            <!-- Dots/bullets/indicators -->
-            <div class="dot-container">
-              <span class="dot" onclick="currentSlide(1)"></span>
-              <span class="dot" onclick="currentSlide(2)"></span>
-              <span class="dot" onclick="currentSlide(3)"></span>
             </div>
             <script>
-                var slideIndex = 1;
-            showSlides(slideIndex);
-            
-            function plusSlides(n) {
-              showSlides(slideIndex += n);
-            }
-            
-            function currentSlide(n) {
-              showSlides(slideIndex = n);
-            }
-            
-            function showSlides(n) {
-              var i;
-              var slides = document.getElementsByClassName("mySlides");
-              var dots = document.getElementsByClassName("dot");
-              if (n > slides.length) {slideIndex = 1}
-                if (n < 1) {slideIndex = slides.length}
-                for (i = 0; i < slides.length; i++) {
-                  slides[i].style.display = "none";
+                function autoplayCarousel() {
+                const carouselEl = document.getElementById("carousel");
+                const slideContainerEl = carouselEl.querySelector("#slide-container");
+                const slideEl = carouselEl.querySelector(".slide");
+                let slideWidth = slideEl.offsetWidth;
+                // Add click handlers
+                document.querySelector("#back-button")
+                    .addEventListener("click", () => navigate("backward"));
+                document.querySelector("#forward-button")
+                    .addEventListener("click", () => navigate("forward"));
+                document.querySelectorAll(".slide-indicator")
+                    .forEach((dot, index) => {
+                        dot.addEventListener("click", () => navigate(index));
+                        dot.addEventListener("mouseenter", () => clearInterval(autoplay));
+                    });
+                // Add keyboard handlers
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'ArrowLeft') {
+                        clearInterval(autoplay);
+                        navigate("backward");
+                    } else if (e.code === 'ArrowRight') {
+                        clearInterval(autoplay);
+                        navigate("forward");
+                    }
+                });
+                // Add resize handler
+                window.addEventListener('resize', () => {
+                    slideWidth = slideEl.offsetWidth;
+                });
+                // Autoplay
+                const autoplay = setInterval(() => navigate("forward"), 3000);
+                slideContainerEl.addEventListener("mouseenter", () => clearInterval(autoplay));
+                // Slide transition
+                const getNewScrollPosition = (arg) => {
+                    const gap = 10;
+                    const maxScrollLeft = slideContainerEl.scrollWidth - slideWidth;
+                    if (arg === "forward") {
+                        const x = slideContainerEl.scrollLeft + slideWidth + gap;
+                        return x <= maxScrollLeft ? x : 0;
+                    } else if (arg === "backward") {
+                        const x = slideContainerEl.scrollLeft - slideWidth - gap;
+                        return x >= 0 ? x : maxScrollLeft;
+                    } else if (typeof arg === "number") {
+                        const x = arg * (slideWidth + gap);
+                        return x;
+                    }
                 }
-                for (i = 0; i < dots.length; i++) {
-                  dots[i].className = dots[i].className.replace(" active", "");
+                const navigate = (arg) => {
+                    slideContainerEl.scrollLeft = getNewScrollPosition(arg);
                 }
-              slides[slideIndex-1].style.display = "block";
-              dots[slideIndex-1].className += " active";
+                // Slide indicators
+                const slideObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const slideIndex = entry.target.dataset.slideindex;
+                            carouselEl.querySelector('.slide-indicator.active').classList.remove('active');
+                            carouselEl.querySelectorAll('.slide-indicator')[slideIndex].classList.add('active');
+                        }
+                    });
+                }, { root: slideContainerEl, threshold: .1 });
+                document.querySelectorAll('.slide').forEach((slide) => {
+                    slideObserver.observe(slide);
+                });
             }
+            autoplayCarousel();
             </script>
-
-
-
-        
+       
         
         <div class="dizme_tm_section" id="feedback">
             <div class="dizme_tm_feedback">
