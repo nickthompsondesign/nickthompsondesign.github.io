@@ -3511,6 +3511,11 @@ padding: 0px 20px
     background-size: 100%;
     background-position: center;
     }
+    .masaco .card-img {
+    background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-masaco.png)no-repeat;
+    background-size: 100%;
+    background-position: center;
+    }
     .asda-web .card-img {
     background: url(https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-festive.png)no-repeat;
     background-size: 100%;
