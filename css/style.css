@@ -3661,6 +3661,19 @@ margin: auto;
 }
 
 
+
+
+@media (max-width: 600px) {
+	.digital-image-container-1 div,
+	.digital-image-container-2 div,
+	.digital-image-container-3 div,
+	.digital-image-container-4 div,
+	.digital-image-container-5 div
+	{
+	width: 100%;
+	}
+}
+
 /* Homepage Testimonial Slideshow */
 
 
