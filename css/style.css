@@ -3670,7 +3670,7 @@ margin: auto;
 	.digital-image-container-4 div,
 	.digital-image-container-5 div
 	{
-	width: 100%;
+	width: 100% !important;
 	}
 }
 
