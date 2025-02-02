@@ -3431,7 +3431,7 @@ padding: 0px 20px
         overflow: hidden;
     }
     .portfolio-section {
-        max-width: 1170px;
+        max-width: 1300px;
         margin: auto;
         margin-top: 20px;
     }
@@ -3448,9 +3448,9 @@ padding: 0px 20px
 
     .portfolio-flex .card {
         width: 100%;
-        max-width: calc(100% / 3.3 - 1rem);
+        max-width: calc(100% / 3.2 - 1rem);
         background-color: #e7e7e7;
-        height: 18rem;
+        height: 21rem;
         justify-content: flex-end;
     }
 
