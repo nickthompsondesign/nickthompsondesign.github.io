@@ -3450,7 +3450,6 @@ padding: 0px 20px
         width: 100%;
         max-width: calc(100% / 3.2 - 1rem);
         background-color: #e7e7e7;
-        height: 21rem;
         justify-content: flex-end;
     }
 
@@ -3465,7 +3464,6 @@ padding: 0px 20px
     @media (max-width: 750px) {
         .portfolio-flex .card {
             max-width: calc(100% / 1 - 1rem) !important;
-            height: 60vw;
         }
     }
 
@@ -3539,11 +3537,16 @@ padding: 0px 20px
     .card .card-img {
 	background-size: 100%;
 	transition: 0.25s ease-in-out;
+	height: 15.8rem;
     }
     .card:hover .card-img {
 	background-size: 105%;
     }
-
+@media (max-width: 1600px) {
+	.card .card-img {
+		height: 13.2rem;
+	}
+}
 
 .dizme_tm_hero .job p {
 margin-top: -20px;
