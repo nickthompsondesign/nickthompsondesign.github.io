@@ -3537,7 +3537,7 @@ padding: 0px 20px
     .card .card-img {
 	background-size: 100%;
 	transition: 0.25s ease-in-out;
-	height: 15.8rem;
+	height: 15.6rem;
     }
     .card:hover .card-img {
 	background-size: 105%;
