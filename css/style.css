@@ -3542,9 +3542,16 @@ padding: 0px 20px
     .card:hover .card-img {
 	background-size: 105%;
     }
+
 @media (max-width: 1600px) {
 	.card .card-img {
 		height: 13.2rem;
+	}
+}
+
+@media (max-width: 700px) {
+	.card .card-img {
+	    height: 53vw;
 	}
 }
 
