@@ -3767,3 +3767,18 @@ q {font-style: italic;}
 
 /* Add a blue color to the author */
 .author {color: cornflowerblue;}
+
+
+
+.masaco-video {
+width: 50%;
+margin: auto;
+display: flex;
+border-radius: 60%;
+}
+
+@media (max-width: 700px) {
+	.masaco-video {
+	width: 100%;
+	}
+}
