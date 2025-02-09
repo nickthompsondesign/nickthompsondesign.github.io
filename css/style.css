@@ -3771,11 +3771,13 @@ q {font-style: italic;}
 
 
 .masaco-video {
-width: 50%;
+width: 100%;
 margin: auto;
 display: flex;
-border-radius: 60%;
+border-radius: 600px;
+border: 20px solid #a6d5b0;
 }
+
 
 @media (max-width: 700px) {
 	.masaco-video {
