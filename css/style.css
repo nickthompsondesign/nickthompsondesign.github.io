@@ -3774,7 +3774,7 @@ q {font-style: italic;}
 width: 75%;
 margin: auto;
 display: flex;
-border-radius: 600px;
+border-radius: 100%;
 border: 20px solid #a6d5b0;
 }
 
