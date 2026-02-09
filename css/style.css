@@ -3649,7 +3649,9 @@ border: 2px solid #000;
 }
 
 .video-portfolio {
-border: 2px solid #FFD05E;
+border: 10px solid #FFD05E;
+border-radius: 30px;
+filter: drop-shadow(0 2mm 2mm rgba(0, 0, 0, 0.15));	
 }
 .carousel .video-portfolio {
 border: none;
