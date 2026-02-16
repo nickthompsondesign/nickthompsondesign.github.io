@@ -30,7 +30,7 @@ jQuery(document).ready(function(){
 	dizme_tm_totop();
 	dizme_tm_down();
 
-	jQuery(window).load('body', function(){
+	jQuery(window).on('load', function(){
 		dizme_tm_my_load();
 	});
 	jQuery(window).on('scroll', function(){
