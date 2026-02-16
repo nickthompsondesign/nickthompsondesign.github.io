@@ -707,6 +707,9 @@ function stop_all_videos (){
     });
 }
 
-document.getElementsByClassName("carousel-control-prev").onclick = stop_all_videos();
-
-document.getElementsByClassName("carousel-control-next").onclick = stop_all_videos();
+Array.from(document.getElementsByClassName("carousel-control-prev")).forEach(el => {
+    el.onclick = stop_all_videos;
+});
+Array.from(document.getElementsByClassName("carousel-control-next")).forEach(el => {
+    el.onclick = stop_all_videos;
+});
