@@ -30,9 +30,17 @@ jQuery(document).ready(function(){
 	dizme_tm_totop();
 	dizme_tm_down();
 
-	jQuery(window).on('load', function(){
-		dizme_tm_my_load();
-	});
+jQuery(window).on('load', function(){
+    dizme_tm_my_load();
+
+    // Portfolio masonry fix
+    if ($('.portfolio_list').length) {
+        $('.portfolio_list').waitForImages().done(function() {
+            $('.grid').masonry({ itemSelector: '.grid-item' });
+        });
+    }
+});
+
 	jQuery(window).on('scroll', function(){
 		dizme_tm_progress_line();
 	});
