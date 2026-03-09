@@ -1205,7 +1205,7 @@ body::after {
   .dizme_tm_process ul { margin: 0; }
   .dizme_tm_process ul li { width: 100%; padding-left: 0; }
   /* nt-hero tablet */
-  .nt-hero { padding: 6rem 1.5rem 5rem; background-position: right; }
+  .nt-hero { padding: 6rem 1.5rem 5rem; background-position: left; }
   .nt-hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
   .nt-name .nt-accent { margin: 0 auto; }
   .nt-desc { max-width: 100%; }
