@@ -272,7 +272,7 @@ h6 { font-size: 16px; }
   position: relative; width: 100%; min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   padding: 100px 40px 60px; overflow: hidden;
-  background: url(img/slider/Asset-1.svg) no-repeat center / cover;
+  background: url(/img/slider/hero-bg.svg) no-repeat center / cover;
   border-bottom: 3px solid #FFD05E;
   font-family: 'Jost', sans-serif;
 }
