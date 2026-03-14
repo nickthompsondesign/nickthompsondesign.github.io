@@ -1018,7 +1018,7 @@ q { font-style: italic; }
 .carousel-item { background: url("/img/loading.gif") no-repeat center / 40%; }
 
 /* media / video */
-.video-portfolio { border: 10px solid #FFD05E; border-radius: 20px; filter: drop-shadow(0 2mm 2mm rgba(0,0,0,.15)); }
+.video-portfolio { border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08); }
 .round-border    { border-radius: 20px; filter: drop-shadow(0 2mm 2mm rgba(0,0,0,.15)); }
 .masaco-video    { width: 100%; margin: auto; display: flex; border-radius: 20px; border: 20px solid #a6d5b0; }
 
@@ -1105,6 +1105,140 @@ body::after {
 .dizme_tm_down svg { width: 35px !important; height: 35px !important; }
 .dizme_tm_down svg #wheel { animation: scroll ease 2s infinite; }
 @keyframes scroll { 0% { transform: translateY(0); } 30% { transform: translateY(60px); } }
+
+/* ─────────────────────────────────────────────
+   21) PORTFOLIO PAGES
+───────────────────────────────────────────── */
+
+/* Scroll progress bar */
+.nt-progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 5px;
+  width: 0%;
+  background: linear-gradient(90deg, #2F5FD9, #6b93f5);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 1px 6px rgba(47,95,217,0.6);
+}
+
+/* Back to portfolio link */
+.nt-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #888;
+  text-decoration: none;
+  padding: 18px 0 0;
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+}
+.nt-back-link:hover { color: #2F5FD9; text-decoration: none; }
+.nt-back-link svg { transition: transform 0.2s; fill: none; }
+.nt-back-link:hover svg { transform: translateX(-3px); }
+
+/* Section header: h2 + tags on same row */
+.nt-project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.nt-project-header h2 { margin: 0 !important; }
+
+/* Tag pills */
+.nt-project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.nt-tag {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #2F5FD9;
+  border: 1px solid rgba(47,95,217,0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Video wrap — shadow + hover scale */
+.nt-video-wrap {
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.4s ease;
+  display: block;
+}
+.nt-video-wrap:hover {
+  transform: scale(1.02);
+}
+.nt-video-wrap video {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+/* video-portfolio class (existing class on site) — same treatment */
+.video-portfolio {
+  border-radius: 8px !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08) !important;
+  transition: transform 0.4s ease !important;
+  display: block;
+}
+.video-portfolio:hover { transform: scale(1.02) !important; }
+
+/* Images in portfolio pages */
+.dizme_tm_about_port img {
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  display: block;
+  max-width: 100%;
+  margin-bottom: 8px;
+  transition: transform 0.4s ease;
+}
+.dizme_tm_about_port img:hover {
+  transform: scale(1.02);
+}
+
+/* iframes (YouTube embeds) */
+.dizme_tm_about_port iframe {
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 24px;
+}
+
+/* Thin divider between sections */
+.nt-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+  margin: 60px 0;
+}
+
+/* Fade-up animation per project/section */
+.nt-project {
+  padding-top: 28px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.nt-project.nt-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Spacer before contact section */
+.nt-contact-spacer { padding-top: 48px; }
+
+@media (max-width: 768px) {
+  .nt-project-header { flex-direction: column; align-items: flex-start; }
+}
 
 /* ─────────────────────────────────────────────
    MEDIA QUERIES
