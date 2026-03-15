@@ -323,7 +323,7 @@ h6 { font-size: 16px; }
   display: inline-flex; align-items: center;
   font-family: "niveau-grotesk", sans-serif; font-weight: 700;
   font-size: .95rem; color: #fff;
-  background: #F85F35; border: 2px solid #F85F35;
+  background: transparent; border: 2px solid #F85F35;
   padding: 12px 36px; border-radius: 50px;
   text-decoration: none; position: relative; overflow: hidden;
 }
@@ -334,14 +334,14 @@ h6 { font-size: 16px; }
   height: 110%; transition: height .3s;
 }
 .nt-btn-orange:hover::before { height: 0; }
-.nt-btn-orange:hover { text-decoration: none; color: #F85F35; }
+.nt-btn-orange:hover { text-decoration: none; }
 .nt-btn-orange:hover span { color: #F85F35; }
 
 .nt-btn-blue {
   display: inline-flex; align-items: center;
   font-family: "niveau-grotesk", sans-serif; font-weight: 700;
   font-size: .95rem; color: #fff;
-  background: #2F5FD9; border: 2px solid #2F5FD9;
+  background: transparent; border: 2px solid #2F5FD9;
   padding: 12px 36px; border-radius: 50px;
   text-decoration: none; position: relative; overflow: hidden;
 }
@@ -352,7 +352,7 @@ h6 { font-size: 16px; }
   height: 110%; transition: height .3s;
 }
 .nt-btn-blue:hover::before { height: 0; }
-.nt-btn-blue:hover { text-decoration: none; color: #2F5FD9; }
+.nt-btn-blue:hover { text-decoration: none; }
 .nt-btn-blue:hover span { color: #2F5FD9; }
 
 .nt-social { display: flex; gap: .6rem; align-items: center; }
