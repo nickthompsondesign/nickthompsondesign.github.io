@@ -28,9 +28,6 @@
 
 <div class="dizme_tm_all_wrap" data-magic-cursor="show">
 
-  <!-- SCROLL PROGRESS -->
-  <div class="nt-progress-bar" id="ntProgressBar"></div>
-
   <!-- MOBILE MENU -->
   <div class="dizme_tm_mobile_menu">
     <div class="mobile_menu_inner">
@@ -101,13 +98,13 @@
         <p class="nt-role">Digital &nbsp;·&nbsp; UX &nbsp;·&nbsp; Web Design &nbsp;·&nbsp; Development</p>
         <p class="nt-desc">Creative multidisciplinary designer crafting problem-solving digital experiences that blend creativity and functionality.</p>
         <div class="nt-ctas">
-          <a href="#about" class="nt-btn-orange"><span>About Me</span></a>
-          <a href="#portfolio" class="nt-btn-blue"><span>Portfolio</span></a>
+          <a href="#about" class="nt-btn-orange">About Me</a>
+          <a href="#portfolio" class="nt-btn-blue">Portfolio</a>
         </div>
         <div class="nt-social">
           <a href="https://www.linkedin.com/in/nicholas-thompson/" target="_blank"><i class="icon-linkedin-1"></i></a>
           <a href="https://www.instagram.com/nicosam_design/" target="_blank"><i class="icon-instagram-1"></i></a>
-          <a href="/cdn-cgi/l/email-protection#244a4d474f504c4b4954574b4a10644c4b5049454d480a474b49"><i class="icon-mail-1"></i></a>
+          <a href="mailto:nickthompson4@hotmail.com"><i class="icon-mail-1"></i></a>
           <a href="tel:+447971727886"><i class="icon-phone-1"></i></a>
         </div>
       </div>
@@ -331,7 +328,7 @@
       <div class="contact_inner">
         <div class="left wow fadeInLeft" data-wow-duration="1s"><ul>
           <li><div class="list_inner"><div class="icon orangeBackground"><i class="icon-location whiteText"></i></div><div class="short"><h3>Location</h3><span>Leeds, UK/Remote</span></div></div></li>
-          <li><div class="list_inner"><div class="icon blueBackground"><i class="icon-mail-1 whiteText"></i></div><div class="short"><h3>Email</h3><span><a href="/cdn-cgi/l/email-protection#127c7b7179667a7d7f62617d7c26527a7d667f737b7e3c717d7f"><span class="__cf_email__" data-cfemail="543a3d373f203c3b3924273b3a60143c3b2039353d387a373b39">[email&#160;protected]</span></a></span></div></div></li>
+          <li><div class="list_inner"><div class="icon blueBackground"><i class="icon-mail-1 whiteText"></i></div><div class="short"><h3>Email</h3><span><a href="mailto:nickthompson4@hotmail.com">nickthompson4@hotmail.com</a></span></div></div></li>
           <li><div class="list_inner"><div class="icon yellowBackground"><i class="icon-phone whiteText"></i></div><div class="short"><h3>Phone</h3><a href="tel:+447971727886"><span>+44 7971727886</span></a></div></div></li>
         </ul></div>
         <div class="right wow fadeInRight" data-wow-duration="1s"><div class="fields">
@@ -359,12 +356,14 @@
     </div></div></div>
   </div>
 
+  <div class="mouse-cursor cursor-outer"></div>
+  <div class="mouse-cursor cursor-inner"></div>
   <div class="progressbar"><a href="#"><span class="text">To Top</span></a><span class="line"></span></div>
 
 </div>
 
 <!-- SCRIPTS -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/popper.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <script src="js/plugins.js"></script>
@@ -377,14 +376,6 @@
       });
     }
   }, 8000);
-</script>
-<script>
-  window.addEventListener('scroll', function() {
-    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    document.getElementById('ntProgressBar').style.width = progress + '%';
-  });
 </script>
 
 <!-- HERO ANIMATIONS -->
@@ -511,4 +502,17 @@
     var rx = hw * 1.15;
     var ry = hh * 1.15;
     tools.forEach(function (tool) {
-      tool.phase += tool.speed * 
+      tool.phase += tool.speed * dt;
+      var x = hw + rx * tool.rMult * Math.cos(tool.phase);
+      var y = hh + ry * tool.rMult * Math.sin(tool.phase);
+      tool.el.style.transform = 'translate(calc(' + x + 'px - 50%), calc(' + y + 'px - 50%))';
+    });
+  }
+
+  requestAnimationFrame(animateOrbit);
+
+})();
+</script>
+
+</body>
+</html>
