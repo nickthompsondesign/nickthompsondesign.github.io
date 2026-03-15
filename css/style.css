@@ -322,38 +322,40 @@ h6 { font-size: 16px; }
 .nt-btn-orange {
   display: inline-flex; align-items: center;
   font-family: "niveau-grotesk", sans-serif; font-weight: 600;
-  font-size: .95rem; color: #fff;
+  font-size: .95rem; color: #fff !important;
   border-radius: 50px; border: 2px solid #F85F35;
   padding: 12px 36px; text-decoration: none;
   position: relative; overflow: hidden;
+  background-color: transparent;
 }
-.nt-btn-orange span { position: relative; z-index: 2; transition: color .3s; }
+.nt-btn-orange span { position: relative; z-index: 2; transition: color .3s; color: #fff; }
 .nt-btn-orange::before {
   position: absolute; content: ''; z-index: 0;
   background: #F85F35; left: -5px; right: -5px; bottom: -5px;
   height: 110%; transition: height .3s;
 }
 .nt-btn-orange:hover::before { height: 0; }
-.nt-btn-orange:hover { text-decoration: none; }
-.nt-btn-orange:hover span { color: #000; }
+.nt-btn-orange:hover { text-decoration: none; color: #F85F35 !important; }
+.nt-btn-orange:hover span { color: #F85F35; }
 
 .nt-btn-blue {
   display: inline-flex; align-items: center;
   font-family: "niveau-grotesk", sans-serif; font-weight: 600;
-  font-size: .95rem; color: #fff;
+  font-size: .95rem; color: #fff !important;
   border-radius: 50px; border: 2px solid #2F5FD9;
   padding: 12px 36px; text-decoration: none;
   position: relative; overflow: hidden;
+  background-color: transparent;
 }
-.nt-btn-blue span { position: relative; z-index: 2; transition: color .3s; }
+.nt-btn-blue span { position: relative; z-index: 2; transition: color .3s; color: #fff; }
 .nt-btn-blue::before {
   position: absolute; content: ''; z-index: 0;
   background: #2F5FD9; left: -5px; right: -5px; bottom: -5px;
   height: 110%; transition: height .3s;
 }
 .nt-btn-blue:hover::before { height: 0; }
-.nt-btn-blue:hover { text-decoration: none; }
-.nt-btn-blue:hover span { color: #000; }
+.nt-btn-blue:hover { text-decoration: none; color: #2F5FD9 !important; }
+.nt-btn-blue:hover span { color: #2F5FD9; }
 
 .nt-social { display: flex; gap: .6rem; align-items: center; }
 .nt-social a {
