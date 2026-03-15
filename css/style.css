@@ -939,6 +939,9 @@ input[type=number] { -moz-appearance: textfield; }
   opacity: .6;
   flex-shrink: 0;
 }
+.nt-t-person {
+  line-height: 1;
+}
 .nt-t-person strong {
   display: block;
   font-size: 14px;
