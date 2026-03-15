@@ -892,30 +892,138 @@ input[type=number] { -moz-appearance: textfield; }
 .progressbar a { text-decoration: none; color: #000; }
 
 /* ─────────────────────────────────────────────
-   18) FEEDBACK SLIDESHOW
+   18) FEEDBACK — dark card testimonials
 ───────────────────────────────────────────── */
-.dizme_tm_section#feedback { background: #2F5FD9; padding: 30px 0; color: #fff; }
-.dizme_tm_section#feedback h2 { color: #fff; text-align: center; }
-.dizme_tm_feedback { max-width: 800px; margin: auto; text-align: center; }
-.dizme_tm_feedback * { padding: 10px; }
-.dizme_tm_feedback img { max-width: 200px; }
+.nt-feedback-section { background: #2f60d9 !important; padding: 80px 0 !important; }
+.nt-feedback-section .dizme_tm_main_title span { color: rgba(255,255,255,.7); }
+.nt-feedback-section .dizme_tm_main_title h3 { color: #fff; }
+.nt-t-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.nt-t-card {
+  background: #2151c4;
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex;
+  flex-direction: column;
+}
+.nt-t-quote {
+  font-size: 56px;
+  line-height: 1;
+  color: #2F5FD9;
+  font-family: Georgia, serif;
+  margin-bottom: 8px;
+  opacity: .7;
+}
+.nt-t-text {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,.82);
+  font-style: italic;
+  margin-bottom: 28px;
+  flex: 1;
+}
+.nt-t-footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 20px;
+}
+.nt-t-logo {
+  height: 30px;
+  filter: brightness(0) invert(1);
+  opacity: .6;
+  flex-shrink: 0;
+}
+.nt-t-person strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.nt-t-person span {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.4;
+}
+@media (max-width: 768px) {
+  .nt-t-grid { grid-template-columns: 1fr; }
+}
 
-.slideshow-container { position: relative; }
-.mySlides { display: none; padding: 40px; text-align: center; }
-.prev, .next {
-  cursor: pointer; position: absolute; top: 50%; margin-top: -30px;
-  padding: 10px 20px; color: #888; font-weight: bold; font-size: 20px;
-  border-radius: 0 3px 3px 0; user-select: none;
+/* ─────────────────────────────────────────────
+   18b) PORTFOLIO CARD GRID
+───────────────────────────────────────────── */
+.nt-pcard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
 }
-.next { right: 0; border-radius: 3px 0 0 3px; }
-.prev:hover, .next:hover { background: rgba(0,0,0,.8); color: #fff; }
-.dot-container { text-align: center; padding: 0; }
-.dot {
-  cursor: pointer; height: 15px; width: 15px; margin: 0 2px;
-  background: #bbb; border-radius: 50%; display: inline-block; transition: background .6s;
+.nt-pcard {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #eee;
+  transition: transform .3s ease, box-shadow .3s ease;
+  text-decoration: none;
+  display: block;
 }
-.active, .dot:hover { background: #fff; }
-q { font-style: italic; }
+.nt-pcard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.12);
+  text-decoration: none;
+}
+.nt-pcard-img {
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #e7e7e7;
+  transition: background-size .25s ease-in-out;
+}
+.nt-pcard:hover .nt-pcard-img { background-size: 105%; }
+.nt-pcard-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+}
+.nt-pcard:hover .nt-pcard-img img { transform: scale(1.05); }
+.nt-pcard-body { padding: 0; }
+.nt-pcard-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background: #2F5FD9;
+  padding: 10px 12px 4px;
+  line-height: 1.3;
+}
+.nt-pcard-tag {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: #2F5FD9;
+  padding: 4px 12px 10px;
+  display: block;
+}
+@media (max-width: 1024px) {
+  .nt-pcard-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .nt-pcard-grid { grid-template-columns: 1fr; }
+}
 
 /* ─────────────────────────────────────────────
    19) MARQUEE
@@ -1235,7 +1343,7 @@ body::after {
 
 /* Lightbox */
 .nt-lightbox-overlay {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.88);
@@ -1243,16 +1351,26 @@ body::after {
   cursor: zoom-out;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.nt-lightbox-overlay.active { display: flex; }
+.nt-lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
 .nt-lightbox-overlay img {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 8px;
+  max-width: 70vw !important;
+  max-height: 75vh !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 8px !important;
   box-shadow: 0 24px 60px rgba(0,0,0,0.5) !important;
-  cursor: default;
+  cursor: default !important;
   transform: none !important;
   transition: none !important;
+  display: block !important;
+  margin: 0 !important;
 }
 .nt-lightbox-close {
   position: absolute;
