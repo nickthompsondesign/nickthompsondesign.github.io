@@ -269,7 +269,7 @@ h6 { font-size: 16px; }
    04) HERO  (new .nt-hero)
 ───────────────────────────────────────────── */
 .nt-hero {
-  position: relative; width: 100%; min-height: 100vh;
+  position: relative; width: 100%; min-height: 90vh;
   display: flex; align-items: center; justify-content: center;
   padding: 100px 40px 60px; overflow: hidden;
   background: url(/img/slider/hero-bg.svg) no-repeat center / cover;
