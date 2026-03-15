@@ -65,9 +65,10 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FC6WJ74"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
-    <!-- WRAPPER ALL -->
+<!-- WRAPPER ALL -->
     <div class="dizme_tm_all_wrap" data-magic-cursor="show">
+    <!-- SCROLL PROGRESS -->
+    <div class="nt-progress-bar" id="ntProgressBar"></div>
 
         <!-- MOBILE MENU -->
         <div class="dizme_tm_mobile_menu dizme_tm_mobile_menu_portfolio">
@@ -163,16 +164,29 @@
                     <div class="wrapper">
                         <div class="dizme_tm_about_port">
                             <div class="text wow fadeInUp" data-wow-duration="1s">
-                                    <p>Here’s a showcase of the diverse print projects I’ve worked on. These projects required close collaboration with printers to ensure top print quality, meticulous attention to detail to avoid misprints, and have included large-scale runs, with some jobs exceeding 500,000 units.</p>
+                                    <a href="https://nickthompsondesign.github.io/#portfolio" class="nt-back-link">
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Back to portfolio
+                                </a>
+                                <br><br>
+<p>Here’s a showcase of the diverse print projects I’ve worked on. These projects required close collaboration with printers to ensure top print quality, meticulous attention to detail to avoid misprints, and have included large-scale runs, with some jobs exceeding 500,000 units.</p>
                                     <br>
+                                    
+                                    <div class="nt-divider"></div>
+                                    <div class="nt-project">
                                     <h2>Yorkshire Attractions Voucher Booklets</h2>
+                                    
                                     <br>
                                     <img src="img/portfolio/print/print-yorkshire-attractions.jpg">
                                     <br>
                                     <br>
                                     <p>I was responsible for designing the seasonal Yorkshire Attractions voucher booklets, which were renewed and produced three times per year, with print runs of up to 500,000 units per edition.</p>
                                     <br>
+                                    
+                                    <div class="nt-divider"></div>
+                                    <div class="nt-project">
                                     <h2>Museums Sheffield Wedding Brochure</h2>
+                                    
                                     <br>
                                     <video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" poster="img/portfolio/print/MuseumSheffield-Poster.png">
                                         <source src="img/portfolio/print/museums-sheffield-wedding-brochure-white.mp4" type="video/mp4">
@@ -183,7 +197,11 @@
                                     <br>
                                     <p>As part of a new initiative by Museums Sheffield, I was tasked with designing and implementing a wedding brochure for their event spaces. This project included developing new brand colors and styling specifically for Museums Sheffield's event venues, as well as setting up a dedicated microsite. Additionally, I managed the print production to ensure a high-quality, premium finish for the brochure.</p>
                                     <br>
+                                    
+                                    <div class="nt-divider"></div>
+                                    <div class="nt-project">
                                     <h2>William's Den Pizza Menu</h2>
+                                    
                                     <br>
                                     <img src="img/portfolio/print/wd-pizza-menu.gif">
                                     <br>
@@ -191,7 +209,11 @@
                                     <p>I designed the pizza menu for William's Den, focusing on creating a fun, family-friendly layout that aligned with the venue's playful aesthetic while ensuring readability and brand consistency.</p>
                                     <br>
                                     <br>
+                                    
+                                    <div class="nt-divider"></div>
+                                    <div class="nt-project">
                                     <h2>Various Awards Shows Printed Materials</h2>
+                                    
                                     <br>
                                         <div>
                                           <img class="simple-slide" src="img/portfolio/awards/LHVA-Awards-2019-Programmes.jpg">
@@ -207,13 +229,18 @@
                                     <p>I was responsible for the creation of all digital and printed assets for both the SCR Hospitality Awards and the LHVA Hospitality Awards. This included designing and producing sting videos, printed programs, posters, digital advertisements, cut-out stands, and animated videos. My work ensured a cohesive and engaging visual experience across all event materials, enhancing the overall presentation and branding of both award shows.</p>
                                     <br>
                             </div>
+                                    </div>
+                                    </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+        </div>
         <!-- /ABOUT -->        
 
+        <div class="nt-contact-spacer"></div>
         <!-- CONTACT -->
         <div id="contact" class="dizme_tm_section" style="background-image: url('img/brushes/contact/2.svg');background-position: right bottom;background-repeat: no-repeat;background-size: 40%;">
             <div class="dizme_tm_contact">
@@ -244,7 +271,7 @@
                                         </div>
                                         <div class="short">
                                             <h3>Email</h3>
-                                            <span><a href="mailto:nickthompson4@hotmail.com">nickthompson4@hotmail.com</a></span>
+                                            <span><a href="/cdn-cgi/l/email-protection#6907000a021d010604191a06075d2901061d04080005470a0604"><span class="__cf_email__" data-cfemail="254b4c464e514d4a4855564a4b11654d4a5148444c490b464a48">[email&#160;protected]</span></a></span>
                                         </div>
                                     </div>
                                 </li>
@@ -330,9 +357,27 @@
     </div>
     <!-- / WRAPPER ALL -->
 
+            <script>
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('ntProgressBar').style.width = progress + '%';
+        });
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('nt-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.nt-project').forEach(function(el) { observer.observe(el); });
+    </script>
+
     <!-- SCRIPTS -->
     
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
             var slideIndex = 0;
         carousel();
         
@@ -356,13 +401,4 @@
 
     <!-- BOOTSTRAP/MODAL SCRIPTS -->
     <script type="text/javascript" src="https://unpkg.com/popper.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-
-    <!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->
-    <script src="js/plugins.js"></script>
-    <script src="js/init.js"></script>
-    <!-- /SCRIPTS -->
-
-</body>
-
-</html>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.

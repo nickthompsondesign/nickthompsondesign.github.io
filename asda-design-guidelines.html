@@ -65,9 +65,10 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FC6WJ74"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
-    <!-- WRAPPER ALL -->
+<!-- WRAPPER ALL -->
     <div class="dizme_tm_all_wrap" data-magic-cursor="show">
+    <!-- SCROLL PROGRESS -->
+    <div class="nt-progress-bar" id="ntProgressBar"></div>
 
         <!-- MOBILE MENU -->
         <div class="dizme_tm_mobile_menu dizme_tm_mobile_menu_portfolio">
@@ -163,18 +164,31 @@
                     <div class="wrapper">
                         <div class="dizme_tm_about_port">
                             <div class="text wow fadeInUp" data-wow-duration="1s">
-                                    <video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" poster="img/portfolio/UX%20design/asda-guidelines-poster.png">
+                                    <a href="https://nickthompsondesign.github.io/#portfolio" class="nt-back-link">
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Back to portfolio
+                                </a>
+                                <br><br>
+<video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" poster="img/portfolio/UX%20design/asda-guidelines-poster.png">
                                         <source src="img/portfolio/UX%20design/Guidelines-Preview-Design.mp4" type="video/mp4">
                                     </video>
                                     <br>
                                     <br>
+                                    
+                                    <div class="nt-divider"></div>
+                                    <div class="nt-project">
                                     <h2>The Challenge</h2>
+                                    
                                     <br>
                                     <p>While working with the Campaigns team specializing in supplier-funded content on the Asda Groceries website, I was responsible for creating ad specifications and requirements for supplier-provided digital web banners.</p>
                                     <br>                                        
                                     <p>I designed and developed a comprehensive, bespoke guidelines website for suppliers, offering clear, step-by-step instructions on creating banners and media for our advertising platform, Criteo. To ensure clarity and ease of use, I incorporated in-situ imagery and examples that illustrated banner display, highlighting key guidelines such as minimum text size, colour contrast, and WCAG accessibility standards. Additionally, I provided detailed instructions on layout, package contents, and lockup placements within PSD files, ensuring suppliers had all the necessary resources for consistent and high-quality content creation.</p>
                                     <br>
+                                    
+                                    <div class="nt-divider"></div>
+                                    <div class="nt-project">
                                     <h2>Process/Approach</h2>
+                                    
                                     <br>
                                     <p>Aligning with Asda's brand guidelines, I designed and developed a centralised hub for all funded design guidelines and templates. This portal allows suppliers to easily browse bookable media and access detailed information on the specific requirements for each media template.</p>
                                     <br>
@@ -185,7 +199,11 @@
                                     <img src="img/portfolio/UX%20design/guidelines-wireframe.png">
                                     <br>
                                     <br>
+                                    
+                                    <div class="nt-divider"></div>
+                                    <div class="nt-project">
                                     <h2>Results</h2>
+                                    
                                     <br>
                                     <p>These guidelines have helped to make design template information more digestible for suppliers, including accessibility guidance, shortcut buttons, easy-to-use media, use of template instructions and download links. The guidelines have resulted in improved efficiency for the team, less media rejections and a smoother user experience for clients and suppliers.</p>
                                     <br>
@@ -193,13 +211,18 @@
                                     <br>
                                     <p>Notably, our media implementation rate increased from an average of 95% to 98%, highlighting the effectiveness of the new guidelines.</p>                                
                             </div>
+                                    </div>
+                                    </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        </div>
         <!-- /ABOUT -->        
 
+        <div class="nt-contact-spacer"></div>
         <!-- CONTACT -->
         <div id="contact" class="dizme_tm_section" style="background-image: url('img/brushes/contact/2.svg');background-position: right bottom;background-repeat: no-repeat;background-size: 40%;">
             <div class="dizme_tm_contact">
@@ -230,7 +253,7 @@
                                         </div>
                                         <div class="short">
                                             <h3>Email</h3>
-                                            <span><a href="mailto:nickthompson4@hotmail.com">nickthompson4@hotmail.com</a></span>
+                                            <span><a href="/cdn-cgi/l/email-protection#ef81868c849b8780829f9c8081dbaf87809b828e8683c18c8082"><span class="__cf_email__" data-cfemail="8de3e4eee6f9e5e2e0fdfee2e3b9cde5e2f9e0ece4e1a3eee2e0">[email&#160;protected]</span></a></span>
                                         </div>
                                     </div>
                                 </li>
@@ -316,21 +339,30 @@
     </div>
     <!-- / WRAPPER ALL -->
 
+            <script>
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('ntProgressBar').style.width = progress + '%';
+        });
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('nt-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.nt-project').forEach(function(el) { observer.observe(el); });
+    </script>
+
     <!-- SCRIPTS -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- SLICK SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- BOOTSTRAP/MODAL SCRIPTS -->
     <script type="text/javascript" src="https://unpkg.com/popper.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-
-    <!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->
-    <script src="js/plugins.js"></script>
-    <script src="js/init.js"></script>
-    <!-- /SCRIPTS -->
-
-</body>
-
-</html>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.
