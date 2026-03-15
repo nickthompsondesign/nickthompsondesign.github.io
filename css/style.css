@@ -916,7 +916,7 @@ input[type=number] { -moz-appearance: textfield; }
   line-height: 1;
   color: #fff;
   font-family: Georgia, serif;
-  margin-bottom: 8px;
+  margin-bottom: -20px;
   opacity: .4;
 }
 .nt-t-text {
