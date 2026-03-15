@@ -894,8 +894,8 @@ input[type=number] { -moz-appearance: textfield; }
 /* ─────────────────────────────────────────────
    18) FEEDBACK — dark card testimonials
 ───────────────────────────────────────────── */
-.nt-feedback-section { background: #1a1a2e !important; padding: 80px 0 !important; }
-.nt-feedback-section .dizme_tm_main_title span { color: #6b93f5; }
+.nt-feedback-section { background: #2f60d9 !important; padding: 80px 0 !important; }
+.nt-feedback-section .dizme_tm_main_title span { color: rgba(255,255,255,.7); }
 .nt-feedback-section .dizme_tm_main_title h3 { color: #fff; }
 .nt-t-grid {
   display: grid;
@@ -904,10 +904,10 @@ input[type=number] { -moz-appearance: textfield; }
   margin-top: 48px;
 }
 .nt-t-card {
-  background: #242444;
+  background: #2151c4;
   border-radius: 16px;
   padding: 32px;
-  border: 1px solid rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.15);
   display: flex;
   flex-direction: column;
 }
