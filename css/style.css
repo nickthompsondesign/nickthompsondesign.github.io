@@ -1699,3 +1699,8 @@ body::after {
   .digital-image-container-4 div,
   .digital-image-container-5 div { width: 100% !important; }
 }
+
+.about-text {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+}
