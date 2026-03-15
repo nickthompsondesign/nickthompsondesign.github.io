@@ -843,7 +843,7 @@ input[type=number] { -moz-appearance: textfield; }
 /* contact button override → blue */
 .dizme_tm_contact .dizme_tm_button a,
 .dizme_tm_contact .dizme_tm_button button {
-  border-color: #2F5FD9; background: #2F5FD9;
+  border-color: #2F5FD9;
 }
 .dizme_tm_contact .dizme_tm_button a:before,
 .dizme_tm_contact .dizme_tm_button button:before { background: #2F5FD9; }
