@@ -841,14 +841,10 @@ input[type=number] { -moz-appearance: textfield; }
 .message_area:focus { border-color: #2F5FD9 !important; outline: none; }
 
 /* contact button override → blue */
-
-/* 
 .dizme_tm_contact .dizme_tm_button a,
 .dizme_tm_contact .dizme_tm_button button {
   border-color: #2F5FD9; background: #2F5FD9;
 }
-*/
-
 .dizme_tm_contact .dizme_tm_button a:before,
 .dizme_tm_contact .dizme_tm_button button:before { background: #2F5FD9; }
 .dizme_tm_contact .dizme_tm_button a:hover span,
@@ -939,11 +935,10 @@ input[type=number] { -moz-appearance: textfield; }
   padding-top: 20px;
 }
 .nt-t-logo {
-  height: 50px;
+  height: 30px;
+  filter: brightness(0) invert(1);
+  opacity: .6;
   flex-shrink: 0;
-}
-.nt-t-person {
-  line-height: 1;
 }
 .nt-t-person strong {
   display: block;
@@ -955,7 +950,7 @@ input[type=number] { -moz-appearance: textfield; }
 .nt-t-person span {
   font-size: 12px;
   color: rgba(255,255,255,.5);
-  line-height: 1;
+  line-height: 1.4;
 }
 @media (max-width: 768px) {
   .nt-t-grid { grid-template-columns: 1fr; }
@@ -1577,69 +1572,4 @@ body::after {
   .digital-image-container-3 div,
   .digital-image-container-4 div,
   .digital-image-container-5 div { width: 100% !important; }
-}
-
-
-
-/* ==========================================================================
-   DIZME BUTTON OVERRIDE - MATCHING 'NT-CTAS' STYLE
-   ========================================================================== */
-
-/* 1. Base Button Styling (Solid Background, Pill Shape) */
-.dizme_tm_button a,
-.dizme_tm_button button {
-    display: inline-block;
-    background-color: #f75023 !important; /* Orange to match nt-btn-orange */
-    color: #ffffff !important;
-    padding: 14px 40px !important;
-    border-radius: 50px !important;
-    border: none !important;
-    font-family: 'Jost', sans-serif !important; /* Matches your theme font */
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    text-align: center;
-    text-decoration: none !important;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    
-    /* Smooth transition for hover effects */
-    transition: all 0.3s ease !important;
-}
-
-/* Remove default button outlines on click/focus */
-.dizme_tm_button button:focus {
-    outline: none;
-}
-
-/* 2. Text Span Styling */
-.dizme_tm_button a span,
-.dizme_tm_button button span {
-    position: relative;
-    z-index: 2;
-    color: #ffffff !important;
-    transition: all 0.3s ease !important;
-}
-
-/* 3. Completely Remove the Default Dizme Slider Animations */
-.dizme_tm_button a::before,
-.dizme_tm_button a::after,
-.dizme_tm_button button::before,
-.dizme_tm_button button::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* 4. The Hover Effect (Smooth Lift + Shadow) */
-.dizme_tm_button a:hover,
-.dizme_tm_button button:hover {
-    transform: translateY(-4px) !important; /* Moves button up smoothly */
-    background-color: #e0431b !important; /* Slightly darker/richer orange */
-    box-shadow: 0 10px 20px rgba(247, 80, 35, 0.3) !important; /* Soft orange shadow */
-}
-
-/* 5. Ensure the text stays pure white on hover */
-.dizme_tm_button a:hover span,
-.dizme_tm_button button:hover span {
-    color: #ffffff !important;
 }
