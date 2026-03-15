@@ -936,7 +936,6 @@ input[type=number] { -moz-appearance: textfield; }
 }
 .nt-t-logo {
   height: 50px;
-  opacity: .6;
   flex-shrink: 0;
 }
 .nt-t-person {
