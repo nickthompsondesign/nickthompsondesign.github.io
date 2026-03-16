@@ -1706,3 +1706,16 @@ body::after {
     line-height: 1.4rem;
 }
 */
+
+#nt-loader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+#nt-loader.done {
+  opacity: 0;
+}
