@@ -24,6 +24,26 @@
 </head>
 
 <body>
+
+<style>/* style.css */
+@keyframes splashOut { to { opacity:0; transform:scale(1.4); } }
+@keyframes pageIn    { from { opacity:0; } }
+
+#nt-splash {
+  position: fixed; inset: 0; background: #fff; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  animation: splashOut 0.5s 0.6s ease forwards;
+  pointer-events: none;
+}
+#nt-splash span {
+  width:60px; height:60px; background:#1a1a2e; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:700; font-size:22px;
+}
+.dizme_tm_all_wrap { animation: pageIn 0.5s 0.9s ease both; opacity:0; }
+</style>
+<div id="nt-splash"><span>NT</span></div>
+
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FC6WJ74" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="dizme_tm_all_wrap" data-magic-cursor="show">
