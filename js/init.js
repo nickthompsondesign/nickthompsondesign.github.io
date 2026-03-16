@@ -721,3 +721,14 @@ Array.from(document.getElementsByClassName("carousel-control-prev")).forEach(el 
 Array.from(document.getElementsByClassName("carousel-control-next")).forEach(el => {
     el.onclick = stop_all_videos;
 });
+
+
+/* Page load overlay */
+window.addEventListener('load', function() {
+  var loader = document.getElementById('nt-loader');
+  if (loader) {
+    setTimeout(function() {
+      loader.classList.add('done');
+    }, 100);
+  }
+});
