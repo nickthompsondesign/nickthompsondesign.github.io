@@ -370,7 +370,53 @@
       .testimonial-card { backdrop-filter:none; -webkit-backdrop-filter:none; }
       .contact-form { backdrop-filter:none; -webkit-backdrop-filter:none; }
       .btn-view { backdrop-filter:none; -webkit-backdrop-filter:none; }
+
+      /* --- NEW ABOUT SECTION MOBILE FIXES --- */
+      
+      /* 1. Make the tools wrap naturally and align to the left */
+      .about-tools { 
+        width: 100%; 
+        height: auto; 
+        flex-wrap: wrap; 
+        padding: 16px; 
+        justify-content: flex-start; /* Aligns with text */
+        margin: 0 0 32px 0; 
+        border-radius: 20px; 
+      }
+      
+      /* 2. Shrink the icons slightly to fit better */
+      .about-tools img { 
+        width: 38px; 
+        height: 38px; 
+        padding: 8px; 
+      }
+      
+      /* 3. Disable the desktop "dock" hover effect (it gets stuck on touchscreens) */
+      .about-tools img:hover, 
+      .about-tools:hover img,
+      .about-tools img:hover + img, 
+      .about-tools img:has(+ img:hover) { 
+        width: 38px !important; 
+        height: 38px !important; 
+        padding: 8px !important; 
+        opacity: 1 !important; 
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)) !important;
+      }
+
+      /* 4. Make the buttons full-width and stacked for easy tapping */
+      .about-btns { 
+        flex-direction: column; 
+        width: 100%; 
+      }
+      .about-btns .btn-solid, 
+      .about-btns .btn-outline { 
+        width: 100%; 
+        justify-content: center; 
+        box-sizing: border-box;
+      }
     }
+
+
   </style>
   
 </head>
