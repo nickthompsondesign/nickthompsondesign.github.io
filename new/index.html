@@ -24,7 +24,9 @@
     .loader-logo { font-family:var(--font-heading);font-size:38px;color:white;letter-spacing:var(--tracking-tight);font-weight:800;opacity:0;filter:blur(15px);transform:translateY(30px);animation:riseAndClear 1.5s forwards var(--ease-smooth) 0.3s; }
     .loader-logo span { font-style:italic;font-weight:200;opacity:0.9;margin-left:2px; }
   
-    @media(max-width:1024px){.loader-logo { font-size: 7vw; }}}
+    @media(max-width:1024px){
+      .loader-logo { font-size: 7vw; }
+    }
   
     @keyframes riseAndClear { to{opacity:1;filter:blur(0);transform:translateY(0);} }
     html,body { margin:0;padding:0;width:100%;background-color:#000113;font-family:var(--font-body);color:white;overflow-x:hidden; }
