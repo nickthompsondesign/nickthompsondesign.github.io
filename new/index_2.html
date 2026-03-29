@@ -685,30 +685,39 @@
       move();
     }
 
-    // Square box tilt — desktop only
-    if (window.innerWidth >= 1024) {
-      const box = document.querySelector('.square-box');
-      let tilting = false;
-      let isTicking = false;
-      setTimeout(() => { tilting = true; }, 3500);
-      window.addEventListener('mousemove', e => {
-        if (!tilting) return;
-        if (!isTicking) {
-          window.requestAnimationFrame(() => {
-            const dx = (e.clientX - window.innerWidth) / window.innerWidth;
-            const dy = (e.clientY - window.innerHeight) / window.innerHeight;
-            box.style.transition = 'transform 0.1s linear';
-            box.style.transform = `perspective(800px) rotateX(${dy*-3}deg) rotateY(${dx*3}deg) scale(1)`;
-            isTicking = false;
-          });
-          isTicking = true;
-        }
-      }, { passive: true });
-      window.addEventListener('mouseleave', () => {
-        box.style.transition = 'transform 0.6s var(--ease-smooth)';
-        box.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
-      });
-    }
+  // Square box tilt — desktop only
+      if (window.innerWidth >= 1024) {
+        const box = document.querySelector('.square-box');
+        let tilting = false;
+        let isTicking = false;
+        
+        // Wait for preloader to finish before enabling tilt
+        setTimeout(() => { tilting = true; }, 3500); 
+        
+        window.addEventListener('mousemove', e => {
+          if (!tilting) return;
+          if (!isTicking) {
+            window.requestAnimationFrame(() => {
+              // NEW MATH: Maps mouse position from -1 to 1 based on the center of the screen
+              const dx = (e.clientX / window.innerWidth - 0.5) * 2; 
+              const dy = (e.clientY / window.innerHeight - 0.5) * 2; 
+              
+              box.style.transition = 'transform 0.1s ease-out';
+              // Multiplied by 6 degrees for a highly visible, premium-feeling tilt
+              box.style.transform = `perspective(1000px) rotateX(${dy * -6}deg) rotateY(${dx * 6}deg) scale(1)`;
+              
+              isTicking = false;
+            });
+            isTicking = true;
+          }
+        }, { passive: true });
+        
+        // Smoothly reset to flat when the mouse leaves the browser window
+        window.addEventListener('mouseleave', () => {
+          box.style.transition = 'transform 0.6s var(--ease-smooth)';
+          box.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      }
 
     // Scroll reveal observer
     const revealObserver = new IntersectionObserver((entries) => {
