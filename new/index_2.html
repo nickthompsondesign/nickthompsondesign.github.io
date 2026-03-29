@@ -111,15 +111,49 @@
     @media(min-width:1024px){.square-box{width:clamp(300px, 40vw, 550px); max-width:none; width: 90%;}}
     body.loaded .square-box{opacity:1;transform:scale(1);}
     
-    .showreel-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;filter:blur(10px);transform:scale(1.1);will-change: opacity, filter, transform;}
-    .slide-1{background-image:url('http://nickthompsondesign.co.uk/img/portfolio/Web-Design.jpg');animation:videoFade2 10s infinite ease-in-out;}
-    .slide-2{background-image:url('https://nickthompsondesign.co.uk/img/portfolio/Logos-Showcase.jpg');animation:videoFade1 10s infinite ease-in-out;}
-    .slide-3{background-image:url('http://nickthompsondesign.co.uk/img/portfolio/sora-sushi-show.jpg');animation:videoFade2 10s infinite ease-in-out;}
-    @keyframes videoFade1{0%,45%,100%{opacity:1;filter:blur(0);transform:scale(1);}50%,95%{opacity:0;filter:blur(15px);transform:scale(1.1);}}
-    @keyframes videoFade2{0%,45%,100%{opacity:0;filter:blur(15px);transform:scale(1.1);}50%,95%{opacity:1;filter:blur(0);transform:scale(1);}}
-    @keyframes fluidMove1{0%{transform:translate(0,0) rotate(0deg) scale(1);}33%{transform:translate(10vw,-15vh) rotate(120deg) scale(1.1);}66%{transform:translate(-15vw,10vh) rotate(240deg) scale(0.9);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
-    @keyframes fluidMove2{0%{transform:translate(0,0) rotate(0deg) scale(1);}25%{transform:translate(-15vw,-10vh) rotate(90deg) scale(0.9);}50%{transform:translate(10vw,-20vh) rotate(180deg) scale(1.2);}75%{transform:translate(20vw,10vh) rotate(270deg) scale(1);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
+.showreel-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(15px);
+  transform: scale(1.1);
+  will-change: opacity, filter, transform;
+  /* Apply a master 16-second loop to all slides */
+  animation: slideFade 16s infinite ease-in-out;
+}
 
+/* Stagger the start times using negative delays */
+.slide-1 { 
+  background-image: url('http://nickthompsondesign.co.uk/img/portfolio/Web-Design.jpg'); 
+  animation-delay: 0s; 
+}
+.slide-2 { 
+  background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Logos-Showcase.jpg'); 
+  animation-delay: -12s; 
+}
+.slide-3 { 
+  background-image: url('http://nickthompsondesign.co.uk/img/portfolio/sora-sushi-show.jpg'); 
+  animation-delay: -8s;  
+}
+.slide-4 { 
+  /* Add your 4th image path below */
+  background-image: url('YOUR-4TH-IMAGE-URL-HERE.jpg'); 
+  animation-delay: -4s;  
+}
+
+/* The Math: 
+  Each slide is visible for 20% of the 16s loop (3.2 seconds).
+  Fades out between 20% and 25% (0.8 seconds).
+  Stays hidden until 95%, then fades back in.
+*/
+@keyframes slideFade {
+  0%, 20% { opacity: 1; filter: blur(0); transform: scale(1); }
+  25%, 95% { opacity: 0; filter: blur(15px); transform: scale(1.1); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+  
     /* Content section */
     .content-section{position:relative;z-index:10;background:#05041a;color:#fff;}
     .content-inner{max-width:var(--max-w);margin:0 auto;padding:0 60px;box-sizing:border-box;}
@@ -361,6 +395,7 @@
           <div class="showreel-slide slide-1"></div>
           <div class="showreel-slide slide-2"></div>
           <div class="showreel-slide slide-3"></div>
+          <div class="showreel-slide slide-4"></div>
         </div>
       </div>
     </div>
