@@ -111,52 +111,45 @@
     @media(min-width:1024px){.square-box{width:clamp(300px, 40vw, 550px); max-width:none; width: 90%;}}
     body.loaded .square-box{opacity:1;transform:scale(1);}
     
-.showreel-slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  filter: blur(15px);
-  transform: scale(1.1);
-  will-change: opacity, filter, transform;
-  /* Apply a master 16-second loop to all slides */
-  animation: slideFade 16s infinite ease-in-out;  
-  animation-play-state: paused;
-}
+    .showreel-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      filter: blur(15px);
+      transform: scale(1.1);
+      will-change: opacity, filter, transform;
+      animation: slideFade 16s infinite ease-in-out;  
+      animation-play-state: paused;
+    }
 
-body.loaded .showreel-slide {
-  animation-play-state: running;
-}
+    body.loaded .showreel-slide {
+      animation-play-state: running;
+    }
 
-/* Stagger the start times using negative delays */
-.slide-1 { 
-  background-image: url('http://nickthompsondesign.co.uk/img/portfolio/Web-Design.jpg'); 
-  animation-delay: 0s; 
-}
-.slide-2 { 
-  background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Logos-Showcase.jpg'); 
-  animation-delay: -12s; 
-}
-.slide-3 { 
-  background-image: url('http://nickthompsondesign.co.uk/img/portfolio/sora-sushi-show.jpg'); 
-  animation-delay: -8s;  
-}
-.slide-4 { 
-  background-image: url('http://nickthompsondesign.co.uk/img/portfolio/Asda-Pages.png'); 
-  animation-delay: -4s;  
-}
+    .slide-1 { 
+      background-image: url('http://nickthompsondesign.co.uk/img/portfolio/Web-Design.jpg'); 
+      animation-delay: 0s; 
+    }
+    .slide-2 { 
+      background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Logos-Showcase.jpg'); 
+      animation-delay: -12s; 
+    }
+    .slide-3 { 
+      background-image: url('http://nickthompsondesign.co.uk/img/portfolio/sora-sushi-show.jpg'); 
+      animation-delay: -8s;  
+    }
+    .slide-4 { 
+      background-image: url('http://nickthompsondesign.co.uk/img/portfolio/Asda-Pages.png'); 
+      animation-delay: -4s;  
+    }
 
-/* The Math: 
-  Each slide is visible for 20% of the 16s loop (3.2 seconds).
-  Fades out between 20% and 25% (0.8 seconds).
-  Stays hidden until 95%, then fades back in.
-*/
-@keyframes slideFade {
-  0%, 20% { opacity: 1; filter: blur(0); transform: scale(1); }
-  25%, 95% { opacity: 0; filter: blur(15px); transform: scale(1.1); }
-  100% { opacity: 1; filter: blur(0); transform: scale(1); }
-}
+    @keyframes slideFade {
+      0%, 20% { opacity: 1; filter: blur(0); transform: scale(1); }
+      25%, 95% { opacity: 0; filter: blur(15px); transform: scale(1.1); }
+      100% { opacity: 1; filter: blur(0); transform: scale(1); }
+    }
   
     /* Content section */
     .content-section{position:relative;z-index:10;background:#05041a;color:#fff;}
@@ -305,16 +298,43 @@ body.loaded .showreel-slide {
     .site-footer a.privacy{font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;}
     .site-footer a.privacy:hover{color:rgba(255,255,255,0.9);}
 
-    /* Fixed gradient bg */
+    /* Fixed gradient bg - REPLACED BLUR WITH SOFT GRADIENTS */
     .gradient-bg { width: 100vw; height: 100vh; position: fixed; overflow: hidden; background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2)); top: 0; left: 0; z-index: 1; transform: translateZ(0); will-change: transform; }
     .gradient-bg::after { content: ""; position: absolute; inset: 0; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlMAGZRvGWEAAAFFSURBVDjLpZTBjoMwDEQv/f8/bxv0AITEaYc9I7WqwjO2E+Klv3yE0rPyn2B8l+D3wX2H9Htwf0C8k+CXgP2E+E/BfUP8q+B2Qby34PZAnCPgNoHbBPEbgtMAsZvgPAJxHwWnCcS+C04HxL4KzgzELwhOF8T+CM4A+P4LTg/ELwhOD8T+CM4I+P4LzhDEPwjOFMT+CM4YxHwITifEtwlON8S3Cc44xP0RnH6IWxOcCYhbE5wRiP8UnCGIWRP0+SAWb2g9EIstrQdi34b2ALHY0hog9lloDxD7LLQHSP42tBZI/ja0Fkj+NrQWSP42tBZI/ja0Fkh+N7QWSH43tBZI/m1oLZD829BaIPnb0Fog+bWhtUDya0NrgOQ/h9YAyd+G1gDJ34bWAMnfhtYAyf+G1gDJ/4bWAMnfhtYCyf+G1gLJP4fWAsn/htYCyf+G1gLJP4e22/gC2r9n0uP1XFEAAAAASUVORK5CYII="); opacity: 0.15; mix-blend-mode: overlay; pointer-events: none; z-index: 2; }
+    
+/* Fixed gradient bg */
+    .gradient-bg { width: 100vw; height: 100vh; position: fixed; overflow: hidden; background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2)); top: 0; left: 0; z-index: 1; transform: translateZ(0); will-change: transform; }
+    .gradient-bg::after { content: ""; position: absolute; inset: 0; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlMAGZRvGWEAAAFFSURBVDjLpZTBjoMwDEQv/f8/bxv0AITEaYc9I7WqwjO2E+Klv3yE0rPyn2B8l+D3wX2H9Htwf0C8k+CXgP2E+E/BfUP8q+B2Qby34PZAnCPgNoHbBPEbgtMAsZvgPAJxHwWnCcS+C04HxL4KzgzELwhOF8T+CM4A+P4LTg/ELwhOD8T+CM4I+P4LzhDEPwjOFMT+CM4YxHwITifEtwlON8S3Cc44xP0RnH6IWxOcCYhbE5wRiP8UnCGIWRP0+SAWb2g9EIstrQdi34b2ALHY0hog9lloDxD7LLQHSP42tBZI/ja0Fkj+NrQWSP42tBZI/ja0Fkh+N7QWSH43tBZI/m1oLZD829BaIPnb0Fog+bWhtUDya0NrgOQ/h9YAyd+G1gDJ34bWAMnfhtYAyf+G1gDJ/4bWAMnfhtYCyf+G1gLJP4fWAsn/htYCyf+G1gLJP4e22/gC2r9n0uP1XFEAAAAASUVORK5CYII="); opacity: 0.15; mix-blend-mode: overlay; pointer-events: none; z-index: 2; }
+    
+    /* RESTORED ORIGINAL DESKTOP FILTERS */
     .gradients-container { filter: blur(40px) saturate(200%) contrast(120%); width: 100%; height: 100%; transform: translateZ(0); backface-visibility: hidden; }
+    
     .g1,.g2,.g3,.g5,.interactive{position:absolute;mix-blend-mode:var(--blending);border-radius:50%;opacity:1;will-change:transform;}
+    
+    /* RESTORED ORIGINAL SIZES AND BOX SHADOWS */
     .g1{background:radial-gradient(circle at center,rgba(var(--color1),0.9) 0%,transparent 50%);width:180vw;height:180vh;top:-40vh;left:-40vw;animation:fluidMove1 40s ease-in-out infinite;box-shadow:inset 0 100px 300px #dc26aa;}
     .g2{background:radial-gradient(circle at center,rgba(var(--color2),0.9) 0%,transparent 50%);width:160vw;height:160vh;top:-30vh;left:20vw;animation:fluidMove2 32s ease-in-out infinite reverse;box-shadow:inset 0 100px 300px #0ff877;}
     .g3{background:radial-gradient(ellipse at center,rgba(var(--color3),0.8) 0%,transparent 50%);width:140vw;height:200vh;top:20vh;left:-50vw;animation:fluidMove1 35s ease-in-out infinite;}
     .g5{background:radial-gradient(circle at center,rgba(var(--color5),0.8) 0%,transparent 50%);width:150vw;height:150vh;top:-50vh;left:-10vw;animation:fluidMove1 38s ease-in-out infinite reverse;}
+    
     .interactive { background: radial-gradient(circle at center, rgba(var(--color-interactive), 1) 0%, rgba(var(--color-interactive), 0.9) 20%, transparent 50%); width: 80vw; height: 80vw; top: -35vw; left: -35vw; opacity: 1; mix-blend-mode: color-dodge; will-change: transform; }
+
+    /* GPU-Accelerated Keyframes (Keep these!) */
+    @keyframes fluidMove1 {
+      0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+      33%  { transform: translate3d(10vw, -15vh, 0) rotate(120deg) scale(1.1); }
+      66%  { transform: translate3d(-15vw, 10vh, 0) rotate(240deg) scale(0.9); }
+      100% { transform: translate3d(0, 0, 0) rotate(360deg) scale(1); }
+    }
+
+    @keyframes fluidMove2 {
+      0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+      25%  { transform: translate3d(-15vw, -10vh, 0) rotate(90deg) scale(0.9); }
+      50%  { transform: translate3d(10vw, -20vh, 0) rotate(180deg) scale(1.2); }
+      75%  { transform: translate3d(20vw, 10vh, 0) rotate(270deg) scale(1); }
+      100% { transform: translate3d(0, 0, 0) rotate(360deg) scale(1); }
+    }
+
 
     /* =============================================
        MOBILE OPTIMISATIONS (max-width: 1023px)
@@ -334,11 +354,15 @@ body.loaded .showreel-slide {
       /* Scroll reveal — remove blur, keep fade+slide */
       .scroll-reveal { filter:none; transition:opacity 1.2s var(--ease-smooth), transform 1.2s var(--ease-smooth); }
 
-      /* Gradient background — reduce to 2 blobs, slow animations, lighter filter */
-      .g3, .g5 { display:none; }
-      .g1, .g2 { animation-duration:80s; }
-      .gradients-container { filter:blur(30px) saturate(150%) contrast(110%); }
-      .interactive { display:none; }
+
+      /* Drop the blur down to 20px for mobile GPUs */
+      .gradients-container { filter: blur(20px) saturate(150%) contrast(110%); }
+      
+      /* Hide the extra blobs and cursor */
+      .g3, .g5, .interactive { display:none; }
+      
+      /* Keep g1 and g2 moving smoothly via translate3d */
+      .g1, .g2 { animation-duration:60s; }
 
       /* Remove backdrop-filter everywhere on mobile */
       .mobile-nav { backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(1,1,18,0.97); }
