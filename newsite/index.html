@@ -24,7 +24,11 @@
     #preloader.fade-out { opacity:0;visibility:hidden; }
     .loader-logo { font-family:var(--font-heading);font-size:38px;color:white;letter-spacing:var(--tracking-tight);font-weight:800;opacity:0;filter:blur(15px);transform:translateY(30px);animation:riseAndClear 1.5s forwards var(--ease-smooth) 0.3s; }
     .loader-logo span { font-style:italic;font-weight:200;opacity:0.9;margin-left:2px; }
-    @media(max-width:1024px){ .loader-logo { font-size: 7vw; } }
+  
+    @media(max-width:1024px){
+      .loader-logo { font-size: 7vw; }
+    }
+  
     @keyframes riseAndClear { to{opacity:1;filter:blur(0);transform:translateY(0);} }
     html,body { margin:0;padding:0;width:100%;background-color:#000113;font-family:var(--font-body);color:white;overflow-x:hidden; }
 
@@ -61,7 +65,7 @@
     .hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
     .mobile-nav { display:none;position:fixed;inset:0;background:rgba(1,1,18,0.8);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);z-index:999;flex-direction:column;justify-content:center;align-items:center;gap:40px;opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease-smooth); }
     .mobile-nav.open{opacity:1;pointer-events:auto;}
-    .mobile-nav a { font-family:var(--font-heading);font-size:clamp(24px,8vw,42px);font-weight:700;color:white;text-decoration:none;letter-spacing:var(--tracking-tight);opacity:0;transform:translateY(20px);transition:color 0.3s ease,opacity 0.4s var(--ease-smooth),transform 0.5s var(--ease-smooth); }
+    .mobile-nav a { font-family:var(--font-heading);font-size:clamp(28px,8vw,42px);font-weight:700;color:white;text-decoration:none;letter-spacing:var(--tracking-tight);opacity:0;transform:translateY(20px);transition:color 0.3s ease,opacity 0.4s var(--ease-smooth),transform 0.5s var(--ease-smooth); }
     .mobile-nav.open a{opacity:1;transform:translateY(0);}
     .mobile-nav.open a:nth-child(1){transition-delay:0.05s;} .mobile-nav.open a:nth-child(2){transition-delay:0.1s;} .mobile-nav.open a:nth-child(3){transition-delay:0.15s;} .mobile-nav.open a:nth-child(4){transition-delay:0.2s;}
     .mobile-nav a:hover{color:rgba(255,255,255,0.6);}
@@ -80,7 +84,7 @@
     .btn:hover svg{transform:rotate(45deg) translate(3px,-3px) scale(1.1);}
 
     /* Hero */
-    .hero-wrapper { position:relative;z-index:50;display:flex;justify-content:center;align-items:center;min-height:100svh;width:100%;overflow:hidden; padding-top:60px; box-sizing:border-box;}
+    .hero-wrapper { position:relative;z-index:50;display:flex;justify-content:center;align-items:center;width:100%;min-height:80vh;overflow:hidden; padding-top:60px; box-sizing:border-box;}
     @media(min-width:1024px){.hero-wrapper{min-height:100vh;}}
 
     .hero-container { width:100%;max-width:var(--max-w);padding:40px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;box-sizing:border-box;gap:36px; }
@@ -90,7 +94,7 @@
     .hero-text{width:100%;max-width:850px; display:flex; flex-direction:column; align-items:center; gap: 10px;}
     @media(min-width:1024px){.hero-text{flex:1; align-items:flex-start;gap: 30px;}}
     
-    h1 { filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.3));font-family:var(--font-heading);font-size:clamp(26px,8vw,78px);line-height:1.05;font-weight:700;letter-spacing:var(--tracking-tight);margin:0 0 16px 0;filter:drop-shadow(0px 4px 24px rgba(0,0,0,0.9)); }
+    h1 { font-family:var(--font-heading);font-size:clamp(26px,8vw,78px);line-height:1.05;font-weight:700;letter-spacing:var(--tracking-tight);margin:0 0 16px 0;filter:drop-shadow(0px 4px 24px rgba(0,0,0,0.9)); }
     @media(min-width:1024px){h1{white-space:nowrap;margin:0 0 16px 0;}}
 
     .gradient-line{display:block;font-weight:900;}
@@ -111,46 +115,15 @@
     @media(min-width:1024px){.square-box{width:clamp(300px, 40vw, 550px); max-width:none; width: 90%;}}
     body.loaded .square-box{opacity:1;transform:scale(1);}
     
-    .showreel-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      filter: blur(15px);
-      transform: scale(1.1);
-      will-change: opacity, filter, transform;
-      animation: slideFade 16s infinite ease-in-out;  
-      animation-play-state: paused;
-    }
+    .showreel-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;filter:blur(10px);transform:scale(1.1);will-change: opacity, filter, transform;}
+    
+    .slide-1{background-image:url('https://nickthompsondesign.co.uk/img/portfolio/thumbnail/thumb-n-tigon.png');animation:videoFade1 10s infinite ease-in-out;}
+    .slide-2{background-image:url('https://nickthompsondesign.co.uk/img/portfolio/sora-sushi/thumb-sora-sushi.jpg');animation:videoFade2 10s infinite ease-in-out;}
+    @keyframes videoFade1{0%,45%,100%{opacity:1;filter:blur(0);transform:scale(1);}50%,95%{opacity:0;filter:blur(15px);transform:scale(1.1);}}
+    @keyframes videoFade2{0%,45%,100%{opacity:0;filter:blur(15px);transform:scale(1.1);}50%,95%{opacity:1;filter:blur(0);transform:scale(1);}}
+    @keyframes fluidMove1{0%{transform:translate(0,0) rotate(0deg) scale(1);}33%{transform:translate(10vw,-15vh) rotate(120deg) scale(1.1);}66%{transform:translate(-15vw,10vh) rotate(240deg) scale(0.9);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
+    @keyframes fluidMove2{0%{transform:translate(0,0) rotate(0deg) scale(1);}25%{transform:translate(-15vw,-10vh) rotate(90deg) scale(0.9);}50%{transform:translate(10vw,-20vh) rotate(180deg) scale(1.2);}75%{transform:translate(20vw,10vh) rotate(270deg) scale(1);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
 
-    body.loaded .showreel-slide {
-      animation-play-state: running;
-    }
-
-    .slide-1 { 
-      background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Web-Design.jpg'); 
-      animation-delay: 0s; 
-    }
-    .slide-2 { 
-      background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Logos-Showcase.jpg'); 
-      animation-delay: -12s; 
-    }
-    .slide-3 { 
-      background-image: url('https://nickthompsondesign.co.uk/img/portfolio/sora-sushi-show.jpg'); 
-      animation-delay: -8s;  
-    }
-    .slide-4 { 
-      background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Asda-Pages.png'); 
-      animation-delay: -4s;  
-    }
-
-    @keyframes slideFade {
-      0%, 20% { opacity: 1; filter: blur(0); transform: scale(1); }
-      25%, 95% { opacity: 0; filter: blur(15px); transform: scale(1.1); }
-      100% { opacity: 1; filter: blur(0); transform: scale(1); }
-    }
-  
     /* Content section */
     .content-section{position:relative;z-index:10;background:#05041a;color:#fff;}
     .content-inner{max-width:var(--max-w);margin:0 auto;padding:0 60px;box-sizing:border-box;}
@@ -167,7 +140,7 @@
     .brands-track img{height:30px;width:auto;object-fit:contain;opacity:1;filter:grayscale(1) brightness(10);flex-shrink:0;}
     @keyframes scrollBrands{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-    /* Scroll reveal */
+    /* Scroll reveal - SLOWED DOWN to match preloader elegance */
     .scroll-reveal{opacity:0;transform:translateY(32px);filter:blur(3px);transition:opacity 1.6s var(--ease-smooth),transform 1.6s var(--ease-smooth),filter 1.6s var(--ease-smooth);}
     body.loaded .scroll-reveal.visible{opacity:1;transform:translateY(0);filter:blur(0);}
     .sr-d1{transition-delay:0.15s;} .sr-d2{transition-delay:0.3s;} .sr-d3{transition-delay:0.45s;}
@@ -184,18 +157,29 @@
     @media(max-width:600px){.portfolio-grid{grid-template-columns:1fr;grid-auto-rows:300px;}}
     
     .portfolio-card{position:relative;display:block;text-decoration:none;border-radius:24px;overflow:hidden;background-size:cover;background-position:center;background-color:#0d0b30;border:2px solid rgba(255,255,255,1);transition:transform 0.45s var(--ease-smooth),box-shadow 0.45s,border-color 0.45s;}
+
+    /* Background image zoom */
     .portfolio-card::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;background-image:inherit;transition:transform 0.6s var(--ease-smooth);z-index:0;}
     .portfolio-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(80,20,220,0.25),0 0 0 1px rgba(167,139,250,0.4);border-color:rgba(167,139,250,0.6);}
+
+    /* Dark overlay — deepens on hover */
     .portfolio-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,4,30,0.85) 0%,rgba(5,4,30,0.1) 60%,transparent 100%);transition:background 0.4s ease;z-index:1;}
     .portfolio-card:hover .portfolio-card-overlay{background:linear-gradient(to top,rgba(5,4,30,0.96) 0%,rgba(5,4,30,0.4) 60%,rgba(5,4,30,0.1) 100%);}
+
+    /* Image scale on hover */
     .portfolio-card-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.65s var(--ease-smooth);z-index:0;}
     .portfolio-card:hover .portfolio-card-img{transform:scale(1.06);}
-    .portfolio-card-inner{position:absolute;bottom:0;left:0;right:0;padding:0px 20px;z-index:2;transition:padding 0.4s var(--ease-smooth);}
+
+    .portfolio-card-inner{position:absolute;bottom:0;left:0;right:0;padding:20px 20px 20px;z-index:2;transition:padding 0.4s var(--ease-smooth);}
     .portfolio-card:hover .portfolio-card-inner{padding-bottom:24px;}
+
     .portfolio-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#c0a7ff;margin-bottom:6px;transition:color 0.3s;}
     .portfolio-card:hover .portfolio-tag{color:#e2d6ff;}
+
     .portfolio-card-inner h3{font-family:var(--font-heading);font-size:18px;font-weight:700;color:#fff;margin:0 0 0 0;letter-spacing:var(--tracking-tight);transition:transform 0.4s var(--ease-smooth);}
     .portfolio-card:hover .portfolio-card-inner h3{transform:translateY(-2px);}
+
+    /* Arrow that slides in on hover */
     .portfolio-card-arrow{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-family:var(--font-heading);font-size:12px;font-weight:700;color:rgba(255,255,255,0.0);text-transform:uppercase;letter-spacing:0.1em;transform:translateY(8px);transition:color 0.35s var(--ease-smooth),transform 0.35s var(--ease-smooth);}
     .portfolio-card-arrow svg{width:14px;height:14px;transform:rotate(45deg);transition:transform 0.35s var(--ease-smooth);}
     .portfolio-card:hover .portfolio-card-arrow{color:rgba(255,255,255,0.85);transform:translateY(0);}
@@ -209,6 +193,7 @@
     .portfolio-card:nth-child(6){grid-column:span 1;grid-row:span 2;}
     .portfolio-card:nth-child(7){grid-column:span 2;grid-row:span 2;}
     .portfolio-card:nth-child(8){grid-column:span 1;grid-row:span 1;}
+
     @media(max-width:1024px){
       .portfolio-card:nth-child(n){grid-column:span 1;grid-row:span 1;}
       .portfolio-card:nth-child(1),.portfolio-card:nth-child(6){grid-column:span 2;grid-row:span 2;}
@@ -221,8 +206,10 @@
     .testimonials-section{background:linear-gradient(135deg,#0c0930 0%,#120828 50%,#0a0f35 100%);padding:110px 0;position:relative;overflow:hidden;}
     .testimonials-section::before{content:'';position:absolute;top:10%;right:10%;width:400px;height:400px;border-radius:50%;background:rgba(220,38,170,0.4);filter:blur(100px);pointer-events:none;}
     .testimonials-section::after{content:'';position:absolute;bottom:10%;left:10%;width:400px;height:400px;border-radius:50%;background:rgba(0,20,255,0.4);filter:blur(100px);pointer-events:none;}
+    
     .testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;position:relative;z-index:1;}
     @media(max-width:768px){.testimonials-grid{grid-template-columns:1fr;}}
+    
     .testimonial-card{ border:1px solid rgba(255,255,255,0.15); border-radius:32px; padding:44px; display:flex;flex-direction:column;gap:28px; background:rgba(255,255,255,0.03); backdrop-filter:blur(40px); -webkit-backdrop-filter:blur(40px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05); transition:transform 0.3s, border-color 0.3s, background 0.3s; }
     .testimonial-card:hover{border-color:rgba(255,255,255,0.3);transform:translateY(-3px); background:rgba(255,255,255,0.06);}
     .testimonial-quote{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.9);margin:0;font-style:italic;}
@@ -232,12 +219,6 @@
     .testimonial-author strong{display:block;font-size:14px;color:#fff;font-weight:700;}
     .testimonial-author span{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.4;display:block;margin-top:3px;}
 
-    /* content-visibility for off-screen sections */
-    .testimonials-section, .about-section, .contact-section {
-      content-visibility: auto;
-      contain-intrinsic-size: 0 600px;
-    }
-    
     /* About Section */
     .about-section{padding:110px 0;background:#ffffff;position:relative;overflow:hidden;}
     .about-section::before{content:'';position:absolute;top:50%;left:-300px;transform:translateY(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(109,40,217,0.03) 0%,transparent 70%);pointer-events:none;}
@@ -246,14 +227,16 @@
     .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
     @media(max-width:900px){.about-inner{grid-template-columns:1fr;gap:48px;}}
     .about-text p{font-size:16px;line-height:1.8;color:rgba(0,0,0,0.65);margin:0 0 16px 0;}
+    
     .about-tools { display: flex; justify-content: center; margin: 0 auto 36px auto; padding: 0 16px; background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); border-radius: 32px; border: 1px solid rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 20px 40px rgba(0,0,0,0.08), inset 0 2px 10px rgba(255,255,255,0.5); width: fit-content; align-items: flex-end; height: 70px; box-sizing: border-box; position: relative; z-index: 10; }
     .about-tools img { width: 46px; height: 46px; object-fit: contain; transition: all 0.3s cubic-bezier(0.25, 1, 0.2, 1); transform-origin: bottom center; cursor: pointer; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); padding: 0 clamp(4px, 1.2vw, 10px) 12px clamp(4px, 1.2vw, 10px); will-change: width, height, padding, filter; }
     .about-tools:hover img { opacity: 0.6; }
     .about-tools img:hover { width: 78px; height: 78px; opacity: 1; padding-bottom: 18px; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.3)); }
     .about-tools img:hover + img, .about-tools img:has(+ img:hover) { width: 62px; height: 62px; opacity: 0.9; padding-bottom: 15px; }
     .about-tools img:hover + img + img, .about-tools img:has(+ img + img:hover) { width: 52px; height: 52px; opacity: 0.8; padding-bottom: 13px; }
+
     .about-btns{display:flex;gap:16px;flex-wrap:wrap;}
-    .about-image{border-radius:32px;overflow:hidden;}
+    .about-image{border-radius:32px;overflow:hidden;border:1px solid rgba(0,0,0,0.05);box-shadow:0 20px 80px rgba(0,0,0,0.08);}
     .about-image img{width:100%;display:block;object-fit:cover;max-width: 400px;margin: auto;}
 
     .btn-solid{display:inline-flex;align-items:center;padding:14px 32px;border-radius:100px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);color:#fff;border:1px solid rgba(255,255,255,0.3);box-shadow:0 8px 32px rgba(54,16,155,0.3), inset 0 0 10px rgba(255,255,255,0.1);font-family:var(--font-heading);font-weight:600;font-size:15px;text-decoration:none;transition:all 0.3s var(--ease-smooth);letter-spacing:var(--tracking-tight);cursor:pointer; gap:12px;}
@@ -273,12 +256,14 @@
     .contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:80px;margin-top:52px;position:relative;z-index:1;} 
     @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:48px;}}
     .contact-section .section-sub { max-width: 500px; text-wrap: balance; } 
+    
     .contact-details{display:flex;flex-direction:column;gap:32px;}
     .contact-item{display:flex;align-items:flex-start;gap:18px;}
     .contact-item svg{width:22px;height:22px;stroke:#c0a7ff;flex-shrink:0;margin-top:3px;}
     .contact-item strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.45);font-weight:700;margin-bottom:5px;}
     .contact-item span,.contact-item a{font-size:16px;color:rgba(255,255,255,0.9);text-decoration:none;transition:color 0.2s;}
     .contact-item a:hover{color:#c0a7ff;}
+    
     .contact-form{display:flex;flex-direction:column;gap:14px; background:rgba(255,255,255,0.03); backdrop-filter:blur(24px); border:1px solid rgba(255,255,255,0.1); border-radius:32px; padding:40px; box-shadow: 0 10px 40px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,255,255,0.02);}
     @media(max-width:600px){.contact-form{padding:24px; border-radius:24px;}}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
@@ -298,126 +283,22 @@
     .site-footer a.privacy{font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;}
     .site-footer a.privacy:hover{color:rgba(255,255,255,0.9);}
 
-    /* Fixed gradient bg - REPLACED BLUR WITH SOFT GRADIENTS */
+    /* Fixed gradient bg */
     .gradient-bg { width: 100vw; height: 100vh; position: fixed; overflow: hidden; background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2)); top: 0; left: 0; z-index: 1; transform: translateZ(0); will-change: transform; }
     .gradient-bg::after { content: ""; position: absolute; inset: 0; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlMAGZRvGWEAAAFFSURBVDjLpZTBjoMwDEQv/f8/bxv0AITEaYc9I7WqwjO2E+Klv3yE0rPyn2B8l+D3wX2H9Htwf0C8k+CXgP2E+E/BfUP8q+B2Qby34PZAnCPgNoHbBPEbgtMAsZvgPAJxHwWnCcS+C04HxL4KzgzELwhOF8T+CM4A+P4LTg/ELwhOD8T+CM4I+P4LzhDEPwjOFMT+CM4YxHwITifEtwlON8S3Cc44xP0RnH6IWxOcCYhbE5wRiP8UnCGIWRP0+SAWb2g9EIstrQdi34b2ALHY0hog9lloDxD7LLQHSP42tBZI/ja0Fkj+NrQWSP42tBZI/ja0Fkh+N7QWSH43tBZI/m1oLZD829BaIPnb0Fog+bWhtUDya0NrgOQ/h9YAyd+G1gDJ34bWAMnfhtYAyf+G1gDJ/4bWAMnfhtYCyf+G1gLJP4fWAsn/htYCyf+G1gLJP4e22/gC2r9n0uP1XFEAAAAASUVORK5CYII="); opacity: 0.15; mix-blend-mode: overlay; pointer-events: none; z-index: 2; }
-    
-/* Fixed gradient bg */
-    .gradient-bg { width: 100vw; height: 100vh; position: fixed; overflow: hidden; background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2)); top: 0; left: 0; z-index: 1; transform: translateZ(0); will-change: transform; }
-    .gradient-bg::after { content: ""; position: absolute; inset: 0; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlMAGZRvGWEAAAFFSURBVDjLpZTBjoMwDEQv/f8/bxv0AITEaYc9I7WqwjO2E+Klv3yE0rPyn2B8l+D3wX2H9Htwf0C8k+CXgP2E+E/BfUP8q+B2Qby34PZAnCPgNoHbBPEbgtMAsZvgPAJxHwWnCcS+C04HxL4KzgzELwhOF8T+CM4A+P4LTg/ELwhOD8T+CM4I+P4LzhDEPwjOFMT+CM4YxHwITifEtwlON8S3Cc44xP0RnH6IWxOcCYhbE5wRiP8UnCGIWRP0+SAWb2g9EIstrQdi34b2ALHY0hog9lloDxD7LLQHSP42tBZI/ja0Fkj+NrQWSP42tBZI/ja0Fkh+N7QWSH43tBZI/m1oLZD829BaIPnb0Fog+bWhtUDya0NrgOQ/h9YAyd+G1gDJ34bWAMnfhtYAyf+G1gDJ/4bWAMnfhtYCyf+G1gLJP4fWAsn/htYCyf+G1gLJP4e22/gC2r9n0uP1XFEAAAAASUVORK5CYII="); opacity: 0.15; mix-blend-mode: overlay; pointer-events: none; z-index: 2; }
-    
-    /* RESTORED ORIGINAL DESKTOP FILTERS */
     .gradients-container { filter: blur(40px) saturate(200%) contrast(120%); width: 100%; height: 100%; transform: translateZ(0); backface-visibility: hidden; }
     
     .g1,.g2,.g3,.g5,.interactive{position:absolute;mix-blend-mode:var(--blending);border-radius:50%;opacity:1;will-change:transform;}
-    
-    /* RESTORED ORIGINAL SIZES AND BOX SHADOWS */
     .g1{background:radial-gradient(circle at center,rgba(var(--color1),0.9) 0%,transparent 50%);width:180vw;height:180vh;top:-40vh;left:-40vw;animation:fluidMove1 40s ease-in-out infinite;box-shadow:inset 0 100px 300px #dc26aa;}
     .g2{background:radial-gradient(circle at center,rgba(var(--color2),0.9) 0%,transparent 50%);width:160vw;height:160vh;top:-30vh;left:20vw;animation:fluidMove2 32s ease-in-out infinite reverse;box-shadow:inset 0 100px 300px #0ff877;}
     .g3{background:radial-gradient(ellipse at center,rgba(var(--color3),0.8) 0%,transparent 50%);width:140vw;height:200vh;top:20vh;left:-50vw;animation:fluidMove1 35s ease-in-out infinite;}
     .g5{background:radial-gradient(circle at center,rgba(var(--color5),0.8) 0%,transparent 50%);width:150vw;height:150vh;top:-50vh;left:-10vw;animation:fluidMove1 38s ease-in-out infinite reverse;}
-    
     .interactive { background: radial-gradient(circle at center, rgba(var(--color-interactive), 1) 0%, rgba(var(--color-interactive), 0.9) 20%, transparent 50%); width: 80vw; height: 80vw; top: -35vw; left: -35vw; opacity: 1; mix-blend-mode: color-dodge; will-change: transform; }
 
-    /* GPU-Accelerated Keyframes (Keep these!) */
-    @keyframes fluidMove1 {
-      0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-      33%  { transform: translate3d(10vw, -15vh, 0) rotate(120deg) scale(1.1); }
-      66%  { transform: translate3d(-15vw, 10vh, 0) rotate(240deg) scale(0.9); }
-      100% { transform: translate3d(0, 0, 0) rotate(360deg) scale(1); }
-    }
-
-    @keyframes fluidMove2 {
-      0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-      25%  { transform: translate3d(-15vw, -10vh, 0) rotate(90deg) scale(0.9); }
-      50%  { transform: translate3d(10vw, -20vh, 0) rotate(180deg) scale(1.2); }
-      75%  { transform: translate3d(20vw, 10vh, 0) rotate(270deg) scale(1); }
-      100% { transform: translate3d(0, 0, 0) rotate(360deg) scale(1); }
-    }
-
-
-    /* =============================================
-       MOBILE OPTIMISATIONS (max-width: 1023px)
-       ============================================= */
-    @media(max-width:1023px){
-
-      /* Buttons */
-      .btn { gap:6px; font-size:14px; padding:14px 16px; }
-      .btn-cv-mobile { padding:16px 48px; font-size:16px !important; }
-
-      /* Hero image box */
-      .square-box { width:80%; }
-
-      /* Disable h1 drop-shadow — expensive on mobile */
-      h1 { filter:none; }
-
-      /* Scroll reveal — remove blur, keep fade+slide */
-      .scroll-reveal { filter:none; transition:opacity 1.2s var(--ease-smooth), transform 1.2s var(--ease-smooth); }
-
-
-      /* Drop the blur down to 20px for mobile GPUs */
-      .gradients-container { filter: blur(20px) saturate(150%) contrast(110%); }
-      
-      /* Hide the extra blobs and cursor */
-      .g3, .g5, .interactive { display:none; }
-      
-      /* Keep g1 and g2 moving smoothly via translate3d */
-      .g1, .g2 { animation-duration:60s; }
-
-      /* Remove backdrop-filter everywhere on mobile 
-      .mobile-nav { backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(1,1,18,0.97); }
-      header.scrolled { backdrop-filter:none; -webkit-backdrop-filter:none; }
-      .testimonial-card { backdrop-filter:none; -webkit-backdrop-filter:none; }
-      .contact-form { backdrop-filter:none; -webkit-backdrop-filter:none; }
-      .btn-view { backdrop-filter:none; -webkit-backdrop-filter:none; }
-      */
-      
-      /* --- NEW ABOUT SECTION MOBILE FIXES --- */
-      
-      /* 1. Make the tools wrap naturally and align to the left */
-      .about-tools { 
-        width: 100%; 
-        height: auto; 
-        flex-wrap: wrap; 
-        padding: 16px; 
-        justify-content: center; /* Aligns with text */
-        margin: 0 0 32px 0; 
-        border-radius: 20px; 
-      }
-      
-      /* 2. Shrink the icons slightly to fit better */
-      .about-tools img { 
-        width: 38px; 
-        height: 38px; 
-        padding: 8px; 
-      }
-      
-      /* 3. Disable the desktop "dock" hover effect (it gets stuck on touchscreens) */
-      .about-tools img:hover, 
-      .about-tools:hover img,
-      .about-tools img:hover + img, 
-      .about-tools img:has(+ img:hover) { 
-        width: 38px !important; 
-        height: 38px !important; 
-        padding: 8px !important; 
-        opacity: 1 !important; 
-        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)) !important;
-      }
-
-      /* 4. Make the buttons full-width and stacked for easy tapping */
-      .about-btns { 
-        flex-direction: column; 
-        width: 100%; 
-      }
-      .about-btns .btn-solid, 
-      .about-btns .btn-outline { 
-        width: 100%; 
-        justify-content: center; 
-        box-sizing: border-box;
-      }
-    }
-
-
+  @media(max-width:1023px){
+    .btn { gap:6px; font-size:14px; padding:14px 16px; }
+    .square-box { width:90%; }
+  }
   </style>
   
 </head>
@@ -464,8 +345,6 @@
         <div class="square-box">
           <div class="showreel-slide slide-1"></div>
           <div class="showreel-slide slide-2"></div>
-          <div class="showreel-slide slide-3"></div>
-          <div class="showreel-slide slide-4"></div>
         </div>
       </div>
     </div>
@@ -507,20 +386,21 @@
       </div></div>
     </div>
 
+
     <div class="portfolio-section" id="portfolio">
       <div class="content-inner">
         <div class="section-label scroll-reveal">Projects I've worked on</div>
-        <h2 class="section-heading scroll-reveal sr-d1">My Work</h2>
+        <h2 class="section-heading scroll-reveal sr-d1">Projects I've worked on</h2>
         <p class="section-sub">A collection of work across web, digital design, branding, and motion.</p>
         <div class="portfolio-grid">
-          <a href="https://nickthompsondesign.co.uk/website-design" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/Web-Design.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · UX</span><h3>Website Design &amp; Build</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="https://nickthompsondesign.co.uk/asda-design-guidelines" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-guidelines.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Strategy</span><h3>Asda Design Guidelines</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="https://nickthompsondesign.co.uk/digital-design-logos" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/Logos-Showcase.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Design · Motion</span><h3>Digital Design, Logos &amp; Animations</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="https://nickthompsondesign.co.uk/website-design" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-tigon.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · UX</span><h3>Website Design &amp; Build</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="https://nickthompsondesign.co.uk/asda-bespoke-web-pages" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-festive.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · Digital</span><h3>Asda Bespoke Web Pages</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="https://nickthompsondesign.co.uk/digital-design-logos" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-jewel.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Design · Motion</span><h3>Digital Design, Logos &amp; Animations</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
           <a href="https://nickthompsondesign.co.uk/sushi-restaurant-app" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/sora-sushi/thumb-sora-sushi.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Branding</span><h3>UX Mobile App Design</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="https://nickthompsondesign.co.uk/print-projects" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-sheffield.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Print</span><h3>Print Projects</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
           <a href="https://nickthompsondesign.co.uk/masaco-branding" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-masaco.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Branding · Logo</span><h3>Masaco Brand Development</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="https://nickthompsondesign.co.uk/asda-bespoke-web-pages" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.co.uk/img/portfolio/Asda-Pages.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · Digital</span><h3>Asda Bespoke Web Pages</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="https://nickthompsondesign.co.uk/asda-design-guidelines" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-guidelines.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Strategy</span><h3>Asda Design Guidelines</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
           <a href="https://nickthompsondesign.co.uk/video-projects" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-ready.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Video · Motion</span><h3>Video Projects</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="https://nickthompsondesign.co.uk/print-projects" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('https://nickthompsondesign.github.io/img/portfolio/thumbnail/thumb-n-sheffield.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Print</span><h3>Print Projects</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
         </div>
       </div>
     </div>
@@ -549,6 +429,7 @@
           <h2 class="section-heading">Digital Design &amp;<br>Front-End Development</h2>
           <p>I've spent over a decade helping brands make their digital presence actually work: visually sharp, user-friendly, and built to perform. My five years leading the design team at Asda saw me designing and coding bespoke experiences for P&amp;G, LEGO, Coca-Cola, and Cadbury — from wireframe to live build across constant commercial deadlines.</p>
           <p>I care about the craft on both sides. Good design should look and feel right, but it should also function flawlessly — and I have the development skills to make sure it does.</p>
+          
           <div class="about-tools">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" title="Figma">
             <img src="https://nickthompsondesign.co.uk/img/skills/adobe-illustrator-icon.webp" alt="Illustrator" title="Illustrator">
@@ -559,6 +440,7 @@
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
           </div>
+          
           <div class="about-btns">
             <a href="#contact" class="btn-solid">Contact Me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
             <a href="https://nickthompsondesign.co.uk/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn-outline">Download CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
@@ -576,7 +458,7 @@
         <div class="contact-grid">
           <div class="contact-details">
             <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><div><strong>Location</strong><span>UK / Remote</span></div></div>
-            <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><strong>Email</strong><a href="mailto:hello@nickthompsondesign.co.uk">hello@nickthompsondesign.co.uk</a></div></div>
+            <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><strong>Email</strong><a href="/cdn-cgi/l/email-protection#e886818b839c808785989b8786dca880879c85898184c68b8785"><span class="__cf_email__" data-cfemail="a7c9cec4ccd3cfc8cad7d4c8c993e7cfc8d3cac6cecb89c4c8ca">[email&#160;protected]</span></a></div></div>
             <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div><strong>Phone</strong><a href="tel:+447971727886">+44 7971 727886</a></div></div>
           </div>
           <form class="contact-form" target="_blank" action="https://formsubmit.co/181d1785bd52831baeaf8526716d033c" method="POST">
@@ -609,12 +491,13 @@
 
   <script>
     // PRELOADER
-    const minPreloaderTime = 1800;
+    const minPreloaderTime = 1800; // 1.8 seconds minimum
     const initTime = Date.now();
 
     function dismissPreloader() {
       const timeElapsed = Date.now() - initTime;
       const timeRemaining = Math.max(0, minPreloaderTime - timeElapsed);
+
       setTimeout(() => {
         document.getElementById('preloader').classList.add('fade-out');
         document.body.classList.add('loaded');
@@ -625,10 +508,10 @@
       dismissPreloader();
     } else {
       window.addEventListener('load', dismissPreloader);
-      setTimeout(dismissPreloader, 6000);
+      setTimeout(dismissPreloader, 6000); 
     }
 
-    // Scroll header
+    // Scroll header — runs on load AND scroll
     const header = document.querySelector('header');
     const getHeroH = () => document.querySelector('.hero-wrapper').offsetHeight;
     const updateHeader = () => {
@@ -644,7 +527,7 @@
       }
     };
     window.addEventListener('scroll', updateHeader, { passive: true });
-    updateHeader();
+    updateHeader(); // run immediately on load
 
     // Hamburger
     const hamburger = document.getElementById('hamburger');
@@ -672,52 +555,43 @@
       });
     });
 
-    // Interactive bubble — desktop only (stops rAF loop running on mobile)
-    if (window.innerWidth >= 1024) {
-      const interBubble = document.querySelector('.interactive');
-      let curX=0,curY=0,tgX=0,tgY=0;
-      const move = () => {
-        curX += (tgX-curX)/25; curY += (tgY-curY)/25;
-        interBubble.style.transform = `translate(${Math.round(curX)}px,${Math.round(curY)}px)`;
-        requestAnimationFrame(move);
-      };
-      window.addEventListener('mousemove', e => { tgX=e.clientX; tgY=e.clientY; }, { passive: true });
-      move();
-    }
+    // Interactive bubble
+    const interBubble = document.querySelector('.interactive');
+    let curX=0,curY=0,tgX=0,tgY=0;
+    const move = () => {
+      curX += (tgX-curX)/25; curY += (tgY-curY)/25;
+      interBubble.style.transform = `translate(${Math.round(curX)}px,${Math.round(curY)}px)`;
+      requestAnimationFrame(move);
+    };
+    window.addEventListener('mousemove', e => { tgX=e.clientX; tgY=e.clientY; }, { passive: true });
+    move();
 
-  // Square box tilt — desktop only
-      if (window.innerWidth >= 1024) {
-        const box = document.querySelector('.square-box');
-        let tilting = false;
-        let isTicking = false;
-        
-        // Wait for preloader to finish before enabling tilt
-        setTimeout(() => { tilting = true; }, 3500); 
-        
-        window.addEventListener('mousemove', e => {
-          if (!tilting) return;
-          if (!isTicking) {
-            window.requestAnimationFrame(() => {
-              // NEW MATH: Maps mouse position from -1 to 1 based on the center of the screen
-              const dx = (e.clientX / window.innerWidth - 0.5) * 2; 
-              const dy = (e.clientY / window.innerHeight - 0.5) * 2; 
-              
-              box.style.transition = 'transform 0.1s ease-out';
-              // Multiplied by 6 degrees for a highly visible, premium-feeling tilt
-              box.style.transform = `perspective(1000px) rotateX(${dy * -6}deg) rotateY(${dx * 6}deg) scale(1)`;
-              
-              isTicking = false;
-            });
-            isTicking = true;
-          }
-        }, { passive: true });
-        
-        // Smoothly reset to flat when the mouse leaves the browser window
-        window.addEventListener('mouseleave', () => {
-          box.style.transition = 'transform 0.6s var(--ease-smooth)';
-          box.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    // Square box tilt 
+    const box = document.querySelector('.square-box');
+    let tilting = false;
+    let isTicking = false;
+    
+    setTimeout(() => { tilting = true; }, 3500);
+    
+    window.addEventListener('mousemove', e => {
+      if (!tilting) return;
+      
+      if (!isTicking) {
+        window.requestAnimationFrame(() => {
+          const dx = (e.clientX - window.innerWidth) / window.innerWidth;
+          const dy = (e.clientY - window.innerHeight) / window.innerHeight;
+          box.style.transition = 'transform 0.1s linear'; 
+          box.style.transform = `perspective(800px) rotateX(${dy*-3}deg) rotateY(${dx*3}deg) scale(1)`;
+          isTicking = false;
         });
+        isTicking = true;
       }
+    }, { passive: true });
+    
+    window.addEventListener('mouseleave', () => {
+      box.style.transition = 'transform 0.6s var(--ease-smooth)';
+      box.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+    });
 
     // Scroll reveal observer
     const revealObserver = new IntersectionObserver((entries) => {
@@ -729,6 +603,7 @@
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+
   </script>
 </body>
 </html>
