@@ -327,11 +327,6 @@
       /* Disable h1 drop-shadow — expensive on mobile */
       h1 { filter:none; }
 
-      /* Slideshow — stop blur/scale animations, just show slide 1 */
-      .showreel-slide { will-change:auto; }
-      .slide-1 { animation:none; opacity:1; filter:none; transform:none; }
-      .slide-2 { animation:none; opacity:0; }
-
       /* Scroll reveal — remove blur, keep fade+slide */
       .scroll-reveal { filter:none; transition:opacity 1.2s var(--ease-smooth), transform 1.2s var(--ease-smooth); }
 
