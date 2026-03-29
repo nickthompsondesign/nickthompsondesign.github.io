@@ -86,25 +86,26 @@
     .hero-wrapper { position:relative;z-index:50;display:flex;justify-content:center;align-items:center;width:100%;min-height:80vh;overflow:hidden; padding-top:60px; box-sizing:border-box;}
     @media(min-width:1024px){.hero-wrapper{min-height:100vh;}}
 
-    .hero-container { width:100%;max-width:var(--max-w);padding:40px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;box-sizing:border-box;gap:36px; }
+    .hero-container { width:100%;max-width:var(--max-w);padding:40px 24px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;justify-content:center;box-sizing:border-box;gap:36px; }
     @media(min-width:1024px){.hero-container{flex-direction:row;align-items:center;text-align:left;justify-content:space-between;padding:40px 60px;gap:50px;}}
     
     .hero-text h1 { margin-bottom: 0px; }
-    .hero-text{width:100%;max-width:850px; display:flex; flex-direction:column; align-items:center; gap: 10px;}
+    .hero-text{width:100%;max-width:850px; display:flex; flex-direction:column; align-items:flex-start; gap: 10px; text-align:left;}
     @media(min-width:1024px){.hero-text{flex:1; align-items:flex-start;gap: 30px;}}
+
     
     h1 { font-family:var(--font-heading);font-size:clamp(38px,8vw,78px);line-height:1.05;font-weight:700;letter-spacing:var(--tracking-tight);margin:0 0 16px 0;filter:drop-shadow(0px 4px 24px rgba(0,0,0,0.9)); }
     @media(min-width:1024px){h1{white-space:nowrap;margin:0 0 16px 0;}}
 
     .gradient-line{display:block;font-weight:900;}
     
-    .indent-line { display:block;font-weight:400;color:white;font-size:clamp(18px,6vw,66px);margin-left:0;} 
-    @media(min-width:1024px){.indent-line{margin-left:clamp(0px,6vw,120px);margin-bottom: -11px;}}
+  .indent-line { display:block;font-weight:400;color:rgba(255,255,255,0.8);font-size:clamp(22px,6.5vw,66px);margin-left:0;}
+  @media(min-width:1024px){.indent-line{margin-left:clamp(0px,6vw,120px);margin-bottom:-11px;color:white;}}
     
-    .hero-body { font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:rgba(255,255,255,0.85);max-width:480px; }
+    .hero-body { font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:rgba(255,255,255,0.85);max-width:480px;margin:0; }
     @media(min-width:1024px){.hero-body{margin: 0;}}
     
-    .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+    .hero-btns{display:flex;gap:16px;justify-content:flex-start;flex-wrap:wrap;}
     @media(min-width:1024px){.hero-btns{justify-content:flex-start;}}
     
     .hero-visual{width:100%;display:flex;justify-content:center;}
