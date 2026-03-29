@@ -625,11 +625,6 @@
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
-
-if(window.innerWidth >= 1024){
-  window.addEventListener('mousemove', e => { ... tilt code ... }, { passive:true });
-  window.addEventListener('mouseleave', () => { ... });
-}
     
   </script>
 </body>
