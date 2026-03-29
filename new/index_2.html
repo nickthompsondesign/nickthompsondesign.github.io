@@ -121,7 +121,12 @@
   transform: scale(1.1);
   will-change: opacity, filter, transform;
   /* Apply a master 16-second loop to all slides */
-  animation: slideFade 16s infinite ease-in-out;
+  animation: slideFade 16s infinite ease-in-out;  
+  animation-play-state: paused;
+}
+
+body.loaded .showreel-slide {
+  animation-play-state: running;
 }
 
 /* Stagger the start times using negative delays */
