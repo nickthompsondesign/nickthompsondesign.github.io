@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
+    /* I've left your CSS area here for you to add the framing styles as discussed */
     :root {
       --color-bg1: rgb(2,2,6); --color-bg2: rgb(0,0,5);
       --color1:0,20,255; --color2:20,0,200; --color3:50,0,255; --color5:0,50,255; --color-interactive:0,30,255;
@@ -97,7 +98,7 @@
     @keyframes fluidMove1{0%{transform:translate(0,0) rotate(0deg) scale(1);}33%{transform:translate(10vw,-15vh) rotate(120deg) scale(1.1);}66%{transform:translate(-15vw,10vh) rotate(240deg) scale(0.9);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
     @keyframes fluidMove2{0%{transform:translate(0,0) rotate(0deg) scale(1);}25%{transform:translate(-15vw,-10vh) rotate(90deg) scale(0.9);}50%{transform:translate(10vw,-20vh) rotate(180deg) scale(1.2);}75%{transform:translate(20vw,10vh) rotate(270deg) scale(1);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
 
-    /* Project Hero Content - Updated to match BG wrapper height */
+    /* Project Hero Content */
     .project-hero { 
       height: 60vh; 
       min-height: 480px; 
@@ -119,7 +120,7 @@
     /* Project Feature Section */
     .project-feature { position: relative; z-index: 10; }
     
-    /* Project Meta - Overlap JS Hook */
+    /* Project Meta */
     .project-meta-light {
       background: #f8f9fa; 
       border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 32px; padding: 48px;
@@ -141,9 +142,6 @@
     .project-tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue-accent); margin-bottom: 24px; }
     .project-body p { margin-bottom: 24px; }
     
-    /* Feature Image Main */
-    .project-image-main { width: 100%; height: auto; border-radius: 32px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 30px 90px rgba(0,0,0,0.1); display: block; object-fit: cover; aspect-ratio: 16/9; background:#0d0b30; margin-bottom: 120px; }
-
     /* Next Project CTA */
     .next-project { text-align: center; padding: 100px 0; position: relative; z-index: 10; background: linear-gradient(135deg, #0c0930 0%, #120828 50%, #0a0f35 100%); color: white;}
     .next-project .section-label { margin-bottom: 20px; color: #c0a7ff; }
@@ -163,7 +161,7 @@
     .footer-logo em{font-style:italic;font-weight:200;}
     .site-footer p{font-size:13px;color:rgba(255,255,255,0.55);margin:0;}
 
-    /* Animations Optimized - SLOWED DOWN */
+    /* Animations Optimized */
     .scroll-reveal{opacity:0;transform:translateY(32px);filter:blur(3px);transition:opacity 1.6s var(--ease-smooth),transform 1.6s var(--ease-smooth),filter 1.6s var(--ease-smooth);}
     body.loaded .scroll-reveal.visible{opacity:1;transform:translateY(0);filter:blur(0);}
     .sr-d1{transition-delay:0.15s;} .sr-d2{transition-delay:0.3s;} .sr-d3{transition-delay:0.45s;}
@@ -229,7 +227,9 @@
           <p class="scroll-reveal sr-d2">I redesigned and rebuilt the Tigon Scaffolding website after their original site had gradually become cluttered and unfocused. Stronger typography, imagery, and subtle motion help bring personality to the brand — the site now feels cohesive, professional, and better aligned with how the business operates today.</p>
         </article>
 
-        <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/Tigon-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon.mp4" type="video/mp4"></video>
+        <div class="project-video-wrap scroll-reveal">
+          <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/Tigon-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon.mp4" type="video/mp4"></video>
+        </div>
       </div>
 
       <div class="project-item">
@@ -238,7 +238,9 @@
           <div class="project-tag scroll-reveal sr-d1">Healthcare · WordPress · Branding</div>
           <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
         </article>
-        <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/JL-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental.mp4" type="video/mp4"></video>
+        <div class="project-video-wrap scroll-reveal">
+          <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/JL-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental.mp4" type="video/mp4"></video>
+        </div>
       </div>
 
       <div class="project-item">
@@ -248,7 +250,9 @@
           <p class="scroll-reveal sr-d2">A bespoke, minimal, image-led website for an architecture firm that puts their work front and centre. Clean typography and thoughtful spacing give their projects space to breathe while maintaining a strong, cohesive professional presence.</p>
         </article>
 
-        <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/LM-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates.mp4" type="video/mp4"></video>
+        <div class="project-video-wrap scroll-reveal">
+          <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/LM-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates.mp4" type="video/mp4"></video>
+        </div>
       </div>
 
       <div class="project-item">
@@ -257,7 +261,9 @@
           <div class="project-tag scroll-reveal sr-d1">Logistics · WordPress · Healthcare</div>
           <p class="scroll-reveal sr-d2">A clear, professional website for a healthcare logistics company — structured layout with strong visuals and direct messaging that builds trust, communicates reliability, and helps users understand their services at a glance.</p>
         </article>
-        <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/Dynamic-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic.mp4" type="video/mp4"></video>
+        <div class="project-video-wrap scroll-reveal">
+          <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/Dynamic-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic.mp4" type="video/mp4"></video>
+        </div>
       </div>
 
       <div class="project-item">
@@ -266,17 +272,20 @@
           <div class="project-tag scroll-reveal sr-d1">Brand Identity · WordPress · Interactive</div>
           <p class="scroll-reveal sr-d2">Built from scratch with no existing brand guidelines — I collaborated closely with the client to establish a full brand identity alongside the site. Vibrant design, interactive maps, clear pricing, and simple booking combine to create a welcoming experience for families finding swimming lessons.</p>
         </article>
-        <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/SwimTeam-Poster.png"><source src="/img/portfolio/websites/TheSwimTeam.mp4" type="video/mp4"></video>
-
+        <div class="project-video-wrap scroll-reveal">
+          <video muted="" autoplay="" loop="" playsinline="" poster="/img/portfolio/websites/SwimTeam-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/websites/TheSwimTeam.mp4" type="video/mp4"></video>
+        </div>
       </div>
 
     </div>
   </section>
 
+  <div style="height: 120px;"></div>
+
   <section class="next-project">
     <div class="content-inner">
       <span class="section-label scroll-reveal">Up Next</span>
-      <a href="https://nickthompsondesign.co.uk/asda-bespoke-web-pages">
+      <a href="asda-bespoke-web-pages.html">
         <h2 class="scroll-reveal sr-d1">Asda Web Page Design</h2>
         <div class="btn-solid scroll-reveal sr-d2">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </a>
@@ -315,7 +324,8 @@
       const timeRemaining = Math.max(0, minPreloaderTime - timeElapsed);
 
       setTimeout(() => {
-        document.getElementById('preloader').classList.add('fade-out');
+        const preloader = document.getElementById('preloader');
+        if(preloader) preloader.classList.add('fade-out');
         document.body.classList.add('loaded');
       }, timeRemaining);
     }
@@ -363,7 +373,7 @@
     let curX=0,curY=0,tgX=0,tgY=0;
     const move = () => {
       curX += (tgX-curX)/25; curY += (tgY-curY)/25;
-      interBubble.style.transform = `translate(${Math.round(curX)}px,${Math.round(curY)}px)`;
+      if(interBubble) interBubble.style.transform = `translate(${Math.round(curX)}px,${Math.round(curY)}px)`;
       requestAnimationFrame(move);
     };
     window.addEventListener('mousemove', e => { 
