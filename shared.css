@@ -227,8 +227,11 @@ nav ul li a:hover {
   border: none;
   cursor: pointer;
   pointer-events: auto;
-  z-index: 1001;
+  /* CHANGE: Increased z-index to be higher than the mobile-nav */
+  z-index: 10000; 
   padding: 10px;
+  /* CHANGE: Ensure it stays fixed so it doesn't scroll away */
+  position: relative; 
 }
 
 .hamburger span {
@@ -247,6 +250,8 @@ nav ul li a:hover {
 
 header.scrolled-light .hamburger span { background: #0d0b30; }
 
+
+
 @media (max-width: 1023px) {
   .hamburger { display: flex; }
   #nav-list { display: none; }
@@ -258,7 +263,7 @@ header.scrolled-light .hamburger span { background: #0d0b30; }
   position: fixed;
   inset: 0;
   background: rgba(1, 1, 18, 0.98);
-  z-index: 9999;
+  z-index: 999; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -268,7 +273,6 @@ header.scrolled-light .hamburger span { background: #0d0b30; }
   visibility: hidden;
   transition: opacity 0.4s var(--ease-smooth), visibility 0.4s;
 }
-
 .mobile-nav.open {
   opacity: 1;
   pointer-events: auto;
