@@ -971,7 +971,7 @@ body.sub-page.loaded header {
 
 .project-video-wrap {
   width: 100%;
-  border-radius: 32px;
+  border-radius: 5px;
   overflow: hidden;
   margin-bottom: 60px;
   border: 4px solid rgba(0,0,0,0.15);
