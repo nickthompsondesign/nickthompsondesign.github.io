@@ -356,6 +356,38 @@ body.sub-page.loaded header { opacity:1; transform:translateY(0); transition:opa
 .next-project a { text-decoration:none; display:inline-block; }
 .next-project a:hover h2 { color:#c0a7ff; }
 
+.project-video-wrap, 
+.project-image-main, 
+.project-image-full {
+    width: 100%;
+    height: auto;
+    border-radius: 32px; /* Smooth rounded corners */
+    border: 4px solid rgba(0, 0, 0, 0.15); /* The "Frame" border */
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.08); /* Deep soft shadow */
+    overflow: hidden;
+    margin-bottom: 60px;
+    display: block;
+}
+
+/* Ensure videos fill the frame perfectly */
+.project-video-wrap video {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Scroll Reveal Animation */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* =============================================
    MOBILE OPTIMISATIONS — ALL PAGES
    ============================================= */
