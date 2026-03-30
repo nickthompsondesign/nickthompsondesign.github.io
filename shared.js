@@ -52,10 +52,8 @@ if (IS_SUB) {
     const isMobile = window.innerWidth < 1024;
     const overlapAmount = isMobile ? 40 : (metaBox.offsetHeight / 2);
     
-    // Position the meta box
     metaBox.style.marginTop = `-${overlapAmount}px`;
 
-    // Sync Background Height to the Hero Content
     if (heroBg) {
       heroBg.style.height = `${projectHero.offsetHeight}px`;
     }
@@ -82,7 +80,6 @@ if (IS_SUB) {
     updateHeaderSub();
   });
   
-  // Initial run
   adjustSubPageLayout();
   setTimeout(adjustSubPageLayout, 200);
 }
@@ -98,7 +95,6 @@ if (hamburger && mobileNav) {
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Close when a nav link is clicked
   mobileNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
@@ -108,19 +104,121 @@ if (hamburger && mobileNav) {
   });
 }
 
+// ── Safari Detection ──
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
 // ── Interactive Bubble (Desktop Only) ──
 if (window.innerWidth >= 1024) {
   const interBubble = document.querySelector('.interactive');
   if (interBubble) {
-    let curX=0, curY=0, tgX=0, tgY=0;
-    const move = () => {
-      curX += (tgX-curX)/25; curY += (tgY-curY)/25;
+
+    // Force toned-down styles on Safari via inline — overrides all CSS
+    if (isSafari) {
+      interBubble.style.mixBlendMode = 'screen';
+      interBubble.style.opacity = '0.2';
+    }
+
+    let curX = 0, curY = 0, tgX = 0, tgY = 0;
+    let bubbleRafId;
+
+    const moveBubble = () => {
+      curX += (tgX - curX) / 25;
+      curY += (tgY - curY) / 25;
       interBubble.style.transform = `translate(${Math.round(curX)}px,${Math.round(curY)}px)`;
-      requestAnimationFrame(move);
+      bubbleRafId = requestAnimationFrame(moveBubble);
     };
-    window.addEventListener('mousemove', e => { tgX=e.clientX; tgY=e.clientY; }, { passive: true });
-    move();
+
+    window.addEventListener('mousemove', e => { tgX = e.clientX; tgY = e.clientY; }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(bubbleRafId);
+      else bubbleRafId = requestAnimationFrame(moveBubble);
+    });
+
+    bubbleRafId = requestAnimationFrame(moveBubble);
   }
+}
+
+// ── Animated Blob Background ──
+const canvas = document.getElementById('gradient-canvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+
+  const FPS_CAP    = 30;
+  const FRAME_MS   = 1000 / FPS_CAP;
+  const isLowEnd   = (navigator.hardwareConcurrency || 4) <= 4;
+  const BLOB_COUNT = isLowEnd ? 3 : 5;
+  const BG_COLOR   = '#0a0a0a';
+
+  let blobRafId;
+  let lastFrameTime = 0;
+
+  function resizeCanvas() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+
+  const blobs = Array.from({ length: BLOB_COUNT }, (_, i) => ({
+    x:      (canvas.width  / (BLOB_COUNT - 1)) * i,
+    y:      (canvas.height / (BLOB_COUNT - 1)) * i,
+    phaseX: Math.random() * Math.PI * 2,
+    phaseY: Math.random() * Math.PI * 2,
+    speedX: 0.15 + Math.random() * 0.15,
+    speedY: 0.15 + Math.random() * 0.15,
+    radiusX: canvas.width  * (0.25 + Math.random() * 0.2),
+    radiusY: canvas.height * (0.25 + Math.random() * 0.2),
+    color: [
+      'rgba(99,  102, 241, 0.55)',
+      'rgba(139,  92, 246, 0.50)',
+      'rgba(59,  130, 246, 0.50)',
+      'rgba(16,  185, 129, 0.45)',
+      'rgba(236,  72, 153, 0.45)',
+    ][i % 5],
+    size: Math.min(canvas.width, canvas.height) * (isLowEnd ? 0.45 : 0.55),
+  }));
+
+  function drawFrame(timestamp) {
+    blobRafId = requestAnimationFrame(drawFrame);
+
+    const delta = timestamp - lastFrameTime;
+    if (delta < FRAME_MS) return;
+    lastFrameTime = timestamp - (delta % FRAME_MS);
+
+    const t = timestamp * 0.001;
+
+    ctx.fillStyle = BG_COLOR;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    blobs.forEach(blob => {
+      const cx = blob.x + Math.sin(t * blob.speedX + blob.phaseX) * blob.radiusX;
+      const cy = blob.y + Math.cos(t * blob.speedY + blob.phaseY) * blob.radiusY;
+
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, blob.size);
+      grad.addColorStop(0, blob.color);
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, blob.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(blobRafId);
+    } else {
+      lastFrameTime = 0;
+      blobRafId = requestAnimationFrame(drawFrame);
+    }
+  });
+
+  blobRafId = requestAnimationFrame(drawFrame);
 }
 
 // ── Scroll Reveal ──
