@@ -1,404 +1,290 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
-<!--<![endif]-->
-
 <head>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SH6GMRGSM5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-SH6GMRGSM5');
-    </script>
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5FC6WJ74');</script>
-    <!-- End Google Tag Manager -->
-    
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name=”robots” content=”noindex,nofollow”>
-
-    <meta name="description" content="Nick Thompson">
-    <meta name="author" content="Portfolio">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta property='og:title' content='Nick Thompson | Various Print Projects' />
-    <meta property="og:image" content="img/nt-social-image.jpg" />
-    <meta property='og:url' content='https://nickthompsondesign.github.io' />
-
-    <title>Nick Thompson | Various Print Projects</title>
-
-    <link rel="icon" type="image/x-icon" href="img/nt.ico">
-
-    <!-- STYLES -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/aye8swn.css">
-
-    <link rel="stylesheet" type="text/css" href="css/plugins.css" />
-    <link rel="stylesheet" type="text/css" href="css/dark.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
-    <!-- /STYLES -->
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Projects | Nick Thompson Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg1:rgb(2,2,6);--color-bg2:rgb(0,0,5);
+      --color1:0,20,255;--color2:20,0,200;--color3:50,0,255;--color5:0,50,255;--color-interactive:0,30,255;
+      --blending:screen;--step:18px;
+      --font-heading:'Fraunces',serif;--font-body:'Sen',sans-serif;
+      --blue-accent:#36109b;--tracking-tight:-0.03em;
+      --ease-smooth:cubic-bezier(0.16,1,0.3,1);
+      --max-w:1200px;
+    }
+    html,body{margin:0;padding:0;width:100%;background-color:#ffffff;font-family:var(--font-body);color:#333;overflow-x:hidden;}
+    #preloader{position:fixed;inset:0;background:radial-gradient(circle at center,#01042d 0%,#000113 100%);display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity 1.2s ease-in-out,visibility 1.2s;}
+    #preloader.fade-out{opacity:0;visibility:hidden;}
+    .loader-logo{font-family:var(--font-heading);font-size:38px;color:white;letter-spacing:var(--tracking-tight);font-weight:800;opacity:0;filter:blur(15px);transform:translateY(30px);animation:riseAndClear 1.5s forwards var(--ease-smooth) 0.3s;}
+    .loader-logo span{font-style:italic;font-weight:200;opacity:0.9;margin-left:2px;}
+    @keyframes riseAndClear{to{opacity:1;filter:blur(0);transform:translateY(0);}}
+    header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;z-index:1000;opacity:0;transform:translateY(-20px);}
+    body.loaded header{opacity:1;transform:translateY(0);transition:opacity 2.4s var(--ease-smooth) 0.2s,transform 2.4s var(--ease-smooth) 0.2s,background 0.4s ease,backdrop-filter 0.4s ease,padding 0.4s ease,box-shadow 0.4s ease;}
+    @media(min-width:1024px){header{padding:36px 60px;}}
+    header.scrolled-dark{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:13px 32px!important;background:rgba(4,4,28,0.4);box-shadow:0 1px 0 rgba(255,255,255,0.1),0 4px 30px rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.05);}
+    @media(min-width:1024px){header.scrolled-dark{padding:13px 60px!important;}}
+    header.scrolled-light{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:13px 32px!important;background:rgba(255,255,255,0.9);box-shadow:0 1px 0 rgba(255,255,255,0.4),0 4px 30px rgba(0,0,0,0.05);border-bottom:1px solid rgba(0,0,0,0.05);}
+    @media(min-width:1024px){header.scrolled-light{padding:13px 60px!important;}}
+    .nav-logo{font-family:var(--font-heading);font-size:clamp(18px,1.8vw,22px);font-weight:800;text-decoration:none;color:white;letter-spacing:var(--tracking-tight);pointer-events:auto;transition:color 0.3s;}
+    .nav-logo span{font-style:italic;font-weight:200;opacity:0.9;margin-left:2px;}
+    nav ul{display:flex;align-items:center;list-style:none;gap:36px;margin:0;padding:0;pointer-events:auto;}
+    nav ul li a{text-decoration:none;font-family:var(--font-heading);font-weight:500;color:rgba(255,255,255,0.8);font-size:16px;transition:0.3s;letter-spacing:var(--tracking-tight);}
+    nav ul li a:hover{color:white;text-shadow:0 0 10px rgba(255,255,255,0.5);}
+    .btn-cv{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);color:white!important;border:1px solid rgba(255,255,255,0.3);padding:13px 28px;border-radius:100px;font-size:14px!important;font-family:var(--font-heading);font-weight:600;display:inline-flex;align-items:center;gap:12px;transition:0.3s;text-decoration:none;}
+    .btn-cv:hover{background:rgba(255,255,255,0.25);}
+    .btn-cv svg{width:14px;height:14px;transition:transform 0.4s var(--ease-smooth);transform:rotate(45deg);}
+    .btn-cv:hover svg{transform:rotate(45deg) translate(3px,-3px) scale(1.1);}
+    header.scrolled-light .nav-logo{color:#0d0b30;}
+    header.scrolled-light nav ul li a{color:rgba(0,0,0,0.7);}
+    header.scrolled-light nav ul li a:hover{color:#0d0b30;text-shadow:none;}
+    header.scrolled-light .btn-cv{background:rgba(255,255,255,0.8)!important;color:var(--blue-accent)!important;border-color:var(--blue-accent)!important;}
+    header.scrolled-light .btn-cv:hover{background:#f0eeff!important;}
+    header.scrolled-light .hamburger span{background:#0d0b30;}
+    .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;gap:6px;background:none;border:none;cursor:pointer;pointer-events:auto;z-index:1001;padding:0;}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:transform 0.35s var(--ease-smooth),opacity 0.25s ease;transform-origin:center;}
+    .hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+    .mobile-nav{display:none;position:fixed;inset:0;background:rgba(1,1,18,0.8);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);z-index:999;flex-direction:column;justify-content:center;align-items:center;gap:40px;opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease-smooth);}
+    .mobile-nav.open{opacity:1;pointer-events:auto;}
+    .mobile-nav a{font-family:var(--font-heading);font-size:clamp(28px,8vw,42px);font-weight:700;color:white;text-decoration:none;letter-spacing:var(--tracking-tight);opacity:0;transform:translateY(20px);transition:color 0.3s ease,opacity 0.4s var(--ease-smooth),transform 0.5s var(--ease-smooth);}
+    .mobile-nav.open a{opacity:1;transform:translateY(0);}
+    .mobile-nav.open a:nth-child(1){transition-delay:0.05s;}
+    .mobile-nav.open a:nth-child(2){transition-delay:0.1s;}
+    .mobile-nav.open a:nth-child(3){transition-delay:0.15s;}
+    .mobile-nav.open a:nth-child(4){transition-delay:0.2s;}
+    @media(max-width:1023px){.hamburger{display:flex;}#nav-list{display:none;}.mobile-nav{display:flex;}}
+    .section-label{font-family:var(--font-body);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#c0a7ff;margin-bottom:14px;display:block;}
+    .content-inner{max-width:var(--max-w);margin:0 auto;padding:0 60px;box-sizing:border-box;position:relative;z-index:10;}
+    @media(max-width:768px){.content-inner{padding:0 24px;}}
+    .hero-bg-wrapper{position:absolute;top:0;left:0;width:100%;height:60vh;min-height:480px;overflow:hidden;z-index:1;background:linear-gradient(40deg,var(--color-bg1),var(--color-bg2));}
+    .hero-bg-wrapper::after{content:"";position:absolute;inset:0;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlMAGZRvGWEAAAFFSURBVDjLpZTBjoMwDEQv/f8/bxv0AITEaYc9I7WqwjO2E+Klv3yE0rPyn2B8l+D3wX2H9Htwf0C8k+CXgP2E+E/BfUP8q+B2Qby34PZAnCPgNoHbBPEbgtMAsZvgPAJxHwWnCcS+C04HxL4KzgzELwhOF8T+CM4A+P4LTg/ELwhOD8T+CM4I+P4LzhDEPwjOFMT+CM4YxHwITifEtwlON8S3Cc44xP0RnH6IWxOcCYhbE5wRiP8UnCGIWRL0+SAWb2g9EIstrQdi34b2ALHY0hog9lloDxD7LLQHSP42tBZI/ja0Fkj+NrQWSP42tBZI/m1oLZD829BaIPnb0Fog+bWhtUDya0NrgOQ/h9YAyd+G1gDJ34bWAMnfhtYAyf+G1gDJ/4bWAMnfhtYCyf+G1gLJP4fWAsn/htYCyf+G1gLJP4e22/gC2r9n0uP1XFEAAAAASUVORK5CYII=");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2;}
+    .gradients-container{filter:blur(40px) saturate(200%) contrast(120%);width:100%;height:100%;transform:translateZ(0);}
+    .g1,.g2,.g3,.g5,.interactive{position:absolute;mix-blend-mode:var(--blending);border-radius:50%;opacity:1;will-change:transform;}
+    .g1{background:radial-gradient(circle at center,rgba(var(--color1),0.9) 0%,transparent 50%);width:180vw;height:180vh;top:-40vh;left:-40vw;animation:fluidMove1 40s ease-in-out infinite;box-shadow:inset 0 100px 300px #dc26aa;}
+    .g2{background:radial-gradient(circle at center,rgba(var(--color2),0.9) 0%,transparent 50%);width:160vw;height:160vh;top:-30vh;left:20vw;animation:fluidMove2 32s ease-in-out infinite reverse;box-shadow:inset 0 100px 300px #0ff877;}
+    .g3{background:radial-gradient(ellipse at center,rgba(var(--color3),0.8) 0%,transparent 50%);width:140vw;height:200vh;top:20vh;left:-50vw;animation:fluidMove1 35s ease-in-out infinite;}
+    .g5{background:radial-gradient(circle at center,rgba(var(--color5),0.8) 0%,transparent 50%);width:150vw;height:150vh;top:-50vh;left:-10vw;animation:fluidMove1 38s ease-in-out infinite reverse;}
+    .interactive{background:radial-gradient(circle at center,rgba(var(--color-interactive),1) 0%,rgba(var(--color-interactive),0.9) 20%,transparent 50%);width:80vw;height:80vw;top:-35vw;left:-35vw;opacity:1;mix-blend-mode:color-dodge;}
+    @keyframes fluidMove1{0%{transform:translate(0,0) rotate(0deg) scale(1);}33%{transform:translate(10vw,-15vh) rotate(120deg) scale(1.1);}66%{transform:translate(-15vw,10vh) rotate(240deg) scale(0.9);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
+    @keyframes fluidMove2{0%{transform:translate(0,0) rotate(0deg) scale(1);}25%{transform:translate(-15vw,-10vh) rotate(90deg) scale(0.9);}50%{transform:translate(10vw,-20vh) rotate(180deg) scale(1.2);}75%{transform:translate(20vw,10vh) rotate(270deg) scale(1);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
+    .project-hero{height:60vh;min-height:480px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 0 0 0;text-align:center;color:white;position:relative;z-index:10;box-sizing:border-box;}
+    .project-hero h1{font-family:var(--font-heading);font-size:clamp(42px,7vw,88px);line-height:1.05;font-weight:900;letter-spacing:var(--tracking-tight);margin:0 0 24px 0;filter:drop-shadow(0.5rem 0.5rem 0.1rem rgba(0,0,0,0.1));}
+    .project-hero .section-sub{font-size:clamp(16px,1.8vw,20px);line-height:1.6;color:rgba(255,255,255,0.75);max-width:650px;margin:0 auto;}
+    .project-feature{position:relative;z-index:10;}
+    .project-meta-light{background:#f8f9fa;border:1px solid rgba(0,0,0,0.05);border-radius:32px;padding:48px;display:grid;grid-template-columns:2fr 1fr;gap:40px;margin:0 auto 60px auto;width:100%;box-sizing:border-box;box-shadow:0 20px 60px rgba(0,0,0,0.1);position:relative;z-index:20;}
+    @media(max-width:900px){.project-meta-light{grid-template-columns:1fr;gap:32px;padding:32px;}}
+    .meta-col h4{font-family:var(--font-heading);color:#0d0b30;font-size:20px;margin:0 0 16px 0;letter-spacing:var(--tracking-tight);}
+    .meta-col p{color:rgba(0,0,0,0.65);line-height:1.6;margin:0;font-size:15px;}
+    .project-body{max-width:800px;margin:0 auto 40px auto;color:rgba(0,0,0,0.75);font-size:18px;line-height:1.8;position:relative;z-index:10;}
+    .project-body h2{font-family:var(--font-heading);font-size:36px;color:#0d0b30;margin:40px 0 12px 0;letter-spacing:var(--tracking-tight);}
+    .project-body h3{font-family:var(--font-heading);font-size:24px;color:#0d0b30;margin:32px 0 10px 0;letter-spacing:var(--tracking-tight);}
+    .project-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue-accent);margin-bottom:24px;}
+    .project-body p{margin-bottom:24px;}
+    .project-body blockquote{border-left:3px solid #a78bfa;margin:0 0 24px 0;padding:16px 24px;background:#f5f4ff;border-radius:0 12px 12px 0;font-style:italic;color:#444;}
+    .project-image-main{width:100%;height:auto;border-radius:32px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 30px 90px rgba(0,0,0,0.08);display:block;object-fit:cover;aspect-ratio:16/9;margin-bottom:80px;}
+    .project-image-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:80px;}
+    @media(max-width:600px){.project-image-grid{grid-template-columns:1fr;}}
+    .project-image-grid img{width:100%;border-radius:16px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.06);display:block;}
+    .project-image-full{width:100%;height:auto;border-radius:24px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.06);display:block;margin-bottom:48px;}
+    .project-video-wrap{width:100%;border-radius:24px;overflow:hidden;margin-bottom:48px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.06);}
+    .project-video-wrap video{width:100%;display:block;}
+    .project-video-wrap-clickable{position:relative;cursor:pointer;}
+    .project-video-wrap-clickable::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;color:white;text-shadow:0 2px 20px rgba(0,0,0,0.5);opacity:0;transition:opacity 0.2s;pointer-events:none;}
+    .stat-row{display:flex;gap:48px;flex-wrap:wrap;margin:40px 0;padding:40px 32px;background:#f5f4ff;border-radius:20px;justify-content:center;filter:drop-shadow(0.5rem 0.5rem 0.1rem rgba(0,0,0,0.1));}
+    .stat-item{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;}
+    .stat-num{font-family:var(--font-heading);font-size:36px;font-weight:900;letter-spacing:var(--tracking-tight);background:linear-gradient(135deg,#36109b,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .stat-label{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;}
+    .iframe-placeholder{width:100%;border-radius:24px;border:2px dashed rgba(0,0,0,0.15);background:rgba(0,0,0,0.02);margin-bottom:48px;padding:60px 32px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(0,0,0,0.25);text-align:center;}
+    .divider{width:100%;height:1px;background:rgba(0,0,0,0.06);margin:60px auto;max-width:800px;}
+    .next-project{text-align:center;padding:100px 0;position:relative;z-index:10;background:linear-gradient(135deg,#0c0930 0%,#120828 50%,#0a0f35 100%);color:white;}
+    .next-project .section-label{margin-bottom:20px;color:#c0a7ff;}
+    .next-project h2{font-family:var(--font-heading);font-size:clamp(32px,5vw,64px);color:#fff;margin:0 0 30px 0;transition:color 0.3s;letter-spacing:var(--tracking-tight);}
+    .next-project a{text-decoration:none;display:inline-block;}
+    .next-project a:hover h2{color:#c0a7ff;}
+    .btn-solid{display:inline-flex;align-items:center;padding:14px 32px;border-radius:100px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);color:#fff;border:1px solid rgba(255,255,255,0.3);box-shadow:0 8px 32px rgba(54,16,155,0.3),inset 0 0 10px rgba(255,255,255,0.1);font-family:var(--font-heading);font-weight:600;font-size:15px;text-decoration:none;transition:all 0.3s var(--ease-smooth);letter-spacing:var(--tracking-tight);cursor:pointer;gap:12px;}
+    .btn-solid:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.6);transform:translateY(-1px);}
+    .btn-solid svg{width:14px;height:14px;transition:transform 0.4s var(--ease-smooth);transform:rotate(45deg);}
+    .btn-solid:hover svg{transform:rotate(45deg) translate(3px,-3px) scale(1.1);}
+    .site-footer{background:#030212;border-top:1px solid rgba(255,255,255,0.06);padding:36px 0;position:relative;z-index:10;}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+    .footer-logo{font-family:var(--font-heading);font-weight:800;font-size:18px;letter-spacing:var(--tracking-tight);color:rgba(255,255,255,0.7);text-decoration:none;}
+    .footer-logo em{font-style:italic;font-weight:200;}
+    .site-footer p{font-size:13px;color:rgba(255,255,255,0.55);margin:0;}
+    .scroll-reveal{opacity:0;transform:translateY(32px);filter:blur(3px);transition:opacity 1.6s var(--ease-smooth),transform 1.6s var(--ease-smooth),filter 1.6s var(--ease-smooth);}
+    body.loaded .scroll-reveal.visible{opacity:1;transform:translateY(0);filter:blur(0);}
+    .sr-d1{transition-delay:0.15s;}.sr-d2{transition-delay:0.3s;}.sr-d3{transition-delay:0.45s;}
+  </style>
 </head>
-
 <body>
+  <div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FC6WJ74"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-<!-- WRAPPER ALL -->
-    <div class="dizme_tm_all_wrap" data-magic-cursor="show">
-    <!-- SCROLL PROGRESS -->
-    <div class="nt-progress-bar" id="ntProgressBar"></div>
+  <div class="hero-bg-wrapper">
+    <div class="gradients-container">
+      <div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g5"></div><div class="interactive"></div>
+    </div>
+  </div>
 
-        <!-- MOBILE MENU -->
-        <div class="dizme_tm_mobile_menu dizme_tm_mobile_menu_portfolio">
-            <div class="mobile_menu_inner">
-                <div class="mobile_in">
-                    <div class="logo">
-                        <a href="https://nickthompsondesign.github.io">NT</a>
-                    </div>
-                    <div class="trigger">
-                        <div class="hamburger hamburger--slider">
-                            <div class="hamburger-box">
-                                <div class="hamburger-inner"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dropdown">
-                <div class="dropdown_inner">
-                    <ul class="anchor_nav">
-                        <li><a href="https://nickthompsondesign.github.io">Home</a></li>
-                        <li><a href="https://nickthompsondesign.github.io#about">About</a></li>
-                        <li class="portfolio_link current"><a>Portfolio</a>
-                                <ul class="dropdown_nav">
-                                    <li><a href="./website-design">Website Design &amp; Build</a></li>
-                                    <li><a href="./asda-bespoke-web-pages">Asda Web Page Design</a></li>
-                                    <li><a href="./digital-design-logos">Digital Design &amp; Logos</a></li>                                   
-                                    <li><a href="./sushi-restaurant-app">UX App Design</a></li>
-                                    <li><a href="./masaco-branding">Brand Development</a></li>
-                                    <li><a href="./asda-design-guidelines">Asda Design Guidelines</a></li>
-                                    <li><a href="./video-projects">Video Projects</a></li>
-                                    <li><a class="active" href="./print-projects">Print Projects</a></li>  
-                                </ul>
-                        </li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li class="download_cv"><a target="_blank" href="img/cv/Nick Thompson CV.pdf"><span>Download CV</span></a></li>
-                    </ul>
-                </div>
-            </div>
+  <header>
+    <a href="index.html" class="nav-logo">NickThompson<span>Design</span></a>
+    <nav id="nav-list">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#portfolio">View Work</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="https://nickthompsondesign.co.uk/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn-cv">Download CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#portfolio">View Work</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <main class="project-hero">
+    <div class="content-inner" style="width:100%;">
+      <span class="section-label scroll-reveal sr-d1">Print</span>
+      <h1 class="scroll-reveal sr-d2">Print Projects</h1>
+      <p class="section-sub scroll-reveal sr-d3">Large-scale print production, premium brochures, menus, and event materials — with some runs exceeding 500,000 units.</p>
+    </div>
+  </main>
+
+  <section class="project-feature">
+    <div class="content-inner">
+      <div class="project-meta-light scroll-reveal sr-d3">
+        <div class="meta-col">
+          <h4>The Work</h4>
+          <p>Print spanning voucher booklets, event brochures, menus, awards programmes, and large-scale production runs — always in close collaboration with printers.</p>
         </div>
-        <!-- /MOBILE MENU -->
-
-        <!-- HEADER -->
-        <div class="dizme_tm_header dizme_tm_header_portfolio">
-            <div class="container">
-                <div class="inner">
-                    <div class="logo">
-                        <a href="https://nickthompsondesign.github.io">NT</a>
-                    </div>
-                    <div class="menu">
-                        <ul class="anchor_nav">
-                        <li><a href="https://nickthompsondesign.github.io">Home</a></li>
-                        <li><a href="https://nickthompsondesign.github.io#about">About</a></li>
-                            <li class="portfolio_link current"><a href="https://nickthompsondesign.github.io/#portfolio">Portfolio</a>
-                                <ul class="dropdown_nav">
-                                    <li><a href="./website-design">Website Design &amp; Build</a></li>
-                                    <li><a href="./asda-bespoke-web-pages">Asda Web Page Design</a></li>
-                                    <li><a href="./digital-design-logos">Digital Design &amp; Logos</a></li>                                   
-                                    <li><a href="./sushi-restaurant-app">UX App Design</a></li>
-                                    <li><a href="./masaco-branding">Brand Development</a></li>
-                                    <li><a href="./asda-design-guidelines">Asda Design Guidelines</a></li>
-                                    <li><a href="./video-projects">Video Projects</a></li>
-                                    <li><a class="active" href="./print-projects">Print Projects</a></li>                                  
-                                </ul>
-                            </li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="download_cv"><a target="_blank" href="img/cv/Nick Thompson CV.pdf"><span>Download CV</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="meta-col">
+          <h4>Scale</h4>
+          <p>Some projects ran to 500,000+ units, requiring meticulous attention to pre-press detail, colour accuracy, and print specification.</p>
         </div>
-        <!-- /HEADER -->
+      </div>
+      
+<article class="project-body">
+  <p class="scroll-reveal sr-d1">A selection of print projects spanning large-scale production runs, premium brochures, menus, and event materials. Each required close collaboration with printers to ensure top print quality — with some jobs exceeding 500,000 units.</p>
+</article>
 
+<article class="project-body">
+  <h2 class="scroll-reveal">Yorkshire Attractions Voucher Booklets</h2>
+  <div class="project-tag scroll-reveal sr-d1">Print · Production</div>
+  <p class="scroll-reveal sr-d2">I was responsible for designing the seasonal Yorkshire Attractions voucher booklets — renewed and produced three times per year, with print runs of up to 500,000 units per edition. Meticulous attention to detail was essential to avoid costly misprints at this scale.</p>
+</article>
+<img src="https://nickthompsondesign.co.uk/img/portfolio/print/print-yorkshire-attractions.jpg" alt="Yorkshire Attractions booklets" class="project-image-main scroll-reveal">
 
-        <!-- HERO -->
-        <div class="dizme_tm_section">
-            <div class="dizme_tm_hero dizme_tm_hero_portfolio">
-                <div class="container">
-                    <div class="content">
-                        <h1>Various Print Projects</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- HERO -->
+<div class="divider"></div>
 
+<article class="project-body">
+  <h2 class="scroll-reveal">Museums Sheffield Wedding Brochure</h2>
+  <div class="project-tag scroll-reveal sr-d1">Print · Branding · Web</div>
+  <p class="scroll-reveal sr-d2">As part of a new initiative by Museums Sheffield, I designed a wedding brochure for their event spaces — developing new brand colours and styling specifically for their venues, setting up a dedicated microsite, and managing print production for a premium final finish.</p>
+</article>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline poster="https://nickthompsondesign.co.uk/img/portfolio/print/MuseumSheffield-Poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/print/museums-sheffield-wedding-brochure-white.mp4" type="video/mp4"></video></div>
+<img src="https://nickthompsondesign.github.io/img/portfolio/print/museums-sheffield-wedding-brochure.png" alt="Museums Sheffield brochure" class="project-image-full scroll-reveal">
 
-        <!-- ABOUT -->
-        <div class="dizme_tm_section">
-            <div class="dizme_about_port">
-                <div class="container">
-                    <div class="wrapper">
-                        <div class="dizme_tm_about_port">
-                            <div class="text wow fadeInUp" data-wow-duration="1s">
-                                    <a href="https://nickthompsondesign.github.io/#portfolio" class="nt-back-link">
-                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                                    Back to portfolio
-                                </a>
-                                <br><br>
-<p>Here’s a showcase of the diverse print projects I’ve worked on. These projects required close collaboration with printers to ensure top print quality, meticulous attention to detail to avoid misprints, and have included large-scale runs, with some jobs exceeding 500,000 units.</p>
-                                    <br>
-                                    
-                                    <div class="nt-divider"></div>
-                                    <div class="nt-project">
-                                    <h2>Yorkshire Attractions Voucher Booklets</h2>
-                                    
-                                    <br>
-                                    <img src="img/portfolio/print/print-yorkshire-attractions.jpg">
-                                    <br>
-                                    <br>
-                                    <p>I was responsible for designing the seasonal Yorkshire Attractions voucher booklets, which were renewed and produced three times per year, with print runs of up to 500,000 units per edition.</p>
-                                    <br>
-                                    
-                                    <div class="nt-divider"></div>
-                                    <div class="nt-project">
-                                    <h2>Museums Sheffield Wedding Brochure</h2>
-                                    
-                                    <br>
-                                    <video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" poster="img/portfolio/print/MuseumSheffield-Poster.png">
-                                        <source src="img/portfolio/print/museums-sheffield-wedding-brochure-white.mp4" type="video/mp4">
-                                    </video>
-                                    <br>
-                                    <img src="https://nickthompsondesign.github.io/img/portfolio/print/museums-sheffield-wedding-brochure.png">
-                                    <br>
-                                    <br>
-                                    <p>As part of a new initiative by Museums Sheffield, I was tasked with designing and implementing a wedding brochure for their event spaces. This project included developing new brand colors and styling specifically for Museums Sheffield's event venues, as well as setting up a dedicated microsite. Additionally, I managed the print production to ensure a high-quality, premium finish for the brochure.</p>
-                                    <br>
-                                    
-                                    <div class="nt-divider"></div>
-                                    <div class="nt-project">
-                                    <h2>William's Den Pizza Menu</h2>
-                                    
-                                    <br>
-                                    <img src="img/portfolio/print/wd-pizza-menu.gif">
-                                    <br>
-                                    <br>
-                                    <p>I designed the pizza menu for William's Den, focusing on creating a fun, family-friendly layout that aligned with the venue's playful aesthetic while ensuring readability and brand consistency.</p>
-                                    <br>
-                                    <br>
-                                    
-                                    <div class="nt-divider"></div>
-                                    <div class="nt-project">
-                                    <h2>Various Awards Shows Printed Materials</h2>
-                                    
-                                    <br>
-                                        <div>
-                                          <img class="simple-slide" src="img/portfolio/awards/LHVA-Awards-2019-Programmes.jpg">
-                                            <img class="simple-slide" src="img/portfolio/awards/LHVA-Award-Page-Design-1.jpg">
-                                            <img class="simple-slide" src="img/portfolio/awards/LHVA-Award-Page-Design-2.jpg">
-                                            <img class="simple-slide" src="img/portfolio/awards/SCR-Awards-2018-Programmes.jpg">
-                                            <img class="simple-slide" src="img/portfolio/awards/Award-Cut-Out-Stands.jpg">
-                                            <img class="simple-slide" src="img/portfolio/awards/LHVA-Awards-2018-Programme.jpg">
-                                            <img class="simple-slide" src="img/portfolio/awards/SCR-Awards-2018-Programmes.jpg">
-                                            <img class="simple-slide" src="img/portfolio/awards/LHVA-Awards-2019-Programmes-2.jpg">
-                                        </div>
-                                    <br>
-                                    <p>I was responsible for the creation of all digital and printed assets for both the SCR Hospitality Awards and the LHVA Hospitality Awards. This included designing and producing sting videos, printed programs, posters, digital advertisements, cut-out stands, and animated videos. My work ensured a cohesive and engaging visual experience across all event materials, enhancing the overall presentation and branding of both award shows.</p>
-                                    <br>
-                            </div>
-                                    </div>
-                                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
-        <!-- /ABOUT -->        
+<div class="divider"></div>
 
-        <div class="nt-contact-spacer"></div>
-        <!-- CONTACT -->
-        <div id="contact" class="dizme_tm_section" style="background-image: url('img/brushes/contact/2.svg');background-position: right bottom;background-repeat: no-repeat;background-size: 40%;">
-            <div class="dizme_tm_contact">
-                <div class="container">
-                    <div class="dizme_tm_main_title" data-align="center">
-                        <span>Contact Me</span>
-                        <h3>I want to hear from you!</h3>
-                        <p>For freelance project or employment opportunities, please get in touch!</p>
-                    </div>
-                    <div class="contact_inner">
-                        <div class="left wow fadeInLeft" data-wow-duration="1s">
-                            <ul>
-                                <li>
-                                    <div class="list_inner">
-                                        <div class="icon orangeBackground">
-                                            <i class="icon-location whiteText"></i>
-                                        </div>
-                                        <div class="short">
-                                            <h3>Location</h3>
-                                            <span>Leeds, UK/Remote</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="list_inner">
-                                        <div class="icon blueBackground">
-                                            <i class="icon-mail-1 whiteText"></i>
-                                        </div>
-                                        <div class="short">
-                                            <h3>Email</h3>
-                                            <span><a href="/cdn-cgi/l/email-protection#6907000a021d010604191a06075d2901061d04080005470a0604"><span class="__cf_email__" data-cfemail="254b4c464e514d4a4855564a4b11654d4a5148444c490b464a48">[email&#160;protected]</span></a></span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="list_inner">
-                                        <div class="icon yellowBackground">
-                                            <i class="icon-phone whiteText"></i>
-                                        </div>
-                                        <div class="short">
-                                            <h3>Phone</h3>
-                                            <a href="tel:+447971727886"><span>+44 7971727886</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="right wow fadeInRight" data-wow-duration="1s">
-                            <div class="fields">
-                                <form target="_blank" class="contact_form" id="contact_form" autocomplete="off" action="https://formsubmit.co/181d1785bd52831baeaf8526716d033c" method="POST">
-                                    <div class="form-group">
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-                                            </div>
-                                            <div class="col">
-                                                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea placeholder="Your Message" class="form-control message_area" name="message" rows="10" required></textarea>
-                                    </div>
+<article class="project-body">
+  <h2 class="scroll-reveal">William's Den Pizza Menu</h2>
+  <div class="project-tag scroll-reveal sr-d1">Print · Brand</div>
+  <p class="scroll-reveal sr-d2">I designed the pizza menu for William's Den, creating a fun, family-friendly layout that aligned with the venue's playful aesthetic while maintaining brand consistency and readability for all ages.</p>
+</article>
+<img src="https://nickthompsondesign.co.uk/img/portfolio/print/wd-pizza-menu.gif" alt="William's Den pizza menu" class="project-image-main scroll-reveal">
 
+<div class="divider"></div>
 
-
-                                    <div class="dizme_tm_button">
-                                        <button type="submit" class="submit-button"><span>Submit Form</span></button>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-
-
-                        <div class="brush_2 wow fadeInRight" data-wow-duration="1s"><img src="img/brushes/contact/2.svg" alt="" /></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /CONTACT -->
-
-        <!-- COPYRIGHT -->
-        <div class="dizme_tm_section">
-            <div class="dizme_tm_copyright">
-                <div class="container">
-                    <div class="inner">
-                        <div class="left wow fadeInLeft" data-wow-duration="1s">
-                        </div>
-                        <div class="right wow fadeInRight" data-wow-duration="1s">
-                            <ul>
-                                <li><a target="_blank" href="./privacy-policy">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /COPYRIGHT -->
-
-        <!-- CURSOR -->
-        <div class="mouse-cursor cursor-outer"></div>
-        <div class="mouse-cursor cursor-inner"></div>
-        <!-- /CURSOR -->
-
-        <!-- TOTOP -->
-        <div class="progressbar">
-            <a href="#"><span class="text">To Top</span></a>
-            <span class="line"></span>
-        </div>
-        <!-- /TOTOP -->
+<article class="project-body">
+  <h2 class="scroll-reveal">Awards Show Materials</h2>
+  <div class="project-tag scroll-reveal sr-d1">Print · Events · Branding</div>
+  <p class="scroll-reveal sr-d2">I was responsible for the creation of all digital and printed assets for both the SCR Hospitality Awards and the LHVA Hospitality Awards — including sting videos, printed programmes, posters, digital advertisements, cut-out stands, and animated videos. My work ensured a cohesive and engaging visual experience across all event materials.</p>
+</article>
+<div class="project-image-grid scroll-reveal">
+  <img src="https://nickthompsondesign.co.uk/img/portfolio/awards/LHVA-Awards-2019-Programmes.jpg" alt="LHVA Awards 2019">
+  <img src="https://nickthompsondesign.co.uk/img/portfolio/awards/LHVA-Award-Page-Design-1.jpg" alt="LHVA Award Page Design">
+  <img src="https://nickthompsondesign.co.uk/img/portfolio/awards/LHVA-Award-Page-Design-2.jpg" alt="LHVA Award Page Design 2">
+  <img src="https://nickthompsondesign.co.uk/img/portfolio/awards/SCR-Awards-2018-Programmes.jpg" alt="SCR Awards 2018">
+  <img src="https://nickthompsondesign.co.uk/img/portfolio/awards/Award-Cut-Out-Stands.jpg" alt="Award Cut-Out Stands">
+  <img src="https://nickthompsondesign.co.uk/img/portfolio/awards/LHVA-Awards-2018-Programme.jpg" alt="LHVA Awards 2018">
+</div>
 
     </div>
-    <!-- / WRAPPER ALL -->
+  </section>
 
-            <script>
-        window.addEventListener('scroll', function() {
-            var scrollTop = window.scrollY || document.documentElement.scrollTop;
-            var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            document.getElementById('ntProgressBar').style.width = progress + '%';
-        });
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('nt-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.nt-project').forEach(function(el) { observer.observe(el); });
-    </script>
+  <section class="next-project">
+    <div class="content-inner">
+      <span class="section-label scroll-reveal">Up Next</span>
+      <a href="website-design.html">
+        <h2 class="scroll-reveal sr-d1">Website Design & Build</h2>
+        <div class="btn-solid scroll-reveal sr-d2">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      </a>
+    </div>
+  </section>
 
-    <!-- SCRIPTS -->
-    
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-            var slideIndex = 0;
-        carousel();
-        
-        function carousel() {
-          var i;
-          var x = document.getElementsByClassName("simple-slide");
-          for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-          }
-          slideIndex++;
-          if (slideIndex > x.length) {slideIndex = 1}
-          x[slideIndex-1].style.display = "block";
-          setTimeout(carousel, 2000); // Change image every 2 seconds
-        }
-    </script>
-    
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <footer class="site-footer">
+    <div class="content-inner footer-inner">
+      <a href="index.html" class="footer-logo">NickThompson<em>Design</em></a>
+      <p>© 2026 Nick Thompson. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <!-- SLICK SCRIPTS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    function adjustMetaOverlap() {
+      const metaBox = document.querySelector('.project-meta-light');
+      if (metaBox) { metaBox.style.marginTop = `-${metaBox.offsetHeight / 2}px`; }
+    }
+    adjustMetaOverlap();
+    window.addEventListener('load', adjustMetaOverlap);
+    window.addEventListener('resize', adjustMetaOverlap);
 
-    <!-- BOOTSTRAP/MODAL SCRIPTS -->
-    <script type="text/javascript" src="https://unpkg.com/popper.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.
+    const minPreloaderTime = 1800;
+    const initTime = Date.now();
+    function dismissPreloader() {
+      const remaining = Math.max(0, minPreloaderTime - (Date.now() - initTime));
+      setTimeout(() => { document.getElementById('preloader').classList.add('fade-out'); document.body.classList.add('loaded'); }, remaining);
+    }
+    if (document.readyState === 'complete') { dismissPreloader(); } else { window.addEventListener('load', dismissPreloader); setTimeout(dismissPreloader, 6000); }
+
+    const header = document.querySelector('header');
+    const heroBg = document.querySelector('.hero-bg-wrapper');
+    const updateHeaderColor = () => {
+      const y = window.scrollY;
+      const threshold = heroBg.offsetHeight - 80;
+      if (y < 20) { header.classList.remove('scrolled-dark','scrolled-light'); }
+      else if (y < threshold) { header.classList.add('scrolled-dark'); header.classList.remove('scrolled-light'); }
+      else { header.classList.add('scrolled-light'); header.classList.remove('scrolled-dark'); }
+    };
+    window.addEventListener('scroll', updateHeaderColor, {passive:true});
+    updateHeaderColor();
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    const interBubble = document.querySelector('.interactive');
+    let curX=0,curY=0,tgX=0,tgY=0;
+    const move = () => { curX+=(tgX-curX)/25; curY+=(tgY-curY)/25; interBubble.style.transform=`translate(${Math.round(curX)}px,${Math.round(curY)}px)`; requestAnimationFrame(move); };
+    window.addEventListener('mousemove', e => { if(e.clientY<window.innerHeight){tgX=e.clientX;tgY=e.clientY;} }, {passive:true});
+    move();
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target);} });
+    }, {threshold:0.08});
+    document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

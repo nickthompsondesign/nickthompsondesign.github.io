@@ -1,572 +1,295 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
-<!--<![endif]-->
-
 <head>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SH6GMRGSM5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-SH6GMRGSM5');
-    </script>
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5FC6WJ74');</script>
-    <!-- End Google Tag Manager -->
-    
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name=”robots” content=”noindex,nofollow”>
-
-    <meta name="description" content="Nick Thompson">
-    <meta name="author" content="Portfolio">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <meta property='og:title' content='Nick Thompson | Asda Bespoke Web Pages' />
-    <meta property="og:image" content="img/nt-social-image.jpg" />
-    <meta property='og:url' content='https://nickthompsondesign.github.io' />
-
-    <title>Nick Thompson | Asda Bespoke Web Pages</title>
-
-    <link rel="icon" type="image/x-icon" href="img/nt.ico">
-
-    <!-- STYLES -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/aye8swn.css">
-
-    <link rel="stylesheet" type="text/css" href="css/plugins.css" />
-    <link rel="stylesheet" type="text/css" href="css/dark.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
-    <!-- /STYLES -->
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asda Bespoke Web Pages | Nick Thompson Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg1:rgb(2,2,6);--color-bg2:rgb(0,0,5);
+      --color1:0,20,255;--color2:20,0,200;--color3:50,0,255;--color5:0,50,255;--color-interactive:0,30,255;
+      --blending:screen;--step:18px;
+      --font-heading:'Fraunces',serif;--font-body:'Sen',sans-serif;
+      --blue-accent:#36109b;--tracking-tight:-0.03em;
+      --ease-smooth:cubic-bezier(0.16,1,0.3,1);
+      --max-w:1200px;
+    }
+    html,body{margin:0;padding:0;width:100%;background-color:#ffffff;font-family:var(--font-body);color:#333;overflow-x:hidden;}
+    #preloader{position:fixed;inset:0;background:radial-gradient(circle at center,#01042d 0%,#000113 100%);display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity 1.2s ease-in-out,visibility 1.2s;}
+    #preloader.fade-out{opacity:0;visibility:hidden;}
+    .loader-logo{font-family:var(--font-heading);font-size:38px;color:white;letter-spacing:var(--tracking-tight);font-weight:800;opacity:0;filter:blur(15px);transform:translateY(30px);animation:riseAndClear 1.5s forwards var(--ease-smooth) 0.3s;}
+    .loader-logo span{font-style:italic;font-weight:200;opacity:0.9;margin-left:2px;}
+    @keyframes riseAndClear{to{opacity:1;filter:blur(0);transform:translateY(0);}}
+    header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;z-index:1000;opacity:0;transform:translateY(-20px);}
+    body.loaded header{opacity:1;transform:translateY(0);transition:opacity 2.4s var(--ease-smooth) 0.2s,transform 2.4s var(--ease-smooth) 0.2s,background 0.4s ease,backdrop-filter 0.4s ease,padding 0.4s ease,box-shadow 0.4s ease;}
+    @media(min-width:1024px){header{padding:36px 60px;}}
+    header.scrolled-dark{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:13px 32px!important;background:rgba(4,4,28,0.4);box-shadow:0 1px 0 rgba(255,255,255,0.1),0 4px 30px rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.05);}
+    @media(min-width:1024px){header.scrolled-dark{padding:13px 60px!important;}}
+    header.scrolled-light{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:13px 32px!important;background:rgba(255,255,255,0.9);box-shadow:0 1px 0 rgba(255,255,255,0.4),0 4px 30px rgba(0,0,0,0.05);border-bottom:1px solid rgba(0,0,0,0.05);}
+    @media(min-width:1024px){header.scrolled-light{padding:13px 60px!important;}}
+    .nav-logo{font-family:var(--font-heading);font-size:clamp(18px,1.8vw,22px);font-weight:800;text-decoration:none;color:white;letter-spacing:var(--tracking-tight);pointer-events:auto;transition:color 0.3s;}
+    .nav-logo span{font-style:italic;font-weight:200;opacity:0.9;margin-left:2px;}
+    nav ul{display:flex;align-items:center;list-style:none;gap:36px;margin:0;padding:0;pointer-events:auto;}
+    nav ul li a{text-decoration:none;font-family:var(--font-heading);font-weight:500;color:rgba(255,255,255,0.8);font-size:16px;transition:0.3s;letter-spacing:var(--tracking-tight);}
+    nav ul li a:hover{color:white;text-shadow:0 0 10px rgba(255,255,255,0.5);}
+    .btn-cv{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);color:white!important;border:1px solid rgba(255,255,255,0.3);padding:13px 28px;border-radius:100px;font-size:14px!important;font-family:var(--font-heading);font-weight:600;display:inline-flex;align-items:center;gap:12px;transition:0.3s;text-decoration:none;}
+    .btn-cv:hover{background:rgba(255,255,255,0.25);}
+    .btn-cv svg{width:14px;height:14px;transition:transform 0.4s var(--ease-smooth);transform:rotate(45deg);}
+    .btn-cv:hover svg{transform:rotate(45deg) translate(3px,-3px) scale(1.1);}
+    header.scrolled-light .nav-logo{color:#0d0b30;}
+    header.scrolled-light nav ul li a{color:rgba(0,0,0,0.7);}
+    header.scrolled-light nav ul li a:hover{color:#0d0b30;text-shadow:none;}
+    header.scrolled-light .btn-cv{background:rgba(255,255,255,0.8)!important;color:var(--blue-accent)!important;border-color:var(--blue-accent)!important;}
+    header.scrolled-light .btn-cv:hover{background:#f0eeff!important;}
+    header.scrolled-light .hamburger span{background:#0d0b30;}
+    .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;gap:6px;background:none;border:none;cursor:pointer;pointer-events:auto;z-index:1001;padding:0;}
+    .hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:transform 0.35s var(--ease-smooth),opacity 0.25s ease;transform-origin:center;}
+    .hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+    .mobile-nav{display:none;position:fixed;inset:0;background:rgba(1,1,18,0.8);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);z-index:999;flex-direction:column;justify-content:center;align-items:center;gap:40px;opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease-smooth);}
+    .mobile-nav.open{opacity:1;pointer-events:auto;}
+    .mobile-nav a{font-family:var(--font-heading);font-size:clamp(28px,8vw,42px);font-weight:700;color:white;text-decoration:none;letter-spacing:var(--tracking-tight);opacity:0;transform:translateY(20px);transition:color 0.3s ease,opacity 0.4s var(--ease-smooth),transform 0.5s var(--ease-smooth);}
+    .mobile-nav.open a{opacity:1;transform:translateY(0);}
+    .mobile-nav.open a:nth-child(1){transition-delay:0.05s;}
+    .mobile-nav.open a:nth-child(2){transition-delay:0.1s;}
+    .mobile-nav.open a:nth-child(3){transition-delay:0.15s;}
+    .mobile-nav.open a:nth-child(4){transition-delay:0.2s;}
+    @media(max-width:1023px){.hamburger{display:flex;}#nav-list{display:none;}.mobile-nav{display:flex;}}
+    .section-label{font-family:var(--font-body);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#c0a7ff;margin-bottom:14px;display:block;}
+    .content-inner{max-width:var(--max-w);margin:0 auto;padding:0 60px;box-sizing:border-box;position:relative;z-index:10;}
+    @media(max-width:768px){.content-inner{padding:0 24px;}}
+    .hero-bg-wrapper{position:absolute;top:0;left:0;width:100%;height:60vh;min-height:480px;overflow:hidden;z-index:1;background:linear-gradient(40deg,var(--color-bg1),var(--color-bg2));}
+    .hero-bg-wrapper::after{content:"";position:absolute;inset:0;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlMAGZRvGWEAAAFFSURBVDjLpZTBjoMwDEQv/f8/bxv0AITEaYc9I7WqwjO2E+Klv3yE0rPyn2B8l+D3wX2H9Htwf0C8k+CXgP2E+E/BfUP8q+B2Qby34PZAnCPgNoHbBPEbgtMAsZvgPAJxHwWnCcS+C04HxL4KzgzELwhOF8T+CM4A+P4LTg/ELwhOD8T+CM4I+P4LzhDEPwjOFMT+CM4YxHwITifEtwlON8S3Cc44xP0RnH6IWxOcCYhbE5wRiP8UnCGIWRL0+SAWb2g9EIstrQdi34b2ALHY0hog9lloDxD7LLQHSP42tBZI/ja0Fkj+NrQWSP42tBZI/m1oLZD829BaIPnb0Fog+bWhtUDya0NrgOQ/h9YAyd+G1gDJ34bWAMnfhtYAyf+G1gDJ/4bWAMnfhtYCyf+G1gLJP4fWAsn/htYCyf+G1gLJP4e22/gC2r9n0uP1XFEAAAAASUVORK5CYII=");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2;}
+    .gradients-container{filter:blur(40px) saturate(200%) contrast(120%);width:100%;height:100%;transform:translateZ(0);}
+    .g1,.g2,.g3,.g5,.interactive{position:absolute;mix-blend-mode:var(--blending);border-radius:50%;opacity:1;will-change:transform;}
+    .g1{background:radial-gradient(circle at center,rgba(var(--color1),0.9) 0%,transparent 50%);width:180vw;height:180vh;top:-40vh;left:-40vw;animation:fluidMove1 40s ease-in-out infinite;box-shadow:inset 0 100px 300px #dc26aa;}
+    .g2{background:radial-gradient(circle at center,rgba(var(--color2),0.9) 0%,transparent 50%);width:160vw;height:160vh;top:-30vh;left:20vw;animation:fluidMove2 32s ease-in-out infinite reverse;box-shadow:inset 0 100px 300px #0ff877;}
+    .g3{background:radial-gradient(ellipse at center,rgba(var(--color3),0.8) 0%,transparent 50%);width:140vw;height:200vh;top:20vh;left:-50vw;animation:fluidMove1 35s ease-in-out infinite;}
+    .g5{background:radial-gradient(circle at center,rgba(var(--color5),0.8) 0%,transparent 50%);width:150vw;height:150vh;top:-50vh;left:-10vw;animation:fluidMove1 38s ease-in-out infinite reverse;}
+    .interactive{background:radial-gradient(circle at center,rgba(var(--color-interactive),1) 0%,rgba(var(--color-interactive),0.9) 20%,transparent 50%);width:80vw;height:80vw;top:-35vw;left:-35vw;opacity:1;mix-blend-mode:color-dodge;}
+    @keyframes fluidMove1{0%{transform:translate(0,0) rotate(0deg) scale(1);}33%{transform:translate(10vw,-15vh) rotate(120deg) scale(1.1);}66%{transform:translate(-15vw,10vh) rotate(240deg) scale(0.9);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
+    @keyframes fluidMove2{0%{transform:translate(0,0) rotate(0deg) scale(1);}25%{transform:translate(-15vw,-10vh) rotate(90deg) scale(0.9);}50%{transform:translate(10vw,-20vh) rotate(180deg) scale(1.2);}75%{transform:translate(20vw,10vh) rotate(270deg) scale(1);}100%{transform:translate(0,0) rotate(360deg) scale(1);}}
+    .project-hero{height:60vh;min-height:480px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 0 0 0;text-align:center;color:white;position:relative;z-index:10;box-sizing:border-box;}
+    .project-hero h1{font-family:var(--font-heading);font-size:clamp(42px,7vw,88px);line-height:1.05;font-weight:900;letter-spacing:var(--tracking-tight);margin:0 0 24px 0;filter:drop-shadow(0.5rem 0.5rem 0.1rem rgba(0,0,0,0.1));}
+    .project-hero .section-sub{font-size:clamp(16px,1.8vw,20px);line-height:1.6;color:rgba(255,255,255,0.75);max-width:650px;margin:0 auto;}
+    .project-feature{position:relative;z-index:10;}
+    .project-meta-light{background:#f8f9fa;border:1px solid rgba(0,0,0,0.05);border-radius:32px;padding:48px;display:grid;grid-template-columns:2fr 1fr;gap:40px;margin:0 auto 60px auto;width:100%;box-sizing:border-box;box-shadow:0 20px 60px rgba(0,0,0,0.1);position:relative;z-index:20;}
+    @media(max-width:900px){.project-meta-light{grid-template-columns:1fr;gap:32px;padding:32px;}}
+    .meta-col h4{font-family:var(--font-heading);color:#0d0b30;font-size:20px;margin:0 0 16px 0;letter-spacing:var(--tracking-tight);}
+    .meta-col p{color:rgba(0,0,0,0.65);line-height:1.6;margin:0;font-size:15px;}
+    .project-body{max-width:800px;margin:0 auto 40px auto;color:rgba(0,0,0,0.75);font-size:18px;line-height:1.8;position:relative;z-index:10;}
+    .project-body h2{font-family:var(--font-heading);font-size:36px;color:#0d0b30;margin:40px 0 12px 0;letter-spacing:var(--tracking-tight);}
+    .project-body h3{font-family:var(--font-heading);font-size:24px;color:#0d0b30;margin:32px 0 10px 0;letter-spacing:var(--tracking-tight);}
+    .project-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue-accent);margin-bottom:24px;}
+    .project-body p{margin-bottom:24px;}
+    .project-body blockquote{border-left:3px solid #a78bfa;margin:0 0 24px 0;padding:16px 24px;background:#f5f4ff;border-radius:0 12px 12px 0;font-style:italic;color:#444;}
+    .project-image-main{width:100%;height:auto;border-radius:32px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 30px 90px rgba(0,0,0,0.08);display:block;object-fit:cover;aspect-ratio:16/9;margin-bottom:80px;}
+    .project-image-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:80px;}
+    @media(max-width:600px){.project-image-grid{grid-template-columns:1fr;}}
+    .project-image-grid img{width:100%;border-radius:16px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.06);display:block;}
+    .project-image-full{width:100%;height:auto;border-radius:24px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.06);display:block;margin-bottom:48px;}
+    .project-video-wrap{width:100%;border-radius:24px;overflow:hidden;margin-bottom:48px;border:4px solid rgba(0,0,0,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.06);}
+    .project-video-wrap video{width:100%;display:block;}
+    .project-video-wrap-clickable{position:relative;cursor:pointer;}
+    .project-video-wrap-clickable::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;color:white;text-shadow:0 2px 20px rgba(0,0,0,0.5);opacity:0;transition:opacity 0.2s;pointer-events:none;}
+    .stat-row{display:flex;gap:48px;flex-wrap:wrap;margin:40px 0;padding:40px 32px;background:#f5f4ff;border-radius:20px;justify-content:center;filter:drop-shadow(0.5rem 0.5rem 0.1rem rgba(0,0,0,0.1));}
+    .stat-item{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;}
+    .stat-num{font-family:var(--font-heading);font-size:36px;font-weight:900;letter-spacing:var(--tracking-tight);background:linear-gradient(135deg,#36109b,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .stat-label{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;}
+    .iframe-placeholder{width:100%;border-radius:24px;border:2px dashed rgba(0,0,0,0.15);background:rgba(0,0,0,0.02);margin-bottom:48px;padding:60px 32px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(0,0,0,0.25);text-align:center;}
+    .divider{width:100%;height:1px;background:rgba(0,0,0,0.06);margin:60px auto;max-width:800px;}
+    .next-project{text-align:center;padding:100px 0;position:relative;z-index:10;background:linear-gradient(135deg,#0c0930 0%,#120828 50%,#0a0f35 100%);color:white;}
+    .next-project .section-label{margin-bottom:20px;color:#c0a7ff;}
+    .next-project h2{font-family:var(--font-heading);font-size:clamp(32px,5vw,64px);color:#fff;margin:0 0 30px 0;transition:color 0.3s;letter-spacing:var(--tracking-tight);}
+    .next-project a{text-decoration:none;display:inline-block;}
+    .next-project a:hover h2{color:#c0a7ff;}
+    .btn-solid{display:inline-flex;align-items:center;padding:14px 32px;border-radius:100px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);color:#fff;border:1px solid rgba(255,255,255,0.3);box-shadow:0 8px 32px rgba(54,16,155,0.3),inset 0 0 10px rgba(255,255,255,0.1);font-family:var(--font-heading);font-weight:600;font-size:15px;text-decoration:none;transition:all 0.3s var(--ease-smooth);letter-spacing:var(--tracking-tight);cursor:pointer;gap:12px;}
+    .btn-solid:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.6);transform:translateY(-1px);}
+    .btn-solid svg{width:14px;height:14px;transition:transform 0.4s var(--ease-smooth);transform:rotate(45deg);}
+    .btn-solid:hover svg{transform:rotate(45deg) translate(3px,-3px) scale(1.1);}
+    .site-footer{background:#030212;border-top:1px solid rgba(255,255,255,0.06);padding:36px 0;position:relative;z-index:10;}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+    .footer-logo{font-family:var(--font-heading);font-weight:800;font-size:18px;letter-spacing:var(--tracking-tight);color:rgba(255,255,255,0.7);text-decoration:none;}
+    .footer-logo em{font-style:italic;font-weight:200;}
+    .site-footer p{font-size:13px;color:rgba(255,255,255,0.55);margin:0;}
+    .scroll-reveal{opacity:0;transform:translateY(32px);filter:blur(3px);transition:opacity 1.6s var(--ease-smooth),transform 1.6s var(--ease-smooth),filter 1.6s var(--ease-smooth);}
+    body.loaded .scroll-reveal.visible{opacity:1;transform:translateY(0);filter:blur(0);}
+    .sr-d1{transition-delay:0.15s;}.sr-d2{transition-delay:0.3s;}.sr-d3{transition-delay:0.45s;}
+  </style>
 </head>
-
 <body>
+  <div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FC6WJ74"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-<!-- WRAPPER ALL -->
-    <div class="dizme_tm_all_wrap" data-magic-cursor="show">
-    <!-- SCROLL PROGRESS -->
-    <div class="nt-progress-bar" id="ntProgressBar"></div>
+  <div class="hero-bg-wrapper">
+    <div class="gradients-container">
+      <div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g5"></div><div class="interactive"></div>
+    </div>
+  </div>
 
-        <!-- MOBILE MENU -->
-        <div class="dizme_tm_mobile_menu dizme_tm_mobile_menu_portfolio">
-            <div class="mobile_menu_inner">
-                <div class="mobile_in">
-                    <div class="logo">
-                        <a href="https://nickthompsondesign.github.io">NT</a>
-                    </div>
-                    <div class="trigger">
-                        <div class="hamburger hamburger--slider">
-                            <div class="hamburger-box">
-                                <div class="hamburger-inner"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dropdown">
-                <div class="dropdown_inner">
-                    <ul class="anchor_nav">
-                        <li><a href="https://nickthompsondesign.github.io">Home</a></li>
-                        <li><a href="https://nickthompsondesign.github.io#about">About</a></li>
-                        <li class="portfolio_link current"><a>Portfolio</a>
-                                <ul class="dropdown_nav">
-                                    <li><a href="./website-design">Website Design &amp; Build</a></li>
-                                    <li><a class="active" href="./asda-bespoke-web-pages">Asda Web Page Design</a></li>
-                                    <li><a href="./digital-design-logos">Digital Design &amp; Logos</a></li>                                   
-                                    <li><a href="./sushi-restaurant-app">UX App Design</a></li>
-                                    <li><a href="./masaco-branding">Brand Development</a></li>
-                                    <li><a href="./asda-design-guidelines">Asda Design Guidelines</a></li>
-                                    <li><a href="./video-projects">Video Projects</a></li>
-                                    <li><a href="./print-projects">Print Projects</a></li>                                     
-                                </ul>
-                        </li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li class="download_cv"><a target="_blank" href="img/cv/Nick Thompson CV.pdf"><span>Download CV</span></a></li>
-                    </ul>
-                </div>
-            </div>
+  <header>
+    <a href="index.html" class="nav-logo">NickThompson<span>Design</span></a>
+    <nav id="nav-list">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#portfolio">View Work</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="https://nickthompsondesign.co.uk/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn-cv">Download CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#portfolio">View Work</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <main class="project-hero">
+    <div class="content-inner" style="width:100%;">
+      <span class="section-label scroll-reveal sr-d1">Web · Digital</span>
+      <h1 class="scroll-reveal sr-d2">Asda Bespoke Web Pages</h1>
+      <p class="section-sub scroll-reveal sr-d3">Bespoke campaign pages and branded zones for Asda.com — from experiential hubs with live competitions to fully custom supplier brand pages.</p>
+    </div>
+  </main>
+
+  <section class="project-feature">
+    <div class="content-inner">
+      <div class="project-meta-light scroll-reveal sr-d3">
+        <div class="meta-col">
+          <h4>The Brief</h4>
+          <p>Designing and building bespoke web pages for Asda's grocery site, working closely with major FMCG suppliers across Experiential Hubs and Branded Zones.</p>
         </div>
-        <!-- /MOBILE MENU -->
-
-        <!-- HEADER -->
-        <div class="dizme_tm_header dizme_tm_header_portfolio">
-            <div class="container">
-                <div class="inner">
-                    <div class="logo">
-                        <a href="https://nickthompsondesign.github.io">NT</a>
-                    </div>
-                    <div class="menu">
-                        <ul class="anchor_nav">
-                        <li><a href="https://nickthompsondesign.github.io">Home</a></li>
-                        <li><a href="https://nickthompsondesign.github.io#about">About</a></li>
-                            <li class="portfolio_link current"><a href="https://nickthompsondesign.github.io/#portfolio">Portfolio</a>
-                                <ul class="dropdown_nav">
-                                    <li><a href="./website-design">Website Design &amp; Build</a></li>
-                                    <li><a class="active" href="./asda-bespoke-web-pages">Asda Web Page Design</a></li>
-                                    <li><a href="./digital-design-logos">Digital Design &amp; Logos</a></li>                                   
-                                    <li><a href="./sushi-restaurant-app">UX App Design</a></li>
-                                    <li><a href="./masaco-branding">Brand Development</a></li>
-                                    <li><a href="./asda-design-guidelines">Asda Design Guidelines</a></li>
-                                    <li><a href="./video-projects">Video Projects</a></li>
-                                    <li><a href="./print-projects">Print Projects</a></li>                              
-                                </ul>
-                            </li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="download_cv"><a target="_blank" href="img/cv/Nick Thompson CV.pdf"><span>Download CV</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="meta-col">
+          <h4>My Role</h4>
+          <p>End-to-end: concept, wireframing, UX design, front-end build, supplier collaboration, and design consultancy.</p>
         </div>
-        <!-- /HEADER -->
+      </div>
+      
+<article class="project-body">
+  <h2 class="scroll-reveal">Experiential Hubs</h2>
+  <div class="project-tag scroll-reveal sr-d1">Web · UX · Campaign</div>
+  <p class="scroll-reveal sr-d2">The Experiential Hubs were event-focused campaign pages designed to complement in-store activations — from the Big Night In and Lunar New Year to A Magical Christmas. Rather than simply replicating in-store activity, they created a distinct online experience with instant-win competitions and supplier brand showcases.</p>
+  <p class="scroll-reveal sr-d2">I was responsible for shaping the vision for this product from scratch: wireframing, prototyping, refining the UX, and leading development of the first Hub. I also built the instant-win competition mechanism — an interactive iFrame integrated into the Asda Groceries site.</p>
+</article>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline poster="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/stars-of-the-show-poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/stars-of-the-show.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline poster="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Year-of-the-dragon-poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Year-of-the-dragon.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline poster="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/festive-favourites-page-poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/festive-favourites-page.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline poster="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Bus-Tour-Web-poster.png"><source src="https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Bus-Tour-Web.mp4" type="video/mp4"></video></div>
 
+<article class="project-body">
+  <h3 class="scroll-reveal">Process &amp; Approach</h3>
+  <p class="scroll-reveal sr-d1">I identified the need for an engaging page that required minimal supplier involvement — suppliers simply nominated products and provided logos. From there I sketched wireframes, built prototypes, and iterated through user testing to ensure intuitive navigation.</p>
+  <img src="https://nickthompsondesign.github.io/img/portfolio/UX%20design/coronation-wireframe.png" alt="Wireframe" class="project-image-full scroll-reveal sr-d2">
+  <h3 class="scroll-reveal">Results</h3>
+  <p class="scroll-reveal sr-d1">The success of the first Hub turned Experiential Hubs into a standalone product aligned with major Asda events. The Lunar New Year campaign received over 1.1 million competition entries — a 25% increase from the previous campaign — while the Christmas edition drove 57,000 entries and nearly 1 million clicks from the Rewards App.</p>
+</article>
 
-        <!-- HERO -->
-        <div class="dizme_tm_section">
-            <div class="dizme_tm_hero dizme_tm_hero_portfolio">
-                <div class="container">
-                    <div class="content">
-                        <h1>Asda Bespoke Web Pages</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- HERO -->
+<div class="stat-row scroll-reveal">
+  <div class="stat-item"><span class="stat-num">1.1M+</span><span class="stat-label">Competition entries (Lunar NY)</span></div>
+  <div class="stat-item"><span class="stat-num">25%</span><span class="stat-label">Increase vs previous campaign</span></div>
+  <div class="stat-item"><span class="stat-num">1M</span><span class="stat-label">Clicks from Rewards App</span></div>
+</div>
 
+<article class="project-body">
+  <blockquote class="scroll-reveal">"Just wanted to say that I (and the team) really love this Lunar New Year activation that is live and we are really pleased to be a part of it! It looks amazing &amp; we would be eager to take part in future activations like this!" — Account Manager at Mars</blockquote>
+</article>
 
-        <!-- ABOUT -->
-        <div class="dizme_tm_section">
-            <div class="dizme_about_port">
-                <div class="container">
-                    <div class="wrapper">
-                        <div class="dizme_tm_about_port">
-                            <div class="text wow fadeInUp" data-wow-duration="1s">
-                                    <a href="https://nickthompsondesign.github.io/#portfolio" class="nt-back-link">
-                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                                    Back to portfolio
-                                </a>
-                                <br><br>
-<p>Below is a showcase of my work on bespoke Asda web pages, highlighting <a href="#ExperientialHubs">Experiential Hubs</a>, which are event-focused and encourage supplier brand buy-in, and <a href="#BrandedZones">Branded Zones</a>, which are brand-led. These projects involved close collaboration with suppliers, where I acted as a designer on their behalf, worked alongside supplier design teams, or provided design consulting.</p>
-                                    <br>
-                                    
-                                    <div class="nt-divider"></div>
-                                    <div class="nt-project">
-                                    <h2 id="ExperientialHubs">Experiential Hubs</h2>
-                                    
-                                    <br>
-                                        <div class="nt-slider" id="slider-3">
-                                            <div class="nt-slider-main">
-                                                <video class="video-portfolio" width="100%" muted autoplay loop playsinline controls poster="img/portfolio/UX%20design/stars-of-the-show-poster.png">
-                                                    <source src="img/portfolio/UX%20design/stars-of-the-show.mp4" type="video/mp4">
-                                                </video>
-                                                <p class="nt-slider-caption">The Big Night In - Stars of the Show</p>
-                                                <button class="nt-slider-prev" onclick="ntSliderPrev('slider-3')">&#8592;</button>
-                                                <button class="nt-slider-next" onclick="ntSliderNext('slider-3')">&#8594;</button>
-                                            </div>
-                                            <div class="nt-slider-dots" id="slider-3-dots"></div>
-                                        </div>
-                                    <br>
-                                    <br>
-                                    <h4>The Challenge</h4>
-                                    <br>
-                                    <p>The project aimed to complement in-store events, such as POS displays and free samples, by creating a distinct online experience. Instead of replicating in-store activities, the goal was to develop an independent Experiential Hub that enhanced customer engagement.</p>
-                                    <br>
-                                    <p>I was responsible for shaping the vision for this online product, focusing on promoting participating suppliers and an instant-win competition. The page had to align with Asda's events while offering a standalone experience.</p>
-                                    <br>
-                                    <p>Key challenges involved meeting the Sales Team's need for higher customer engagement and measurable ROI, while ensuring Senior Management's expectations for brand consistency and scalability were achieved across multiple campaigns.</p>
-                                    <br>
-                                    <h4>Process/Approach</h4>
-                                    <br>
-                                    <p>I identified the need for an engaging web page that required minimal supplier involvement, with suppliers only nominating products and providing logos or optional banners.</p>
-                                    <br>
-                                    <p>I developed the first Experiential Hub by sketching wireframes, creating prototypes, and refining the user experience to ensure intuitive navigation and functionality. Incorporating best design practices, I delivered an interactive platform that connected suppliers with Asda customers. Additionally, I led the development of instant-win competitions on the Asda Groceries site, integrating an interactive iFrame for a smooth, engaging experience.</p>
-                                    <br>
-                                    <img src="https://nickthompsondesign.github.io/img/portfolio/UX%20design/coronation-wireframe.png">
-                                    <br>
-                                    <h4>Results</h4>
-                                    <br>
-                                    <p>The King’s Coronation page was a notable success, featuring participating brands and their Coronation product ranges. An interactive “Find the Winning Window” competition allowed ASDA's online shoppers to win prizes by selecting a branded bus window, leading to overwhelmingly positive feedback. This project, designed to complement in-store promotions, demonstrated that the Experiential Hub template could redefine future product offerings for suppliers.</p>
-                                    <br>
-                                    <video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" controls>
-                                        <source src="img/portfolio/videos/Kings-Coronation-Promo.mp4" type="video/mp4">
-                                    </video>
-                                    <br>
-                                    <br>
-                                    <p>The success of the Experiential Hubs turned them into a standalone product, aligned with major Asda events like Summer and Easter, but now a key platform for suppliers to elevate their brands.</p>
-                                    <br>                                   
-                                    <video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" controls>
-                                        <source src="img/portfolio/UX%20design/Bus-Tour-Web.mp4" type="video/mp4">
-                                    </video>
-                                    <br>                                   
-                                    <br>                                   
-                                    <p>The hubs generated impressive results, with over 1.1 million competition entries in the Lunar New Year campaign (a 25% increase from the Big Night In campaign) and 57,000 entries for Christmas. Engagement soared, with nearly 1 million clicks from the Rewards App and strong boosts from email and social media.</p>
-                                    <br>                                    
-                                    <video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" controls>
-                                        <source src="img/portfolio/UX%20design/festive-favourites-page.mp4" type="video/mp4">
-                                    </video>
-                                    <br>   
-                                    <br>                                    
-                                    <h4>Supplier Feedback</h4>
-                                    <br>
-                                    <p><i>“Just wanted to say that I (and the team) really love this Lunar New Year activation that is live and we are really pleased to be apart of it! So excited to see how this performs and to be able to feed back to the team, we have never taken part in an activation like this online before, so this is a first for us! It looks amazing & we would be eager to take part in future activations like this!”</i></p>
-                                    <br>                                    
-                                    <p>- Account Manager at Mars</p>
-                                    <br>                                    
-                                    
-                                    <div class="nt-divider"></div>
-                                    <div class="nt-project">
-                                    <h2 id="BrandedZones">Branded Zones (Bespoke Web Pages)</h2>
-                                    
-                                    <br>                                    
-                                    <p>Asda offers two tiers of bespoke web pages to suppliers: Simple and Complex Branded Zones. Simple Branded Zones consist of a single page with a top module, while Complex Branded Zones feature multiple pages and offer full customisation for a more tailored brand experience.</p>
-                                    <br>                                    
-                                    <h4>Bespoke Design</h4>
-                                    <br>                                    
-                                    <p>When suppliers have limited design resources, I create bespoke designs and webpages for them. I collaborate closely with each supplier to understand their brand identity, goals, and target audience. </p>
-                                    <br>             
-                                    <p>Here is a selection of custom Branded Zone designs I created on behalf of suppliers and Asda category teams.</p>
-                                    <br>             
-                                    <div class="nt-slider" id="slider-4">
-                                        <div class="nt-slider-main">
-                                            <video class="video-portfolio" width="100%" muted autoplay loop playsinline>
-                                                <source src="img/portfolio/videos/lego-asda.mp4" type="video/mp4">
-                                            </video>
-                                            <p class="nt-slider-caption">Lego Custom Design Branded Zone Design and Build + Website Banners</p>
-                                            <button class="nt-slider-prev" onclick="ntSliderPrev('slider-4')">&#8592;</button>
-                                            <button class="nt-slider-next" onclick="ntSliderNext('slider-4')">&#8594;</button>
-                                        </div>
-                                        <div class="nt-slider-dots" id="slider-4-dots"></div>
-                                    </div>
-                                   <br>  
-                                    <h4>Design Consultancy</h4>
-                                    <br>                                    
-                                    <p>In addition to designing webpages, I have acted as a consultant for leading brands, guiding the development of templates and collaborating with diverse design teams. This role has involved creating wireframes for suppliers and providing customisable templates. My focus has been to assist in developing branded zones with suppliers that align with their goals while effectively engaging customers.</p>
-                                    <br>                                    
-                                    <video class="video-portfolio" width="100%" muted="" autoplay="" loop="" playsinline="" controls>
-                                        <source src="img/portfolio/videos/Cadbury-Branded-Zone.mp4" type="video/mp4">
-                                    </video>
-                                    <br>
-                                    <br>                                    
-                                    <h4>Supplier Feedback</h4>
-                                    <br>
-                                    <p><i>“Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone, Nick was creative, adaptive, agile and knowledgable of what could be possible which allowed us to deliver and exceptional brand page, industry leading.”</i></p>
-                                    <br>                                    
-                                    <p>- Caroline Buchanan<br>
-                                    E-commerce Customer Development Manager at Mondelez (Cadbury)<br><br>
-                                    <img src="img/thumbs/cadbury-logo.png" width="150px">
-                                    </p>
-                                    <br>            
-                                    <p><i>“Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly! Nick was adaptive, creative, and collaborative throughout this project. Nick delivered an incredible digital activation, and I hope to work with him again soon.”</i></p>
-                                    <br>                                    
-                                    <p>- Jonathan McRobb-Bishop<br>
-                                    Associate Trade Marketing Manager – The LEGO Group UK/I.<br><br>
-                                    <img src="img/thumbs/lego-logo.png" width="60px">
-                                    </p>
-                                    <br>            
-                                </div>
-                            </div>
-                                    </div>
-                                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /ABOUT -->        
+<div class="divider"></div>
 
-        <div class="nt-contact-spacer"></div>
-        <!-- CONTACT -->
-        <div id="contact" class="dizme_tm_section" style="background-image: url('img/brushes/contact/2.svg');background-position: right bottom;background-repeat: no-repeat;background-size: 40%;">
-            <div class="dizme_tm_contact">
-                <div class="container">
-                    <div class="dizme_tm_main_title" data-align="center">
-                        <span>Contact Me</span>
-                        <h3>I want to hear from you!</h3>
-                        <p>For freelance project or employment opportunities, please get in touch!</p>
-                    </div>
-                    <div class="contact_inner">
-                        <div class="left wow fadeInLeft" data-wow-duration="1s">
-                            <ul>
-                                <li>
-                                    <div class="list_inner">
-                                        <div class="icon orangeBackground">
-                                            <i class="icon-location whiteText"></i>
-                                        </div>
-                                        <div class="short">
-                                            <h3>Location</h3>
-                                            <span>Leeds, UK/Remote</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="list_inner">
-                                        <div class="icon blueBackground">
-                                            <i class="icon-mail-1 whiteText"></i>
-                                        </div>
-                                        <div class="short">
-                                            <h3>Email</h3>
-                                            <span><a href="/cdn-cgi/l/email-protection#2a444349415e4245475a5945441e6a42455e474b434604494547"><span class="__cf_email__" data-cfemail="543a3d373f203c3b3924273b3a60143c3b2039353d387a373b39">[email&#160;protected]</span></a></span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="list_inner">
-                                        <div class="icon yellowBackground">
-                                            <i class="icon-phone whiteText"></i>
-                                        </div>
-                                        <div class="short">
-                                            <h3>Phone</h3>
-                                            <a href="tel:+447971727886"><span>+44 7971727886</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="right wow fadeInRight" data-wow-duration="1s">
-                            <div class="fields">
-                                <form target="_blank" class="contact_form" id="contact_form" autocomplete="off" action="https://formsubmit.co/181d1785bd52831baeaf8526716d033c" method="POST">
-                                    <div class="form-group">
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-                                            </div>
-                                            <div class="col">
-                                                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea placeholder="Your Message" class="form-control message_area" name="message" rows="10" required></textarea>
-                                    </div>
+<article class="project-body">
+  <h2 class="scroll-reveal">Branded Zones</h2>
+  <div class="project-tag scroll-reveal sr-d1">Web · Branding · Design Consultancy</div>
+  <p class="scroll-reveal sr-d2">Asda offers two tiers of bespoke pages to suppliers: Simple and Complex Branded Zones. When suppliers had limited design resources, I created fully bespoke designs on their behalf — collaborating closely to understand each brand's identity, goals, and audience.</p>
+</article>
 
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline><source src="https://nickthompsondesign.co.uk/img/portfolio/videos/lego-asda.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline><source src="https://nickthompsondesign.co.uk/img/portfolio/asda-pages/coke.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline><source src="https://nickthompsondesign.co.uk/img/portfolio/asda-pages/cheese-shop.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline><source src="https://nickthompsondesign.co.uk/img/portfolio/asda-pages/lets-graze.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline><source src="https://nickthompsondesign.co.uk/img/portfolio/asda-pages/the-pie-shop.mp4" type="video/mp4"></video></div>
+<div class="project-video-wrap scroll-reveal"><video muted autoplay loop playsinline><source src="https://nickthompsondesign.co.uk/img/portfolio/asda-pages/cow-and-gate.mp4" type="video/mp4"></video></div>
 
-
-                                    <div class="dizme_tm_button">
-                                        <button type="submit" class="submit-button"><span>Submit Form</span></button>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-
-
-                        <div class="brush_2 wow fadeInRight" data-wow-duration="1s"><img src="img/brushes/contact/2.svg" alt="" /></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /CONTACT -->
-
-        <!-- COPYRIGHT -->
-        <div class="dizme_tm_section">
-            <div class="dizme_tm_copyright">
-                <div class="container">
-                    <div class="inner">
-                        <div class="left wow fadeInLeft" data-wow-duration="1s">
-                        </div>
-                        <div class="right wow fadeInRight" data-wow-duration="1s">
-                            <ul>
-                                <li><a target="_blank" href="./privacy-policy">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /COPYRIGHT -->
-
-        <!-- CURSOR -->
-        <div class="mouse-cursor cursor-outer"></div>
-        <div class="mouse-cursor cursor-inner"></div>
-        <!-- /CURSOR -->
-
-        <!-- TOTOP -->
-        <div class="progressbar">
-            <a href="#"><span class="text">To Top</span></a>
-            <span class="line"></span>
-        </div>
-        <!-- /TOTOP -->
+<article class="project-body">
+  <h3 class="scroll-reveal">Design Consultancy</h3>
+  <p class="scroll-reveal sr-d1">In addition to building pages, I acted as a design consultant for leading brands — creating wireframes, developing customisable templates, and guiding suppliers through the process of building brand zones that met Asda's standards while achieving their own brand goals.</p>
+  <blockquote class="scroll-reveal sr-d2">"Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone. Nick was creative, adaptive, agile and knowledgeable of what could be possible, which allowed us to deliver an exceptional brand page — industry leading." — Caroline Buchanan, E-commerce Customer Development Manager, Mondelez (Cadbury)</blockquote>
+  <blockquote class="scroll-reveal sr-d2">"Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly. Nick delivered an incredible digital activation, and I hope to work with him again soon." — Jonathan McRobb-Bishop, Associate Trade Marketing Manager, The LEGO Group UK/I.</blockquote>
+</article>
 
     </div>
-    <!-- / WRAPPER ALL -->
+  </section>
 
-            <script>
-        window.addEventListener('scroll', function() {
-            var scrollTop = window.scrollY || document.documentElement.scrollTop;
-            var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            document.getElementById('ntProgressBar').style.width = progress + '%';
-        });
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('nt-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.nt-project').forEach(function(el) { observer.observe(el); });
-    </script>
+  <section class="next-project">
+    <div class="content-inner">
+      <span class="section-label scroll-reveal">Up Next</span>
+      <a href="digital-design-logos.html">
+        <h2 class="scroll-reveal sr-d1">Digital Design, Logos & Animations</h2>
+        <div class="btn-solid scroll-reveal sr-d2">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      </a>
+    </div>
+  </section>
 
-    <!-- NT SLIDER -->
-    <script>
-    window._ntSliders = {
-        'slider-3': {
-            index: 0,
-            slides: [
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/stars-of-the-show.mp4', poster: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/stars-of-the-show-poster.png', caption: 'The Big Night In - Stars of the Show' },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Year-of-the-dragon.mp4', poster: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Year-of-the-dragon-poster.png', caption: 'Lunar New Year - Year of The Dragon' },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/festive-favourites-page.mp4', poster: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/festive-favourites-page-poster.png', caption: 'A Magical Christmas - Festive Favourites' },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Bus-Tour-Web.mp4', poster: 'https://nickthompsondesign.co.uk/img/portfolio/UX%20design/Bus-Tour-Web-poster.png', caption: 'The Big Get-Together - Bus Tour' }
-            ]
-        },
-        'slider-4': {
-            index: 0,
-            slides: [
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/videos/lego-asda.mp4', poster: '', caption: 'Lego Custom Design Branded Zone Design and Build + Website Banners' },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/asda-pages/coke.mp4', poster: '', caption: 'Coke Perfect Pairings Branded Zone Design and Build' },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/asda-pages/cheese-shop.mp4', poster: '', caption: 'The Cheese Shop Branded Zone Design and Build' },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/asda-pages/lets-graze.mp4', poster: '', caption: "Let's Graze Branded Zone Design and Build" },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/asda-pages/the-pie-shop.mp4', poster: '', caption: 'The Pie Shop 2021 Branded Zone Design and Build' },
-                { type: 'video', src: 'https://nickthompsondesign.co.uk/img/portfolio/asda-pages/cow-and-gate.mp4', poster: '', caption: 'Cow &amp; Gate Branded Zone Design (based on supplier assets) and Build' },
-                { type: 'img', src: 'https://nickthompsondesign.co.uk/img/portfolio/asda-pages/the-pie-shop-2020.gif', poster: '', caption: 'The Pie Shop 2020 Branded Zone Design and Build' }
-            ]
-        }
+  <footer class="site-footer">
+    <div class="content-inner footer-inner">
+      <a href="index.html" class="footer-logo">NickThompson<em>Design</em></a>
+      <p>© 2026 Nick Thompson. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function adjustMetaOverlap() {
+      const metaBox = document.querySelector('.project-meta-light');
+      if (metaBox) { metaBox.style.marginTop = `-${metaBox.offsetHeight / 2}px`; }
+    }
+    adjustMetaOverlap();
+    window.addEventListener('load', adjustMetaOverlap);
+    window.addEventListener('resize', adjustMetaOverlap);
+
+    const minPreloaderTime = 1800;
+    const initTime = Date.now();
+    function dismissPreloader() {
+      const remaining = Math.max(0, minPreloaderTime - (Date.now() - initTime));
+      setTimeout(() => { document.getElementById('preloader').classList.add('fade-out'); document.body.classList.add('loaded'); }, remaining);
+    }
+    if (document.readyState === 'complete') { dismissPreloader(); } else { window.addEventListener('load', dismissPreloader); setTimeout(dismissPreloader, 6000); }
+
+    const header = document.querySelector('header');
+    const heroBg = document.querySelector('.hero-bg-wrapper');
+    const updateHeaderColor = () => {
+      const y = window.scrollY;
+      const threshold = heroBg.offsetHeight - 80;
+      if (y < 20) { header.classList.remove('scrolled-dark','scrolled-light'); }
+      else if (y < threshold) { header.classList.add('scrolled-dark'); header.classList.remove('scrolled-light'); }
+      else { header.classList.add('scrolled-light'); header.classList.remove('scrolled-dark'); }
     };
+    window.addEventListener('scroll', updateHeaderColor, {passive:true});
+    updateHeaderColor();
 
-    function ntSliderInit(id) {
-        var s = window._ntSliders[id];
-        if (!s) return;
-        var wrapper = document.getElementById(id);
-        if (!wrapper) return;
-        var main = wrapper.querySelector('.nt-slider-main');
-        var dotsEl = document.getElementById(id + '-dots');
-        var prev = wrapper.querySelector('.nt-slider-prev');
-        var next = wrapper.querySelector('.nt-slider-next');
-
-        // Build track — one item per slide, each 100% of main width
-        var track = document.createElement('div');
-        track.className = 'nt-slider-track';
-
-        s.slides.forEach(function(slide) {
-            var item = document.createElement('div');
-            item.className = 'nt-slider-item';
-
-            var media;
-            if (slide.type === 'video') {
-                media = document.createElement('video');
-                media.muted = true;
-                media.autoplay = true;
-                media.loop = true;
-                media.setAttribute('playsinline', '');
-                media.controls = true;
-                if (slide.poster) media.poster = slide.poster;
-                var src = document.createElement('source');
-                src.src = slide.src;
-                src.type = 'video/mp4';
-                media.appendChild(src);
-            } else {
-                media = document.createElement('img');
-                media.src = slide.src;
-                media.alt = slide.caption;
-            }
-            item.appendChild(media);
-            track.appendChild(item);
-        });
-
-        // Caption and arrows go on main, above the track
-        var cap = document.createElement('p');
-        cap.className = 'nt-slider-caption';
-        cap.textContent = s.slides[0].caption;
-
-        main.innerHTML = '';
-        main.appendChild(track);
-        main.appendChild(cap);
-        if (prev) main.appendChild(prev);
-        if (next) main.appendChild(next);
-
-        // Dots
-        if (dotsEl) {
-            dotsEl.innerHTML = s.slides.map(function(_, i) {
-                return '<button class="nt-slider-dot' + (i === 0 ? ' active' : '') + '" onclick="ntSliderGoto(\'' + id + '\',' + i + ')"></button>';
-            }).join('');
-        }
-
-        s.track = track;
-        s.cap = cap;
-        s.dotsEl = dotsEl;
-        s.index = 0;
-    }
-
-    function ntSliderGo(id) {
-        var s = window._ntSliders[id];
-        // Each item is 100% of main; translate by index * 100% of one item width
-        s.track.style.transform = 'translateX(-' + (s.index * 100) + '%)';
-        s.cap.textContent = s.slides[s.index].caption;
-        if (s.dotsEl) {
-            s.dotsEl.querySelectorAll('.nt-slider-dot').forEach(function(d, i) {
-                d.classList.toggle('active', i === s.index);
-            });
-        }
-    }
-
-    function ntSliderGoto(id, index) {
-        var s = window._ntSliders[id];
-        if (s.index === index) return;
-        s.index = index;
-        ntSliderGo(id);
-    }
-
-    function ntSliderPrev(id) {
-        var s = window._ntSliders[id];
-        s.index = (s.index - 1 + s.slides.length) % s.slides.length;
-        ntSliderGo(id);
-    }
-
-    function ntSliderNext(id) {
-        var s = window._ntSliders[id];
-        s.index = (s.index + 1) % s.slides.length;
-        ntSliderGo(id);
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        Object.keys(window._ntSliders).forEach(function(id) {
-            ntSliderInit(id);
-            ntSliderGo(id);
-        });
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-    </script>
 
-        <!-- SCRIPTS -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    const interBubble = document.querySelector('.interactive');
+    let curX=0,curY=0,tgX=0,tgY=0;
+    const move = () => { curX+=(tgX-curX)/25; curY+=(tgY-curY)/25; interBubble.style.transform=`translate(${Math.round(curX)}px,${Math.round(curY)}px)`; requestAnimationFrame(move); };
+    window.addEventListener('mousemove', e => { if(e.clientY<window.innerHeight){tgX=e.clientX;tgY=e.clientY;} }, {passive:true});
+    move();
 
-    <!-- SLICK SCRIPTS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- BOOTSTRAP/MODAL SCRIPTS -->
-    <script type="text/javascript" src="https://unpkg.com/popper.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target);} });
+    }, {threshold:0.08});
+    document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
