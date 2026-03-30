@@ -5,7 +5,6 @@
 const IS_INDEX = document.body.classList.contains('index-page');
 const IS_SUB   = document.body.classList.contains('sub-page');
 
-
 // ── Preloader ──
 const minPreloaderTime = 1800;
 const initTime = Date.now();
@@ -97,6 +96,15 @@ if (hamburger && mobileNav) {
     const isOpen = hamburger.classList.toggle('open');
     mobileNav.classList.toggle('open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close when a nav link is clicked
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
   });
 }
 
