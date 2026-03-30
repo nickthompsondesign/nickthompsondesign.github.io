@@ -353,7 +353,7 @@ body.loaded .scroll-reveal.visible {
 /* Shared buttons */
 .btn {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   padding: 14px 36px;
   border-radius: 100px;
   text-decoration: none;
@@ -993,9 +993,9 @@ body.sub-page.loaded header {
 
   .scroll-reveal { filter: none; transition: opacity 1.2s var(--ease-smooth), transform 1.2s var(--ease-smooth); }
 
-  .btn { gap: 6px; font-size: 14px; padding: 14px 16px; }
+  .btn { gap: 6px; font-size: 14px; padding: 15px 22px;font-weight: 700; }
   .btn-cv-mobile { padding: 16px 48px !important; font-size: 16px !important; }
-
+   
   /* Index */
   .square-box { width: 80%; }
   .gradient-bg .gradients-container { filter: blur(20px) saturate(150%) contrast(110%); }
