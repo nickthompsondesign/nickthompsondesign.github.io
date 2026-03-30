@@ -73,6 +73,66 @@ header.scrolled-light .hamburger span { background:#0d0b30; }
 .mobile-nav.open a:nth-child(5) { transition-delay:0.25s; }
 .mobile-nav a:hover { color:rgba(255,255,255,0.6); }
 
+
+/* ── Mobile Nav Overlay Fix ── */
+.mobile-nav { 
+  display: flex; /* Always flex so it can animate */
+  position: fixed; 
+  inset: 0; 
+  background: rgba(1, 1, 18, 0.98); 
+  z-index: 999; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 32px; 
+  
+  /* Start Hidden */
+  opacity: 0; 
+  pointer-events: none; 
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease-smooth), visibility 0.4s; 
+}
+
+/* Show when open */
+.mobile-nav.open { 
+  opacity: 1; 
+  pointer-events: auto; 
+  visibility: visible;
+}
+
+/* ── Hamburger Icon Visibility ── */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 10px;
+  pointer-events: auto; /* MUST be auto to be clickable */
+}
+
+@media(max-width: 1023px) { 
+  .hamburger { display: flex; } 
+  #nav-list { display: none; } 
+}
+
+/* Icon lines color */
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  transition: 0.3s;
+}
+
+/* Switch to dark lines when on white sections */
+header.scrolled-light .hamburger span {
+  background: #0d0b30;
+}
+
+
 /* ── Mobile CV button in nav ── */
 .btn-cv-mobile { margin-top:10px; font-size:16px !important; padding:16px 48px !important; font-weight:600; }
 
@@ -410,6 +470,50 @@ body.sub-page.loaded header { opacity:1; transform:translateY(0); transition:opa
     max-width: 85%; /* Slightly wider on actual small mobile screens */
   }
 }
+
+    /* 1. CONSISTENT BORDER & SHADOW (Unified across all assets) */
+    .logo-grid img, 
+    .project-video-wrap, 
+    .project-image-full img,
+    .project-image-main {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+      display: block;
+      background: #ffffff;
+      transition: transform 0.3s ease;
+      overflow: hidden; /* Clips content to rounded corners */
+    }
+
+    /* 2. LOGO GRID SPECIFIC */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
+      align-items: center;
+    }
+    .logo-grid img:hover {
+      transform: translateY(-5px);
+    }
+    @media(max-width: 768px) {
+      .logo-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    }
+
+    /* 3. MOBILE VIEWPORT FRAME (Specifically for vertical social videos) */
+    .mobile-viewport-frame {
+      max-width: 380px; /* Constrains width to handset size */
+      margin: 0 auto 80px auto; /* Centers the frame */
+    }
+    .mobile-viewport-frame .project-video-wrap {
+      aspect-ratio: 9 / 16; /* Vertical ratio */
+    }
+    .mobile-viewport-frame video {
+      height: 100%;
+      object-fit: cover;
+    }
 
 /* =============================================
    MOBILE OPTIMISATIONS — ALL PAGES

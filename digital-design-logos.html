@@ -20,51 +20,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   
-  <style>
-    /* 1. CONSISTENT BORDER & SHADOW (Unified across all assets) */
-    .logo-grid img, 
-    .project-video-wrap, 
-    .project-image-full img,
-    .project-image-main {
-      width: 100%;
-      height: auto;
-      border-radius: 24px;
-      border: 3px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
-      display: block;
-      background: #ffffff;
-      transition: transform 0.3s ease;
-      overflow: hidden; /* Clips content to rounded corners */
-    }
-
-    /* 2. LOGO GRID SPECIFIC */
-    .logo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 80px;
-      align-items: center;
-    }
-    .logo-grid img:hover {
-      transform: translateY(-5px);
-    }
-    @media(max-width: 768px) {
-      .logo-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    }
-
-    /* 3. MOBILE VIEWPORT FRAME (Specifically for vertical social videos) */
-    .mobile-viewport-frame {
-      max-width: 380px; /* Constrains width to handset size */
-      margin: 0 auto 80px auto; /* Centers the frame */
-    }
-    .mobile-viewport-frame .project-video-wrap {
-      aspect-ratio: 9 / 16; /* Vertical ratio */
-    }
-    .mobile-viewport-frame video {
-      height: 100%;
-      object-fit: cover;
-    }
-  </style>
 </head>
 <body class="sub-page">
 
