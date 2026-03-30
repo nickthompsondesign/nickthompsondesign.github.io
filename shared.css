@@ -388,6 +388,29 @@ body.sub-page.loaded header { opacity:1; transform:translateY(0); transition:opa
     transform: translateY(0);
 }
 
+/* Centering and sizing for mobile-style content */
+.mobile-viewport-frame {
+  max-width: 400px; /* Limits the width so it looks like a phone */
+  margin: 0 auto 80px auto; /* Centers it and adds bottom margin */
+}
+
+/* Ensure the video inside maintains a vertical mobile ratio */
+.mobile-viewport-frame .project-video-wrap {
+  aspect-ratio: 9 / 16; 
+  background: #000; /* Black bars if the video doesn't fit perfectly */
+}
+
+.mobile-viewport-frame video {
+  height: 100%;
+  object-fit: cover; /* Ensures the video fills the tall frame */
+}
+
+@media (max-width: 480px) {
+  .mobile-viewport-frame {
+    max-width: 85%; /* Slightly wider on actual small mobile screens */
+  }
+}
+
 /* =============================================
    MOBILE OPTIMISATIONS — ALL PAGES
    ============================================= */
