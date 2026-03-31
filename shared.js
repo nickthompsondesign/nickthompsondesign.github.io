@@ -28,12 +28,12 @@ document.querySelectorAll('a[href*="?ref="]').forEach(link => {
     e.preventDefault();
 
     const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:radial-gradient(circle at center,#01042d 0%,#000113 100%);opacity:0;z-index:99999;transition:opacity 0.4s ease;pointer-events:none;';
+    overlay.style.cssText = 'position:fixed;inset:0;background:radial-gradient(circle at center,#01042d 0%,#000113 100%);opacity:0;z-index:99999;transition:opacity 0.2s ease;pointer-events:none;';
     document.body.appendChild(overlay);
 
     requestAnimationFrame(() => {
       overlay.style.opacity = '1';
-      setTimeout(() => { window.location = href; }, 400);
+      setTimeout(() => { window.location = href; }, 200);
     });
   });
 });
