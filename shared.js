@@ -270,30 +270,25 @@ observer.observe(document.querySelector('.hero-container'));
 if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
   const box = document.querySelector('.square-box');
   if (box) {
-    let tilting = false;
     let rafId = null;
-    let targetDX = 0, targetDY = 0;
 
-    setTimeout(() => { tilting = true; }, 0);
+    box.addEventListener('mousemove', e => {
+      const rect = box.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5;
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
 
-    window.addEventListener('mousemove', e => {
-      if (!tilting) return;
-      targetDX = (e.clientX / window.innerWidth  - 0.5) * 2;
-      targetDY = (e.clientY / window.innerHeight - 0.5) * 2;
-
-      if (!rafId) {
-        rafId = requestAnimationFrame(() => {
-          box.style.transform = `perspective(1000px) rotateX(${targetDY * -6}deg) rotateY(${targetDX * 6}deg)`;
-          rafId = null;
-        });
-      }
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        box.style.transition = 'transform 0.1s ease-out';
+        box.style.transform  = `perspective(1000px) rotateX(${y * -12}deg) rotateY(${x * 12}deg)`;
+        rafId = null;
+      });
     }, { passive: true });
 
-    window.addEventListener('mouseleave', () => {
+    box.addEventListener('mouseleave', () => {
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       box.style.transition = 'transform 0.6s var(--ease-smooth)';
       box.style.transform  = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      setTimeout(() => { box.style.transition = ''; }, 600);
     });
   }
 }
