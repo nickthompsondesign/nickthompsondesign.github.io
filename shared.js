@@ -17,8 +17,16 @@ function dismissPreloader() {
     document.body.classList.add('loaded');
   }, remaining);
 }
-if (document.readyState === 'complete') { dismissPreloader(); } 
-else { window.addEventListener('load', dismissPreloader); setTimeout(dismissPreloader, 6000); }
+const skipPreloader = new URLSearchParams(window.location.search).has('ref');
+
+if (skipPreloader) {
+  const pre = document.getElementById('preloader');
+  if (pre) pre.style.display = 'none';
+  document.body.classList.add('loaded');
+} else {
+  if (document.readyState === 'complete') { dismissPreloader(); }
+  else { window.addEventListener('load', dismissPreloader); setTimeout(dismissPreloader, 6000); }
+}
 
 // ── Header & Layout Logic ──
 const header = document.querySelector('header');
