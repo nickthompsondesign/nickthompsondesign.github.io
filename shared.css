@@ -708,10 +708,10 @@ body.index-page.loaded .square-box { opacity: 1; transform: scale(1); }
 
 body.index-page.loaded .showreel-slide { animation-play-state: running; }
 
-.slide-1 { background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Web-Design.jpg'); animation-delay: 0s; }
-.slide-2 { background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Logos-Showcase.jpg'); animation-delay: -12s; }
-.slide-3 { background-image: url('https://nickthompsondesign.co.uk/img/portfolio/sora-sushi-show.jpg'); animation-delay: -8s; }
-.slide-4 { background-image: url('https://nickthompsondesign.co.uk/img/portfolio/Asda-Pages.png'); animation-delay: -4s; }
+.slide-1 { background-image: url('/img/portfolio/Web-Design.jpg'); animation-delay: 0s; }
+.slide-2 { background-image: url('/img/portfolio/Logos-Showcase.jpg'); animation-delay: -12s; }
+.slide-3 { background-image: url('/img/portfolio/sora-sushi-show.jpg'); animation-delay: -8s; }
+.slide-4 { background-image: url('/img/portfolio/Asda-Pages.png'); animation-delay: -4s; }
 
 @keyframes slideFade {
   0%, 20%  { opacity: 1; filter: blur(0); transform: scale(1); }
