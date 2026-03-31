@@ -19,6 +19,26 @@ function dismissPreloader() {
 }
 const skipPreloader = new URLSearchParams(window.location.search).has('ref');
 
+
+// ── Ref Link Transition ──
+document.querySelectorAll('a[href*="?ref="]').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (!href || link.target === '_blank') return;
+    e.preventDefault();
+
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:#000113;opacity:0;z-index:99999;transition:opacity 0.4s ease;pointer-events:none;';
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+      overlay.style.opacity = '1';
+      setTimeout(() => { window.location = href; }, 400);
+    });
+  });
+});
+
+
 if (skipPreloader) {
   const pre = document.getElementById('preloader');
   if (pre) pre.style.display = 'none';
