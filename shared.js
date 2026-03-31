@@ -270,6 +270,11 @@ observer.observe(document.querySelector('.hero-container'));
 if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
   const box = document.querySelector('.square-box');
   if (box) {
+     
+   window.addEventListener('load', () => {
+     box.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+   });
+        
     let rafId = null;
 
     box.addEventListener('mousemove', e => {
