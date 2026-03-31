@@ -274,7 +274,7 @@ if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
     let rafId = null;
     let targetDX = 0, targetDY = 0;
 
-    setTimeout(() => { tilting = true; }, 3500);
+    setTimeout(() => { tilting = true; }, 0);
 
     window.addEventListener('mousemove', e => {
       if (!tilting) return;
