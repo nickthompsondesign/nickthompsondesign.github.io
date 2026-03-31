@@ -46,13 +46,19 @@ if (IS_SUB) {
   const projectHero = document.querySelector('.project-hero');
   const metaBox = document.querySelector('.project-meta-light');
 
-  function adjustSubPageLayout() {
+function adjustSubPageLayout() {
     if (!projectHero || !metaBox) return;
 
     const isMobile = window.innerWidth < 1024;
-    const overlapAmount = isMobile ? 40 : (metaBox.offsetHeight / 2);
-    
-    metaBox.style.marginTop = `-${overlapAmount}px`;
+
+    if (isMobile) {
+      projectHero.style.paddingBottom = '';
+      metaBox.style.marginTop = '-40px';
+    } else {
+      const halfMeta = metaBox.offsetHeight / 2;
+      projectHero.style.paddingBottom = `${halfMeta}px`;
+      metaBox.style.marginTop = `-${halfMeta}px`;
+    }
 
     if (heroBg) {
       heroBg.style.height = `${projectHero.offsetHeight}px`;
