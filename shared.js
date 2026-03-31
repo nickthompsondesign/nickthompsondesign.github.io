@@ -21,7 +21,7 @@ const skipPreloader = new URLSearchParams(window.location.search).has('ref');
 
 if (skipPreloader) {
   const pre = document.getElementById('preloader');
-  if (pre) pre.classList.add('fade-out');
+  if (pre) pre.style.display = 'none';
   document.body.classList.add('loaded');
 } else {
   if (document.readyState === 'complete') { dismissPreloader(); }
