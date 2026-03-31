@@ -42,7 +42,12 @@ document.querySelectorAll('a[href*="?ref="]').forEach(link => {
 if (skipPreloader) {
   const pre = document.getElementById('preloader');
   if (pre) pre.style.display = 'none';
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.4s ease';
   document.body.classList.add('loaded');
+  requestAnimationFrame(() => {
+    setTimeout(() => { document.body.style.opacity = '1'; }, 50);
+  });
 } else {
   if (document.readyState === 'complete') { dismissPreloader(); }
   else { window.addEventListener('load', dismissPreloader); setTimeout(dismissPreloader, 6000); }
