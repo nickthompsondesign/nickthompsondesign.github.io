@@ -1098,3 +1098,31 @@ body.sub-page.loaded header {
   }
 
 }
+
+/* =============================================
+   LARGE DESKTOP → TABLET TRANSITION (1024–1450px)
+   ============================================= */
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+
+
+  h1 {
+    font-size: clamp(28px, 4.25vw, 78px);
+    white-space: normal;
+  }
+
+  .indent-line {
+    font-size: clamp(22px, 4.2vw, 66px);
+    margin-left: clamp(0px, 3vw, 80px);
+  }
+
+  .hero-body {
+    font-size: clamp(13px, 1.4vw, 18px);
+    max-width: 400px;
+  }
+
+  .square-box {
+    width: clamp(220px, 100%, 480px);
+  
+  }
+}
