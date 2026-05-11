@@ -17,7 +17,10 @@ function dismissPreloader() {
     document.body.classList.add('loaded');
   }, remaining);
 }
-const skipPreloader = new URLSearchParams(window.location.search).has('ref');
+
+const skipPreloader = 
+  new URLSearchParams(window.location.search).has('ref') ||
+  performance.getEntriesByType('navigation')[0]?.type === 'back_forward';
 
 
 // ── Ref Link Transition ──
