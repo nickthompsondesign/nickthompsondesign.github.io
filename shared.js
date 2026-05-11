@@ -274,22 +274,17 @@ document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe
 
 
 const gradient = document.querySelector('.gradient-bg');
+const heroContainer = document.querySelector('.hero-container');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Resume animation or set opacity to 1
-      gradient.style.display = 'block';
-    } else {
-      // Kill the animation/rendering entirely when off-screen
-      gradient.style.display = 'none';
-    }
-  });
-}, { threshold: 0.1 });
+if (gradient && heroContainer) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      gradient.style.display = entry.isIntersecting ? 'block' : 'none';
+    });
+  }, { threshold: 0.1 });
 
-observer.observe(document.querySelector('.hero-container'));
-
-
+  observer.observe(heroContainer);
+}
 
 // ── Square Box Tilt ──
 if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
