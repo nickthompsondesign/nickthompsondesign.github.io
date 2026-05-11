@@ -18,9 +18,13 @@ function dismissPreloader() {
   }, remaining);
 }
 
+const navType = performance.getEntriesByType('navigation')[0]?.type 
+  ?? performance.navigation?.type;
+
 const skipPreloader = 
   new URLSearchParams(window.location.search).has('ref') ||
-  performance.getEntriesByType('navigation')[0]?.type === 'back_forward';
+  navType === 'back_forward' ||
+  navType === 2;
 
 
 // ── Ref Link Transition ──
