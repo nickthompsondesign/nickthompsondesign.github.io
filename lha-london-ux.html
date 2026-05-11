@@ -78,43 +78,33 @@
       <article class="project-body">
         <h2 class="scroll-reveal">The Problem</h2>
         <div class="project-tag scroll-reveal sr-d1">UX · Problem Discovery</div>
-        <p class="scroll-reveal sr-d2">The existing user journey was effectively a black box. The LHA team was buried in single-room enquiries they couldn't fulfil, while prospective tenants had no upfront visibility into what rooms looked like, what they cost, or if they were even available.</p>
-        <p class="scroll-reveal sr-d2">This friction was costing the LHA staff significant operational time in back-and-forth emails, and leaving applicants with a frustrating first impression of the charity. The goal was to build a system that accurately managed expectations before a user ever reached a form.</p>
+        <p class="scroll-reveal sr-d2">The old website listed LHA's accommodations but gave users very little to go on — no live availability, no room-level detail, and no photos. It wasn't the intuitive, browsable experience people expect from modern accommodation platforms, and that disconnect was creating problems on both sides. Users were submitting enquiries for rooms they had little chance of getting, while the LHA team was overwhelmed with unqualified leads — particularly for high-demand rooms like singles. What LHA needed wasn't more enquiries, but better ones.</p>
       </article>
-
+      
       <div class="divider"></div>
-
+      
       <article class="project-body">
         <h2 class="scroll-reveal">Research &amp; Discovery</h2>
         <div class="project-tag scroll-reveal sr-d1">Competitor Audit · UX Strategy</div>
-        <p class="scroll-reveal sr-d2">Before designing the new interface, I audited direct and indirect competitors across the student accommodation and co-living sectors. I needed to identify the UX patterns users already trusted, and pinpoint exactly where LHA's current experience was falling short.</p>
-        
-        <h3 class="scroll-reveal" style="margin-top: 2rem;">Key Insights</h3>
-        <ul class="scroll-reveal sr-d2" style="margin-bottom: 2rem; opacity: 0.8;">
-          <li style="margin-bottom: 0.5rem;"><strong>Availability is scanned first:</strong> Users look for availability status before price or photos. Surfacing this immediately removes the largest source of wasted enquiries.</li>
-          <li style="margin-bottom: 0.5rem;"><strong>Photos drive intent:</strong> Room imagery is the strongest metric for conversion. Text-only listings significantly underperformed.</li>
-          <li style="margin-bottom: 0.5rem;"><strong>Waitlists retain leads:</strong> When a room is full, providing a clear path to a waiting list keeps the applicant engaged rather than bouncing them entirely.</li>
-          <li style="margin-bottom: 0.5rem;"><strong>Filters self-qualify:</strong> Empowering users to sort by hostel, price, and type naturally filters out mismatched leads before they hit the team's inbox.</li>
-        </ul>
+        <p class="scroll-reveal sr-d2">To understand the booking experience users were already familiar with, I looked at how established accommodation platforms handle room discovery — particularly Booking.com and YHA, LHA's closest direct competitor.</p>
+        <p class="scroll-reveal sr-d2">Both offered a browsable, filterable listing experience as standard — with live availability, room-level photography, and clear pricing upfront. It confirmed that LHA's generic enquiry form was a significant step behind user expectations, and gave me a solid reference point for the patterns and conventions worth bringing into the redesign.</p>
       </article>
-
+      
       <div class="divider"></div>
-
+      
       <article class="project-body">
-        <h2 class="scroll-reveal">System Logic &amp; Solution</h2>
+        <h2 class="scroll-reveal">Design &amp; Solution</h2>
         <div class="project-tag scroll-reveal sr-d1">System Architecture · UI Design</div>
-        <p class="scroll-reveal sr-d2">I designed the shift from a generic, contextless form to a rich, browsable listing experience. I established a clear room card format — prioritising photos, price, room type, and a live availability badge.</p>
-        
-        <h3 class="scroll-reveal" style="margin-top: 2rem;">Smart Routing &amp; Pre-population</h3>
-        <p class="scroll-reveal sr-d1">One of the most impactful UX decisions was the introduction of dynamic CTA logic. If a room is marked Available, the user is routed to the Booking Form. If it is Full, they are routed to a Waiting List Form.</p>
-        <p class="scroll-reveal sr-d1">To eliminate user fatigue and ensure data cleanliness, I built a system that passes URL parameters from the room card directly into the form. The user arrives with the Room Name, Hostel, and Room Type already pre-populated. The LHA team now receives perfectly structured, actionable data with every single submission.</p>
+        <p class="scroll-reveal sr-d2">With the research pointing clearly toward a browsable listing experience, I mapped out the new user flow before touching any visuals. The key decision was how to handle availability — if a room was marked available, the user is routed to a Booking Form; if full, to a Waiting List Form. To reduce friction further, I built the system to pass URL parameters from the room card directly into the form, arriving with the Room Name, Hostel, and Room Type already pre-populated. The LHA team now receives clean, structured data with every submission rather than chasing missing information.</p>
       </article>
-
-      <div class="scroll-reveal">
-        <img src="/img/portfolio/UX%20design/LHA-London-UX-Flow.png" alt="User Flow and Smart Routing" class="project-image-full scroll-reveal sr-d2">
-        <p class="media-caption scroll-reveal" style="text-align: center; font-size: 0.9rem; opacity: 0.8; margin-top: 1rem; margin-bottom: 1rem;">Mapping the intelligent user flow: utilising URL parameters to auto-populate forms based on live room status.</p>
-      </div>
-
+      
+      <img style="max-width: 800px;" src="/img/portfolio/UX%20design/LHA-London-UX-Flow.png" alt="User Flow and Smart Routing" class="project-image-full scroll-reveal">
+      <p class="media-caption scroll-reveal" style="text-align: center; font-size: 0.9rem; opacity: 0.8; margin-top: 1rem; margin-bottom: 1rem;">Mapping the intelligent user flow: utilising URL parameters to auto-populate forms based on live room status.</p>
+      
+      <article class="project-body">
+        <p class="scroll-reveal sr-d2">With the logic established, I moved into low-fidelity mockups to work out the room card format and overall layout — prioritising photos, price, room type, and a live availability badge, before presenting to the client for feedback.</p>
+      </article>
+      
       <!-- Added Low Fidelity Mockups Here -->
       <div class="scroll-reveal" style="margin-top: 3rem;">
         <img src="/img/portfolio/UX%20design/LHA-mockups.png" alt="Low Fidelity Mockups" class="project-image-full scroll-reveal sr-d2">
