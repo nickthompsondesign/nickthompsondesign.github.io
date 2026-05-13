@@ -332,12 +332,13 @@ if (flowScroll) {
   let startX;
   let scrollLeft;
 
-  flowScroll.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - flowScroll.offsetLeft;
-    scrollLeft = flowScroll.scrollLeft;
-  });
-
+   flowScroll.addEventListener('mousedown', (e) => {
+     e.preventDefault(); // ← add this
+     isDown = true;
+     startX = e.pageX - flowScroll.offsetLeft;
+     scrollLeft = flowScroll.scrollLeft;
+   });
+   
   flowScroll.addEventListener('mouseleave', () => { isDown = false; });
   flowScroll.addEventListener('mouseup', () => { isDown = false; });
 
