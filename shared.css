@@ -1242,6 +1242,36 @@ body.sub-page.loaded header {
   box-shadow: 0 20px 60px rgba(0,0,0,0.06);
 }
 
+.flow-scroll-wrap {
+  scrollbar-width: thick; /* Firefox */
+  scrollbar-color: rgba(255,255,255,0.4) rgba(255,255,255,0.08); /* Firefox */
+  cursor: grab;
+}
+
+.flow-scroll-wrap:active {
+  cursor: grabbing;
+}
+
+.flow-scroll-wrap::-webkit-scrollbar {
+  height: 10px;
+}
+
+.flow-scroll-wrap::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+}
+
+.flow-scroll-wrap::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.35);
+  border-radius: 999px;
+}
+
+.flow-scroll-wrap::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.55);
+}
+
+
+
 .wireframe-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
