@@ -1127,3 +1127,49 @@ body.sub-page.loaded header {
   
   }
 }
+
+
+/* Client quote — project pages */
+.client-quote {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  padding: 36px 44px;
+  background: #f5f4ff;
+  border-left: 3px solid #a78bfa;
+  border-radius: 0 20px 20px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.client-quote p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(0,0,0,0.7);
+  font-style: italic;
+  margin: 0 0 20px 0;
+}
+
+.client-quote p::before {
+  content: '\201C';
+  font-family: var(--font-heading);
+  font-size: 52px;
+  color: #a78bfa;
+  line-height: 0;
+  vertical-align: -20px;
+  margin-right: 4px;
+}
+
+.client-quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .client-quote { padding: 24px 28px; }
+  .client-quote p { font-size: 15px; }
+}
