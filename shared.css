@@ -1211,41 +1211,42 @@ body.sub-page.loaded header {
 
 .flow-scroll-wrap {
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   border-radius: 12px;
   margin-bottom: 0;
 }
 
-.flow-scroll-wrap::-webkit-scrollbar {
-  height: 4px;
-}
-
-.flow-scroll-wrap::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.06);
-  border-radius: 4px;
-}
-
-.flow-scroll-wrap::-webkit-scrollbar-thumb {
-  background: #a78bfa;
-  border-radius: 4px;
-}
-
 .flow-image {
   display: block;
+  width: 100%;
   height: auto;
   border-radius: 12px;
   border: 4px solid rgba(0,0,0,0.15);
   box-shadow: 0 20px 60px rgba(0,0,0,0.06);
-  /* On desktop, fill width normally */
-  width: 100%;
-  min-width: 0;
 }
 
 @media (max-width: 768px) {
+  .flow-scroll-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .flow-scroll-wrap::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .flow-scroll-wrap::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.06);
+    border-radius: 4px;
+  }
+
+  .flow-scroll-wrap::-webkit-scrollbar-thumb {
+    background: #a78bfa;
+    border-radius: 4px;
+  }
+
   .flow-image {
     width: auto;
-    min-width: 700px; /* forces scroll before image gets too squashed */
+    min-width: 700px;
     max-width: none;
   }
 }
