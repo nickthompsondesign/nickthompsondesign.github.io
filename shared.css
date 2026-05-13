@@ -1250,3 +1250,16 @@ body.sub-page.loaded header {
     max-width: none;
   }
 }
+
+.wireframe-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .wireframe-grid {
+    grid-template-columns: 1fr;
+  }
+}
