@@ -1248,11 +1248,11 @@ body.sub-page.loaded header {
 
 .flow-scroll-wrap {
   border: 4px solid rgba(0,0,0,0.15);
-  padding: 10px;
+  padding: 0px;
   scrollbar-width: thick; /* Firefox */
-    scrollbar-color: #2e1e62 #f6f6f6;
-   cursor: grab;
-   margin: -4px 0px;
+  scrollbar-color: #2e1e62 #f6f6f6;
+  cursor: grab;
+  margin: -4px 0px;
 }
 
 .flow-scroll-wrap:active {
