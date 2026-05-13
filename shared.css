@@ -1217,6 +1217,12 @@ body.sub-page.loaded header {
   margin-bottom: 0;
 }
 
+.flow-scroll-wrap img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
 .flow-scroll-wrap::-webkit-scrollbar {
   height: 4px;
 }
