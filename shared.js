@@ -333,7 +333,7 @@ if (flowScroll) {
   let scrollLeft;
 
    flowScroll.addEventListener('mousedown', (e) => {
-     e.preventDefault(); // ← add this
+     e.preventDefault();
      isDown = true;
      startX = e.pageX - flowScroll.offsetLeft;
      scrollLeft = flowScroll.scrollLeft;
