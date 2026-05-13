@@ -324,3 +324,28 @@ if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
     });
   }
 }
+
+// Drag-to-scroll on flow scroll wrap
+const flowScroll = document.getElementById('flowScroll');
+if (flowScroll) {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  flowScroll.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - flowScroll.offsetLeft;
+    scrollLeft = flowScroll.scrollLeft;
+  });
+
+  flowScroll.addEventListener('mouseleave', () => { isDown = false; });
+  flowScroll.addEventListener('mouseup', () => { isDown = false; });
+
+  flowScroll.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - flowScroll.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    flowScroll.scrollLeft = scrollLeft - walk;
+  });
+}
