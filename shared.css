@@ -1129,47 +1129,75 @@ body.sub-page.loaded header {
 }
 
 
-/* Client quote — project pages */
-.client-quote {
+/* Remove old blockquote style — replace with: */
+.project-body blockquote { display: none; }
+
+/* In-page testimonial cards */
+.inline-testimonial {
   max-width: 800px;
   margin: 0 auto 40px auto;
-  padding: 36px 44px;
-  background: #f5f4ff;
-  border-left: 3px solid #a78bfa;
-  border-radius: 0 20px 20px 0;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: linear-gradient(135deg, #0c0930 0%, #120828 100%);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15), inset 0 0 20px rgba(255,255,255,0.03);
   position: relative;
   z-index: 10;
 }
 
-.client-quote p {
-  font-size: 17px;
+.inline-testimonial-quote {
+  font-size: 16px;
   line-height: 1.75;
-  color: rgba(0,0,0,0.7);
+  color: rgba(255,255,255,0.9);
   font-style: italic;
-  margin: 0 0 20px 0;
+  margin: 0;
 }
 
-.client-quote p::before {
+.inline-testimonial-quote::before {
   content: '\201C';
   font-family: var(--font-heading);
   font-size: 52px;
-  color: #a78bfa;
+  color: #c0a7ff;
   line-height: 0;
   vertical-align: -20px;
   margin-right: 4px;
 }
 
-.client-quote cite {
+.inline-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+}
+
+.inline-testimonial-author img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.5) grayscale(1);
+  flex-shrink: 0;
+}
+
+.inline-testimonial-author strong {
   display: block;
-  font-style: normal;
-  font-size: 13px;
+  font-size: 14px;
+  color: #fff;
   font-weight: 700;
-  color: var(--blue-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+}
+
+.inline-testimonial-author span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+  display: block;
+  margin-top: 3px;
 }
 
 @media (max-width: 768px) {
-  .client-quote { padding: 24px 28px; }
-  .client-quote p { font-size: 15px; }
+  .inline-testimonial { padding: 28px 24px; }
+  .inline-testimonial-quote { font-size: 15px; }
 }
