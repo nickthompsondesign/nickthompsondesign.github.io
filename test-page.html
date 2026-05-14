@@ -108,25 +108,29 @@ Guidelines</h1>
 <article class="project-body">
   <h2 class="scroll-reveal">Usability Testing</h2>
   <div class="project-tag scroll-reveal sr-d1">Research · Synthesis · Iteration</div>
-<p class="scroll-reveal sr-d2">Before launch I ran a usability study with five suppliers — a mix of regular submitters and those with a history of media rejections. Each participant was given the same task: find the specs for a specific format, check the accessibility requirements, and download the correct template. I sat in, asked them to talk through what they were doing, and took notes without steering them. Afterwards I affinity-mapped the observations to find patterns.</p>
-<p class="scroll-reveal sr-d2">Three insights emerged from affinity mapping — each pointing to a specific gap, and each addressed before launch.</p>
+  <p class="scroll-reveal sr-d2">Before launch I ran a usability study with five suppliers — a mix of regular submitters and those with a history of media rejections. Each participant was given the same task: find the specs for a specific format, check the accessibility requirements, and download the correct template. I sat in, asked them to talk through what they were doing, and took notes without steering them. Afterwards I affinity-mapped the observations to find patterns.</p>
+  <p class="scroll-reveal sr-d2">Four insights emerged — each pointing to a specific gap, and each addressed before launch.</p>
 </article>
 
 <article class="project-body">
-<div class="insight-list scroll-reveal">
-  <div class="insight-item">
-<div class="insight-label">Insight 1 — Anchor links needed clearer signposting</div>
-    <p>Suppliers were hunting for specific formats rather than reading linearly, but the anchor links gave no indication they were navigational. Adding a "Jump to:" label resolved the hesitation immediately in follow-up testing.</p>
+  <div class="insight-list scroll-reveal">
+    <div class="insight-item">
+      <div class="insight-label">Insight 1 — Suppliers lost track of which package they were in</div>
+      <p>Asda's media offering was structured across five packages — Basic, Standard, Audience, Rich, and Premium. As participants moved between pages to compare formats, they lost track of which package they were browsing. Breadcrumb navigation was introduced so suppliers always knew where they were in the hierarchy and could step back without starting from scratch.</p>
+    </div>
+    <div class="insight-item">
+      <div class="insight-label">Insight 2 — In-page navigation wasn't obvious</div>
+      <p>Within each package page, suppliers were hunting for their specific format rather than reading top to bottom — but nothing signalled that the anchor links would jump them directly to it. Adding a "Jump to:" label made the function immediately clear and reduced the time spent scrolling in follow-up testing.</p>
+    </div>   
+    <div class="insight-item">
+      <div class="insight-label">Insight 3 — Accessibility requirements needed visual context</div>
+      <p>Suppliers couldn't internalise the accessibility requirements because the relationship between supplied dimensions and actual display size wasn't obvious. A banner delivered at 1000px wide might render at 400px on site — making text that looked fine at source potentially fail at the point of display. On top of that, Asda's UI dynamically overlaid elements like promotional roundels on banners, meaning content outside the safe zone would be obscured entirely. To make both constraints visible, I built the Content Checker Tool: it detects the template from the supplied dimensions and shows suppliers exactly how their artwork will appear on site — at the correct scale, with safe zone overlays applied.</p>
+    </div>
+    <div class="insight-item">
+      <div class="insight-label">Insight 4 — The Photoshop toolkit needed guided onboarding</div>
+      <p>Suppliers had the right file but no clear entry point into it. File structure, layer naming, and export settings weren't obvious without guidance. A step-by-step video tutorial was added to the toolkit section, walking through exactly how to use the file and export at the correct spec.</p>
+    </div>
   </div>
-  <div class="insight-item">
-<div class="insight-label">Insight 2 — Accessibility rules needed visual context</div>
-    <p>Suppliers could read the accessibility requirements but couldn't internalise why they existed. Because the same banner runs across multiple placements, text had to be legible at the smallest rendered size — but a number in a spec table didn't make that real. To bridge the gap, I built a Content Checker Tool: suppliers paste their image URL, the tool detects the template from its dimensions, and overlays a safe zone guide showing exactly how their artwork will appear on site.</p>
-  </div>
-  <div class="insight-item">
-<div class="insight-label">Insight 3 — Photoshop toolkit needed guided onboarding</div>
-    <p>Suppliers had the right file but no clear entry point into it. File structure, layer naming, and export settings weren't obvious without guidance. A step-by-step video tutorial was added to the toolkit section to close that gap.</p>
-  </div>
-</div>
 </article>
 
 <div class="divider"></div>
@@ -135,6 +139,7 @@ Guidelines</h1>
   <h2 class="scroll-reveal">Results</h2>
   <div class="project-tag scroll-reveal sr-d1">Impact · Outcomes</div>
   <p class="scroll-reveal sr-d2">Surfacing the right information in the right format — and closing the gaps usability testing exposed — had a measurable effect. Supplier questions to the account team dropped significantly, and the media implementation rate rose from 95% to 98%. At the volume Asda's campaigns team was handling, that's a meaningful shift.</p>
+  <p class="scroll-reveal sr-d2">The Content Checker Tool extended beyond its original purpose. As well as helping suppliers self-serve before submitting, it became a core part of Asda's internal media approval process — used by the team to verify that artwork sat correctly within safe zones before any banner went live. At peak periods that meant checking hundreds of banners per week, and the tool made that process reliable and repeatable in a way that hadn't existed before.</p>
 </article>
       
 <div class="stat-row scroll-reveal">
