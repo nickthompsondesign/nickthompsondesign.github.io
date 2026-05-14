@@ -963,6 +963,7 @@ body.sub-page.loaded header {
   display: block;
   object-fit: cover;
   margin-bottom: 80px;
+  margin: 0px -4px;
 }
 
 .project-image-full {
@@ -973,8 +974,7 @@ body.sub-page.loaded header {
   box-shadow: 0 20px 60px rgba(0,0,0,0.06);
   display: block;
   margin-bottom: 48px;
-   margin: 0px -4px;
-
+  margin: 0px -4px;
 }
 
 .project-image-full img {
@@ -988,7 +988,7 @@ body.sub-page.loaded header {
   margin-bottom: 60px;
   border: 4px solid rgba(0,0,0,0.15);
   box-shadow: 0 30px 90px rgba(0,0,0,0.08);
-   margin:  0px -4px;
+  margin:  0px -4px;
 }
 
 .project-video-wrap video { width: 100%; display: block; object-fit: cover; }
@@ -1014,7 +1014,7 @@ body.sub-page.loaded header {
 
 @media (max-width: 600px) { .project-image-grid { grid-template-columns: 1fr; } }
 
-.project-image-grid img { width: 100%; border-radius: 15px; border: 4px solid rgba(0,0,0,0.15); box-shadow: 0 12px 40px rgba(0,0,0,0.06); display: block; }
+.project-image-grid img { width: 100%; border-radius: 15px; border: 4px solid rgba(0,0,0,0.15); margin: 0px -4px; box-shadow: 0 12px 40px rgba(0,0,0,0.06); display: block; }
 
 /* Logo grid */
 .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; align-items: center; }
@@ -1255,7 +1255,7 @@ body.sub-page.loaded header {
   scrollbar-width: thick; /* Firefox */
   scrollbar-color: #2e1e62 #f6f6f6;
   cursor: grab;
-  margin: -4px 0px;
+  margin: 0px -4px ;
 }
 
 .flow-scroll-wrap:active {
