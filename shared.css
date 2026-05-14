@@ -973,6 +973,8 @@ body.sub-page.loaded header {
   box-shadow: 0 20px 60px rgba(0,0,0,0.06);
   display: block;
   margin-bottom: 48px;
+   margin: -4px 0px;
+
 }
 
 .project-image-full img {
@@ -986,6 +988,7 @@ body.sub-page.loaded header {
   margin-bottom: 60px;
   border: 4px solid rgba(0,0,0,0.15);
   box-shadow: 0 30px 90px rgba(0,0,0,0.08);
+   margin: -4px 0px;
 }
 
 .project-video-wrap video { width: 100%; display: block; object-fit: cover; }
