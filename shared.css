@@ -947,7 +947,7 @@ body.sub-page.loaded header {
 
 /* Project body */
 .project-body { max-width: 800px; margin: 0 auto 40px auto; color: rgba(0,0,0,0.75); font-size: 18px; line-height: 1.8; position: relative; z-index: 10; }
-.project-body h2 { font-family: var(--font-heading); font-size: 36px; color: #2e1e62; margin: 40px 0 12px 0; letter-spacing: var(--tracking-tight); }
+.project-body h2 { font-family: var(--font-heading); font-size: 36px; color: #2e1e62; margin: 40px 0 12px 0; letter-spacing: var(--tracking-tight); line-height: 1.5; }
 .project-body h3 { font-family: var(--font-heading); font-size: 24px; color: #2e1e62; margin: 32px 0 10px 0; letter-spacing: var(--tracking-tight); }
 .project-body p { margin-bottom: 24px; }
 .project-body blockquote { border-left: 3px solid #a78bfa; margin: 0 0 24px 0; padding: 16px 24px; background: #f5f4ff; border-radius: 0 12px 12px 0; font-style: italic; color: #444; }
