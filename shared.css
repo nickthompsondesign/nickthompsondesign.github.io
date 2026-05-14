@@ -1315,3 +1315,62 @@ body.sub-page.loaded header {
     gap: 1rem; /* Optional: slightly tighter gap on mobile */
   }
 }
+
+
+/* Container for the image */
+.responsive-scroll-wrap {
+  width: 100%;
+  margin-bottom: 48px; /* Matches your project-image-full margin */
+}
+
+/* Image acts normally on desktop */
+.responsive-scroll-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  border: 4px solid rgba(0,0,0,0.15);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+  display: block;
+  margin: -4px 0px;
+}
+
+/* On mobile, turn the container into a scrollable track and force the image width */
+@media (max-width: 768px) {
+  .responsive-scroll-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 4px solid rgba(0,0,0,0.15);
+    border-radius: 15px;
+    padding: 0;
+    scrollbar-width: thick;
+    scrollbar-color: #2e1e62 #f6f6f6;
+    cursor: grab;
+  }
+  
+  .responsive-scroll-wrap:active {
+    cursor: grabbing;
+  }
+
+  /* Webkit custom scrollbars for mobile */
+  .responsive-scroll-wrap::-webkit-scrollbar {
+    height: 8px;
+  }
+  .responsive-scroll-wrap::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.06);
+    border-radius: 4px;
+  }
+  .responsive-scroll-wrap::-webkit-scrollbar-thumb {
+    background: #a78bfa;
+    border-radius: 4px;
+  }
+
+  .responsive-scroll-image {
+    /* Force the image to be wide enough to trigger scrolling */
+    width: auto;
+    min-width: 800px; /* 👈 ADJUST THIS: Increase if you want more scrolling area, decrease if it's too stretched */
+    max-width: none;
+    border: none; /* Remove border from image since the wrapper now has it */
+    box-shadow: none;
+    margin: 0; 
+  }
+}
