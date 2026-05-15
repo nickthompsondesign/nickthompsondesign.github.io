@@ -325,28 +325,24 @@ if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
   }
 }
 
-// Drag-to-scroll on flow scroll wrap
-const flowScroll = document.getElementById('flowScroll');
-if (flowScroll) {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+// Drag-to-scroll on all flow scroll wraps
+document.querySelectorAll('.flow-scroll-wrap').forEach(el => {
+  let isDown = false, startX, scrollLeft;
 
-   flowScroll.addEventListener('mousedown', (e) => {
-     e.preventDefault();
-     isDown = true;
-     startX = e.pageX - flowScroll.offsetLeft;
-     scrollLeft = flowScroll.scrollLeft;
-   });
-   
-  flowScroll.addEventListener('mouseleave', () => { isDown = false; });
-  flowScroll.addEventListener('mouseup', () => { isDown = false; });
+  el.addEventListener('mousedown', e => {
+    e.preventDefault();
+    isDown = true;
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
+  });
 
-  flowScroll.addEventListener('mousemove', (e) => {
+  el.addEventListener('mouseleave', () => { isDown = false; });
+  el.addEventListener('mouseup', () => { isDown = false; });
+
+  el.addEventListener('mousemove', e => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - flowScroll.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    flowScroll.scrollLeft = scrollLeft - walk;
+    const x = e.pageX - el.offsetLeft;
+    el.scrollLeft = scrollLeft - (x - startX) * 1.5;
   });
-}
+});
