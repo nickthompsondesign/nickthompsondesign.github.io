@@ -988,7 +988,7 @@ body.sub-page.loaded header {
   margin-bottom: 60px;
   border: 4px solid rgba(0,0,0,0.15);
   box-shadow: 0 30px 90px rgba(0,0,0,0.08);
-  margin:  0px -4px;
+  margin: 0 -4px 60px -4px; /* Top, Right, Bottom, Left */
 }
 
 .project-video-wrap video { width: 100%; display: block; object-fit: cover; }
