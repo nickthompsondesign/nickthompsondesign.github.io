@@ -1,0 +1,231 @@
+<!--
+  JL Dental Care — project entry with desktop + mobile examples.
+  Drop this in place of the existing JL Dental section on website-design.html.
+  Requires the CSS block and JS block further down — add CSS to shared.css
+  (or a page-level <style>) and JS to shared.js (or a page-level <script>).
+  Uses the site's existing class names (project-tag, video-embed, divider)
+  so it stays consistent with the rest of the page.
+-->
+
+<article class="project-body">
+  <h2 class="scroll-reveal">JL Dental Care</h2>
+  <div class="project-tag scroll-reveal sr-d1">Healthcare · WordPress · Branding</div>
+  <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
+</article>
+
+<div class="device-showcase scroll-reveal sr-d2">
+
+  <!-- Desktop still -->
+  <button class="device-thumb device-thumb--desktop" type="button"
+          data-video="/img/portfolio/websites/JLDental.mp4"
+          data-label="JL Dental Care — desktop">
+    <img src="/img/portfolio/websites/JLDental-desktop-still.jpg" alt="JL Dental Care homepage, desktop view">
+  </button>
+  <div class="device-caption">
+    <span>Desktop</span>
+    <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+  </div>
+
+  <!-- Mobile still, framed -->
+  <button class="device-thumb device-thumb--mobile" type="button"
+          data-video="/img/portfolio/websites/JLDental-mobile.mp4"
+          data-label="JL Dental Care — mobile">
+    <div class="device-frame">
+      <img src="/img/portfolio/websites/JLDental-mobile-still.jpg" alt="JL Dental Care booking page, mobile view">
+    </div>
+  </button>
+  <div class="device-caption device-caption--mobile">
+    <span>Mobile</span>
+    <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- Lightbox — one instance per page, shared by every project's Watch buttons -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-backdrop" data-close></div>
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Project video">
+    <button class="lightbox-close" type="button" data-close aria-label="Close">&times;</button>
+    <video class="lightbox-video" id="lightbox-video" muted loop playsinline controls></video>
+  </div>
+</div>
+
+<style>
+/* ---- device showcase layout ---- */
+.device-showcase {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 24px;
+  align-items: start;
+  margin: 1.5rem 0;
+}
+
+.device-thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.device-thumb--desktop img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* phone bezel wrapper for the mobile still */
+.device-frame {
+  width: 160px;
+  margin: 0 auto;
+  aspect-ratio: 9 / 19.5;
+  border-radius: 24px;
+  border: 3px solid #1a1a1a;
+  overflow: hidden;
+  background: #000;
+}
+
+.device-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* caption row sits below the still — no overlay on the image itself */
+.device-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.device-caption--mobile {
+  width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.device-caption span:first-child {
+  color: var(--text-secondary, #666);
+}
+
+.device-caption-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary, #666);
+}
+
+.icon-play {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid currentColor;
+  display: inline-block;
+}
+
+/* subtle, non-blocking hover feedback — no scrim, no centered icon */
+.device-thumb:hover .device-thumb--desktop img,
+.device-thumb--desktop:hover img {
+  opacity: 0.92;
+}
+
+.device-thumb:hover .device-caption-action,
+.device-thumb:focus-visible .device-caption-action {
+  color: var(--text-primary, #111);
+}
+
+@media (max-width: 640px) {
+  .device-showcase {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+/* ---- lightbox ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.is-open {
+  display: flex;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.lightbox-panel {
+  position: relative;
+  z-index: 1;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightbox-video {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+</style>
+
+<script>
+(function () {
+  var lightbox = document.getElementById('lightbox');
+  var video = document.getElementById('lightbox-video');
+
+  document.querySelectorAll('.device-thumb[data-video]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      video.src = btn.getAttribute('data-video');
+      video.setAttribute('aria-label', btn.getAttribute('data-label') || '');
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      video.play();
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+  }
+
+  lightbox.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', closeLightbox);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
+})();
+</script>
