@@ -1,231 +1,532 @@
-<!--
-  JL Dental Care — project entry with desktop + mobile examples.
-  Drop this in place of the existing JL Dental section on website-design.html.
-  Requires the CSS block and JS block further down — add CSS to shared.css
-  (or a page-level <style>) and JS to shared.js (or a page-level <script>).
-  Uses the site's existing class names (project-tag, video-embed, divider)
-  so it stays consistent with the rest of the page.
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SH6GMRGSM5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SH6GMRGSM5');
+  </script>
 
-<article class="project-body">
-  <h2 class="scroll-reveal">JL Dental Care</h2>
-  <div class="project-tag scroll-reveal sr-d1">Healthcare · WordPress · Branding</div>
-  <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
-</article>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Design & Build | Nick Thompson Design</title>
 
-<div class="device-showcase scroll-reveal sr-d2">
+  <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
 
-  <!-- Desktop still -->
-  <button class="device-thumb device-thumb--desktop" type="button"
-          data-video="/img/portfolio/websites/JLDental.mp4"
-          data-label="JL Dental Care — desktop">
-    <img src="/img/portfolio/websites/JLDental-desktop-still.jpg" alt="JL Dental Care homepage, desktop view">
-  </button>
-  <div class="device-caption">
-    <span>Desktop</span>
-    <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
-  </div>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
 
-  <!-- Mobile still, framed -->
-  <button class="device-thumb device-thumb--mobile" type="button"
-          data-video="/img/portfolio/websites/JLDental-mobile.mp4"
-          data-label="JL Dental Care — mobile">
-    <div class="device-frame">
-      <img src="/img/portfolio/websites/JLDental-mobile-still.jpg" alt="JL Dental Care booking page, mobile view">
+  <!--
+    Page-specific styles for the desktop/mobile device showcase + lightbox.
+    Kept here rather than in shared.css so this page works standalone —
+    move into shared.css later if you want it available to other project pages.
+  -->
+  <style>
+    .device-showcase {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 24px;
+      align-items: start;
+      margin: 1.5rem 0;
+    }
+
+    .device-thumb {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .device-thumb--desktop img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    .device-frame {
+      width: 160px;
+      margin: 0 auto;
+      aspect-ratio: 9 / 19.5;
+      border-radius: 24px;
+      border: 3px solid #1a1a1a;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .device-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    .device-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .device-caption--mobile {
+      width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .device-caption span:first-child {
+      color: #666;
+    }
+
+    .device-caption-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #666;
+      transition: color 0.2s ease;
+    }
+
+    .icon-play {
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid currentColor;
+      display: inline-block;
+    }
+
+    .device-thumb--desktop:hover img,
+    .device-frame:hover img {
+      opacity: 0.92;
+    }
+
+    .device-thumb:hover .device-caption-action,
+    .device-thumb:focus-visible .device-caption-action {
+      color: #111;
+    }
+
+    @media (max-width: 640px) {
+      .device-showcase {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.is-open {
+      display: flex;
+    }
+
+    .lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .lightbox-panel {
+      position: relative;
+      z-index: 1;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    .lightbox-video {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="sub-page">
+
+  <div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
+
+  <div class="hero-bg-wrapper">
+    <div class="gradients-container">
+      <div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g5"></div><div class="interactive"></div>
     </div>
-  </button>
-  <div class="device-caption device-caption--mobile">
-    <span>Mobile</span>
-    <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
   </div>
 
-</div>
+  <header>
+    <a href="/" class="nav-logo">NickThompson<span>Design</span></a>
+    <nav id="nav-list">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#portfolio">View Work</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn btn-cv">Download CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </header>
 
-<div class="divider"></div>
-
-<!-- Lightbox — one instance per page, shared by every project's Watch buttons -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lightbox-backdrop" data-close></div>
-  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Project video">
-    <button class="lightbox-close" type="button" data-close aria-label="Close">&times;</button>
-    <video class="lightbox-video" id="lightbox-video" muted loop playsinline controls></video>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="/">Home</a>
+    <a href="/#portfolio">View Work</a>
+    <a href="/#about">About</a>
+    <a href="/#contact">Contact</a>
+    <a href="/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn btn-cv btn-cv-mobile">Download CV</a>
   </div>
-</div>
 
-<style>
-/* ---- device showcase layout ---- */
-.device-showcase {
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 24px;
-  align-items: start;
-  margin: 1.5rem 0;
-}
+  <main class="project-hero">
+    <div class="content-inner" style="width:100%;">
+      <span class="section-label scroll-reveal sr-d1">Portfolio</span>
+      <h1 class="scroll-reveal sr-d2">Website Design & Build</h1>
+      <p class="section-sub scroll-reveal sr-d3">Throughout my career in both freelance and agency roles, I've designed and built a wide range of websites, specialising in WordPress since 2014.</p>
+    </div>
+  </main>
 
-.device-thumb {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
+  <section class="project-feature">
+    <div class="content-inner">
+      <div class="project-meta-light scroll-reveal sr-d3">
+        <div class="meta-col">
+          <h4>Overview</h4>
+          <p>My work spans everything from e-commerce sites to more complex, content-heavy builds, always tailored to the needs of each client and their audience. Below is a selection of websites I have designed and developed entirely from scratch.</p>
+        </div>
+        <div class="meta-col">
+          <h4>Technical Note</h4>
+          <p>All of the projects featured here were built in WordPress using a lightweight starter theme, then fully customised with bespoke designs for each brand.</p>
+        </div>
+      </div>
 
-.device-thumb--desktop img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-}
+      <!-- Oakfield Decoration -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">Oakfield Decoration</h2>
+        <div class="project-tag scroll-reveal sr-d1">Trade · WordPress · Redesign</div>
+        <p class="scroll-reveal sr-d2">A professional, polished website built alongside a rebrand — giving Oakfield a cohesive identity that properly reflects the quality of their work. Clean layout, strong imagery, and clear messaging make a strong first impression with the commercial and domestic clients they work with across London.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/Oakfield-Web.mp4"
+                data-label="Oakfield Decoration — desktop">
+          <img src="/img/portfolio/websites/Oakfield-desktop-still.jpg" alt="Oakfield Decoration homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/Oakfield-mobile.mp4"
+                data-label="Oakfield Decoration — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/Oakfield-mobile-still.jpg" alt="Oakfield Decoration, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-/* phone bezel wrapper for the mobile still */
-.device-frame {
-  width: 160px;
-  margin: 0 auto;
-  aspect-ratio: 9 / 19.5;
-  border-radius: 24px;
-  border: 3px solid #1a1a1a;
-  overflow: hidden;
-  background: #000;
-}
+      <!-- Tigon Scaffolding -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">Tigon Scaffolding</h2>
+        <div class="project-tag scroll-reveal sr-d1">Redesign · WordPress · Motion</div>
+        <p class="scroll-reveal sr-d2">I redesigned and rebuilt the Tigon Scaffolding website after their original site had gradually become cluttered and unfocused. Stronger typography, imagery, and subtle motion help bring personality to the brand — the site now feels cohesive, professional, and better aligned with how the business operates today.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="/img/portfolio/websites/Tigon.mp4"
+                data-label="Tigon Scaffolding — desktop">
+          <img src="/img/portfolio/websites/Tigon-desktop-still.jpg" alt="Tigon Scaffolding homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/Tigon-mobile.mp4"
+                data-label="Tigon Scaffolding — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/Tigon-mobile-still.jpg" alt="Tigon Scaffolding, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-.device-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+      <!-- Tomkins Davis -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">Tomkins Davis</h2>
+        <div class="project-tag scroll-reveal sr-d1">Estate Agency · WordPress · CRM Integration</div>
+        <p class="scroll-reveal sr-d2">A visual overhaul for this estate agency, with a clear focus on driving valuations. I integrated the site with their existing property CRM so listings stay current without manual updates, and redesigned the experience to guide visitors naturally towards booking a valuation — making the site work harder as a lead generation tool.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/TomkinsDavis-Web.mp4"
+                data-label="Tomkins Davis — desktop">
+          <img src="/img/portfolio/websites/TomkinsDavis-desktop-still.jpg" alt="Tomkins Davis homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/TomkinsDavis-mobile.mp4"
+                data-label="Tomkins Davis — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/TomkinsDavis-mobile-still.jpg" alt="Tomkins Davis, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-/* caption row sits below the still — no overlay on the image itself */
-.device-caption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  font-size: 13px;
-}
+      <!-- OT Lowry -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">OT Lowry</h2>
+        <div class="project-tag scroll-reveal sr-d1">Legal · WordPress · Redesign</div>
+        <p class="scroll-reveal sr-d2">The existing site was dense, hard to navigate, and difficult for most visitors to make sense of. Alongside a full rebrand, the redesign strips it back to what matters — clear structure, plain-English explanations, and an intuitive layout that makes it easy to find the right service and get in touch.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/OTLowry-Web.mp4"
+                data-label="OT Lowry — desktop">
+          <img src="/img/portfolio/websites/OTLowry-desktop-still.jpg" alt="OT Lowry homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/OTLowry-mobile.mp4"
+                data-label="OT Lowry — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/OTLowry-mobile-still.jpg" alt="OT Lowry, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-.device-caption--mobile {
-  width: 160px;
-  margin-left: auto;
-  margin-right: auto;
-}
+      <!-- JL Dental Care -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">JL Dental Care</h2>
+        <div class="project-tag scroll-reveal sr-d1">Healthcare · WordPress · Branding</div>
+        <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="/img/portfolio/websites/JLDental.mp4"
+                data-label="JL Dental Care — desktop">
+          <img src="/img/portfolio/websites/JLDental-desktop-still.jpg" alt="JL Dental Care homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/JLDental-mobile.mp4"
+                data-label="JL Dental Care — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/JLDental-mobile-still.jpg" alt="JL Dental Care booking page, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-.device-caption span:first-child {
-  color: var(--text-secondary, #666);
-}
+      <!-- LM Associates -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">LM Associates</h2>
+        <div class="project-tag scroll-reveal sr-d1">Architecture · WordPress · Portfolio</div>
+        <p class="scroll-reveal sr-d2">A bespoke, minimal, image-led website for an architecture firm that puts their work front and centre. Clean typography and thoughtful spacing give their projects space to breathe while maintaining a strong, cohesive professional presence.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="/img/portfolio/websites/LM-Associates.mp4"
+                data-label="LM Associates — desktop">
+          <img src="/img/portfolio/websites/LM-Associates-desktop-still.jpg" alt="LM Associates homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/LM-Associates-mobile.mp4"
+                data-label="LM Associates — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/LM-Associates-mobile-still.jpg" alt="LM Associates, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-.device-caption-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--text-secondary, #666);
-}
+      <!-- Dynamic Sameday Logistics -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">Dynamic Sameday Logistics</h2>
+        <div class="project-tag scroll-reveal sr-d1">Logistics · WordPress · Healthcare</div>
+        <p class="scroll-reveal sr-d2">A clear, professional website for a healthcare logistics company — structured layout with strong visuals and direct messaging that builds trust, communicates reliability, and helps users understand their services at a glance.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="/img/portfolio/websites/Dynamic.mp4"
+                data-label="Dynamic Sameday Logistics — desktop">
+          <img src="/img/portfolio/websites/Dynamic-desktop-still.jpg" alt="Dynamic Sameday Logistics homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/Dynamic-mobile.mp4"
+                data-label="Dynamic Sameday Logistics — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/Dynamic-mobile-still.jpg" alt="Dynamic Sameday Logistics, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
+      <div class="divider"></div>
 
-.icon-play {
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid currentColor;
-  display: inline-block;
-}
+      <!-- The Swim Team -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">The Swim Team</h2>
+        <div class="project-tag scroll-reveal sr-d1">Brand Identity · WordPress · Interactive</div>
+        <p class="scroll-reveal sr-d2">Built from scratch with no existing brand guidelines — I collaborated closely with the client to establish a full brand identity alongside the site. Vibrant design, interactive maps, clear pricing, and simple booking combine to create a welcoming experience for families finding swimming lessons.</p>
+      </article>
+      <div class="device-showcase scroll-reveal sr-d2">
+        <button class="device-thumb device-thumb--desktop" type="button"
+                data-video="/img/portfolio/websites/TheSwimTeam.mp4"
+                data-label="The Swim Team — desktop">
+          <img src="/img/portfolio/websites/TheSwimTeam-desktop-still.jpg" alt="The Swim Team homepage, desktop view">
+        </button>
+        <div class="device-caption">
+          <span>Desktop</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
+        </div>
+        <button class="device-thumb device-thumb--mobile" type="button"
+                data-video="/img/portfolio/websites/TheSwimTeam-mobile.mp4"
+                data-label="The Swim Team — mobile">
+          <div class="device-frame">
+            <img src="/img/portfolio/websites/TheSwimTeam-mobile-still.jpg" alt="The Swim Team, mobile view">
+          </div>
+        </button>
+        <div class="device-caption device-caption--mobile">
+          <span>Mobile</span>
+          <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
+      </div>
 
-/* subtle, non-blocking hover feedback — no scrim, no centered icon */
-.device-thumb:hover .device-thumb--desktop img,
-.device-thumb--desktop:hover img {
-  opacity: 0.92;
-}
+    </div>
+  </section>
 
-.device-thumb:hover .device-caption-action,
-.device-thumb:focus-visible .device-caption-action {
-  color: var(--text-primary, #111);
-}
+  <!-- Lightbox — one instance for the whole page, shared by every project's Watch buttons -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close></div>
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Project video">
+      <button class="lightbox-close" type="button" data-close aria-label="Close">&times;</button>
+      <video class="lightbox-video" id="lightbox-video" muted loop playsinline controls></video>
+    </div>
+  </div>
 
-@media (max-width: 640px) {
-  .device-showcase {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-}
+  <div style="height: 120px;"></div>
 
-/* ---- lightbox ---- */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
+  <section class="next-project">
+    <div class="content-inner">
+      <span class="section-label scroll-reveal">Up Next</span>
+      <a href="asda-bespoke-web-pages">
+        <h2 class="scroll-reveal sr-d1">Asda Web Page Design</h2>
+        <div class="btn-solid scroll-reveal sr-d2">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+      </a>
+    </div>
+  </section>
 
-.lightbox.is-open {
-  display: flex;
-}
+  <footer class="site-footer">
+    <div class="content-inner footer-inner">
+      <a href="/" class="footer-logo">NickThompson<em>Design</em></a>
+      <p>© 2026 Nick Thompson. All rights reserved.</p>
+    </div>
+  </footer>
 
-.lightbox-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-}
+  <script src="shared.js"></script>
 
-.lightbox-panel {
-  position: relative;
-  z-index: 1;
-  max-width: 90vw;
-  max-height: 90vh;
-}
+  <!-- Lightbox behaviour for the device showcase blocks above -->
+  <script>
+    (function () {
+      var lightbox = document.getElementById('lightbox');
+      var video = document.getElementById('lightbox-video');
 
-.lightbox-video {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 8px;
-  display: block;
-}
+      document.querySelectorAll('.device-thumb[data-video]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          video.src = btn.getAttribute('data-video');
+          video.setAttribute('aria-label', btn.getAttribute('data-label') || '');
+          lightbox.classList.add('is-open');
+          lightbox.setAttribute('aria-hidden', 'false');
+          video.play();
+        });
+      });
 
-.lightbox-close {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-}
-</style>
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      }
 
-<script>
-(function () {
-  var lightbox = document.getElementById('lightbox');
-  var video = document.getElementById('lightbox-video');
+      lightbox.querySelectorAll('[data-close]').forEach(function (el) {
+        el.addEventListener('click', closeLightbox);
+      });
 
-  document.querySelectorAll('.device-thumb[data-video]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      video.src = btn.getAttribute('data-video');
-      video.setAttribute('aria-label', btn.getAttribute('data-label') || '');
-      lightbox.classList.add('is-open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      video.play();
-    });
-  });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+      });
+    })();
+  </script>
 
-  function closeLightbox() {
-    lightbox.classList.remove('is-open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    video.pause();
-    video.removeAttribute('src');
-    video.load();
-  }
-
-  lightbox.querySelectorAll('[data-close]').forEach(function (el) {
-    el.addEventListener('click', closeLightbox);
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
-  });
-})();
-</script>
+</body>
+</html>
