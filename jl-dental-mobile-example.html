@@ -271,45 +271,53 @@
       cursor: pointer;
     }
 
+    /* Fixed thumb-tab arrows */
     .lightbox-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: #171717; /* Solid button-style background */
       color: #fff;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      font-size: 24px;
+      width: 48px;
+      height: 80px; /* Taller thumb shape */
+      font-size: 28px;
       line-height: 1;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s ease;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
       z-index: 2;
     }
 
     .lightbox-arrow:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: #000;
+      width: 60px; /* Tab slides out slightly on hover */
     }
 
     .lightbox-arrow--prev {
-      left: -60px;
+      left: 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: none; /* Flush against the left side */
+      border-radius: 0 12px 12px 0; /* Flat left, rounded right */
     }
 
     .lightbox-arrow--next {
-      right: -60px;
+      right: 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-right: none; /* Flush against the right side */
+      border-radius: 12px 0 0 12px; /* Flat right, rounded left */
     }
 
     @media (max-width: 900px) {
-      .lightbox-arrow--prev {
-        left: 8px;
+      .lightbox-arrow {
+        width: 36px;
+        height: 60px;
+        font-size: 20px;
       }
-
-      .lightbox-arrow--next {
-        right: 8px;
+      
+      .lightbox-arrow:hover {
+        width: 42px;
       }
     }
 
