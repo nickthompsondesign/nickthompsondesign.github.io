@@ -21,11 +21,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
 
-  <!--
-    Page-specific styles for the desktop/mobile device showcase + lightbox.
-    Kept here rather than in shared.css so this page works standalone —
-    move into shared.css later if you want it available to other project pages.
-  -->
   <style>
     /* ---- Masonry project grid ----
        Row 1: desktop mockup + mobile mockup, touching edge-to-edge, sized
@@ -220,6 +215,7 @@
       }
 
       .tile--mobile::before {
+        content: ""; /* ADDED: This is needed to actually render the pseudo element */
         display: block; /* Turn ratio back on since it's no longer matching desktop's height row */
         padding-top: 216.6667%; /* 19.5 / 9 */
       }
@@ -740,10 +736,6 @@
 
   <script src="shared.js"></script>
 
-  <!-- Carousel behaviour: each masonry-grid is its own project. Clicking any tile
-       opens the lightbox scoped to that project's tiles, starting at the tile
-       clicked. Left/right arrows (on-screen or keyboard) step through the
-       other tiles in that same project's grid, wrapping around at the ends. -->
   <script>
     (function () {
       var lightbox = document.getElementById('lightbox');
