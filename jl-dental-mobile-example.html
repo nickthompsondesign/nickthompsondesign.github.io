@@ -35,13 +35,73 @@
       margin: 1.5rem 0;
     }
 
+    .device-col--desktop {
+      grid-column: 1;
+    }
+
+    .device-col--mobile {
+      grid-column: 2;
+    }
+
     .device-thumb {
       display: block;
+      position: relative;
       width: 100%;
       padding: 0;
       border: none;
       background: none;
       cursor: pointer;
+    }
+
+    .device-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+      border-radius: 8px;
+    }
+
+    .device-thumb--mobile .device-play-overlay {
+      border-radius: 21px;
+    }
+
+    .device-thumb:hover .device-play-overlay,
+    .device-thumb:focus-visible .device-play-overlay {
+      opacity: 1;
+    }
+
+    .device-play-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(17, 17, 17, 0.82);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      transform: scale(0.82);
+      transition: transform 0.25s ease;
+    }
+
+    .device-thumb--mobile .device-play-circle {
+      width: 44px;
+      height: 44px;
+    }
+
+    .device-thumb:hover .device-play-circle,
+    .device-thumb:focus-visible .device-play-circle {
+      transform: scale(1);
+    }
+
+    .device-play-circle .icon-play {
+      border-left-color: #fff;
+      transform: scale(1.5);
+      margin-left: 3px;
     }
 
     .device-thumb--desktop img {
@@ -54,6 +114,7 @@
     }
 
     .device-frame {
+      position: relative;
       width: 160px;
       margin: 0 auto;
       aspect-ratio: 9 / 19.5;
@@ -87,14 +148,23 @@
 
     .device-caption span:first-child {
       color: #666;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-size: 11px;
     }
 
     .device-caption-action {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      color: #666;
-      transition: color 0.2s ease;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(17, 17, 17, 0.15);
+      color: #333;
+      font-weight: 600;
+      font-size: 12px;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
 
     .icon-play {
@@ -111,9 +181,11 @@
       opacity: 0.92;
     }
 
-    .device-thumb:hover .device-caption-action,
-    .device-thumb:focus-visible .device-caption-action {
-      color: #111;
+    .device-thumb:hover + .device-caption .device-caption-action,
+    .device-thumb:focus-visible + .device-caption .device-caption-action {
+      background: #111;
+      border-color: #111;
+      color: #fff;
     }
 
     @media (max-width: 640px) {
@@ -126,7 +198,7 @@
     .lightbox {
       position: fixed;
       inset: 0;
-      z-index: 999;
+      z-index: 10000;
       display: none;
       align-items: center;
       justify-content: center;
@@ -229,25 +301,31 @@
         <p class="scroll-reveal sr-d2">A professional, polished website built alongside a rebrand — giving Oakfield a cohesive identity that properly reflects the quality of their work. Clean layout, strong imagery, and clear messaging make a strong first impression with the commercial and domestic clients they work with across London.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/Oakfield-Web.mp4"
                 data-label="Oakfield Decoration — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Oakfield+%E2%80%94+Desktop" alt="Oakfield Decoration homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/Oakfield-mobile.mp4"
                 data-label="Oakfield Decoration — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Oakfield+%E2%80%94+Mobile" alt="Oakfield Decoration, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
       <div class="divider"></div>
@@ -259,25 +337,31 @@
         <p class="scroll-reveal sr-d2">I redesigned and rebuilt the Tigon Scaffolding website after their original site had gradually become cluttered and unfocused. Stronger typography, imagery, and subtle motion help bring personality to the brand — the site now feels cohesive, professional, and better aligned with how the business operates today.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon.mp4"
                 data-label="Tigon Scaffolding — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Tigon+%E2%80%94+Desktop" alt="Tigon Scaffolding homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon-mobile.mp4"
                 data-label="Tigon Scaffolding — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Tigon+%E2%80%94+Mobile" alt="Tigon Scaffolding, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
       <div class="divider"></div>
@@ -289,25 +373,31 @@
         <p class="scroll-reveal sr-d2">A visual overhaul for this estate agency, with a clear focus on driving valuations. I integrated the site with their existing property CRM so listings stay current without manual updates, and redesigned the experience to guide visitors naturally towards booking a valuation — making the site work harder as a lead generation tool.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/TomkinsDavis-Web.mp4"
                 data-label="Tomkins Davis — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Desktop" alt="Tomkins Davis homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/TomkinsDavis-mobile.mp4"
                 data-label="Tomkins Davis — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Mobile" alt="Tomkins Davis, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
       <div class="divider"></div>
@@ -319,25 +409,31 @@
         <p class="scroll-reveal sr-d2">The existing site was dense, hard to navigate, and difficult for most visitors to make sense of. Alongside a full rebrand, the redesign strips it back to what matters — clear structure, plain-English explanations, and an intuitive layout that makes it easy to find the right service and get in touch.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/OTLowry-Web.mp4"
                 data-label="OT Lowry — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Desktop" alt="OT Lowry homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/OTLowry-mobile.mp4"
                 data-label="OT Lowry — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Mobile" alt="OT Lowry, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
       <div class="divider"></div>
@@ -349,25 +445,31 @@
         <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental.mp4"
                 data-label="JL Dental Care — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Desktop" alt="JL Dental Care homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental-mobile.mp4"
                 data-label="JL Dental Care — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Mobile" alt="JL Dental Care booking page, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
       <div class="divider"></div>
@@ -379,25 +481,31 @@
         <p class="scroll-reveal sr-d2">A bespoke, minimal, image-led website for an architecture firm that puts their work front and centre. Clean typography and thoughtful spacing give their projects space to breathe while maintaining a strong, cohesive professional presence.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates.mp4"
                 data-label="LM Associates — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Desktop" alt="LM Associates homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates-mobile.mp4"
                 data-label="LM Associates — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Mobile" alt="LM Associates, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
       <div class="divider"></div>
@@ -409,25 +517,31 @@
         <p class="scroll-reveal sr-d2">A clear, professional website for a healthcare logistics company — structured layout with strong visuals and direct messaging that builds trust, communicates reliability, and helps users understand their services at a glance.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic.mp4"
                 data-label="Dynamic Sameday Logistics — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Dynamic+Sameday+%E2%80%94+Desktop" alt="Dynamic Sameday Logistics homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic-mobile.mp4"
                 data-label="Dynamic Sameday Logistics — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Dynamic+Sameday+%E2%80%94+Mobile" alt="Dynamic Sameday Logistics, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
       <div class="divider"></div>
@@ -439,25 +553,31 @@
         <p class="scroll-reveal sr-d2">Built from scratch with no existing brand guidelines — I collaborated closely with the client to establish a full brand identity alongside the site. Vibrant design, interactive maps, clear pricing, and simple booking combine to create a welcoming experience for families finding swimming lessons.</p>
       </article>
       <div class="device-showcase scroll-reveal sr-d2">
-        <button class="device-thumb device-thumb--desktop" type="button"
+        <div class="device-col device-col--desktop">
+          <button class="device-thumb device-thumb--desktop" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/TheSwimTeam.mp4"
                 data-label="The Swim Team — desktop">
           <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Desktop" alt="The Swim Team homepage, desktop view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
         </button>
-        <div class="device-caption">
+          <div class="device-caption">
           <span>Desktop</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch scroll</span>
         </div>
-        <button class="device-thumb device-thumb--mobile" type="button"
+        </div>
+        <div class="device-col device-col--mobile">
+          <button class="device-thumb device-thumb--mobile" type="button"
                 data-video="https://nickthompsondesign.co.uk/img/portfolio/websites/TheSwimTeam-mobile.mp4"
                 data-label="The Swim Team — mobile">
           <div class="device-frame">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Mobile" alt="The Swim Team, mobile view">
+          <div class="device-play-overlay"><div class="device-play-circle"><i class="icon-play"></i></div></div>
           </div>
         </button>
-        <div class="device-caption device-caption--mobile">
+          <div class="device-caption device-caption--mobile">
           <span>Mobile</span>
           <span class="device-caption-action"><i class="icon-play"></i>Watch</span>
+        </div>
         </div>
       </div>
 
