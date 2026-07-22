@@ -27,21 +27,34 @@
     move into shared.css later if you want it available to other project pages.
   -->
   <style>
-    /* ---- Masonry project grid ---- */
+    /* ---- Masonry project grid ----
+       Row 1: desktop mockup + mobile mockup, sized to their real viewport
+       proportions (16:10 landscape vs 9:19.5 portrait) and bottom-aligned,
+       like two devices sat side by side.
+       Row 2: three behind-the-scenes stills with a "View" hover treatment
+       borrowed from the homepage portfolio cards. */
     .masonry-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 90px;
-      grid-auto-flow: dense;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-areas:
+        "desktop desktop desktop desktop desktop desktop desktop desktop mobile mobile mobile mobile"
+        "story1 story1 story1 story1 story2 story2 story2 story2 story3 story3 story3 story3";
+      align-items: end;
       gap: 14px;
       margin: 1.5rem 0;
     }
+
+    .masonry-grid > .tile:nth-child(1) { grid-area: desktop; }
+    .masonry-grid > .tile:nth-child(2) { grid-area: mobile; }
+    .masonry-grid > .tile:nth-child(3) { grid-area: story1; }
+    .masonry-grid > .tile:nth-child(4) { grid-area: story2; }
+    .masonry-grid > .tile:nth-child(5) { grid-area: story3; }
 
     .tile {
       position: relative;
       display: block;
       width: 100%;
-      height: 100%;
+      height: auto;
       padding: 0;
       border: none;
       background: #000;
@@ -55,31 +68,31 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: opacity 0.25s ease, transform 0.35s ease;
+      transition: opacity 0.25s ease, transform 0.45s var(--ease-smooth);
     }
 
     .tile:hover img,
     .tile:focus-visible img {
-      opacity: 0.9;
-      transform: scale(1.03);
+      opacity: 0.95;
+      transform: scale(1.04);
     }
 
-    /* First tile: prominent desktop mockup */
+    /* Desktop mockup: wide landscape viewport shape */
     .tile--desktop {
-      grid-column: span 3;
-      grid-row: span 3;
+      aspect-ratio: 16 / 10;
     }
 
-    /* Second tile: smaller mobile mockup, sits beside the desktop tile */
+    /* Mobile mockup: narrow, tall portrait viewport shape — sits beside the
+       desktop tile and reads as a phone next to a laptop screen */
     .tile--mobile {
-      grid-column: span 1;
-      grid-row: span 3;
+      aspect-ratio: 9 / 19.5;
+      justify-self: end;
+      max-width: 220px;
     }
 
-    /* Remaining tiles: stills that tell the story behind the work */
+    /* Story tiles: stills that tell the story behind the work */
     .tile--story {
-      grid-column: span 2;
-      grid-row: span 2;
+      aspect-ratio: 4 / 3;
     }
 
     .tile-label {
@@ -94,9 +107,10 @@
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.02em;
-      z-index: 1;
+      z-index: 2;
     }
 
+    /* Play button overlay — desktop/mobile video previews */
     .tile-play-overlay {
       position: absolute;
       inset: 0;
@@ -148,26 +162,67 @@
       display: inline-block;
     }
 
+    /* View overlay — story tiles, matches the homepage portfolio-card hover */
+    .tile-view-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 4, 30, 0.85) 0%, rgba(5, 4, 30, 0.1) 60%, transparent 100%);
+      transition: background 0.4s ease;
+      z-index: 1;
+    }
+
+    .tile--story:hover .tile-view-overlay,
+    .tile--story:focus-visible .tile-view-overlay {
+      background: linear-gradient(to top, rgba(5, 4, 30, 0.96) 0%, rgba(5, 4, 30, 0.4) 60%, rgba(5, 4, 30, 0.1) 100%);
+    }
+
+    .tile-view-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transform: translateY(8px);
+      transition: color 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth);
+    }
+
+    .tile--story:hover .tile-view-label,
+    .tile--story:focus-visible .tile-view-label {
+      color: rgba(255, 255, 255, 0.9);
+      transform: translateY(0);
+    }
+
+    .tile-view-label svg {
+      width: 13px;
+      height: 13px;
+      transform: rotate(45deg);
+      transition: transform 0.35s var(--ease-smooth);
+    }
+
+    .tile--story:hover .tile-view-label svg,
+    .tile--story:focus-visible .tile-view-label svg {
+      transform: rotate(45deg) translate(2px, -2px);
+    }
+
     @media (max-width: 640px) {
       .masonry-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 80px;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas:
+          "desktop desktop desktop desktop mobile mobile"
+          "story1 story1 story2 story2 story3 story3";
         gap: 10px;
       }
 
-      .tile--desktop {
-        grid-column: span 2;
-        grid-row: span 3;
-      }
-
       .tile--mobile {
-        grid-column: span 1;
-        grid-row: span 3;
-      }
-
-      .tile--story {
-        grid-column: span 1;
-        grid-row: span 2;
+        max-width: none;
       }
     }
 
@@ -343,6 +398,21 @@
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
           </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+1" data-label="Oakfield Decoration — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+1" alt="Oakfield Decoration — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+2" data-label="Oakfield Decoration — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+2" alt="Oakfield Decoration — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+3" data-label="Oakfield Decoration — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+3" alt="Oakfield Decoration — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
         </div>
       <div class="divider"></div>
 
@@ -362,6 +432,21 @@
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Tigon+%E2%80%94+Mobile" alt="Tigon Scaffolding, mobile view">
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+1" data-label="Tigon Scaffolding — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+1" alt="Tigon Scaffolding — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+2" data-label="Tigon Scaffolding — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+2" alt="Tigon Scaffolding — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+3" data-label="Tigon Scaffolding — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+3" alt="Tigon Scaffolding — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
           </button>
         </div>
       <div class="divider"></div>
@@ -383,6 +468,21 @@
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
           </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+1" data-label="Tomkins Davis — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+1" alt="Tomkins Davis — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+2" data-label="Tomkins Davis — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+2" alt="Tomkins Davis — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+3" data-label="Tomkins Davis — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+3" alt="Tomkins Davis — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
         </div>
       <div class="divider"></div>
 
@@ -402,6 +502,21 @@
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Mobile" alt="OT Lowry, mobile view">
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+1" data-label="OT Lowry — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+1" alt="OT Lowry — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+2" data-label="OT Lowry — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+2" alt="OT Lowry — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" data-label="OT Lowry — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" alt="OT Lowry — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
           </button>
         </div>
       <div class="divider"></div>
@@ -423,15 +538,20 @@
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
           </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x500/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Behind+the+Scenes+1" data-label="JL Dental Care — behind the scenes (placeholder, swap for a real still or clip)">
-            <img src="https://placehold.co/700x500/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Behind+the+Scenes+1" alt="JL Dental Care, behind the scenes placeholder">
-            <span class="tile-label">The Story</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" data-label="JL Dental Care — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" alt="JL Dental Care — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
           </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x500/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Behind+the+Scenes+2" data-label="JL Dental Care — behind the scenes (placeholder, swap for a real still or clip)">
-            <img src="https://placehold.co/700x500/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Behind+the+Scenes+2" alt="JL Dental Care, behind the scenes placeholder">
-            <span class="tile-label">The Process</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" data-label="JL Dental Care — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" alt="JL Dental Care — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" data-label="JL Dental Care — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" alt="JL Dental Care — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
           </button>
         </div>
       <div class="divider"></div>
@@ -453,6 +573,21 @@
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
           </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+1" data-label="LM Associates — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+1" alt="LM Associates — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+2" data-label="LM Associates — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+2" alt="LM Associates — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+3" data-label="LM Associates — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+3" alt="LM Associates — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
         </div>
       <div class="divider"></div>
 
@@ -473,6 +608,21 @@
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
           </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+1" data-label="Dynamic Sameday Logistics — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+1" alt="Dynamic Sameday Logistics — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+2" data-label="Dynamic Sameday Logistics — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+2" alt="Dynamic Sameday Logistics — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+3" data-label="Dynamic Sameday Logistics — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+3" alt="Dynamic Sameday Logistics — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
         </div>
       <div class="divider"></div>
 
@@ -492,6 +642,21 @@
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Mobile" alt="The Swim Team, mobile view">
             <span class="tile-label">Mobile</span>
             <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+1" data-label="The Swim Team — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+1" alt="The Swim Team — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+2" data-label="The Swim Team — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+2" alt="The Swim Team — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+3" data-label="The Swim Team — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+3" alt="The Swim Team — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-view-overlay"></div>
+            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
           </button>
         </div>
 
