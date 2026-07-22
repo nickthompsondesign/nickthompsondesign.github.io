@@ -28,27 +28,28 @@
   -->
   <style>
     /* ---- Masonry project grid ----
-       Row 1: desktop mockup + mobile mockup, sized to their real viewport
-       proportions (16:10 landscape vs 9:19.5 portrait) and bottom-aligned,
-       like two devices sat side by side.
-       Row 2: three behind-the-scenes stills with a "View" hover treatment
-       borrowed from the homepage portfolio cards. */
+       Row 1: desktop mockup + mobile mockup, touching edge-to-edge, sized
+       to a 2:1 ratio (desktop 2/3, mobile 1/3) and bottom-aligned so they
+       read as two real devices sat side by side.
+       Row 2: three behind-the-scenes stills, same corner-badge/hover-icon
+       treatment as the videos above. */
     .masonry-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-areas:
-        "desktop desktop desktop desktop desktop desktop desktop desktop mobile mobile mobile mobile"
-        "story1 story1 story1 story1 story2 story2 story2 story2 story3 story3 story3 story3";
-      align-items: end;
+      display: flex;
+      flex-direction: column;
       gap: 14px;
       margin: 1.5rem 0;
     }
 
-    .masonry-grid > .tile:nth-child(1) { grid-area: desktop; }
-    .masonry-grid > .tile:nth-child(2) { grid-area: mobile; }
-    .masonry-grid > .tile:nth-child(3) { grid-area: story1; }
-    .masonry-grid > .tile:nth-child(4) { grid-area: story2; }
-    .masonry-grid > .tile:nth-child(5) { grid-area: story3; }
+    .device-row {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .story-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
 
     .tile {
       position: relative;
@@ -77,17 +78,17 @@
       transform: scale(1.04);
     }
 
-    /* Desktop mockup: wide landscape viewport shape */
+    /* Desktop mockup: wide landscape viewport shape, 2/3 of the row */
     .tile--desktop {
+      flex: 2 1 0;
       aspect-ratio: 16 / 10;
     }
 
-    /* Mobile mockup: narrow, tall portrait viewport shape — sits beside the
-       desktop tile and reads as a phone next to a laptop screen */
+    /* Mobile mockup: narrow, tall portrait viewport shape, 1/3 of the row —
+       touches the desktop tile directly with no gap between them */
     .tile--mobile {
+      flex: 1 1 0;
       aspect-ratio: 9 / 19.5;
-      justify-self: end;
-      max-width: 220px;
     }
 
     /* Story tiles: stills that tell the story behind the work */
@@ -95,23 +96,31 @@
       aspect-ratio: 4 / 3;
     }
 
-    .tile-label {
+    /* Small persistent icon badge, always visible in the corner —
+       play for video tiles, eye for image tiles */
+    .tile-corner-badge {
       position: absolute;
-      left: 10px;
-      bottom: 10px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(17, 17, 17, 0.65);
-      backdrop-filter: blur(2px);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(17, 17, 17, 0.72);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
       z-index: 2;
+      pointer-events: none;
+      color: #fff;
     }
 
-    /* Play button overlay — desktop/mobile video previews */
-    .tile-play-overlay {
+    .tile-corner-badge .icon-play { margin-left: 2px; }
+
+    /* Larger icon that fades/scales in on hover, centred over the tile —
+       same mechanic for both the video play icon and the image eye icon */
+    .tile-hover-overlay {
       position: absolute;
       inset: 0;
       display: flex;
@@ -121,14 +130,15 @@
       background: rgba(0, 0, 0, 0.12);
       transition: opacity 0.25s ease;
       pointer-events: none;
+      z-index: 1;
     }
 
-    .tile:hover .tile-play-overlay,
-    .tile:focus-visible .tile-play-overlay {
+    .tile:hover .tile-hover-overlay,
+    .tile:focus-visible .tile-hover-overlay {
       opacity: 1;
     }
 
-    .tile-play-circle {
+    .tile-hover-circle {
       width: 52px;
       height: 52px;
       border-radius: 50%;
@@ -140,17 +150,22 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
       transform: scale(0.82);
       transition: transform 0.25s ease;
+      color: #fff;
     }
 
-    .tile:hover .tile-play-circle,
-    .tile:focus-visible .tile-play-circle {
+    .tile:hover .tile-hover-circle,
+    .tile:focus-visible .tile-hover-circle {
       transform: scale(1);
     }
 
-    .tile-play-circle .icon-play {
-      border-left-color: #fff;
+    .tile-hover-circle .icon-play {
       transform: scale(1.4);
       margin-left: 3px;
+    }
+
+    .tile-hover-circle .icon-eye {
+      width: 22px;
+      height: 22px;
     }
 
     .icon-play {
@@ -162,67 +177,23 @@
       display: inline-block;
     }
 
-    /* View overlay — story tiles, matches the homepage portfolio-card hover */
-    .tile-view-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(5, 4, 30, 0.85) 0%, rgba(5, 4, 30, 0.1) 60%, transparent 100%);
-      transition: background 0.4s ease;
-      z-index: 1;
-    }
-
-    .tile--story:hover .tile-view-overlay,
-    .tile--story:focus-visible .tile-view-overlay {
-      background: linear-gradient(to top, rgba(5, 4, 30, 0.96) 0%, rgba(5, 4, 30, 0.4) 60%, rgba(5, 4, 30, 0.1) 100%);
-    }
-
-    .tile-view-label {
-      position: absolute;
-      left: 14px;
-      bottom: 14px;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transform: translateY(8px);
-      transition: color 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth);
-    }
-
-    .tile--story:hover .tile-view-label,
-    .tile--story:focus-visible .tile-view-label {
-      color: rgba(255, 255, 255, 0.9);
-      transform: translateY(0);
-    }
-
-    .tile-view-label svg {
-      width: 13px;
-      height: 13px;
-      transform: rotate(45deg);
-      transition: transform 0.35s var(--ease-smooth);
-    }
-
-    .tile--story:hover .tile-view-label svg,
-    .tile--story:focus-visible .tile-view-label svg {
-      transform: rotate(45deg) translate(2px, -2px);
+    .icon-eye {
+      width: 14px;
+      height: 14px;
+      display: block;
     }
 
     @media (max-width: 640px) {
       .masonry-grid {
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-areas:
-          "desktop desktop desktop desktop mobile mobile"
-          "story1 story1 story2 story2 story3 story3";
         gap: 10px;
       }
 
-      .tile--mobile {
-        max-width: none;
+      .device-row {
+        gap: 0;
+      }
+
+      .story-row {
+        gap: 10px;
       }
     }
 
@@ -388,31 +359,35 @@
         <p class="scroll-reveal sr-d2">A professional, polished website built alongside a rebrand — giving Oakfield a cohesive identity that properly reflects the quality of their work. Clean layout, strong imagery, and clear messaging make a strong first impression with the commercial and domestic clients they work with across London.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Oakfield-Web.mp4" data-label="Oakfield Decoration — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Oakfield+%E2%80%94+Desktop" alt="Oakfield Decoration homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Oakfield-mobile.mp4" data-label="Oakfield Decoration — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Oakfield+%E2%80%94+Mobile" alt="Oakfield Decoration, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+1" data-label="Oakfield Decoration — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+1" alt="Oakfield Decoration — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+2" data-label="Oakfield Decoration — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+2" alt="Oakfield Decoration — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+3" data-label="Oakfield Decoration — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+3" alt="Oakfield Decoration — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
       <div class="divider"></div>
 
@@ -423,31 +398,35 @@
         <p class="scroll-reveal sr-d2">I redesigned and rebuilt the Tigon Scaffolding website after their original site had gradually become cluttered and unfocused. Stronger typography, imagery, and subtle motion help bring personality to the brand — the site now feels cohesive, professional, and better aligned with how the business operates today.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon.mp4" data-label="Tigon Scaffolding — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Tigon+%E2%80%94+Desktop" alt="Tigon Scaffolding homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon-mobile.mp4" data-label="Tigon Scaffolding — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Tigon+%E2%80%94+Mobile" alt="Tigon Scaffolding, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+1" data-label="Tigon Scaffolding — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+1" alt="Tigon Scaffolding — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+2" data-label="Tigon Scaffolding — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+2" alt="Tigon Scaffolding — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+3" data-label="Tigon Scaffolding — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+3" alt="Tigon Scaffolding — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
       <div class="divider"></div>
 
@@ -458,31 +437,35 @@
         <p class="scroll-reveal sr-d2">A visual overhaul for this estate agency, with a clear focus on driving valuations. I integrated the site with their existing property CRM so listings stay current without manual updates, and redesigned the experience to guide visitors naturally towards booking a valuation — making the site work harder as a lead generation tool.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TomkinsDavis-Web.mp4" data-label="Tomkins Davis — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Desktop" alt="Tomkins Davis homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TomkinsDavis-mobile.mp4" data-label="Tomkins Davis — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Mobile" alt="Tomkins Davis, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+1" data-label="Tomkins Davis — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+1" alt="Tomkins Davis — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+2" data-label="Tomkins Davis — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+2" alt="Tomkins Davis — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+3" data-label="Tomkins Davis — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+3" alt="Tomkins Davis — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
       <div class="divider"></div>
 
@@ -493,31 +476,35 @@
         <p class="scroll-reveal sr-d2">The existing site was dense, hard to navigate, and difficult for most visitors to make sense of. Alongside a full rebrand, the redesign strips it back to what matters — clear structure, plain-English explanations, and an intuitive layout that makes it easy to find the right service and get in touch.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/OTLowry-Web.mp4" data-label="OT Lowry — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Desktop" alt="OT Lowry homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/OTLowry-mobile.mp4" data-label="OT Lowry — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Mobile" alt="OT Lowry, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+1" data-label="OT Lowry — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+1" alt="OT Lowry — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+2" data-label="OT Lowry — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+2" alt="OT Lowry — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" data-label="OT Lowry — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" alt="OT Lowry — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
       <div class="divider"></div>
 
@@ -528,31 +515,35 @@
         <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental.mp4" data-label="JL Dental Care — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Desktop" alt="JL Dental Care homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental-mobile.mp4" data-label="JL Dental Care — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Mobile" alt="JL Dental Care booking page, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" data-label="JL Dental Care — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" alt="JL Dental Care — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" data-label="JL Dental Care — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" alt="JL Dental Care — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" data-label="JL Dental Care — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" alt="JL Dental Care — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
       <div class="divider"></div>
 
@@ -563,31 +554,35 @@
         <p class="scroll-reveal sr-d2">A bespoke, minimal, image-led website for an architecture firm that puts their work front and centre. Clean typography and thoughtful spacing give their projects space to breathe while maintaining a strong, cohesive professional presence.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates.mp4" data-label="LM Associates — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Desktop" alt="LM Associates homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates-mobile.mp4" data-label="LM Associates — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Mobile" alt="LM Associates, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+1" data-label="LM Associates — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+1" alt="LM Associates — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+2" data-label="LM Associates — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+2" alt="LM Associates — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+3" data-label="LM Associates — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+3" alt="LM Associates — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
       <div class="divider"></div>
 
@@ -598,31 +593,35 @@
         <p class="scroll-reveal sr-d2">A clear, professional website for a healthcare logistics company — structured layout with strong visuals and direct messaging that builds trust, communicates reliability, and helps users understand their services at a glance.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic.mp4" data-label="Dynamic Sameday Logistics — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Dynamic+Sameday+%E2%80%94+Desktop" alt="Dynamic Sameday Logistics homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic-mobile.mp4" data-label="Dynamic Sameday Logistics — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Dynamic+Sameday+%E2%80%94+Mobile" alt="Dynamic Sameday Logistics, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+1" data-label="Dynamic Sameday Logistics — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+1" alt="Dynamic Sameday Logistics — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+2" data-label="Dynamic Sameday Logistics — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+2" alt="Dynamic Sameday Logistics — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+3" data-label="Dynamic Sameday Logistics — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+3" alt="Dynamic Sameday Logistics — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
       <div class="divider"></div>
 
@@ -633,31 +632,35 @@
         <p class="scroll-reveal sr-d2">Built from scratch with no existing brand guidelines — I collaborated closely with the client to establish a full brand identity alongside the site. Vibrant design, interactive maps, clear pricing, and simple booking combine to create a welcoming experience for families finding swimming lessons.</p>
       </article>
       <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
           <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TheSwimTeam.mp4" data-label="The Swim Team — desktop">
             <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Desktop" alt="The Swim Team homepage, desktop view">
-            <span class="tile-label">Desktop</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
           <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TheSwimTeam-mobile.mp4" data-label="The Swim Team — mobile">
             <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Mobile" alt="The Swim Team, mobile view">
-            <span class="tile-label">Mobile</span>
-            <div class="tile-play-overlay"><div class="tile-play-circle"><i class="icon-play"></i></div></div>
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
           </button>
+        </div>
+        <div class="story-row">
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+1" data-label="The Swim Team — behind the scenes 1">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+1" alt="The Swim Team — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+2" data-label="The Swim Team — behind the scenes 2">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+2" alt="The Swim Team — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+3" data-label="The Swim Team — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+3" alt="The Swim Team — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-view-overlay"></div>
-            <div class="tile-view-label">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
+        </div>
         </div>
 
     </div>
