@@ -205,11 +205,23 @@
       }
 
       .device-row {
+        grid-template-columns: 1fr;
         gap: 10px;
       }
 
       .story-row {
+        grid-template-columns: 1fr;
         gap: 10px;
+      }
+      
+      .tile--desktop,
+      .tile--mobile {
+        grid-column: span 1;
+      }
+
+      .tile--mobile::before {
+        display: block; /* Turn ratio back on since it's no longer matching desktop's height row */
+        padding-top: 216.6667%; /* 19.5 / 9 */
       }
     }
 
@@ -298,14 +310,14 @@
       left: 0;
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-left: none;
-      border-radius: 0 120px 120px 0; /* Flat left, rounded right */
+      border-radius: 0 12px 12px 0; /* Flat left, rounded right */
     }
 
     .lightbox-arrow--next {
       right: 0;
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-right: none;
-      border-radius: 120px 0 0 120px; /* Flat right, rounded left */
+      border-radius: 12px 0 0 12px; /* Flat right, rounded left */
     }
 
     @media (max-width: 900px) {
@@ -373,45 +385,6 @@
         </div>
       </div>
 
-      <!-- JL Dental Care -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">JL Dental Care</h2>
-        <div class="project-tag scroll-reveal sr-d1">Healthcare · WordPress · Branding</div>
-        <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental.mp4" data-label="JL Dental Care — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Desktop" alt="JL Dental Care homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental-mobile.mp4" data-label="JL Dental Care — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Mobile" alt="JL Dental Care booking page, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" data-label="JL Dental Care — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" alt="JL Dental Care — behind the scenes 1 (placeholder, swap for a real project still)">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" data-label="JL Dental Care — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" alt="JL Dental Care — behind the scenes 2 (placeholder, swap for a real project still)">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" data-label="JL Dental Care — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" alt="JL Dental Care — behind the scenes 3 (placeholder, swap for a real project still)">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-        </div>
-      <div class="divider"></div>
-      
       <!-- Oakfield Decoration -->
       <article class="project-body">
         <h2 class="scroll-reveal">Oakfield Decoration</h2>
@@ -561,6 +534,45 @@
           </button>
           <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" data-label="OT Lowry — behind the scenes 3">
             <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" alt="OT Lowry — behind the scenes 3 (placeholder, swap for a real project still)">
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
+          </button>
+        </div>
+        </div>
+      <div class="divider"></div>
+
+      <!-- JL Dental Care -->
+      <article class="project-body">
+        <h2 class="scroll-reveal">JL Dental Care</h2>
+        <div class="project-tag scroll-reveal sr-d1">Healthcare · WordPress · Branding</div>
+        <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
+      </article>
+      <div class="masonry-grid scroll-reveal sr-d2">
+        <div class="device-row">
+          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental.mp4" data-label="JL Dental Care — desktop">
+            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Desktop" alt="JL Dental Care homepage, desktop view">
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+          </button>
+          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/JLDental-mobile.mp4" data-label="JL Dental Care — mobile">
+            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=JL+Dental+%E2%80%94+Mobile" alt="JL Dental Care booking page, mobile view">
+            <div class="tile-corner-badge"><i class="icon-play"></i></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+          </button>
+        </div>
+        <div class="story-row">
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" data-label="JL Dental Care — behind the scenes 1">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" alt="JL Dental Care — behind the scenes 1 (placeholder, swap for a real project still)">
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" data-label="JL Dental Care — behind the scenes 2">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" alt="JL Dental Care — behind the scenes 2 (placeholder, swap for a real project still)">
+            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
+          </button>
+          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" data-label="JL Dental Care — behind the scenes 3">
+            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" alt="JL Dental Care — behind the scenes 3 (placeholder, swap for a real project still)">
             <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
             <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
           </button>
