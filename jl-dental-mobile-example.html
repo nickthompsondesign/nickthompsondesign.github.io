@@ -276,48 +276,45 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: #171717; /* Solid button-style background */
+      background: #171717; /* Base button colour */
       color: #fff;
       width: 48px;
-      height: 80px; /* Taller thumb shape */
-      font-size: 28px;
-      line-height: 1;
+      height: 80px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
       z-index: 2;
+      padding: 0;
     }
 
     .lightbox-arrow:hover {
-      background: #000;
-      width: 60px; /* Tab slides out slightly on hover */
+      background: #000; /* Hover colour */
+      width: 60px; /* Expands outwards on hover */
     }
 
     .lightbox-arrow--prev {
       left: 0;
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-left: none; /* Flush against the left side */
-      border-radius: 0 12px 12px 0; /* Flat left, rounded right */
+      border-left: none;
+      border-radius: 0 120px 120px 0; /* Flat left, rounded right */
     }
 
     .lightbox-arrow--next {
       right: 0;
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-right: none; /* Flush against the right side */
+      border-right: none;
       border-radius: 120px 0 0 120px; /* Flat right, rounded left */
     }
 
     @media (max-width: 900px) {
       .lightbox-arrow {
-        width: 36px;
-        height: 60px;
-        font-size: 20px;
+        width: 40px;
+        height: 64px;
       }
-      
       .lightbox-arrow:hover {
-        width: 42px;
+        width: 48px;
       }
     }
 
@@ -693,14 +690,21 @@
   <!-- Lightbox carousel — shared for the whole page, scoped per-project at click time -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-backdrop" data-close></div>
-    <button class="lightbox-arrow lightbox-arrow--prev" id="lightbox-prev" type="button" aria-label="Previous">&lsaquo;</button>
+    
+    <button class="lightbox-arrow lightbox-arrow--prev" id="lightbox-prev" type="button" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:22px; height:22px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </button>
+    
     <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Project media">
       <button class="lightbox-close" type="button" data-close aria-label="Close">&times;</button>
       <video class="lightbox-video" id="lightbox-video" muted loop playsinline controls></video>
       <img class="lightbox-image" id="lightbox-image" alt="" style="display:none;">
       <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
-    <button class="lightbox-arrow lightbox-arrow--next" id="lightbox-next" type="button" aria-label="Next">&rsaquo;</button>
+    
+    <button class="lightbox-arrow lightbox-arrow--next" id="lightbox-next" type="button" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:22px; height:22px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
   </div>
 
   <div style="height: 120px;"></div>
