@@ -214,10 +214,16 @@
         grid-column: span 1;
       }
 
+      .tile--desktop::before {
+        content: "";
+        display: block;
+        padding-top: 80%; /* 10 / 16 */
+      }
+      
       .tile--mobile::before {
         content: ""; /* ADDED: This is needed to actually render the pseudo element */
         display: block; /* Turn ratio back on since it's no longer matching desktop's height row */
-        padding-top: 216.6667%; /* 19.5 / 9 */
+        padding-top: 125%; /* 19.5 / 9 */
       }
     }
 
