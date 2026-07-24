@@ -7,12 +7,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+  
     gtag('config', 'G-SH6GMRGSM5');
   </script>
-
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Design & Build | Nick Thompson Design</title>
+  <title>Asda Bespoke Web Pages | Nick Thompson Design</title>
 
   <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
 
@@ -22,26 +23,15 @@
   <link rel="stylesheet" href="shared.css">
 
   <style>
-    /* ---- Masonry project grid ----
-        Row 1: desktop mockup + mobile mockup, touching edge-to-edge, sized
-        to a 2:1 ratio (desktop 2/3, mobile 1/3) and bottom-aligned so they
-        read as two real devices sat side by side.
-        Row 2: three behind-the-scenes stills, same corner-badge/hover-icon
-        treatment as the videos above. */
+    /* ---- Masonry project grid (From Websites page) ---- */
     .masonry-grid {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin: 1.5rem 0;
+      margin: 1.5rem 0 3rem 0;
     }
 
     .device-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .story-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
@@ -75,10 +65,6 @@
       transform: scale(1.04);
     }
 
-    /* Desktop mockup: wide landscape viewport shape, 2/3 of the row.
-       Height is set with a padding-top spacer sized off the tile's own
-       width (not the flex row), so it renders at a true 16:10 ratio
-       regardless of flexbox stretch behaviour. */
     .tile--desktop {
       grid-column: span 2;
     }
@@ -86,29 +72,17 @@
     .tile--desktop::before {
       content: "";
       display: block;
-      padding-top: 62.5%; /* 10 / 16 */
+      padding-top: 62.5%; 
     }
 
-    /* Mobile mockup: narrow, tall portrait viewport shape, 1/3 of the row —
-       touches the desktop tile directly with no gap between them */
     .tile--mobile {
       grid-column: span 1;
     }
 
     .tile--mobile::before {
-      /* Disabled so it inherits the desktop tile's height naturally via CSS Grid stretch */
       display: none; 
     }
 
-    /* Story tiles: stills that tell the story behind the work */
-    .tile--story::before {
-      content: "";
-      display: block;
-      padding-top: 75%; /* 3 / 4 */
-    }
-
-    /* Small persistent icon badge, always visible in the corner —
-       play for video tiles, eye for image tiles */
     .tile-corner-badge {
       position: absolute;
       top: 10px;
@@ -129,8 +103,6 @@
 
     .tile-corner-badge .icon-play { margin-left: 2px; }
 
-    /* Larger icon that fades/scales in on hover, centred over the tile —
-       same mechanic for both the video play icon and the image eye icon */
     .tile-hover-overlay {
       position: absolute;
       inset: 0;
@@ -174,11 +146,6 @@
       margin-left: 3px;
     }
 
-    .tile-hover-circle .icon-eye {
-      width: 22px;
-      height: 22px;
-    }
-
     .icon-play {
       width: 0;
       height: 0;
@@ -188,43 +155,12 @@
       display: inline-block;
     }
 
-    .icon-eye {
-      width: 14px;
-      height: 14px;
-      display: block;
-    }
-
     @media (max-width: 640px) {
-      .masonry-grid {
-        gap: 10px;
-      }
-
-      .device-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .story-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      
-      .tile--desktop,
-      .tile--mobile {
-        grid-column: span 1;
-      }
-
-      .tile--desktop::before {
-        content: "";
-        display: block;
-        padding-top: 80%; /* 10 / 16 */
-      }
-      
-      .tile--mobile::before {
-        content: ""; 
-        display: block; 
-        padding-top: 125%; /* 19.5 / 9 */
-      }
+      .masonry-grid { gap: 10px; }
+      .device-row { grid-template-columns: 1fr; gap: 10px; }
+      .tile--desktop, .tile--mobile { grid-column: span 1; }
+      .tile--desktop::before { padding-top: 80%; }
+      .tile--mobile::before { display: block; padding-top: 125%; }
     }
 
     /* ---- Carousel lightbox ---- */
@@ -285,7 +221,6 @@
       cursor: pointer;
     }
 
-    /* Fixed thumb-tab arrows */
     .lightbox-arrow {
       position: absolute;
       top: 50%;
@@ -323,19 +258,13 @@
     }
 
     @media (max-width: 900px) {
-      .lightbox-arrow {
-        width: 40px;
-        height: 64px;
-      }
-      .lightbox-arrow:hover {
-        width: 48px;
-      }
+      .lightbox-arrow { width: 40px; height: 64px; }
+      .lightbox-arrow:hover { width: 48px; }
     }
   </style>
-</head>
+  </head>
 <body class="sub-page">
-
-  <div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
+<div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
 
   <div class="hero-bg-wrapper">
     <div class="gradients-container">
@@ -364,343 +293,194 @@
     <a href="/#contact">Contact</a>
     <a href="/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn btn-cv btn-cv-mobile">Download CV</a>
   </div>
-
+  
   <main class="project-hero">
     <div class="content-inner" style="width:100%;">
-      <span class="section-label scroll-reveal sr-d1">Portfolio</span>
-      <h1 class="scroll-reveal sr-d2">Website Design & Build</h1>
-      <p class="section-sub scroll-reveal sr-d3">Throughout my career in both freelance and agency roles, I've designed and built a wide range of websites, specialising in WordPress since 2014.</p>
+      <span class="section-label scroll-reveal sr-d1">Web · Digital</span>
+      <h1 class="scroll-reveal sr-d2">Asda Bespoke Web Pages</h1>
+      <p class="section-sub scroll-reveal sr-d3">Bespoke campaign pages and branded zones for Asda.com — from experiential hubs with live competitions to fully custom supplier brand pages.</p>
     </div>
   </main>
 
   <section class="project-feature">
-    <div class="content-inner">
-      <div class="project-meta-light scroll-reveal sr-d3">
-        <div class="meta-col">
-          <h4>Overview</h4>
-          <p>My work spans everything from e-commerce sites to more complex, content-heavy builds, always tailored to the needs of each client and their audience. Below is a selection of websites I have designed and developed entirely from scratch.</p>
-        </div>
-        <div class="meta-col">
-          <h4>Technical Note</h4>
-          <p>All of the projects featured here were built in WordPress using a lightweight starter theme, then fully customised with bespoke designs for each brand.</p>
-        </div>
-      </div>
 
-      <!-- JL Dental Care -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">JL Dental Care</h2>
-        <div class="project-tag scroll-reveal sr-d1">Healthcare · WordPress · Branding</div>
-        <p class="scroll-reveal sr-d2">A clean, calm, and professional website that feels welcoming rather than clinical. I refined the logo and adjusted the colour palette to create a reassuring user experience — helping patients quickly find information about treatments and booking.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/websites/JL-Dental-Care-Desktop.mp4" data-label="JL Dental Care — desktop">
-            <img src="/img/portfolio/websites/JL-Dental-Care-Desktop-Mockup.png" alt="JL Dental Care homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/websites/JL-Dental-Care-Mobile.mp4" data-label="JL Dental Care — mobile">
-            <img src="/img/portfolio/websites/JL-Dental-Care-Mobile-Mockup.png" alt="JL Dental Care booking page, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" data-label="JL Dental Care — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+1" alt="JL Dental Care — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" data-label="JL Dental Care — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+2" alt="JL Dental Care — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" data-label="JL Dental Care — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=JL+Dental+Care+%E2%80%94+Behind+the+Scenes+3" alt="JL Dental Care — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
+<div class="content-inner">
 
-      <!-- Oakfield Decoration -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">Oakfield Decoration</h2>
-        <div class="project-tag scroll-reveal sr-d1">Trade · WordPress · Redesign</div>
-        <p class="scroll-reveal sr-d2">A professional, polished website built alongside a rebrand — giving Oakfield a cohesive identity that properly reflects the quality of their work. Clean layout, strong imagery, and clear messaging make a strong first impression with the commercial and domestic clients they work with across London.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Oakfield-Web.mp4" data-label="Oakfield Decoration — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Oakfield+%E2%80%94+Desktop" alt="Oakfield Decoration homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Oakfield-mobile.mp4" data-label="Oakfield Decoration — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Oakfield+%E2%80%94+Mobile" alt="Oakfield Decoration, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+1" data-label="Oakfield Decoration — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+1" alt="Oakfield Decoration — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+2" data-label="Oakfield Decoration — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+2" alt="Oakfield Decoration — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+3" data-label="Oakfield Decoration — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Oakfield+Decoration+%E2%80%94+Behind+the+Scenes+3" alt="Oakfield Decoration — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
-
-      <!-- Tigon Scaffolding -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">Tigon Scaffolding</h2>
-        <div class="project-tag scroll-reveal sr-d1">Redesign · WordPress · Motion</div>
-        <p class="scroll-reveal sr-d2">I redesigned and rebuilt the Tigon Scaffolding website after their original site had gradually become cluttered and unfocused. Stronger typography, imagery, and subtle motion help bring personality to the brand — the site now feels cohesive, professional, and better aligned with how the business operates today.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon.mp4" data-label="Tigon Scaffolding — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Tigon+%E2%80%94+Desktop" alt="Tigon Scaffolding homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Tigon-mobile.mp4" data-label="Tigon Scaffolding — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Tigon+%E2%80%94+Mobile" alt="Tigon Scaffolding, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+1" data-label="Tigon Scaffolding — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+1" alt="Tigon Scaffolding — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+2" data-label="Tigon Scaffolding — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+2" alt="Tigon Scaffolding — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+3" data-label="Tigon Scaffolding — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tigon+Scaffolding+%E2%80%94+Behind+the+Scenes+3" alt="Tigon Scaffolding — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
-
-      <!-- Tomkins Davis -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">Tomkins Davis</h2>
-        <div class="project-tag scroll-reveal sr-d1">Estate Agency · WordPress · CRM Integration</div>
-        <p class="scroll-reveal sr-d2">A visual overhaul for this estate agency, with a clear focus on driving valuations. I integrated the site with their existing property CRM so listings stay current without manual updates, and redesigned the experience to guide visitors naturally towards booking a valuation — making the site work harder as a lead generation tool.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TomkinsDavis-Web.mp4" data-label="Tomkins Davis — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Desktop" alt="Tomkins Davis homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TomkinsDavis-mobile.mp4" data-label="Tomkins Davis — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Mobile" alt="Tomkins Davis, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+1" data-label="Tomkins Davis — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+1" alt="Tomkins Davis — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+2" data-label="Tomkins Davis — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+2" alt="Tomkins Davis — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+3" data-label="Tomkins Davis — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Tomkins+Davis+%E2%80%94+Behind+the+Scenes+3" alt="Tomkins Davis — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
-
-      <!-- OT Lowry -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">OT Lowry</h2>
-        <div class="project-tag scroll-reveal sr-d1">Legal · WordPress · Redesign</div>
-        <p class="scroll-reveal sr-d2">The existing site was dense, hard to navigate, and difficult for most visitors to make sense of. Alongside a full rebrand, the redesign strips it back to what matters — clear structure, plain-English explanations, and an intuitive layout that makes it easy to find the right service and get in touch.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/OTLowry-Web.mp4" data-label="OT Lowry — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Desktop" alt="OT Lowry homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/OTLowry-mobile.mp4" data-label="OT Lowry — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Mobile" alt="OT Lowry, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+1" data-label="OT Lowry — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+1" alt="OT Lowry — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+2" data-label="OT Lowry — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+2" alt="OT Lowry — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" data-label="OT Lowry — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=OT+Lowry+%E2%80%94+Behind+the+Scenes+3" alt="OT Lowry — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
-
-      <!-- LM Associates -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">LM Associates</h2>
-        <div class="project-tag scroll-reveal sr-d1">Architecture · WordPress · Portfolio</div>
-        <p class="scroll-reveal sr-d2">A bespoke, minimal, image-led website for an architecture firm that puts their work front and centre. Clean typography and thoughtful spacing give their projects space to breathe while maintaining a strong, cohesive professional presence.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates.mp4" data-label="LM Associates — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Desktop" alt="LM Associates homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/LM-Associates-mobile.mp4" data-label="LM Associates — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Mobile" alt="LM Associates, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+1" data-label="LM Associates — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+1" alt="LM Associates — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+2" data-label="LM Associates — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+2" alt="LM Associates — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+3" data-label="LM Associates — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=LM+Associates+%E2%80%94+Behind+the+Scenes+3" alt="LM Associates — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
-
-      <!-- Dynamic Sameday Logistics -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">Dynamic Sameday Logistics</h2>
-        <div class="project-tag scroll-reveal sr-d1">Logistics · WordPress · Healthcare</div>
-        <p class="scroll-reveal sr-d2">A clear, professional website for a healthcare logistics company — structured layout with strong visuals and direct messaging that builds trust, communicates reliability, and helps users understand their services at a glance.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic.mp4" data-label="Dynamic Sameday Logistics — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=Dynamic+Sameday+%E2%80%94+Desktop" alt="Dynamic Sameday Logistics homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/Dynamic-mobile.mp4" data-label="Dynamic Sameday Logistics — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=Dynamic+Sameday+%E2%80%94+Mobile" alt="Dynamic Sameday Logistics, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+1" data-label="Dynamic Sameday Logistics — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+1" alt="Dynamic Sameday Logistics — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+2" data-label="Dynamic Sameday Logistics — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+2" alt="Dynamic Sameday Logistics — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+3" data-label="Dynamic Sameday Logistics — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=Dynamic+Sameday+Logistics+%E2%80%94+Behind+the+Scenes+3" alt="Dynamic Sameday Logistics — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
-
-      <!-- The Swim Team -->
-      <article class="project-body">
-        <h2 class="scroll-reveal">The Swim Team</h2>
-        <div class="project-tag scroll-reveal sr-d1">Brand Identity · WordPress · Interactive</div>
-        <p class="scroll-reveal sr-d2">Built from scratch with no existing brand guidelines — I collaborated closely with the client to establish a full brand identity alongside the site. Vibrant design, interactive maps, clear pricing, and simple booking combine to create a welcoming experience for families finding swimming lessons.</p>
-      </article>
-      <div class="masonry-grid scroll-reveal sr-d2">
-        <div class="device-row">
-          <button class="tile tile--desktop" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TheSwimTeam.mp4" data-label="The Swim Team — desktop">
-            <img src="https://placehold.co/960x600/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Desktop" alt="The Swim Team homepage, desktop view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-          <button class="tile tile--mobile" type="button" data-type="video" data-src="https://nickthompsondesign.co.uk/img/portfolio/websites/TheSwimTeam-mobile.mp4" data-label="The Swim Team — mobile">
-            <img src="https://placehold.co/320x693/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Mobile" alt="The Swim Team, mobile view">
-            <div class="tile-corner-badge"><i class="icon-play"></i></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-          </button>
-        </div>
-        <div class="story-row">
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+1" data-label="The Swim Team — behind the scenes 1">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+1" alt="The Swim Team — behind the scenes 1">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+2" data-label="The Swim Team — behind the scenes 2">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+2" alt="The Swim Team — behind the scenes 2">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-          <button class="tile tile--story" type="button" data-type="image" data-src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+3" data-label="The Swim Team — behind the scenes 3">
-            <img src="https://placehold.co/700x525/eee8e0/8a8a8a?text=The+Swim+Team+%E2%80%94+Behind+the+Scenes+3" alt="The Swim Team — behind the scenes 3">
-            <div class="tile-corner-badge"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="tile-hover-overlay"><div class="tile-hover-circle"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div>
-          </button>
-        </div>
-      </div>
-
+  <div class="project-meta-light scroll-reveal sr-d3">
+    <div class="meta-col">
+      <h4>Overview</h4>
+      <p>Bespoke campaign pages and branded zones for Asda.com — working closely with major FMCG suppliers across Experiential Hubs and Branded Zones, from concept through to front-end build.</p>
     </div>
+    <div class="meta-col">
+      <h4>My Role</h4>
+      <p>End-to-end: concept development, UX flows, wireframing, UI design, front-end build, supplier collaboration, stakeholder presentations, and design consultancy.</p>
+    </div>
+  </div>
+
+  <!-- ── EXPERIENTIAL HUBS ── -->
+  <article class="project-body">
+    <h2 class="scroll-reveal">Experiential Hubs</h2>
+    <div class="project-tag scroll-reveal sr-d1">UX Strategy · Campaign Design · Product Thinking</div>
+
+    <h3 class="scroll-reveal">Problem Statement</h3>
+    <p class="scroll-reveal sr-d2">Asda's existing Branded Zones were highly effective but expensive, meaning suppliers typically only bought in when they had a specific campaign to promote. I identified a gap in the product offering and saw an opportunity to create something more accessible: a multi-supplier, event-led page that Asda would own editorially.</p>
+    <p class="scroll-reveal sr-d2">The goal was to complement in-store events and drive high-volume customer engagement around seasonal moments, while opening up a net-new revenue stream for the business. The project had to balance the Sales Team's demand for measurable ROI with Senior Management's expectations for brand consistency and scalability.</p>
+  </article>
+
+  <!-- REPLACED: Stars of the Show Mockup Grid -->
+  <div class="masonry-grid scroll-reveal sr-d2">
+    <div class="device-row">
+      <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/UX%20design/stars-of-the-show.mp4" data-label="The Big Night In — desktop">
+        <img src="/img/portfolio/websites/Stars.jpg" alt="Stars of the Show homepage, desktop view">
+        <div class="tile-corner-badge"><i class="icon-play"></i></div>
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+      </button>
+      <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/UX%20design/stars-of-the-show-mobile.mp4" data-label="The Big Night In — mobile">
+        <img src="/img/portfolio/websites/Stars-mobile.jpg" alt="Stars of the Show, mobile view">
+        <div class="tile-corner-badge"><i class="icon-play"></i></div>
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+      </button>
+    </div>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:0.25rem;">The Big Night In: Experiential Hub featuring a multi-supplier brand showcase.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop poster="/img/portfolio/UX%20design/Year-of-the-dragon-poster.png"><source src="/img/portfolio/UX%20design/Year-of-the-dragon.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Lunar New Year Hub: Generated over 1.1 million instant-win competition entries.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop poster="/img/portfolio/UX%20design/festive-favourites-page-poster.png"><source src="/img/portfolio/UX%20design/festive-favourites-page.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">A Magical Christmas: Engaging seasonal hub driving nearly 1 million app clicks.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop poster="/img/portfolio/UX%20design/Kings-Coronation-Promo-Video.png"><source src="/img/portfolio/UX%20design/Kings-Coronation-Promo-Video.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">The Big Get-Together: Interactive bus tour page featuring a 'Find the Winning Window' game.</p>
+  </div>
+
+  <article class="project-body">
+    <h3 class="scroll-reveal">Process &amp; Approach</h3>
+    <p class="scroll-reveal sr-d1">I pitched the concept of an "Experiential Hub" where suppliers could participate at a lower cost by simply nominating products and providing basic assets. The catalyst for getting stakeholders on board was the King's Coronation event — I designed the initial iteration from wireframes through to build, incorporating supplier product showcases and an interactive "Find the Winning Window" instant-win competition.</p>
+    <p class="scroll-reveal sr-d1">With that success proving the format, I mapped out a cross-channel user journey to ensure each entry point — whether from a seasonal event page, sponsored media, or the Asda Rewards app — delivered a consistent experience while supporting different user intents, from product discovery to competition entry.</p>
+  </article>
+
+  <div class="project-image-wrap scroll-reveal visible">
+    <div class="flow-scroll-wrap" id="flowScroll">
+      <img src="/img/portfolio/UX%20design/Experiential-Hub-UX.png" alt="Experiential Hub UX Flow" class="flow-image">
+    </div>
+    <p class="media-caption scroll-reveal visible" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Cross-channel UX flow mapping how users entered the campaign experience across the Asda ecosystem.</p>
+  </div>
+  
+  <article class="project-body">
+    <h3 class="scroll-reveal">Wireframing &amp; Stakeholder Sign-off</h3>
+    <p class="scroll-reveal sr-d1">Before development I produced responsive desktop and mobile wireframes to validate layout hierarchy, navigation patterns, and campaign structure with senior stakeholders and supplier teams — reducing revision cycles and establishing a reusable framework for future hubs.</p>
+  </article>
+
+  <div class="scroll-reveal visible">
+     <img src="/img/portfolio/UX%20design/Asda-Hub-Wireframe.jpg" alt="Asda Experiential Hub Wireframe" loading="lazy" class="project-image-full">
+  </div>
+  
+  <p class="media-caption scroll-reveal" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Desktop and mobile wireframes created in Figma and presented to senior stakeholders for sign-off.</p>
+
+  <article class="project-body">
+    <h3 class="scroll-reveal">Results</h3>
+    <p class="scroll-reveal sr-d1">The Coronation page proved the format — Experiential Hubs became a standalone, recurring product in Asda's commercial calendar.</p>
+  </article>
+
+  <div class="stat-row scroll-reveal">
+    <div class="stat-item"><span class="stat-num">1.1M+</span><span class="stat-label">Competition entries (Lunar NY)</span></div>
+    <div class="stat-item"><span class="stat-num">25%</span><span class="stat-label">Increase vs previous campaign</span></div>
+    <div class="stat-item"><span class="stat-num">1M</span><span class="stat-label">Clicks from Rewards App</span></div>
+  </div>
+
+  <div class="inline-testimonial scroll-reveal sr-d2">
+    <p class="inline-testimonial-quote">"Just wanted to say that I (and the team) really love this Lunar New Year activation that is live and we are really pleased to be a part of it! It looks amazing &amp; we would be eager to take part in future activations like this!"</p>
+    <div class="inline-testimonial-author">
+      <img src="/img/brand-logos/mars.png" alt="Mars">
+      <div>
+        <strong>Account Manager</strong>
+        <span>Mars</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── BRANDED ZONES ── -->
+  <article class="project-body">
+    <h2 class="scroll-reveal">Branded Zones</h2>
+    <div class="project-tag scroll-reveal sr-d1">Web · Branding · Design Consultancy</div>
+    <p class="scroll-reveal sr-d2">Asda offers two tiers of bespoke pages to suppliers: Simple and Complex Branded Zones. When suppliers had limited design resources, I created fully bespoke designs on their behalf — collaborating closely to understand each brand's identity, goals, and audience.</p>
+  </article>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop><source src="/img/portfolio/videos/lego-asda.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Bespoke Branded Zone for LEGO, balancing Asda's campaign visuals with LEGO's holiday identity.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/coke.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Coca-Cola 'Perfect Pairings' Custom Branded Zone design and build.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/cheese-shop.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">The Cheese Shop: Fully bespoke Branded Zone design.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/lets-graze.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Let's Graze: Fully bespoke Branded Zone design.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/the-pie-shop.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">The Pie Shop: Custom campaign layout highlighting supplier product ranges.</p>
+  </div>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/cow-and-gate.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Cow &amp; Gate: Branded Zone built by effectively leveraging the supplier's existing assets.</p>
+  </div>
+
+  <article class="project-body">
+    <h3 class="scroll-reveal">Design Consultancy</h3>
+    <p class="scroll-reveal sr-d1">In addition to building pages, I acted as a design consultant for leading brands — creating wireframes, developing customisable templates, and guiding suppliers through the process of building brand zones that met Asda's standards while achieving their own brand goals.</p>
+  </article>
+
+  <div class="project-video-wrap scroll-reveal">
+    <video playsinline muted autoplay loop><source src="/img/portfolio/videos/Cadbury-Branded-Zone.mp4" type="video/mp4"></video>
+    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Cadbury Branded Zone</p>
+  </div>
+
+  <div class="inline-testimonial scroll-reveal sr-d2">
+    <p class="inline-testimonial-quote">"Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone. Nick was creative, adaptive, agile and knowledgeable of what could be possible, which allowed us to deliver an exceptional brand page — industry leading."</p>
+    <div class="inline-testimonial-author">
+      <img src="/img/thumbs/cadbury-logo.png" alt="Cadbury">
+      <div>
+        <strong>Caroline Buchanan</strong>
+        <span>E-commerce Customer Development Manager, Mondelez (Cadbury)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="inline-testimonial scroll-reveal sr-d2" style="margin-top:24px;">
+    <p class="inline-testimonial-quote">"Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly. Nick delivered an incredible digital activation, and I hope to work with him again soon."</p>
+    <div class="inline-testimonial-author">
+      <img src="/img/thumbs/lego-logo.png" alt="LEGO">
+      <div>
+        <strong>Jonathan McRobb-Bishop</strong>
+        <span>Associate Trade Marketing Manager, The LEGO Group UK/I.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+    
   </section>
 
-  <!-- Lightbox carousel — shared for the whole page, scoped per-project at click time -->
+  <!-- Lightbox Carousel Logic -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-backdrop" data-close></div>
     
@@ -720,13 +500,11 @@
     </button>
   </div>
 
-  <div style="height: 120px;"></div>
-
   <section class="next-project">
     <div class="content-inner">
       <span class="section-label scroll-reveal">Up Next</span>
-      <a href="asda-bespoke-web-pages">
-        <h2 class="scroll-reveal sr-d1">Asda Web Page Design</h2>
+      <a href="digital-design-logos">
+        <h2 class="scroll-reveal sr-d1">Digital Design, Logos & Animations</h2>
         <div class="btn-solid scroll-reveal sr-d2">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
       </a>
     </div>
