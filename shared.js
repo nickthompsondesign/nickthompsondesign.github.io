@@ -346,3 +346,87 @@ document.querySelectorAll('.flow-scroll-wrap').forEach(el => {
     el.scrollLeft = scrollLeft - (x - startX) * 1.5;
   });
 });
+
+
+// Lightbox Grid
+document.addEventListener('DOMContentLoaded', function() {
+  var lightbox = document.getElementById('lightbox');
+  // Only run if the lightbox exists on the current page
+  if (!lightbox) return; 
+
+  var video = document.getElementById('lightbox-video');
+  var image = document.getElementById('lightbox-image');
+  var caption = document.getElementById('lightbox-caption');
+  var prevBtn = document.getElementById('lightbox-prev');
+  var nextBtn = document.getElementById('lightbox-next');
+
+  var currentTiles = [];
+  var currentIndex = 0;
+
+  function showSlide(index) {
+    if (!currentTiles.length) return;
+    currentIndex = (index + currentTiles.length) % currentTiles.length;
+    var tile = currentTiles[currentIndex];
+    var type = tile.getAttribute('data-type');
+    var src = tile.getAttribute('data-src');
+    var label = tile.getAttribute('data-label') || '';
+
+    if (type === 'image') {
+      if(video) { video.pause(); video.removeAttribute('src'); video.style.display = 'none'; }
+      if(image) { image.src = src; image.alt = label; image.style.display = 'block'; }
+    } else {
+      if(image) { image.style.display = 'none'; }
+      if(video) { video.style.display = 'block'; video.src = src; video.setAttribute('aria-label', label); video.play(); }
+    }
+    
+    if(caption) caption.textContent = label;
+
+    // Show or hide arrows depending on if we have multiple items
+    var multiple = currentTiles.length > 1;
+    if(prevBtn) prevBtn.style.display = multiple ? 'flex' : 'none';
+    if(nextBtn) nextBtn.style.display = multiple ? 'flex' : 'none';
+  }
+
+  function openLightbox(tiles, startIndex) {
+    currentTiles = tiles;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    showSlide(startIndex);
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    if(video) { video.pause(); video.removeAttribute('src'); video.load(); }
+    if(image) { image.removeAttribute('src'); }
+  }
+
+  // Find all tiles and bind the click event
+  document.querySelectorAll('.tile[data-src]').forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      // Check if tile is part of a grid. If yes, grab all tiles in that grid. If no, just use this one tile.
+      var grid = tile.closest('.masonry-grid, .zone-grid, .project-compare-grid');
+      var tiles = grid ? Array.prototype.slice.call(grid.querySelectorAll('.tile[data-src]')) : [tile];
+      var startIndex = tiles.indexOf(tile) > -1 ? tiles.indexOf(tile) : 0;
+      
+      openLightbox(tiles, startIndex);
+    });
+  });
+
+  // Bind Arrows
+  if(prevBtn) prevBtn.addEventListener('click', function () { showSlide(currentIndex - 1); });
+  if(nextBtn) nextBtn.addEventListener('click', function () { showSlide(currentIndex + 1); });
+
+  // Bind Close Buttons
+  lightbox.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', closeLightbox);
+  });
+
+  // Keyboard controls
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight' && currentTiles.length > 1) showSlide(currentIndex + 1);
+    if (e.key === 'ArrowLeft' && currentTiles.length > 1) showSlide(currentIndex - 1);
+  });
+});
