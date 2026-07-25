@@ -192,12 +192,32 @@
       transform: rotate(45deg);
     }
 
+    /* ---- Branded Zones: fixed 2 x 3 grid ---- */
+    .zone-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 1.5rem 0 3rem 0;
+    }
+
+    .tile--zone {
+      grid-column: span 1;
+    }
+
+    .tile--zone::before {
+      content: "";
+      display: block;
+      padding-top: 62.5%;
+    }
+
     @media (max-width: 640px) {
       .masonry-grid { gap: 10px; }
       .device-row { grid-template-columns: 1fr; gap: 10px; }
       .tile--desktop, .tile--mobile { grid-column: span 1; }
       .tile--desktop::before { padding-top: 80%; }
       .tile--mobile::before { display: block; padding-top: 125%; }
+      .zone-grid { grid-template-columns: 1fr; gap: 10px; }
+      .tile--zone::before { padding-top: 80%; }
     }
 
     /* ---- Carousel lightbox ---- */
@@ -513,74 +533,68 @@
     <p class="scroll-reveal sr-d2">Asda offers two tiers of bespoke pages to suppliers: Simple and Complex Branded Zones. When suppliers had limited design resources, I created fully bespoke designs on their behalf — collaborating closely to understand each brand's identity, goals, and audience.</p>
   </article>
 
-  <!-- BRANDED ZONES GRID -->
-  <div class="masonry-grid scroll-reveal sr-d2">
+  <!-- BRANDED ZONES GRID (2 x 3) -->
+  <div class="masonry-grid zone-grid scroll-reveal sr-d2">
 
-    <!-- 1. LEGO / Coca-Cola -->
-    <div class="device-row">
-      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/lego-full.png" data-label="Bespoke Branded Zone for LEGO, balancing Asda's campaign visuals with LEGO's holiday identity.">
-        <img src="/img/portfolio/asda-pages/lego-mockup.png" alt="LEGO Branded Zone">
-        <div class="tile-hover-overlay"></div>
-        <div class="tile-play-roundel"><i class="icon-play"></i></div>
-        <div class="tile-caption">
-          <h4 class="tile-caption-title">LEGO Branded Zone</h4>
-          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </div>
-      </button>
-      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/coke-full.png" data-label="Coca-Cola 'Perfect Pairings' Custom Branded Zone design and build.">
-        <img src="/img/portfolio/asda-pages/coke-mockup.png" alt="Coca-Cola Perfect Pairings Branded Zone">
-        <div class="tile-hover-overlay"></div>
-        <div class="tile-play-roundel"><i class="icon-play"></i></div>
-        <div class="tile-caption">
-          <h4 class="tile-caption-title">Coca-Cola Perfect Pairings</h4>
-          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </div>
-      </button>
-    </div>
+    <button class="tile tile--zone" type="button" data-type="video" data-src="/img/portfolio/videos/lego-asda.mp4" data-label="Bespoke Branded Zone for LEGO, balancing Asda's campaign visuals with LEGO's holiday identity.">
+      <img src="/img/portfolio/asda-pages/lego-mockup.png" alt="LEGO Branded Zone">
+      <div class="tile-hover-overlay"></div>
+      <div class="tile-play-roundel"><i class="icon-play"></i></div>
+      <div class="tile-caption">
+        <h4 class="tile-caption-title">LEGO Branded Zone</h4>
+        <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </button>
 
-    <!-- 2. The Cheese Shop / Let's Graze -->
-    <div class="device-row">
-      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/cheese-shop-full.png" data-label="The Cheese Shop: Fully bespoke Branded Zone design.">
-        <img src="/img/portfolio/asda-pages/cheese-shop-mockup.png" alt="The Cheese Shop Branded Zone">
-        <div class="tile-hover-overlay"></div>
-        <div class="tile-play-roundel"><i class="icon-play"></i></div>
-        <div class="tile-caption">
-          <h4 class="tile-caption-title">The Cheese Shop</h4>
-          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </div>
-      </button>
-      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/lets-graze-full.png" data-label="Let's Graze: Fully bespoke Branded Zone design.">
-        <img src="/img/portfolio/asda-pages/lets-graze-mockup.png" alt="Let's Graze Branded Zone">
-        <div class="tile-hover-overlay"></div>
-        <div class="tile-play-roundel"><i class="icon-play"></i></div>
-        <div class="tile-caption">
-          <h4 class="tile-caption-title">Let's Graze</h4>
-          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </div>
-      </button>
-    </div>
+    <button class="tile tile--zone" type="button" data-type="video" data-src="/img/portfolio/asda-pages/coke.mp4" data-label="Coca-Cola 'Perfect Pairings' Custom Branded Zone design and build.">
+      <img src="/img/portfolio/asda-pages/coke-mockup.png" alt="Coca-Cola Perfect Pairings Branded Zone">
+      <div class="tile-hover-overlay"></div>
+      <div class="tile-play-roundel"><i class="icon-play"></i></div>
+      <div class="tile-caption">
+        <h4 class="tile-caption-title">Coca-Cola Perfect Pairings</h4>
+        <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </button>
 
-    <!-- 3. The Pie Shop / Cow & Gate -->
-    <div class="device-row">
-      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/the-pie-shop-full.png" data-label="The Pie Shop: Custom campaign layout highlighting supplier product ranges.">
-        <img src="/img/portfolio/asda-pages/the-pie-shop-mockup.png" alt="The Pie Shop Branded Zone">
-        <div class="tile-hover-overlay"></div>
-        <div class="tile-play-roundel"><i class="icon-play"></i></div>
-        <div class="tile-caption">
-          <h4 class="tile-caption-title">The Pie Shop</h4>
-          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </div>
-      </button>
-      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/cow-and-gate-full.png" data-label="Cow & Gate: Branded Zone built by effectively leveraging the supplier's existing assets.">
-        <img src="/img/portfolio/asda-pages/cow-and-gate-mockup.png" alt="Cow & Gate Branded Zone">
-        <div class="tile-hover-overlay"></div>
-        <div class="tile-play-roundel"><i class="icon-play"></i></div>
-        <div class="tile-caption">
-          <h4 class="tile-caption-title">Cow &amp; Gate</h4>
-          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </div>
-      </button>
-    </div>
+    <button class="tile tile--zone" type="button" data-type="video" data-src="/img/portfolio/asda-pages/cheese-shop.mp4" data-label="The Cheese Shop: Fully bespoke Branded Zone design.">
+      <img src="/img/portfolio/asda-pages/cheese-shop-mockup.png" alt="The Cheese Shop Branded Zone">
+      <div class="tile-hover-overlay"></div>
+      <div class="tile-play-roundel"><i class="icon-play"></i></div>
+      <div class="tile-caption">
+        <h4 class="tile-caption-title">The Cheese Shop</h4>
+        <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </button>
+
+    <button class="tile tile--zone" type="button" data-type="video" data-src="/img/portfolio/asda-pages/lets-graze.mp4" data-label="Let's Graze: Fully bespoke Branded Zone design.">
+      <img src="/img/portfolio/asda-pages/lets-graze-mockup.png" alt="Let's Graze Branded Zone">
+      <div class="tile-hover-overlay"></div>
+      <div class="tile-play-roundel"><i class="icon-play"></i></div>
+      <div class="tile-caption">
+        <h4 class="tile-caption-title">Let's Graze</h4>
+        <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </button>
+
+    <button class="tile tile--zone" type="button" data-type="video" data-src="/img/portfolio/asda-pages/the-pie-shop.mp4" data-label="The Pie Shop: Custom campaign layout highlighting supplier product ranges.">
+      <img src="/img/portfolio/asda-pages/the-pie-shop-mockup.png" alt="The Pie Shop Branded Zone">
+      <div class="tile-hover-overlay"></div>
+      <div class="tile-play-roundel"><i class="icon-play"></i></div>
+      <div class="tile-caption">
+        <h4 class="tile-caption-title">The Pie Shop</h4>
+        <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </button>
+
+    <button class="tile tile--zone" type="button" data-type="video" data-src="/img/portfolio/asda-pages/cow-and-gate.mp4" data-label="Cow & Gate: Branded Zone built by effectively leveraging the supplier's existing assets.">
+      <img src="/img/portfolio/asda-pages/cow-and-gate-mockup.png" alt="Cow & Gate Branded Zone">
+      <div class="tile-hover-overlay"></div>
+      <div class="tile-play-roundel"><i class="icon-play"></i></div>
+      <div class="tile-caption">
+        <h4 class="tile-caption-title">Cow &amp; Gate</h4>
+        <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </button>
 
   </div>
   <!-- END BRANDED ZONES GRID -->
