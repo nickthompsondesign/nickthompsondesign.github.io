@@ -282,7 +282,7 @@ header.scrolled-light .hamburger span { background: #2e1e62; }
 
 .mobile-nav a {
   font-family: var(--font-heading);
-  font-size: clamp(24px, 8vw, 42px);
+  font-size: clamp(24px, 8vw, 30px);
   font-weight: 700;
   color: white;
   text-decoration: none;
