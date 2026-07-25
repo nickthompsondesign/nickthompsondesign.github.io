@@ -155,6 +155,32 @@
       display: inline-block;
     }
 
+    /* ---- Hover caption (bottom label) ---- */
+    .tile-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      padding: 28px 16px 14px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+      color: #fff;
+      font-family: 'Sen', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.3s var(--ease-smooth);
+      pointer-events: none;
+    }
+
+    .tile:hover .tile-caption,
+    .tile:focus-visible .tile-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 640px) {
       .masonry-grid { gap: 10px; }
       .device-row { grid-template-columns: 1fr; gap: 10px; }
@@ -336,11 +362,13 @@
         <img src="/img/portfolio/websites/Stars-Show-Mockup-Dekstop.png" alt="Stars of the Show homepage, desktop view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">The Big Night In</span>
       </button>
       <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/UX%20design/stars-of-the-show-mobile.mp4" data-label="The Big Night In: Experiential Hub featuring a multi-supplier brand showcase.">
         <img src="/img/portfolio/websites/Stars-Show-Mockup-Mobile.png" alt="Stars of the Show, mobile view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">The Big Night In</span>
       </button>
     </div>
 
@@ -350,11 +378,13 @@
         <img src="/img/portfolio/websites/Bus-Tour-Mockup-Mobile" alt="The Big Get-Together, mobile view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">The Big Get-Together</span>
       </button>
       <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/UX%20design/Kings-Coronation-Promo-Video.mp4" data-label="The Big Get-Together: Interactive bus tour page featuring a 'Find the Winning Window' game.">
         <img src="/img/portfolio/websites/Bus-Tour-Mockup-Desktop.png" alt="The Big Get-Together homepage, desktop view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">The Big Get-Together</span>
       </button>
     </div>
 
@@ -364,11 +394,13 @@
         <img src="/img/portfolio/websites/Lunar-New-Year-Mockup-Mobile.png" alt="Lunar New Year Hub, mobile view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">Lunar New Year Hub</span>
       </button>
       <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/UX%20design/Year-of-the-dragon.mp4" data-label="Lunar New Year Hub: Generated over 1.1 million instant-win competition entries.">
         <img src="/img/portfolio/websites/Lunar-New-Year-Mockup-Desktop.png" alt="Lunar New Year Hub homepage, desktop view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">Lunar New Year Hub</span>
       </button>
     </div>
 
@@ -378,11 +410,13 @@
         <img src="/img/portfolio/websites/Magical-Christmas-Mockup-Desktop.png" alt="A Magical Christmas homepage, desktop view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">A Magical Christmas</span>
       </button>
       <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/UX%20design/festive-favourites-page-mobile.mp4" data-label="A Magical Christmas: Engaging seasonal hub driving nearly 1 million app clicks.">
         <img src="/img/portfolio/websites/Magical-Christmas-Mockup-Mobile.png" alt="A Magical Christmas, mobile view">
         <div class="tile-corner-badge"><i class="icon-play"></i></div>
         <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">A Magical Christmas</span>
       </button>
     </div>
 
@@ -444,35 +478,53 @@
     <p class="scroll-reveal sr-d2">Asda offers two tiers of bespoke pages to suppliers: Simple and Complex Branded Zones. When suppliers had limited design resources, I created fully bespoke designs on their behalf — collaborating closely to understand each brand's identity, goals, and audience.</p>
   </article>
 
-  <div class="project-video-wrap scroll-reveal">
-    <video playsinline muted autoplay loop><source src="/img/portfolio/videos/lego-asda.mp4" type="video/mp4"></video>
-    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Bespoke Branded Zone for LEGO, balancing Asda's campaign visuals with LEGO's holiday identity.</p>
-  </div>
+  <!-- BRANDED ZONES GRID -->
+  <div class="masonry-grid scroll-reveal sr-d2">
 
-  <div class="project-video-wrap scroll-reveal">
-    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/coke.mp4" type="video/mp4"></video>
-    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Coca-Cola 'Perfect Pairings' Custom Branded Zone design and build.</p>
-  </div>
+    <!-- 1. LEGO / Coca-Cola -->
+    <div class="device-row">
+      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/lego-full.png" data-label="Bespoke Branded Zone for LEGO, balancing Asda's campaign visuals with LEGO's holiday identity.">
+        <img src="/img/portfolio/asda-pages/lego-mockup.png" alt="LEGO Branded Zone">
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">LEGO Branded Zone</span>
+      </button>
+      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/coke-full.png" data-label="Coca-Cola 'Perfect Pairings' Custom Branded Zone design and build.">
+        <img src="/img/portfolio/asda-pages/coke-mockup.png" alt="Coca-Cola Perfect Pairings Branded Zone">
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">Coca-Cola Perfect Pairings</span>
+      </button>
+    </div>
 
-  <div class="project-video-wrap scroll-reveal">
-    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/cheese-shop.mp4" type="video/mp4"></video>
-    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">The Cheese Shop: Fully bespoke Branded Zone design.</p>
-  </div>
+    <!-- 2. The Cheese Shop / Let's Graze -->
+    <div class="device-row">
+      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/cheese-shop-full.png" data-label="The Cheese Shop: Fully bespoke Branded Zone design.">
+        <img src="/img/portfolio/asda-pages/cheese-shop-mockup.png" alt="The Cheese Shop Branded Zone">
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">The Cheese Shop</span>
+      </button>
+      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/lets-graze-full.png" data-label="Let's Graze: Fully bespoke Branded Zone design.">
+        <img src="/img/portfolio/asda-pages/lets-graze-mockup.png" alt="Let's Graze Branded Zone">
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">Let's Graze</span>
+      </button>
+    </div>
 
-  <div class="project-video-wrap scroll-reveal">
-    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/lets-graze.mp4" type="video/mp4"></video>
-    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Let's Graze: Fully bespoke Branded Zone design.</p>
-  </div>
+    <!-- 3. The Pie Shop / Cow & Gate -->
+    <div class="device-row">
+      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/the-pie-shop-full.png" data-label="The Pie Shop: Custom campaign layout highlighting supplier product ranges.">
+        <img src="/img/portfolio/asda-pages/the-pie-shop-mockup.png" alt="The Pie Shop Branded Zone">
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">The Pie Shop</span>
+      </button>
+      <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/cow-and-gate-full.png" data-label="Cow & Gate: Branded Zone built by effectively leveraging the supplier's existing assets.">
+        <img src="/img/portfolio/asda-pages/cow-and-gate-mockup.png" alt="Cow & Gate Branded Zone">
+        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
+        <span class="tile-caption">Cow &amp; Gate</span>
+      </button>
+    </div>
 
-  <div class="project-video-wrap scroll-reveal">
-    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/the-pie-shop.mp4" type="video/mp4"></video>
-    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">The Pie Shop: Custom campaign layout highlighting supplier product ranges.</p>
   </div>
-
-  <div class="project-video-wrap scroll-reveal">
-    <video playsinline muted autoplay loop><source src="/img/portfolio/asda-pages/cow-and-gate.mp4" type="video/mp4"></video>
-    <p class="media-caption" style="text-align:center;font-size:0.9rem;opacity:0.8;margin-top:1rem;margin-bottom:1rem;">Cow &amp; Gate: Branded Zone built by effectively leveraging the supplier's existing assets.</p>
-  </div>
+  <!-- END BRANDED ZONES GRID -->
 
   <article class="project-body">
     <h3 class="scroll-reveal">Design Consultancy</h3>
