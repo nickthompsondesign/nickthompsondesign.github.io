@@ -80,6 +80,7 @@
     }
 
     .tile--mobile::before {
+      content: ""; /* FIX: Added content property so the pseudo-element renders on mobile */
       display: none; 
     }
 
@@ -632,7 +633,7 @@
   </div>
 
 </div>
-    
+  
   </section>
 
   <!-- Lightbox Carousel Logic -->
