@@ -642,7 +642,7 @@ h1 {
   .indent-line { margin-left: clamp(0px, 6vw, 120px); margin-bottom: -11px; }
 }
 
-.hero-body { font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; color: rgba(255,255,255,0.85); max-width: 480px; }
+.hero-body { font-size: clamp(16px, 2vw, 20px); line-height: 1.6; color: rgba(255,255,255,0.85); max-width: 480px; }
 .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
 @media (min-width: 1024px) {
