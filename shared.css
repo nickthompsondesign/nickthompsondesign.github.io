@@ -918,7 +918,7 @@ body.sub-page.loaded header {
   box-sizing: border-box;
 }
 
-.project-hero h1 { font-family: var(--font-heading); font-size: clamp(36px, 7vw, 88px); line-height: 1.05; font-weight: 800; letter-spacing: var(--tracking-tight); margin: 0 0 24px 0; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)); }
+.project-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 6vw, 68px); line-height: 1.05; font-weight: 700; letter-spacing: var(--tracking-tight); margin: 0 0 24px 0; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)); }
 .project-hero .section-sub { font-size: clamp(16px, 1.8vw, 16px); line-height: 1.6; color: rgba(255,255,255,0.75); max-width: 650px; margin: 0 auto; }
 
 /* Project feature & meta */
