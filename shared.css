@@ -14,7 +14,7 @@
   --color-interactive: 0,30,255;
   --blending: screen;
   --font-heading: 'Fraunces', serif;
-  --font-body: 'Sen', sans-serif;
+  --font-body: 'Outfit', sans-serif;
   --blue-accent: #36109b;
   --tracking-tight: -0.03em;
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
@@ -32,6 +32,7 @@ html, body {
   padding: 0;
   width: 100%;
   font-family: var(--font-body);
+  font-weight: 200;
   color: white;
   overflow-x: hidden;
 }
