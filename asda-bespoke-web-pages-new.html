@@ -83,32 +83,10 @@
       display: none; 
     }
 
-    .tile-corner-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: rgba(17, 17, 17, 0.72);
-      backdrop-filter: blur(3px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-      z-index: 2;
-      pointer-events: none;
-      color: #fff;
-    }
-
-    .tile-corner-badge .icon-play { margin-left: 2px; }
-
+    /* ---- Dark tint on hover ---- */
     .tile-hover-overlay {
       position: absolute;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       opacity: 0;
       background: rgba(0, 0, 0, 0.12);
       transition: opacity 0.25s ease;
@@ -121,9 +99,14 @@
       opacity: 1;
     }
 
-    .tile-hover-circle {
-      width: 52px;
-      height: 52px;
+    /* ---- Play roundel, bottom right ---- */
+    .tile-play-roundel {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 2;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       background: rgba(17, 17, 17, 0.82);
       backdrop-filter: blur(3px);
@@ -131,19 +114,22 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-      transform: scale(0.82);
-      transition: transform 0.25s ease;
       color: #fff;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.25s ease, transform 0.3s var(--ease-smooth);
+      pointer-events: none;
     }
 
-    .tile:hover .tile-hover-circle,
-    .tile:focus-visible .tile-hover-circle {
+    .tile:hover .tile-play-roundel,
+    .tile:focus-visible .tile-play-roundel {
+      opacity: 1;
       transform: scale(1);
     }
 
-    .tile-hover-circle .icon-play {
-      transform: scale(1.4);
-      margin-left: 3px;
+    .tile-play-roundel .icon-play {
+      transform: scale(1.3);
+      margin-left: 2px;
     }
 
     .icon-play {
@@ -155,20 +141,16 @@
       display: inline-block;
     }
 
-    /* ---- Hover caption (bottom label) ---- */
+    /* ---- Hover caption, bottom left ---- */
     .tile-caption {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 1;
-      padding: 28px 16px 14px;
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
-      color: #fff;
-      font-family: 'Sen', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.01em;
+      padding: 32px 70px 16px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      text-align: left;
       transform: translateY(8px);
       opacity: 0;
       transition: opacity 0.25s ease, transform 0.3s var(--ease-smooth);
@@ -179,6 +161,35 @@
     .tile:focus-visible .tile-caption {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .tile-caption-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 6px 0;
+      letter-spacing: var(--tracking-tight);
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .tile-caption-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .tile-caption-cta svg {
+      width: 12px;
+      height: 12px;
+      transform: rotate(45deg);
     }
 
     @media (max-width: 640px) {
@@ -360,15 +371,21 @@
     <div class="device-row">
       <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/UX%20design/stars-of-the-show.mp4" data-label="The Big Night In: Experiential Hub featuring a multi-supplier brand showcase.">
         <img src="/img/portfolio/websites/Stars-Show-Mockup-Dekstop.png" alt="Stars of the Show homepage, desktop view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">The Big Night In</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">The Big Night In</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
       <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/UX%20design/stars-of-the-show-mobile.mp4" data-label="The Big Night In: Experiential Hub featuring a multi-supplier brand showcase.">
         <img src="/img/portfolio/websites/Stars-Show-Mockup-Mobile.png" alt="Stars of the Show, mobile view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">The Big Night In</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">The Big Night In</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
     </div>
 
@@ -376,15 +393,21 @@
     <div class="device-row">
       <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/UX%20design/Kings-Coronation-Promo-Video-mobile.mp4" data-label="The Big Get-Together: Interactive bus tour page featuring a 'Find the Winning Window' game.">
         <img src="/img/portfolio/websites/Bus-Tour-Mockup-Mobile" alt="The Big Get-Together, mobile view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">The Big Get-Together</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">The Big Get-Together</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
       <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/UX%20design/Kings-Coronation-Promo-Video.mp4" data-label="The Big Get-Together: Interactive bus tour page featuring a 'Find the Winning Window' game.">
         <img src="/img/portfolio/websites/Bus-Tour-Mockup-Desktop.png" alt="The Big Get-Together homepage, desktop view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">The Big Get-Together</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">The Big Get-Together</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
     </div>
 
@@ -392,15 +415,21 @@
     <div class="device-row">
       <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/UX%20design/Year-of-the-dragon-mobile.mp4" data-label="Lunar New Year Hub: Generated over 1.1 million instant-win competition entries.">
         <img src="/img/portfolio/websites/Lunar-New-Year-Mockup-Mobile.png" alt="Lunar New Year Hub, mobile view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">Lunar New Year Hub</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">Lunar New Year Hub</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
       <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/UX%20design/Year-of-the-dragon.mp4" data-label="Lunar New Year Hub: Generated over 1.1 million instant-win competition entries.">
         <img src="/img/portfolio/websites/Lunar-New-Year-Mockup-Desktop.png" alt="Lunar New Year Hub homepage, desktop view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">Lunar New Year Hub</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">Lunar New Year Hub</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
     </div>
 
@@ -408,15 +437,21 @@
     <div class="device-row">
       <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/UX%20design/festive-favourites-page.mp4" data-label="A Magical Christmas: Engaging seasonal hub driving nearly 1 million app clicks.">
         <img src="/img/portfolio/websites/Magical-Christmas-Mockup-Desktop.png" alt="A Magical Christmas homepage, desktop view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">A Magical Christmas</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">A Magical Christmas</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
       <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/UX%20design/festive-favourites-page-mobile.mp4" data-label="A Magical Christmas: Engaging seasonal hub driving nearly 1 million app clicks.">
         <img src="/img/portfolio/websites/Magical-Christmas-Mockup-Mobile.png" alt="A Magical Christmas, mobile view">
-        <div class="tile-corner-badge"><i class="icon-play"></i></div>
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">A Magical Christmas</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">A Magical Christmas</h4>
+          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
     </div>
 
@@ -485,13 +520,21 @@
     <div class="device-row">
       <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/lego-full.png" data-label="Bespoke Branded Zone for LEGO, balancing Asda's campaign visuals with LEGO's holiday identity.">
         <img src="/img/portfolio/asda-pages/lego-mockup.png" alt="LEGO Branded Zone">
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">LEGO Branded Zone</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">LEGO Branded Zone</h4>
+          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
       <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/coke-full.png" data-label="Coca-Cola 'Perfect Pairings' Custom Branded Zone design and build.">
         <img src="/img/portfolio/asda-pages/coke-mockup.png" alt="Coca-Cola Perfect Pairings Branded Zone">
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">Coca-Cola Perfect Pairings</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">Coca-Cola Perfect Pairings</h4>
+          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
     </div>
 
@@ -499,13 +542,21 @@
     <div class="device-row">
       <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/cheese-shop-full.png" data-label="The Cheese Shop: Fully bespoke Branded Zone design.">
         <img src="/img/portfolio/asda-pages/cheese-shop-mockup.png" alt="The Cheese Shop Branded Zone">
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">The Cheese Shop</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">The Cheese Shop</h4>
+          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
       <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/lets-graze-full.png" data-label="Let's Graze: Fully bespoke Branded Zone design.">
         <img src="/img/portfolio/asda-pages/lets-graze-mockup.png" alt="Let's Graze Branded Zone">
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">Let's Graze</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">Let's Graze</h4>
+          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
     </div>
 
@@ -513,13 +564,21 @@
     <div class="device-row">
       <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/the-pie-shop-full.png" data-label="The Pie Shop: Custom campaign layout highlighting supplier product ranges.">
         <img src="/img/portfolio/asda-pages/the-pie-shop-mockup.png" alt="The Pie Shop Branded Zone">
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">The Pie Shop</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">The Pie Shop</h4>
+          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
       <button class="tile tile--desktop" type="button" data-type="image" data-src="/img/portfolio/asda-pages/cow-and-gate-full.png" data-label="Cow & Gate: Branded Zone built by effectively leveraging the supplier's existing assets.">
         <img src="/img/portfolio/asda-pages/cow-and-gate-mockup.png" alt="Cow & Gate Branded Zone">
-        <div class="tile-hover-overlay"><div class="tile-hover-circle"><i class="icon-play"></i></div></div>
-        <span class="tile-caption">Cow &amp; Gate</span>
+        <div class="tile-hover-overlay"></div>
+        <div class="tile-play-roundel"><i class="icon-play"></i></div>
+        <div class="tile-caption">
+          <h4 class="tile-caption-title">Cow &amp; Gate</h4>
+          <span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        </div>
       </button>
     </div>
 
