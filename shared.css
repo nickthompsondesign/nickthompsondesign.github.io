@@ -1671,3 +1671,77 @@ body.sub-page.loaded header {
   .lightbox-arrow { width: 40px; height: 64px; }
   .lightbox-arrow:hover { width: 48px; }
 }
+
+
+
+
+/* =============================================
+   LIGHTBOX PERMANENT ICON OVERRIDES (SMOOTH GPU)
+   ============================================= */
+
+/* 1. Make the existing roundel permanently visible and purple */
+.tile-play-roundel {
+  opacity: 1 !important; 
+  transform: scale(1) !important; 
+  background: linear-gradient(135deg, var(--blue-accent), #6d28d9) !important;
+  box-shadow: 0 8px 24px rgba(100, 40, 255, 0.25) !important;
+  backdrop-filter: none !important;
+  
+  /* Force GPU rendering to stop glitching/jitter */
+  will-change: transform, filter;
+  backface-visibility: hidden;
+  
+  /* Unified timing to match your site's physics */
+  transition: transform 0.35s var(--ease-smooth), filter 0.35s var(--ease-smooth) !important;
+}
+
+/* 2. Grow the purple circle slightly on hover */
+.tile:hover .tile-play-roundel,
+.tile:focus-visible .tile-play-roundel {
+  transform: scale(1.08) !important; /* Slightly gentler scale to avoid pixel snapping */
+  filter: brightness(1.15);
+}
+
+/* 3. Smoothly fade AND shrink the existing play/eye icons */
+.tile-play-roundel > i,
+.tile-play-roundel > svg {
+  backface-visibility: hidden;
+  /* Match the timing exactly */
+  transition: opacity 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth) !important;
+}
+
+.tile:hover .tile-play-roundel > i,
+.tile:hover .tile-play-roundel > svg,
+.tile:focus-visible .tile-play-roundel > i,
+.tile:focus-visible .tile-play-roundel > svg {
+  opacity: 0 !important;
+  transform: scale(0.7) !important; /* Shrink as it disappears */
+}
+
+/* 4. Create the new SVG chevron that fades, grows, and slides in */
+.tile-play-roundel::after {
+  content: ""; 
+  position: absolute;
+  inset: 0; /* Guarantees dead-center alignment */
+  margin: auto;
+  width: 22px;
+  height: 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  
+  /* Start left and slightly smaller. Using translate3d forces the GPU */
+  transform: translate3d(-8px, 0, 0) scale(0.7);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  
+  transition: opacity 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth);
+}
+
+.tile:hover .tile-play-roundel::after,
+.tile:focus-visible .tile-play-roundel::after {
+  opacity: 1;
+  transform: translate3d(1px, 0, 0) scale(1); /* Slide into center and full size */
+}
