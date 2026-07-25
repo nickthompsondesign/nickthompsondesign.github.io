@@ -770,7 +770,7 @@ body.index-page.loaded .showreel-slide { animation-play-state: running; }
 .portfolio-card:hover .portfolio-tag { color: #e2d6ff; }
 .portfolio-card-inner h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: #fff; margin: 0; letter-spacing: var(--tracking-tight); transition: transform 0.4s var(--ease-smooth); }
 .portfolio-card:hover .portfolio-card-inner h3 { transform: translateY(-2px); }
-.portfolio-card-arrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-family: var(--font-heading); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0); text-transform: uppercase; letter-spacing: 0.1em; transform: translateY(8px); transition: color 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth); }
+.portfolio-card-arrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-family: var(--font-heading); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0); text-transform: capitalize; letter-spacing: 0.1em; transform: translateY(8px); transition: color 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth); }
 .portfolio-card-arrow svg { width: 14px; height: 14px; transform: rotate(45deg); transition: transform 0.35s var(--ease-smooth); }
 .portfolio-card:hover .portfolio-card-arrow { color: rgba(255,255,255,0.85); transform: translateY(0); }
 .portfolio-card:hover .portfolio-card-arrow svg { transform: rotate(45deg) translate(2px,-2px); }
