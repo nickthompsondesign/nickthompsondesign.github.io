@@ -1747,3 +1747,14 @@ body.sub-page.loaded header {
   transform: translate3d(1px, 0, 0) scale(1); /* Slide into center and full size */
 }
 
+
+/* =============================================
+   MOBILE FIX: UX FLOW IMAGE HEIGHT
+   ============================================= */
+@media (max-width: 768px) {
+  .flow-image {
+    min-width: auto; /* Overrides your 900px rule */
+    max-height: 55vh; /* Caps the height at 55% of the phone screen */
+    width: auto; /* Allows the width to scale proportionally with the new height */
+  }
+}
