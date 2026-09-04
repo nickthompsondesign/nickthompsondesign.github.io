@@ -1757,4 +1757,8 @@ body.sub-page.loaded header {
     max-height: 55vh; /* Caps the height at 55% of the phone screen */
     width: auto; /* Allows the width to scale proportionally with the new height */
   }
+   .flow-image-45 {
+    max-height: 45vh; /* Caps the height at 55% of the phone screen */
+  }
 }
+
