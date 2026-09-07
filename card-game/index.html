@@ -130,7 +130,6 @@ let state = {
   players: [
     { id: "p1", name: "Nick" },
     { id: "p2", name: "Player 2" },
-    { id: "p3", name: "Player 3" },
   ],
   scores: {},
   currentRound: 13,
@@ -173,7 +172,7 @@ function computeScore(cell) {
   if (estimate === undefined || estimate === "" || actual === undefined || actual === "") return null;
   const e = Number(estimate), a = Number(actual);
   const hit = e === a;
-  if (state.scoringRule === "standard10") return hit ? 10 : a;
+  if (state.scoringRule === "standard10") return hit ? 10 + a : a;
   if (state.scoringRule === "standard5") return hit ? 5 + a : 0;
   if (state.scoringRule === "tricksOnly") return a;
   return null;
@@ -219,7 +218,7 @@ function render() {
     html += `<div class="tt-settings">
       <h3>Scoring rule</h3>
       <select data-action="set-rule">
-        <option value="standard10" ${state.scoringRule === "standard10" ? "selected" : ""}>Exact bid = +10, miss = actual tricks</option>
+        <option value="standard10" ${state.scoringRule === "standard10" ? "selected" : ""}>Exact bid = +10 + actual tricks, miss = actual tricks</option>
         <option value="standard5" ${state.scoringRule === "standard5" ? "selected" : ""}>Exact bid = 5 + tricks, miss = 0</option>
         <option value="tricksOnly" ${state.scoringRule === "tricksOnly" ? "selected" : ""}>Tricks won only, no bonus</option>
       </select>
