@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trumps Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --felt: #12362A;
+    --felt-dark: #0B241C;
+    --panel: #163F31;
+    --cream: #F5EFE0;
+    --muted: #A9C2B4;
+    --gold: #C9A15A;
+    --red: #C1503E;
+    --black: #E7E2D2;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: radial-gradient(ellipse at top, var(--felt) 0%, var(--felt-dark) 100%);
+    color: var(--cream);
+    min-height: 100vh;
+  }
+  .tt-app { max-width: 480px; margin: 0 auto; padding: 18px 14px 40px; }
+
+  .tt-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .tt-title { font-family:'Fraunces',serif; font-size:22px; font-weight:600; letter-spacing:0.3px; }
+  .tt-iconbtn { background:transparent; border:1px solid rgba(245,239,224,0.25); color:var(--cream); width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:15px; }
+
+  .tt-leaderboard { display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; margin-bottom:18px; }
+  .tt-chip { flex:0 0 auto; background:var(--panel); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:8px; border:1px solid rgba(245,239,224,0.08); }
+  .tt-chip .rank { font-family:'Fraunces',serif; color:var(--gold); font-size:13px; }
+  .tt-chip .name { font-size:13px; font-weight:500; }
+  .tt-chip .score { font-family:'Fraunces',serif; font-size:15px; }
+
+  .tt-round-card { background:var(--panel); border:1px solid rgba(201,161,90,0.35); border-radius:16px; padding:14px 10px; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .tt-navbtn { background:transparent; border:none; color:var(--muted); width:38px; height:38px; border-radius:8px; cursor:pointer; font-size:20px; }
+  .tt-navbtn:disabled { opacity:0.25; cursor:default; }
+  .tt-round-center { text-align:center; flex:1; }
+  .tt-round-num { font-family:'Fraunces',serif; font-size:44px; line-height:1; font-weight:600; }
+  .tt-round-suit { font-size:26px; margin-top:2px; }
+  .tt-round-suit.red { color:var(--red); }
+  .tt-round-suit.black { color:var(--black); }
+  .tt-round-suit.gold { color:var(--gold); font-size:16px; font-weight:600; letter-spacing:1px; }
+  .tt-round-label { font-size:12px; color:var(--muted); margin-top:4px; }
+
+  .tt-tricks-check { text-align:center; font-size:12px; color:var(--muted); margin-bottom:16px; }
+  .tt-tricks-check.ok { color:#8FD3A6; }
+  .tt-tricks-check.off { color:#E0A56F; }
+
+  .tt-player-row { background:var(--panel); border-radius:12px; padding:10px 12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; border:1px solid rgba(245,239,224,0.06); }
+  .tt-player-name { background:transparent; border:none; color:var(--cream); font-size:14px; font-weight:500; width:64px; padding:2px 0; border-bottom:1px solid transparent; font-family:inherit; }
+  .tt-player-name:focus { outline:none; border-bottom:1px solid var(--gold); }
+  .tt-fields { display:flex; align-items:center; gap:8px; flex:1; justify-content:flex-end; }
+  .tt-field { display:flex; flex-direction:column; align-items:center; }
+  .tt-field label { font-size:9px; text-transform:uppercase; letter-spacing:0.6px; color:var(--muted); margin-bottom:2px; }
+  .tt-field input { width:42px; background:var(--felt-dark); border:1px solid rgba(245,239,224,0.15); color:var(--cream); border-radius:6px; padding:5px 0; text-align:center; font-size:14px; font-family:inherit; }
+  .tt-field input:focus { outline:none; border-color:var(--gold); }
+  .tt-roundscore { font-family:'Fraunces',serif; font-size:17px; width:42px; text-align:right; color:var(--gold); }
+  .tt-roundscore button, .tt-roundscore input { background:none; border:none; color:inherit; font:inherit; padding:0; cursor:pointer; width:100%; text-align:right; }
+
+  .tt-addplayer { width:100%; background:transparent; border:1px dashed rgba(245,239,224,0.3); color:var(--muted); border-radius:12px; padding:10px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px; margin-bottom:18px; cursor:pointer; font-family:inherit; }
+
+  .tt-history-toggle { width:100%; background:transparent; border:none; color:var(--gold); font-size:13px; padding:8px; text-align:center; text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:inherit; }
+
+  .tt-history-wrap { overflow-x:auto; margin-top:10px; margin-bottom:18px; border-radius:12px; border:1px solid rgba(245,239,224,0.1); }
+  .tt-history-table { border-collapse:collapse; width:100%; font-size:12px; }
+  .tt-history-table th, .tt-history-table td { padding:7px 9px; text-align:left; white-space:nowrap; border-bottom:1px solid rgba(245,239,224,0.08); }
+  .tt-history-table th { color:var(--muted); font-weight:500; font-size:11px; }
+  .tt-history-table tr.active { background:rgba(201,161,90,0.12); }
+  .tt-history-table tr { cursor:pointer; }
+
+  .tt-settings { background:var(--panel); border-radius:14px; padding:14px; margin-bottom:18px; border:1px solid rgba(245,239,224,0.1); }
+  .tt-settings h3 { font-family:'Fraunces',serif; font-size:15px; margin:0 0 8px; font-weight:600; }
+  .tt-settings select { width:100%; background:var(--felt-dark); color:var(--cream); border:1px solid rgba(245,239,224,0.2); border-radius:8px; padding:8px; font-size:13px; margin-bottom:10px; font-family:inherit; }
+  .tt-settings .hint { font-size:11px; color:var(--muted); margin:-4px 0 10px; }
+  .tt-settings-player { display:flex; justify-content:space-between; align-items:center; padding:6px 0; font-size:13px; border-bottom:1px solid rgba(245,239,224,0.06); }
+  .tt-settings-player button { background:none; border:none; color:var(--red); cursor:pointer; font-size:14px; }
+  .tt-reset { width:100%; margin-top:8px; background:transparent; border:1px solid rgba(193,80,62,0.5); color:#E0A56F; border-radius:8px; padding:8px; font-size:12px; cursor:pointer; font-family:inherit; }
+
+  .tt-modal-overlay { position:fixed; inset:0; background:rgba(11,36,28,0.75); display:flex; align-items:center; justify-content:center; padding:20px; z-index:50; }
+  .tt-modal { background:var(--panel); border:1px solid rgba(201,161,90,0.4); border-radius:16px; padding:20px; max-width:340px; width:100%; }
+  .tt-modal h3 { font-family:'Fraunces',serif; font-size:17px; margin:0 0 8px; font-weight:600; }
+  .tt-modal p { font-size:13px; color:var(--muted); margin:0 0 14px; line-height:1.4; }
+  .tt-modal label.tt-checkbox { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--cream); margin-bottom:16px; cursor:pointer; line-height:1.4; }
+  .tt-modal label.tt-checkbox input { margin-top:2px; }
+  .tt-modal-actions { display:flex; gap:8px; }
+  .tt-modal-actions button { flex:1; padding:10px; border-radius:8px; font-size:13px; cursor:pointer; font-family:inherit; }
+  .tt-modal-cancel { background:transparent; border:1px solid rgba(245,239,224,0.25); color:var(--cream); }
+  .tt-modal-confirm { background:#C1503E; border:1px solid #C1503E; color:var(--cream); font-weight:600; }
+</style>
+</head>
+<body>
+<div class="tt-app" id="app"></div>
+
+<script>
+const STORAGE_KEY = "trumps-tracker-state-v1";
+const SUIT_CYCLE = [
+  { symbol: "♥", name: "Hearts", css: "red" },
+  { symbol: "♠", name: "Spades", css: "black" },
+  { symbol: "♦", name: "Diamonds", css: "red" },
+  { symbol: "♣", name: "Clubs", css: "black" },
+  { symbol: "NT", name: "No Trumps", css: "gold" },
+];
+function suitForRound(round) {
+  return state.trumpOrder[13 - round];
+}
+function defaultTrumpOrder() {
+  return Array.from({ length: 13 }, (_, i) => SUIT_CYCLE[i % 5]);
+}
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function randomTrumpOrder() {
+  // 3 blocks of {4 suits + 1 no-trump}, each block shuffled independently,
+  // then trimmed to 13 rounds (the 3rd block only partly used).
+  const blocks = [shuffle([...SUIT_CYCLE]), shuffle([...SUIT_CYCLE]), shuffle([...SUIT_CYCLE])];
+  return blocks.flat().slice(0, 13);
+}
+
+let state = {
+  players: [
+    { id: "p1", name: "Nick" },
+    { id: "p2", name: "Player 2" },
+    { id: "p3", name: "Player 3" },
+  ],
+  scores: {},
+  currentRound: 13,
+  scoringRule: "standard10",
+  trumpOrder: defaultTrumpOrder(),
+  showSettings: false,
+  showHistory: false,
+  editingScore: null,
+  showClearModal: false,
+  randomiseOnClear: true,
+};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const data = JSON.parse(raw);
+      state.players = data.players || state.players;
+      state.scores = data.scores || {};
+      state.currentRound = data.currentRound || 13;
+      state.scoringRule = data.scoringRule || "standard10";
+      state.trumpOrder = data.trumpOrder || defaultTrumpOrder();
+    }
+  } catch (e) { console.error("load failed", e); }
+}
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      players: state.players, scores: state.scores,
+      currentRound: state.currentRound, scoringRule: state.scoringRule,
+      trumpOrder: state.trumpOrder,
+    }));
+  } catch (e) { console.error("save failed", e); }
+}
+
+function computeScore(cell) {
+  if (!cell) return null;
+  if (cell.manual !== undefined && cell.manual !== "") return Number(cell.manual);
+  const { estimate, actual } = cell;
+  if (estimate === undefined || estimate === "" || actual === undefined || actual === "") return null;
+  const e = Number(estimate), a = Number(actual);
+  const hit = e === a;
+  if (state.scoringRule === "standard10") return hit ? 10 : a;
+  if (state.scoringRule === "standard5") return hit ? 5 + a : 0;
+  if (state.scoringRule === "tricksOnly") return a;
+  return null;
+}
+function totalFor(playerId) {
+  let total = 0;
+  Object.keys(state.scores).forEach((r) => {
+    const s = computeScore(state.scores[r][playerId]);
+    if (s !== null) total += s;
+  });
+  return total;
+}
+function updateCell(round, playerId, field, value) {
+  if (!state.scores[round]) state.scores[round] = {};
+  if (!state.scores[round][playerId]) state.scores[round][playerId] = {};
+  state.scores[round][playerId][field] = value;
+  saveState();
+}
+
+function render() {
+  const rounds = Array.from({ length: 13 }, (_, i) => 13 - i);
+  const suit = suitForRound(state.currentRound);
+  const ranked = [...state.players].sort((a, b) => totalFor(b.id) - totalFor(a.id));
+  const tricksAccounted = state.players.reduce((sum, p) => {
+    const a = state.scores[state.currentRound]?.[p.id]?.actual;
+    return sum + (a === undefined || a === "" ? 0 : Number(a));
+  }, 0);
+  const tricksClass = tricksAccounted === 0 ? "" : tricksAccounted === state.currentRound ? "ok" : "off";
+
+  let html = "";
+  html += `<div class="tt-header">
+    <div class="tt-title">Trumps</div>
+    <button class="tt-iconbtn" data-action="toggle-settings">⚙</button>
+  </div>`;
+
+  html += `<div class="tt-leaderboard">`;
+  ranked.forEach((p, i) => {
+    html += `<div class="tt-chip"><span class="rank">${i + 1}</span><span class="name">${escapeHtml(p.name)}</span><span class="score">${totalFor(p.id)}</span></div>`;
+  });
+  html += `</div>`;
+
+  if (state.showSettings) {
+    html += `<div class="tt-settings">
+      <h3>Scoring rule</h3>
+      <select data-action="set-rule">
+        <option value="standard10" ${state.scoringRule === "standard10" ? "selected" : ""}>Exact bid = +10, miss = actual tricks</option>
+        <option value="standard5" ${state.scoringRule === "standard5" ? "selected" : ""}>Exact bid = 5 + tricks, miss = 0</option>
+        <option value="tricksOnly" ${state.scoringRule === "tricksOnly" ? "selected" : ""}>Tricks won only, no bonus</option>
+      </select>
+      <div class="hint">Tap any round score (the gold number) to type in your own value instead — that always wins over the formula.</div>
+      <h3>Players</h3>`;
+    state.players.forEach((p) => {
+      html += `<div class="tt-settings-player"><span>${escapeHtml(p.name)}</span>${state.players.length > 2 ? `<button data-action="remove-player" data-id="${p.id}">✕</button>` : ""}</div>`;
+    });
+    html += `<button class="tt-reset" data-action="reset">⟲ Clear all rounds</button></div>`;
+  }
+
+  html += `<div class="tt-round-card">
+    <button class="tt-navbtn" data-action="prev-round" ${state.currentRound >= 13 ? "disabled" : ""}>‹</button>
+    <div class="tt-round-center">
+      <div class="tt-round-num">${state.currentRound}</div>
+      <div class="tt-round-suit ${suit.css}">${suit.symbol}</div>
+      <div class="tt-round-label">${suit.name} · Round ${14 - state.currentRound} of 13</div>
+    </div>
+    <button class="tt-navbtn" data-action="next-round" ${state.currentRound <= 1 ? "disabled" : ""}>›</button>
+  </div>`;
+
+  html += `<div class="tt-tricks-check ${tricksClass}">Tricks played: ${tricksAccounted} / ${state.currentRound}</div>`;
+
+  state.players.forEach((p) => {
+    const cell = (state.scores[state.currentRound] && state.scores[state.currentRound][p.id]) || {};
+    const roundScore = computeScore(cell);
+    const isEditing = state.editingScore === p.id;
+    html += `<div class="tt-player-row">
+      <input class="tt-player-name" data-action="rename" data-id="${p.id}" value="${escapeHtml(p.name)}" />
+      <div class="tt-fields">
+        <div class="tt-field"><label>Est</label>
+          <input type="number" inputmode="numeric" min="0" max="${state.currentRound}" data-action="cell" data-id="${p.id}" data-field="estimate" value="${cell.estimate ?? ""}" />
+        </div>
+        <div class="tt-field"><label>Actual</label>
+          <input type="number" inputmode="numeric" min="0" max="${state.currentRound}" data-action="cell" data-id="${p.id}" data-field="actual" value="${cell.actual ?? ""}" />
+        </div>
+        <div class="tt-roundscore">
+          ${isEditing
+            ? `<input type="number" data-action="manual" data-id="${p.id}" value="${cell.manual ?? roundScore ?? ""}" autofocus />`
+            : `<button data-action="edit-score" data-id="${p.id}">${roundScore !== null ? (roundScore > 0 ? "+" : "") + roundScore : "—"}</button>`}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  html += `<button class="tt-addplayer" data-action="add-player">+ Add player</button>`;
+  html += `<button class="tt-history-toggle" data-action="toggle-history">${state.showHistory ? "Hide" : "Show"} full scoreboard</button>`;
+
+  if (state.showHistory) {
+    html += `<div class="tt-history-wrap"><table class="tt-history-table"><thead><tr><th>Rnd</th>`;
+    state.players.forEach((p) => { html += `<th>${escapeHtml(p.name)}</th>`; });
+    html += `</tr></thead><tbody>`;
+    rounds.forEach((r) => {
+      const s = suitForRound(r);
+      const color = s.css === "red" ? "var(--red)" : s.css === "gold" ? "var(--gold)" : "var(--black)";
+      html += `<tr class="${r === state.currentRound ? "active" : ""}" data-action="jump-round" data-round="${r}"><td><span style="color:${color}">${s.symbol}</span> ${r}</td>`;
+      state.players.forEach((p) => {
+        const c = state.scores[r] && state.scores[r][p.id];
+        const sc = computeScore(c);
+        html += `<td>${c?.estimate ?? "–"}/${c?.actual ?? "–"} ${sc !== null ? `(${sc})` : ""}</td>`;
+      });
+      html += `</tr>`;
+    });
+    html += `</tbody></table></div>`;
+  }
+
+  if (state.showClearModal) {
+    html += `<div class="tt-modal-overlay" data-action="modal-overlay">
+      <div class="tt-modal">
+        <h3>Start a new game?</h3>
+        <p>This clears every player's estimate and actual score for all 13 rounds. This can't be undone.</p>
+        <label class="tt-checkbox">
+          <input type="checkbox" data-action="toggle-randomise" ${state.randomiseOnClear ? "checked" : ""} />
+          <span>Randomise the trump order too — still suit, suit, suit, suit, no trump in each block of 5, just shuffled, so no trump can land anywhere within its block.</span>
+        </label>
+        <div class="tt-modal-actions">
+          <button class="tt-modal-cancel" data-action="cancel-clear">Cancel</button>
+          <button class="tt-modal-confirm" data-action="confirm-clear">Clear rounds</button>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById("app").innerHTML = html;
+  attachHandlers();
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function attachHandlers() {
+  const app = document.getElementById("app");
+  app.querySelectorAll('[data-action="toggle-settings"]').forEach(el => el.onclick = () => { state.showSettings = !state.showSettings; render(); });
+  app.querySelectorAll('[data-action="toggle-history"]').forEach(el => el.onclick = () => { state.showHistory = !state.showHistory; render(); });
+  app.querySelectorAll('[data-action="prev-round"]').forEach(el => el.onclick = () => { state.currentRound = Math.min(13, state.currentRound + 1); render(); });
+  app.querySelectorAll('[data-action="next-round"]').forEach(el => el.onclick = () => { state.currentRound = Math.max(1, state.currentRound - 1); render(); });
+  app.querySelectorAll('[data-action="add-player"]').forEach(el => el.onclick = () => {
+    const id = "p" + Date.now();
+    state.players.push({ id, name: "Player " + (state.players.length + 1) });
+    saveState(); render();
+  });
+  app.querySelectorAll('[data-action="remove-player"]').forEach(el => el.onclick = () => {
+    state.players = state.players.filter(p => p.id !== el.dataset.id);
+    saveState(); render();
+  });
+  app.querySelectorAll('[data-action="reset"]').forEach(el => el.onclick = () => {
+    state.showClearModal = true; render();
+  });
+  app.querySelectorAll('[data-action="cancel-clear"]').forEach(el => el.onclick = () => { state.showClearModal = false; render(); });
+  app.querySelectorAll('[data-action="modal-overlay"]').forEach(el => el.onclick = (e) => { if (e.target === el) { state.showClearModal = false; render(); } });
+  app.querySelectorAll('[data-action="toggle-randomise"]').forEach(el => el.onchange = (e) => { state.randomiseOnClear = e.target.checked; });
+  app.querySelectorAll('[data-action="confirm-clear"]').forEach(el => el.onclick = () => {
+    state.scores = {};
+    state.currentRound = 13;
+    if (state.randomiseOnClear) state.trumpOrder = randomTrumpOrder();
+    state.showClearModal = false;
+    saveState();
+    render();
+  });
+  app.querySelectorAll('[data-action="set-rule"]').forEach(el => el.onchange = (e) => { state.scoringRule = e.target.value; saveState(); render(); });
+  app.querySelectorAll('[data-action="jump-round"]').forEach(el => el.onclick = () => { state.currentRound = Number(el.dataset.round); render(); });
+  app.querySelectorAll('[data-action="edit-score"]').forEach(el => el.onclick = () => { state.editingScore = el.dataset.id; render(); app.querySelector('[data-action="manual"]')?.focus(); });
+  app.querySelectorAll('[data-action="manual"]').forEach(el => {
+    el.onblur = (e) => { updateCell(state.currentRound, el.dataset.id, "manual", e.target.value); state.editingScore = null; render(); };
+    el.onkeydown = (e) => { if (e.key === "Enter") e.target.blur(); };
+  });
+  app.querySelectorAll('[data-action="rename"]').forEach(el => {
+    el.oninput = (e) => {
+      const p = state.players.find(p => p.id === el.dataset.id);
+      if (p) p.name = e.target.value;
+      saveState();
+    };
+    el.onblur = () => render();
+  });
+  app.querySelectorAll('[data-action="cell"]').forEach(el => {
+    el.oninput = (e) => { updateCell(state.currentRound, el.dataset.id, el.dataset.field, e.target.value); };
+    el.onblur = () => render();
+  });
+}
+
+loadState();
+render();
+</script>
+</body>
+</html>
