@@ -102,7 +102,7 @@ export default function TrumpsTracker() {
     const e = Number(estimate);
     const a = Number(actual);
     const hit = e === a;
-    if (scoringRule === "standard10") return hit ? 10 : a;
+    if (scoringRule === "standard10") return hit ? 10 + a : a;
     if (scoringRule === "standard5") return hit ? 5 + a : 0;
     if (scoringRule === "tricksOnly") return a;
     return null;
@@ -264,7 +264,7 @@ export default function TrumpsTracker() {
         <div className="tt-settings">
           <h3>Scoring rule</h3>
           <select value={scoringRule} onChange={(e) => setScoringRule(e.target.value)}>
-            <option value="standard10">Exact bid = +10, miss = actual tricks</option>
+            <option value="standard10">Exact bid = +10 + actual tricks, miss = actual tricks</option>
             <option value="standard5">Exact bid = 5 + tricks, miss = 0</option>
             <option value="tricksOnly">Tricks won only, no bonus</option>
           </select>
