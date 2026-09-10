@@ -1761,3 +1761,62 @@ body.sub-page.loaded header {
     max-height: 45vh; /* Caps the height at 55% of the phone screen */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+  --cursor-color: #ffffff;
+  --trail-color: rgba(255, 255, 255, 0.4);
+}
+
+.cursor-dot,
+.cursor-outline {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--cursor-color);
+}
+
+.cursor-outline {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--cursor-color);
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.cursor-outline.hovering {
+  width: 56px;
+  height: 56px;
+  border-color: var(--trail-color);
+}
+
+.trail-dot {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--trail-color);
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+}
