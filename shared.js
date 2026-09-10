@@ -430,3 +430,69 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'ArrowLeft' && currentTiles.length > 1) showSlide(currentIndex - 1);
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+const dot = document.getElementById('cursorDot');
+const outline = document.getElementById('cursorOutline');
+
+let mouseX = 0, mouseY = 0;
+let outlineX = 0, outlineY = 0;
+
+const TRAIL_LENGTH = 10;
+const trailDots = [];
+for (let i = 0; i < TRAIL_LENGTH; i++) {
+  const el = document.createElement('div');
+  el.className = 'trail-dot';
+  el.style.opacity = (1 - i / TRAIL_LENGTH) * 0.5;
+  el.style.transform = `translate(-50%, -50%) scale(${1 - i / TRAIL_LENGTH})`;
+  document.body.appendChild(el);
+  trailDots.push({ el, x: 0, y: 0 });
+}
+
+window.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dot.style.left = `${mouseX}px`;
+  dot.style.top = `${mouseY}px`;
+});
+
+function animate() {
+  outlineX += (mouseX - outlineX) * 0.18;
+  outlineY += (mouseY - outlineY) * 0.18;
+  outline.style.left = `${outlineX}px`;
+  outline.style.top = `${outlineY}px`;
+
+  let prevX = mouseX, prevY = mouseY;
+  trailDots.forEach((t) => {
+    t.x += (prevX - t.x) * 0.3;
+    t.y += (prevY - t.y) * 0.3;
+    t.el.style.left = `${t.x}px`;
+    t.el.style.top = `${t.y}px`;
+    prevX = t.x;
+    prevY = t.y;
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+document.querySelectorAll('.hoverable').forEach((el) => {
+  el.addEventListener('mouseenter', () => outline.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => outline.classList.remove('hovering'));
+});
+
+if (window.matchMedia('(pointer: coarse)').matches) {
+  dot.style.display = 'none';
+  outline.style.display = 'none';
+  trailDots.forEach(t => t.el.style.display = 'none');
+}
