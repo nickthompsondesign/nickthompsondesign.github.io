@@ -1762,3 +1762,16 @@ body.sub-page.loaded header {
   }
 }
 
+
+
+
+
+
+
+
+
+/* Magnetic buttons (mouse effect) — let JS drive transform smoothing,
+   keep CSS transitions for everything else (background, border, etc.) */
+.magnetic {
+  transition-property: background, background-color, border-color, box-shadow, color;
+}
