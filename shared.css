@@ -1761,17 +1761,3 @@ body.sub-page.loaded header {
     max-height: 45vh; /* Caps the height at 55% of the phone screen */
   }
 }
-
-
-
-
-
-
-
-
-
-/* Magnetic buttons (mouse effect) — let JS drive transform smoothing,
-   keep CSS transitions for everything else (background, border, etc.) */
-.magnetic {
-  transition-property: background, background-color, border-color, box-shadow, color;
-}
