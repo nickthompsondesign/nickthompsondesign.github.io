@@ -430,3 +430,66 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'ArrowLeft' && currentTiles.length > 1) showSlide(currentIndex - 1);
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ── Magnetic Buttons ──
+if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
+  const magneticEls = Array.from(document.querySelectorAll('.btn, .btn-solid, .btn-outline, .btn-cv'));
+  magneticEls.forEach(el => el.classList.add('magnetic'));
+
+  const MAG_RADIUS = 90;    // px beyond the button's edge where the pull kicks in
+  const MAG_STRENGTH = 0.35;
+  const MAG_MAX = 18;       // px, max displacement
+  const LERP = 0.15;
+
+  const state = magneticEls.map(el => ({ el, curX: 0, curY: 0, tgX: 0, tgY: 0 }));
+
+  window.addEventListener('mousemove', e => {
+    state.forEach(s => {
+      const rect = s.el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.hypot(dx, dy);
+      const reach = Math.max(rect.width, rect.height) / 2 + MAG_RADIUS;
+
+      if (dist < reach) {
+        const pull = 1 - dist / reach;
+        s.tgX = Math.max(-MAG_MAX, Math.min(MAG_MAX, dx * MAG_STRENGTH * pull));
+        s.tgY = Math.max(-MAG_MAX, Math.min(MAG_MAX, dy * MAG_STRENGTH * pull));
+      } else {
+        s.tgX = 0;
+        s.tgY = 0;
+      }
+    });
+  }, { passive: true });
+
+  let magRafId;
+  function animateMagnetic() {
+    state.forEach(s => {
+      s.curX += (s.tgX - s.curX) * LERP;
+      s.curY += (s.tgY - s.curY) * LERP;
+      s.el.style.transform = `translate3d(${s.curX.toFixed(2)}px, ${s.curY.toFixed(2)}px, 0)`;
+    });
+    magRafId = requestAnimationFrame(animateMagnetic);
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(magRafId);
+    else magRafId = requestAnimationFrame(animateMagnetic);
+  });
+  magRafId = requestAnimationFrame(animateMagnetic);
+}
