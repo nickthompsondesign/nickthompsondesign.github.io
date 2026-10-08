@@ -439,25 +439,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* =============================================
-   Nick Thompson Design — design-upgrade.js (Oct 2026)
-   Load AFTER shared.js. Remove the <script> to revert.
+   Nick Thompson Design — DESIGN UPGRADE (Oct 2026, rev 2)
+   Everything from here to the end of the file is the design upgrade.
    ============================================= */
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>';
 
-  // 1. Notched corner arrow + spotlight layer on every portfolio card
+  // 1. Portfolio cards: wrap the image layers in a notched mask, add the arrow + spotlight
   document.querySelectorAll('.portfolio-card').forEach(function (card) {
-    if (card.querySelector('.card-notch')) return;
+    if (card.querySelector('.card-mask')) return;
+    var mask = document.createElement('span');
+    mask.className = 'card-mask';
+    Array.prototype.slice.call(card.children).forEach(function (child) { mask.appendChild(child); });
     var glow = document.createElement('span');
     glow.className = 'card-glow';
-    card.appendChild(glow);
-    var notch = document.createElement('span');
-    notch.className = 'card-notch';
-    notch.setAttribute('aria-hidden', 'true');
-    notch.innerHTML = '<span class="card-notch-btn">' + ARROW + '</span>';
-    card.appendChild(notch);
+    mask.appendChild(glow);
+    card.appendChild(mask);
+
+    var btn = document.createElement('span');
+    btn.className = 'card-notch-btn';
+    btn.setAttribute('aria-hidden', 'true');
+    btn.innerHTML = ARROW;
+    card.appendChild(btn);
 
     if (finePointer && !reduceMotion) {
       card.addEventListener('mousemove', function (e) {
@@ -468,21 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 2. Magnetic buttons (desktop, mouse only)
-  if (finePointer && !reduceMotion) {
-    document.querySelectorAll('.btn, .btn-solid, .btn-outline').forEach(function (btn) {
-      btn.classList.add('is-magnetic');
-      btn.addEventListener('mousemove', function (e) {
-        var r = btn.getBoundingClientRect();
-        var x = (e.clientX - r.left - r.width / 2) * 0.18;
-        var y = (e.clientY - r.top - r.height / 2) * 0.28;
-        btn.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
-      }, { passive: true });
-      btn.addEventListener('mouseleave', function () { btn.style.transform = ''; });
-    });
-  }
-
-  // 3. Scroll progress bar (styled only where CSS scroll timelines are supported)
+  // 2. Scroll progress bar (styled only where CSS scroll timelines are supported)
   if (!document.querySelector('.ntd-progress')) {
     var bar = document.createElement('div');
     bar.className = 'ntd-progress';
@@ -490,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(bar);
   }
 
-  // 4. Overview card: hero-style tilt + a sheen that follows the cursor
+  // 3. Case study overview card: hero-style tilt + a sheen that follows the cursor
   (function () {
     var card = document.querySelector('.project-meta-light');
     if (!card || !finePointer || reduceMotion) return;
