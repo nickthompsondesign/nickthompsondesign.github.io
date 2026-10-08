@@ -23,14 +23,22 @@
 
   <style>
     /* ===== Case study v2 — page-specific styles (shared.css untouched) ===== */
-    .cs { --ink: #2e1e62; --accent: #36109b; --accent-2: #8b5cf6; --muted-fill: #e6e1f5; --muted-ink: rgba(0,0,0,0.55); }
+    .cs {
+      --ink: #2e1e62;
+      --accent: #36109b;          /* deep indigo: 12.3:1 on white */
+      --accent-text: #6d28d9;     /* violet for small text on light: 7.1:1 on white */
+      --accent-on-dark: #ddd6fe;  /* lavender for small text on blue/dark: 6.2:1 on #0000ff */
+      --accent-bright: #a78bfa;   /* brand lavender: dark backgrounds, large or decorative use only */
+      --muted-fill: #e6e1f5; --muted-ink: rgba(0,0,0,0.55);
+    }
+    .cs .project-hero .section-label { color: var(--accent-on-dark); }
 
     /* Hero: left-aligned, title first, then the headline result */
     .cs .project-hero { text-align: left; align-items: stretch; height: auto; min-height: 480px; padding-top: 150px; }
     .cs .project-hero .content-inner { text-align: left; }
-    .cs .project-hero h1 { white-space: normal; max-width: 1100px; }
+    .cs .project-hero h1 { white-space: normal; max-width: 1100px; font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; margin-bottom: 18px; }
     .cs .project-hero .section-sub { margin: 0 0 22px 0; }
-    .cs-hero-result { margin-bottom: 44px !important; display: inline-flex; align-items: center; gap: 12px; margin: 0; padding: 10px 18px 10px 12px; border-radius: 999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); color: #fff; font-size: 16px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    .cs-hero-result { margin-bottom: 44px !important; display: inline-flex; align-items: center; gap: 10px; padding: 0; background: none; border: 0; color: #fff; font-size: 17px; }
     .cs-hero-result svg { width: 26px; height: 26px; flex-shrink: 0; }
     .cs-hero-result strong { font-weight: 700; }
 
@@ -45,8 +53,19 @@
 
     /* Clear section titles */
     .cs-section-head { max-width: 800px; margin: 0 auto 8px auto; }
-    .cs .project-body h2 { margin-top: 8px; }
-    .cs-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+    .cs .project-body h2 {
+      margin-top: 8px;
+      background: linear-gradient(100deg, #2e1e62 0%, #6d28d9 30%, #8b5cf6 50%, #6d28d9 70%, #2e1e62 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: #2e1e62;
+      animation: csHeadingFlow 9s ease-in-out infinite;
+      animation-play-state: paused;
+    }
+    .cs .project-body h2.in-view { animation-play-state: running; }
+    @keyframes csHeadingFlow { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @media (prefers-reduced-motion: reduce) { .cs .project-body h2 { animation: none; background-position: 30% 50%; } }
+    .cs-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-text); }
     .cs-eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; border-radius: 2px; }
 
     /* Media frames */
@@ -68,8 +87,12 @@
     .cs-viewer.is-open { display: flex; }
     .cs-viewer-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; color: rgba(255,255,255,0.8); font-size: 14px; }
     .cs-viewer-close { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
-    .cs-viewer-scroll { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; padding: 0 18px 24px 18px; }
-    .cs-viewer-scroll img { display: block; width: auto; max-width: none; height: auto; min-height: 60vh; max-height: 86vh; margin: 0 auto; background: #fff; border-radius: 12px; }
+    .cs-viewer-scroll { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; padding: 0 18px 24px 18px; display: flex; }
+    .cs-viewer-scroll img { display: block; margin: auto; background: #fff; border-radius: 12px; max-width: 100%; max-height: 100%; width: auto; height: auto; cursor: zoom-in; -webkit-user-drag: none; user-select: none; }
+    .cs-viewer.is-zoomed .cs-viewer-scroll { cursor: grab; }
+    .cs-viewer.is-zoomed .cs-viewer-scroll img { max-width: none; max-height: none; cursor: grab; }
+    .cs-viewer.is-zoomed.is-dragging .cs-viewer-scroll img { cursor: grabbing; }
+    @media (max-width: 1023px) { .cs-viewer-scroll img { max-width: none; max-height: 82vh; } }
 
     /* Before / after slider */
     .ba { position: relative; width: 100%; aspect-ratio: 16 / 10; user-select: none; touch-action: pan-y; }
@@ -118,9 +141,9 @@
     /* Statement quote — full quote, key line highlighted */
     .cs-quote { position: relative; z-index: 10; background: linear-gradient(135deg, #0c0930 0%, #1b0f4a 55%, #0a0f35 100%); color: #fff; padding: clamp(72px, 9vw, 130px) 0; margin: 0; overflow: hidden; }
     .cs-quote::before { content: ''; position: absolute; width: 520px; height: 520px; right: -120px; top: -160px; border-radius: 50%; background: rgba(220,38,170,0.28); filter: blur(110px); pointer-events: none; }
-    .cs-quote blockquote { position: relative; margin: 0 auto; max-width: 980px; font-family: var(--font-heading); font-size: clamp(22px, 2.9vw, 36px); line-height: 1.35; letter-spacing: -0.01em; font-weight: 400; color: rgba(255,255,255,0.62); }
-    .cs-quote blockquote::before { content: '\201C'; display: block; font-size: 2.6em; line-height: 0.5; color: #c0a7ff; margin-bottom: 18px; }
-    .cs-quote mark { background: linear-gradient(transparent 62%, rgba(192,132,252,0.45) 62%); color: #fff; padding: 0 2px; }
+    .cs-quote blockquote { position: relative; margin: 0 auto; max-width: 980px; font-family: var(--font-heading); font-size: clamp(19px, 2.1vw, 26px); line-height: 1.5; letter-spacing: -0.005em; font-weight: 300; color: rgba(255,255,255,0.7); }
+    .cs-quote blockquote::before { content: '\201C'; display: block; font-size: 3.4em; line-height: 0.5; color: #c0a7ff; margin-bottom: 18px; }
+    .cs-quote mark { background: linear-gradient(transparent 60%, rgba(167,139,250,0.45) 60%); color: #fff; font-weight: 600; padding: 0 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
     .cs-quote figcaption { position: relative; margin: 36px auto 0 auto; max-width: 980px; display: flex; align-items: center; gap: 16px; font-size: 15px; color: rgba(255,255,255,0.7); }
     .cs-quote figcaption img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: 0.9; }
     .cs-quote figcaption strong { display: block; color: #fff; font-weight: 700; }
@@ -164,7 +187,7 @@
       .cs-more { padding: 56px 0 72px 0; }
       .cs-more-grid { grid-template-columns: 1fr; }
       .cs-more-grid .portfolio-card { height: 240px; }
-      .cs-hero-result { font-size: 14px; }
+      .cs-hero-result { font-size: 15px; }
     }
   </style>
 </head>
@@ -241,7 +264,7 @@
       <!-- THE CHALLENGE -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">The Challenge</span>
-        <h2 class="scroll-reveal">No way to see what was available</h2>
+        <h2 class="scroll-reveal">Applicants were enquiring blind</h2>
         <p class="scroll-reveal sr-d2">The old website listed LHA's accommodations but gave users very little to go on — no live availability, no room-level detail and no photos. Applicants enquired blind, often for high-demand rooms like singles that were already full, while the small LHA team was overwhelmed with enquiries it couldn't act on.</p>
         <p class="scroll-reveal sr-d2">What LHA needed wasn't more enquiries, but better ones.</p>
       </article>
@@ -276,13 +299,13 @@
 
       <div class="cs-media scroll-reveal">
         <div class="cs-flow">
-          <div class="cs-flow-scroll" id="flowScroll">
+          <div class="cs-flow-scroll" data-drag-scroll>
             <img src="/img/portfolio/UX%20design/LHA-London-UX-Flowchart.jpg" alt="User flow: homepage search leads to room listings; available rooms route to a booking form and full rooms to a waiting list, with fields pre-filled from URL parameters">
           </div>
           <div class="cs-flow-tools">
             <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Swipe to explore</span>
             <span class="cs-flow-desk-label" aria-hidden="true"></span>
-            <button type="button" class="cs-flow-btn" id="flowOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
+            <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/UX%20design/LHA-London-UX-Flowchart.jpg" data-zoom-title="User flow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
           </div>
         </div>
         <p class="cs-caption">Mapping the user flow: live room status decides the destination, and URL parameters pre-populate the form.</p>
@@ -298,8 +321,15 @@
       </article>
 
       <div class="cs-media scroll-reveal">
-        <div class="cs-frame">
-          <img src="/img/portfolio/UX%20design/LHA-mockups-2.png" alt="Low-fidelity wireframes of the homepage search, search rooms page and rooms widget on desktop and mobile" loading="lazy">
+        <div class="cs-flow">
+          <div class="cs-flow-scroll" data-drag-scroll>
+            <img src="/img/portfolio/UX%20design/LHA-mockups-2.png" alt="Low-fidelity wireframes of the homepage search, search rooms page and rooms widget on desktop and mobile" loading="lazy">
+          </div>
+          <div class="cs-flow-tools">
+            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Swipe to explore</span>
+            <span aria-hidden="true"></span>
+            <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/UX%20design/LHA-mockups-2.png" data-zoom-title="Wireframes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
+          </div>
         </div>
         <p class="cs-caption">Low-fidelity wireframes for the homepage search, room listings and property rooms widget.</p>
       </div>
@@ -464,13 +494,13 @@
   </footer>
 
   <!-- Full-size user flow viewer -->
-  <div class="cs-viewer" id="flowViewer" role="dialog" aria-modal="true" aria-label="User flow, full size">
+  <div class="cs-viewer" id="flowViewer" role="dialog" aria-modal="true" aria-label="Full-size image viewer">
     <div class="cs-viewer-bar">
-      <span>User flow — scroll or pinch to zoom</span>
+      <span id="viewerTitle">Click to zoom · drag to move</span>
       <button type="button" class="cs-viewer-close" id="flowClose" aria-label="Close">&times;</button>
     </div>
     <div class="cs-viewer-scroll">
-      <img src="/img/portfolio/UX%20design/LHA-London-UX-Flowchart.jpg" alt="User flow, full size">
+      <img src="" alt="" id="viewerImg">
     </div>
   </div>
 
@@ -490,24 +520,50 @@
       var dots = document.getElementById('roomDots');
       if (dots) { for (var i = 0; i < 70; i++) dots.appendChild(document.createElement('i')); }
 
-      // User flow: drag to scroll (mobile/tablet) + full-size viewer
-      var scroller = document.getElementById('flowScroll');
-      if (scroller) {
-        var down = false, startX = 0, startLeft = 0;
-        scroller.addEventListener('mousedown', function (e) { down = true; startX = e.pageX; startLeft = scroller.scrollLeft; scroller.style.cursor = 'grabbing'; });
-        window.addEventListener('mouseup', function () { down = false; scroller.style.cursor = ''; });
-        scroller.addEventListener('mousemove', function (e) { if (!down) return; e.preventDefault(); scroller.scrollLeft = startLeft - (e.pageX - startX); });
-      }
+      // Drag-to-scroll panels (user flow, wireframes)
+      document.querySelectorAll('[data-drag-scroll]').forEach(function (el) {
+        var down = false, sx = 0, sl = 0;
+        el.addEventListener('mousedown', function (e) { down = true; sx = e.pageX; sl = el.scrollLeft; el.style.cursor = 'grabbing'; });
+        window.addEventListener('mouseup', function () { down = false; el.style.cursor = ''; });
+        el.addEventListener('mousemove', function (e) { if (!down) return; e.preventDefault(); el.scrollLeft = sl - (e.pageX - sx); });
+      });
+
+      // Full-size viewer: fit to screen, click to zoom, drag to pan, pinch on mobile
       var viewer = document.getElementById('flowViewer');
-      var openBtn = document.getElementById('flowOpen');
+      var vImg = document.getElementById('viewerImg');
+      var vTitle = document.getElementById('viewerTitle');
+      var vScroll = viewer.querySelector('.cs-viewer-scroll');
       var closeBtn = document.getElementById('flowClose');
-      function openViewer() { viewer.classList.add('is-open'); document.body.style.overflow = 'hidden'; closeBtn.focus(); }
-      function closeViewer() { viewer.classList.remove('is-open'); document.body.style.overflow = ''; openBtn.focus(); }
-      if (viewer && openBtn) {
-        openBtn.addEventListener('click', openViewer);
-        closeBtn.addEventListener('click', closeViewer);
-        viewer.addEventListener('click', function (e) { if (e.target === viewer || e.target.classList.contains('cs-viewer-scroll')) closeViewer(); });
-        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && viewer.classList.contains('is-open')) closeViewer(); });
+      var lastBtn = null, moved = false;
+      function openViewer(btn) {
+        lastBtn = btn;
+        vImg.src = btn.getAttribute('data-zoom-src');
+        vImg.alt = (btn.getAttribute('data-zoom-title') || '') + ', full size';
+        var touch = window.matchMedia('(pointer: coarse)').matches;
+        vTitle.textContent = (btn.getAttribute('data-zoom-title') || '') + (touch ? ' — pinch to zoom, swipe to move' : ' — click to zoom, drag to move');
+        viewer.classList.remove('is-zoomed');
+        viewer.classList.add('is-open'); document.body.style.overflow = 'hidden'; closeBtn.focus();
+      }
+      function closeViewer() { viewer.classList.remove('is-open', 'is-zoomed'); document.body.style.overflow = ''; if (lastBtn) lastBtn.focus(); }
+      document.querySelectorAll('[data-zoom-src]').forEach(function (btn) { btn.addEventListener('click', function () { openViewer(btn); }); });
+      closeBtn.addEventListener('click', closeViewer);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && viewer.classList.contains('is-open')) closeViewer(); });
+      vImg.addEventListener('click', function (e) {
+        if (moved) { moved = false; return; }
+        var r = vImg.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+        var zoom = viewer.classList.toggle('is-zoomed');
+        if (zoom) { vScroll.scrollLeft = fx * vImg.offsetWidth - vScroll.clientWidth / 2; vScroll.scrollTop = fy * vImg.offsetHeight - vScroll.clientHeight / 2; }
+      });
+      vScroll.addEventListener('click', function (e) { if (e.target === vScroll) closeViewer(); });
+      var vd = false, vx = 0, vy = 0, vl = 0, vt = 0;
+      vScroll.addEventListener('mousedown', function (e) { if (!viewer.classList.contains('is-zoomed')) return; vd = true; moved = false; vx = e.clientX; vy = e.clientY; vl = vScroll.scrollLeft; vt = vScroll.scrollTop; viewer.classList.add('is-dragging'); e.preventDefault(); });
+      window.addEventListener('mousemove', function (e) { if (!vd) return; if (Math.abs(e.clientX - vx) + Math.abs(e.clientY - vy) > 4) moved = true; vScroll.scrollLeft = vl - (e.clientX - vx); vScroll.scrollTop = vt - (e.clientY - vy); });
+      window.addEventListener('mouseup', function () { vd = false; viewer.classList.remove('is-dragging'); });
+
+      // Only animate the gradient headings while they're on screen
+      if ('IntersectionObserver' in window) {
+        var hio = new IntersectionObserver(function (entries) { entries.forEach(function (en) { en.target.classList.toggle('in-view', en.isIntersecting); }); });
+        document.querySelectorAll('.cs .project-body h2').forEach(function (h) { hio.observe(h); });
       }
     })();
   </script>
