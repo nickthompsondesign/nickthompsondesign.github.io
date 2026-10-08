@@ -716,7 +716,10 @@ body.index-page.loaded .showreel-slide { animation-play-state: running; }
 
 @keyframes slideFade {
   0%, 20%  { opacity: 1; filter: blur(0); transform: scale(1); }
-  25%, 95% { opacity: 0; filter: blur(15px); transform: scale(1.1); }
+  25%      { opacity: 0; filter: blur(15px); transform: scale(1.1); }
+  /* PERF: drop the blur while the slide is fully hidden, so the browser isn't blurring an invisible image */
+  26%, 94% { opacity: 0; filter: none; transform: scale(1.1); }
+  95%      { opacity: 0; filter: blur(15px); transform: scale(1.1); }
   100%     { opacity: 1; filter: blur(0); transform: scale(1); }
 }
 
@@ -1811,3 +1814,40 @@ body.sub-page.loaded header {
   transform: translate(-50%, -50%);
   z-index: 9998;
 }
+
+
+/* =============================================
+   PERFORMANCE OVERRIDES (Oct 2026)
+   Self-contained: delete this whole block to revert.
+   ============================================= */
+
+/* 1. Only blur what's visible. The blobs are 140–200% of the screen, so the
+      blur filter was processing a far larger area than anyone sees.
+      Clipping to the hero + a 100px bleed keeps the edges identical. */
+.hero-bg-wrapper .gradients-container,
+.gradient-bg .gradients-container {
+  position: absolute;
+  inset: -100px;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  contain: paint;
+}
+.hero-bg-wrapper .g1, .hero-bg-wrapper .g2, .hero-bg-wrapper .g3, .hero-bg-wrapper .g5, .hero-bg-wrapper .interactive,
+.gradient-bg .g1, .gradient-bg .g2, .gradient-bg .g3, .gradient-bg .g5, .gradient-bg .interactive {
+  translate: 100px 100px; /* offsets the -100px bleed so blobs sit exactly where they did */
+}
+
+/* 2. Pause the hero while it's scrolled out of view (class set in shared.js). */
+body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paused .g5 {
+  animation-play-state: paused !important;
+}
+
+/* 3. Respect users who've asked for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .g1, .g2, .g3, .g5, .showreel-slide, .brands-track { animation-play-state: paused !important; }
+  .interactive, .trail-dot { display: none !important; }
+}
+
+/* 4. Cursor elements are now positioned with transform (no layout per frame). */
+.cursor-dot, .cursor-outline, .trail-dot { will-change: transform; }
