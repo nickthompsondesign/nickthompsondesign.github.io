@@ -372,71 +372,60 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Mouse effect
-// PERF: positions with transform (no layout recalculation), stops the loop when
-// the trail has settled, and never starts on touch screens.
+// Mouse effect — Pony-style: a white dot with "difference" blending that
+// inverts whatever it passes over, grows on links and shows a label on project cards.
+// Desktop mouse only; touch screens keep the normal cursor.
 document.addEventListener('DOMContentLoaded', () => {
-  const dot = document.getElementById('cursorDot');
-  const outline = document.getElementById('cursorOutline');
-  if (!dot || !outline) return;
+  ['cursorDot', 'cursorOutline'].forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
 
-  if (window.matchMedia('(pointer: coarse)').matches) {
-    dot.style.display = 'none';
-    outline.style.display = 'none';
-    return;
-  }
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!fine || window.innerWidth < 1024) return;
 
-  let mouseX = 0, mouseY = 0;
-  let outlineX = 0, outlineY = 0;
-  let cursorRafId = null;
+  const wrap = document.createElement('div');
+  wrap.className = 'ntd-cursor';
+  wrap.setAttribute('aria-hidden', 'true');
+  wrap.innerHTML = '<span class="ntd-cursor-dot"><span class="ntd-cursor-label"></span></span>';
+  document.body.appendChild(wrap);
+  document.documentElement.classList.add('has-ntd-cursor');
 
-  const TRAIL_LENGTH = reduceMotion ? 0 : 10;
-  const trailDots = [];
-  for (let i = 0; i < TRAIL_LENGTH; i++) {
-    const el = document.createElement('div');
-    el.className = 'trail-dot';
-    el.style.opacity = (1 - i / TRAIL_LENGTH) * 0.5;
-    document.body.appendChild(el);
-    trailDots.push({ el, x: 0, y: 0, scale: 1 - i / TRAIL_LENGTH });
-  }
+  const dot = wrap.firstElementChild;
+  const label = dot.firstElementChild;
+  let x = -100, y = -100, cx = -100, cy = -100, raf = null, last = 0;
 
-  const place = (el, x, y, scale = 1) => {
-    el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
+  // Frame-rate independent smoothing: same feel at 60Hz, 120Hz or a busy 30fps
+  const render = (now) => {
+    const dt = last ? Math.min(now - last, 100) : 16.7;
+    last = now;
+    const ease = reduceMotion ? 1 : 1 - Math.pow(0.8, dt / 16.7);
+    cx += (x - cx) * ease;
+    cy += (y - cy) * ease;
+    dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+    if (Math.abs(x - cx) > 0.1 || Math.abs(y - cy) > 0.1) raf = requestAnimationFrame(render);
+    else { raf = null; last = 0; }
   };
 
-  function animate() {
-    outlineX += (mouseX - outlineX) * 0.18;
-    outlineY += (mouseY - outlineY) * 0.18;
-    place(outline, outlineX, outlineY);
-
-    let prevX = mouseX, prevY = mouseY;
-    let moving = Math.abs(mouseX - outlineX) > 0.3 || Math.abs(mouseY - outlineY) > 0.3;
-    trailDots.forEach((t) => {
-      t.x += (prevX - t.x) * 0.3;
-      t.y += (prevY - t.y) * 0.3;
-      place(t.el, t.x, t.y, t.scale);
-      if (Math.abs(prevX - t.x) > 0.3 || Math.abs(prevY - t.y) > 0.3) moving = true;
-      prevX = t.x;
-      prevY = t.y;
-    });
-
-    cursorRafId = moving ? requestAnimationFrame(animate) : null;
-  }
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    place(dot, mouseX, mouseY);
-    if (cursorRafId === null) cursorRafId = requestAnimationFrame(animate);
+  window.addEventListener('mousemove', e => {
+    x = e.clientX; y = e.clientY;
+    wrap.classList.add('is-active');
+    if (raf === null) raf = requestAnimationFrame(render);
   }, { passive: true });
+  document.addEventListener('mouseleave', () => wrap.classList.remove('is-active'));
+  window.addEventListener('mousedown', () => wrap.classList.add('is-down'));
+  window.addEventListener('mouseup', () => wrap.classList.remove('is-down'));
 
-  document.querySelectorAll('.hoverable').forEach((el) => {
-    el.addEventListener('mouseenter', () => outline.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => outline.classList.remove('hovering'));
+  // Grow over anything clickable; show a label over project cards
+  const LINKS = 'a, button, [role="button"], input[type="submit"], label, .ba input';
+  const CARDS = '.portfolio-card, .tile[data-src], [data-cursor]';
+  document.addEventListener('mouseover', e => {
+    const card = e.target.closest(CARDS);
+    const link = e.target.closest(LINKS);
+    const field = e.target.closest('input:not([type="submit"]):not([type="range"]), textarea');
+    wrap.classList.toggle('is-card', !!card);
+    wrap.classList.toggle('is-link', !card && !!link);
+    wrap.classList.toggle('is-hidden', !!field);
+    label.textContent = card ? (card.getAttribute('data-cursor') || 'View') : '';
   });
 });
-
-
 
 /* =============================================
    Nick Thompson Design — DESIGN UPGRADE (Oct 2026, rev 2)
