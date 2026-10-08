@@ -2069,3 +2069,34 @@ body.loaded .project-meta-light.is-tilting { transition: transform 0.12s ease-ou
   .project-meta-light { transform: none !important; }
   .card-glow { display: none; }
 }
+
+/* ---------------------------------------------
+   5. CURSOR — Pony-style difference dot (replaces the old dot + trail)
+   --------------------------------------------- */
+.cursor-dot, .cursor-outline, .trail-dot { display: none !important; }
+html.has-ntd-cursor, html.has-ntd-cursor body, html.has-ntd-cursor a, html.has-ntd-cursor button,
+html.has-ntd-cursor [role="button"], html.has-ntd-cursor label, html.has-ntd-cursor .portfolio-card,
+html.has-ntd-cursor .ba input, html.has-ntd-cursor .cs-flow-scroll { cursor: none; }
+.ntd-cursor { position: fixed; inset: 0; z-index: 100002; pointer-events: none; mix-blend-mode: difference; }
+.ntd-cursor-dot {
+  position: absolute; top: -11px; left: -11px;
+  width: 22px; height: 22px;
+  will-change: transform;
+}
+.ntd-cursor-dot::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%; background: #fff;
+  transform: scale(0); transition: transform 0.45s var(--ease-out);
+}
+.ntd-cursor.is-active .ntd-cursor-dot::before { transform: scale(1); }
+.ntd-cursor.is-link .ntd-cursor-dot::before { transform: scale(2.4); }
+.ntd-cursor.is-card .ntd-cursor-dot::before { transform: scale(4.4); }
+.ntd-cursor.is-down .ntd-cursor-dot::before { transform: scale(0.75); }
+.ntd-cursor.is-card.is-down .ntd-cursor-dot::before { transform: scale(4); }
+.ntd-cursor.is-hidden .ntd-cursor-dot::before { transform: scale(0); }
+.ntd-cursor-label {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6);
+  font-family: var(--font-heading); font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+  color: #000; white-space: nowrap; opacity: 0;
+  transition: opacity 0.25s, transform 0.45s var(--ease-out);
+}
+.ntd-cursor.is-card .ntd-cursor-label { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 0.08s; }
