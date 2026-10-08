@@ -21,9 +21,183 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
+  <meta name="robots" content="noindex, nofollow"><!-- DRAFT v2: remove before publishing -->
+  <style>
+    /* ===== Case study v2 — page-specific styles (shared.css untouched) ===== */
+    .cs {
+      --ink: #2e1e62;
+      --accent: #36109b;          /* deep indigo: 12.3:1 on white */
+      --accent-text: #6d28d9;     /* violet for small text on light: 7.1:1 on white */
+      --accent-on-dark: #ddd6fe;  /* lavender for small text on blue/dark: 6.2:1 on #0000ff */
+      --accent-bright: #a78bfa;   /* brand lavender: dark backgrounds, large or decorative use only */
+      --muted-fill: #e6e1f5; --muted-ink: rgba(0,0,0,0.55);
+    }
+    .cs .project-hero .section-label { color: var(--accent-on-dark); }
+
+    /* Hero: left-aligned, title first, then the headline result */
+    .cs .project-hero { text-align: left; align-items: stretch; height: auto; min-height: 480px; padding-top: 150px; }
+    .cs .project-hero .content-inner { text-align: left; }
+    .cs .project-hero h1 { white-space: normal; max-width: 1100px; font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; margin-bottom: 18px; }
+    .cs .project-hero .section-sub { margin: 0 0 22px 0; }
+    .cs-hero-result { margin-bottom: 44px !important; display: inline-flex; align-items: center; gap: 10px; padding: 0; background: none; border: 0; color: #fff; font-size: 17px; }
+    .cs-hero-result svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .cs-hero-result strong { font-weight: 700; }
+
+    /* Overview card: original Brief / Role + a details row */
+    .cs .project-meta-light { display: block; }
+    .cs-meta-top { display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; align-items: stretch; }
+    .cs-meta-top .meta-col h4 { font-size: 20px; margin: 0 0 12px 0; }
+    .cs-meta-top .meta-col p { font-size: 16px; line-height: 1.65; }
+    .cs-meta-top .meta-col--role { background: #eef0f4; border: 1px solid #d3d6e0; border-radius: 18px; padding: 24px 28px; margin: 0; }
+    .cs-meta-details { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 32px 0 0 0; padding: 28px 0 0 0; border-top: 1px solid rgba(0,0,0,0.08); }
+    .cs-meta-details dt { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px 0; }
+    .cs-meta-details dd { margin: 0; font-size: 15px; line-height: 1.45; color: var(--ink); }
+    .cs-meta-details dd a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(46,30,98,0.3); }
+    .cs-meta-details dd a:hover { border-color: var(--ink); }
+
+    /* Clear section titles */
+    .cs-section-head { max-width: 800px; margin: 0 auto 8px auto; }
+    .cs .project-body h2 { margin-top: 8px; color: #4c3593; }
+    .cs-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-text); }
+    .cs-eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; border-radius: 2px; }
+
+    /* Media frames */
+    .cs-media { margin: 48px auto 56px auto; max-width: 1200px; }
+    .cs-frame { border-radius: 20px; overflow: hidden; background: #0c0930; box-shadow: 0 30px 80px rgba(20,10,60,0.16), 0 2px 6px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); }
+    .cs-frame img, .cs-frame video { display: block; width: 100%; height: auto; }
+    .cs-caption { text-align: center; font-size: 14px; color: rgba(0,0,0,0.5); margin: 16px auto 0 auto; max-width: 720px; line-height: 1.6; }
+
+    /* User flow: fits on desktop, swipe on mobile, plus a full-screen viewer */
+    .cs-flow { position: relative; border-radius: 20px; border: 1px solid rgba(0,0,0,0.08); background: #fff; box-shadow: 0 20px 60px rgba(20,10,60,0.08); overflow: hidden; }
+    .cs-flow-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; cursor: grab; }
+    .cs-flow-scroll img { display: block; width: 100%; height: auto; -webkit-user-drag: none; user-select: none; pointer-events: none; }
+    .cs-flow-tools { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid rgba(0,0,0,0.06); background: #faf9ff; font-size: 13px; color: var(--muted-ink); }
+    .cs-flow-hint { display: none; align-items: center; gap: 8px; }
+    .cs-flow-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(54,16,155,0.25); background: #fff; color: var(--accent); font: 700 13px var(--font-body); cursor: pointer; }
+    .cs-flow-btn:hover { background: var(--accent); color: #fff; }
+    .cs-flow-btn svg { width: 14px; height: 14px; }
+    .cs-viewer { position: fixed; inset: 0; z-index: 100000; background: rgba(8,6,30,0.98); display: none; flex-direction: column; }
+    .cs-viewer.is-open { display: flex; }
+    .cs-viewer-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; color: rgba(255,255,255,0.8); font-size: 14px; }
+    .cs-viewer-close { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
+    .cs-viewer-scroll { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; padding: 0 18px 24px 18px; display: flex; }
+    .cs-viewer-scroll img { display: block; margin: auto; background: #fff; border-radius: 12px; max-width: 100%; max-height: 100%; width: auto; height: auto; cursor: zoom-in; -webkit-user-drag: none; user-select: none; }
+    .cs-viewer.is-zoomed .cs-viewer-scroll { cursor: grab; }
+    .cs-viewer.is-zoomed .cs-viewer-scroll img { max-width: none; max-height: none; cursor: grab; }
+    .cs-viewer.is-zoomed.is-dragging .cs-viewer-scroll img { cursor: grabbing; }
+    @media (max-width: 1023px) { .cs-viewer-scroll img { max-width: none; max-height: 82vh; } }
+
+    /* Before / after slider */
+    .ba { position: relative; width: 100%; aspect-ratio: 16 / 10; user-select: none; touch-action: pan-y; }
+    .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-after { clip-path: inset(0 0 0 var(--pos, 50%)); }
+    .ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; background: #fff; transform: translateX(-1px); pointer-events: none; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); }
+    .ba-handle::after { content: ''; position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; border-radius: 50%; transform: translate(-50%,-50%); background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e1e62' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 3 12 9 18'/%3E%3Cpolyline points='15 6 21 12 15 18'/%3E%3C/svg%3E") center/22px no-repeat; box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+    .ba-label { position: absolute; top: 16px; padding: 6px 12px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: rgba(12,9,48,0.78); color: #fff; pointer-events: none; }
+    .ba-label--before { left: 16px; } .ba-label--after { right: 16px; }
+    .ba input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; margin: 0; cursor: ew-resize; }
+    .ba input[type=range]:focus-visible + .ba-handle::after { outline: 3px solid #c0a7ff; outline-offset: 3px; }
+
+    /* Designed stat cards */
+    .cs-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px auto 24px auto; max-width: 1200px; }
+    .cs-stat { background: #f7f5ff; border: 1px solid rgba(54,16,155,0.08); border-radius: 20px; padding: 28px 24px 24px 24px; display: flex; flex-direction: column; gap: 18px; min-height: 260px; }
+    .cs-stat-viz { height: 76px; display: flex; align-items: center; }
+    .cs-stat-num { font-family: var(--font-heading); font-size: clamp(36px, 3.6vw, 48px); font-weight: 800; line-height: 1; letter-spacing: var(--tracking-tight); color: var(--accent); }
+    .cs-stat-label { font-size: 15px; line-height: 1.45; color: var(--ink); margin: 0; }
+    .cs-stat-sub { font-size: 12px; color: var(--muted-ink); margin: auto 0 0 0; line-height: 1.5; }
+    /* 1 in 5: people */
+    .cs-people { display: flex; gap: 6px; }
+    .cs-people svg { width: 34px; height: 52px; }
+    .cs-people .on { fill: var(--accent); }
+    .cs-people .off { fill: var(--muted-fill); }
+    /* 5x: bars */
+    .cs-bars { width: 100%; display: grid; gap: 10px; }
+    .cs-bar-row { display: grid; grid-template-columns: 54px 1fr; align-items: center; gap: 10px; font-size: 12px; color: var(--muted-ink); }
+    .cs-bar-track { height: 14px; border-radius: 4px; background: transparent; }
+    .cs-bar { height: 14px; border-radius: 4px; }
+    .cs-bar--before { width: 19%; background: #b9b1d6; }
+    .cs-bar--after { width: 100%; background: var(--accent); }
+    .cs-bar-val { font-weight: 700; color: var(--ink); }
+    /* 83%: donut */
+    .cs-donut { width: 76px; height: 76px; }
+    /* 70 rooms: dot grid */
+    .cs-dots { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; width: 100%; max-width: 190px; }
+    .cs-dots i { aspect-ratio: 1; border-radius: 3px; background: var(--accent); opacity: 0.85; }
+
+    /* Before/after comparison table */
+    .cs-compare { max-width: 800px; margin: 8px auto 12px auto; border-top: 1px solid rgba(0,0,0,0.1); }
+    .cs-compare-row { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.1); align-items: baseline; font-size: 15px; color: rgba(0,0,0,0.7); }
+    .cs-compare-row--head { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(46,30,98,0.55); padding: 12px 0; }
+    .cs-compare-row b { font-family: var(--font-heading); font-size: 20px; color: var(--ink); font-weight: 700; }
+    .cs-compare-note { max-width: 800px; margin: 0 auto 40px auto; font-size: 13px; color: rgba(0,0,0,0.45); line-height: 1.6; }
+
+    /* Statement quote — full quote, key line highlighted */
+    .cs-quote { position: relative; z-index: 10; background: linear-gradient(135deg, #0c0930 0%, #1b0f4a 55%, #0a0f35 100%); color: #fff; padding: clamp(72px, 9vw, 130px) 0; margin: 0; overflow: hidden; }
+    .cs-quote::before { content: ''; position: absolute; width: 520px; height: 520px; right: -120px; top: -160px; border-radius: 50%; background: rgba(220,38,170,0.28); filter: blur(110px); pointer-events: none; }
+    .cs-quote blockquote { position: relative; margin: 0 auto; max-width: 980px; font-family: var(--font-heading); font-size: clamp(19px, 2.1vw, 26px); line-height: 1.5; letter-spacing: -0.005em; font-weight: 300; color: rgba(255,255,255,0.7); }
+    .cs-quote blockquote::before { content: '\201C'; display: block; font-size: 3.4em; line-height: 0.5; color: #c0a7ff; margin-bottom: 18px; }
+    .cs-quote mark { background: linear-gradient(transparent 60%, rgba(167,139,250,0.45) 60%); color: #fff; font-weight: 600; padding: 0 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    .cs-quote figcaption { position: relative; margin: 36px auto 0 auto; max-width: 980px; display: flex; align-items: center; gap: 16px; font-size: 15px; color: rgba(255,255,255,0.7); }
+    .cs-quote figcaption img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: 0.9; }
+    .cs-quote figcaption strong { display: block; color: #fff; font-weight: 700; }
+
+    /* More work */
+    .cs-more { position: relative; z-index: 10; background: #fff; padding: 40px 0 110px 0; --notch-bg: #fff; }
+    .cs-more-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; flex-wrap: wrap; }
+    .cs-more-head h2 { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 44px); color: var(--ink); margin: 0; letter-spacing: var(--tracking-tight); }
+    .cs-more-head a { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; }
+    .cs-more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cs-more-grid .portfolio-card { height: 320px; grid-column: auto !important; grid-row: auto !important; }
+
+
+    @media (max-width: 1100px) {
+      .cs-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .cs-meta-top { grid-template-columns: 1fr; gap: 24px; }
+      .cs-meta-top .meta-col--role { margin: 0; padding: 22px 22px; }
+      .cs-meta-details { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 1023px) {
+      .cs-flow-scroll img { width: 900px; max-width: none; }
+      .cs-flow-hint { display: inline-flex; }
+      .cs-flow::after { content: ''; position: absolute; top: 0; right: 0; bottom: 49px; width: 48px; background: linear-gradient(to right, rgba(255,255,255,0), #fff); pointer-events: none; }
+    }
+    @media (max-width: 700px) {
+      .cs-media { margin: 32px auto 40px auto; }
+      .cs-frame, .cs-flow { border-radius: 14px; }
+      .ba-label { top: 10px; font-size: 10px; padding: 5px 9px; }
+      .ba-label--before { left: 10px; } .ba-label--after { right: 10px; }
+      .cs-stats { grid-template-columns: 1fr; }
+      .cs-stat { min-height: 0; }
+      .cs-compare-row { grid-template-columns: 1.3fr 1fr 1fr; font-size: 13px; }
+      .cs-compare-row b { font-size: 17px; }
+      .cs-more { padding: 56px 0 72px 0; }
+      .cs-more-grid { grid-template-columns: 1fr; }
+      .cs-more-grid .portfolio-card { height: 240px; }
+      .cs-hero-result { font-size: 15px; }
+    }
+
+    /* Stat cards without a graphic */
+    .cs-stats--simple .cs-stat { min-height: 0; gap: 12px; }
+    .cs-stats--2 { grid-template-columns: repeat(2, 1fr); max-width: 800px; }
+    .cs-stats--3 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 700px) { .cs-stats--2, .cs-stats--3 { grid-template-columns: 1fr; } }
+    /* Testimonials as purple statement cards */
+    .cs .inline-testimonial { position: relative; overflow: hidden; background: linear-gradient(135deg, #0c0930 0%, #1b0f4a 55%, #0a0f35 100%); border: 0; border-radius: 24px; padding: clamp(32px, 5vw, 56px); margin: 40px auto; max-width: 1200px; box-sizing: border-box; }
+    .cs .inline-testimonial::before { content: ''; position: absolute; width: 420px; height: 420px; right: -120px; top: -160px; border-radius: 50%; background: rgba(220,38,170,0.28); filter: blur(100px); pointer-events: none; }
+    .cs .inline-testimonial-quote { position: relative; font-family: var(--font-heading); font-size: clamp(18px, 1.9vw, 24px); line-height: 1.5; font-weight: 300; color: rgba(255,255,255,0.72); font-style: normal; margin: 0; }
+    .cs .inline-testimonial-quote::before { content: '\201C'; display: block; font-size: 3.2em; line-height: 0.5; color: #c0a7ff; margin-bottom: 16px; }
+    .cs .inline-testimonial-quote mark { background: linear-gradient(transparent 60%, rgba(167,139,250,0.45) 60%); color: #fff; font-weight: 600; padding: 0 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    .cs .inline-testimonial-author { position: relative; margin-top: 28px; color: rgba(255,255,255,0.7); }
+    .cs .inline-testimonial-author strong { color: #fff; }
+    .cs .inline-testimonial-author span { color: rgba(255,255,255,0.7); }
+    .cs .inline-testimonial-author img { filter: brightness(0) invert(1); opacity: 0.9; }
+    .cs .project-body h3 { color: #4c3593; }
+  </style>
 
   </head>
-<body class="sub-page">
+<body class="sub-page cs">
 <div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
 
   <div class="hero-bg-wrapper">
@@ -59,6 +233,12 @@
       <span class="section-label scroll-reveal sr-d1">Web · Digital</span>
       <h1 class="scroll-reveal sr-d2">Asda Bespoke Web Pages</h1>
       <p class="section-sub scroll-reveal sr-d3">Bespoke campaign pages and branded zones for Asda.com — from experiential hubs with live competitions to fully custom supplier brand pages.</p>
+      <div class="scroll-reveal sr-d3">
+        <span class="cs-hero-result">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c0a7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
+          <span><strong>1.1M+ competition entries</strong> on the Lunar New Year hub</span>
+        </span>
+      </div>
     </div>
   </main>
 
@@ -66,21 +246,24 @@
 
 <div class="content-inner">
 
-  <div class="project-meta-light scroll-reveal sr-d3">
-    <div class="meta-col">
-      <h4>Overview</h4>
-      <p>Bespoke campaign pages and branded zones for Asda.com — working closely with major FMCG suppliers across Experiential Hubs and Branded Zones, from concept through to front-end build.</p>
-    </div>
-    <div class="meta-col">
-      <h4>My Role</h4>
-      <p>End-to-end: concept development, UX flows, wireframing, UI design, front-end build, supplier collaboration, stakeholder presentations, and design consultancy.</p>
-    </div>
-  </div>
+      <div class="project-meta-light scroll-reveal sr-d3">
+        <div class="cs-meta-top">
+          <div class="meta-col">
+            <h4>Overview</h4>
+            <p>Bespoke campaign pages and branded zones for Asda.com — working closely with major FMCG suppliers across Experiential Hubs and Branded Zones, from concept through to front-end build.</p>
+          </div>
+          <div class="meta-col meta-col--role">
+            <h4>My Role</h4>
+            <p>End-to-end: concept development, UX flows, wireframing, UI design, front-end build, supplier collaboration, stakeholder presentations, and design consultancy.</p>
+          </div>
+        </div>
+        <dl class="cs-meta-details"><div><dt>Client</dt><dd>Asda.com</dd></div><div><dt>Partners</dt><dd>Major FMCG suppliers</dd></div><div><dt>Formats</dt><dd>Experiential Hubs &amp; Branded Zones</dd></div><div><dt>Scope</dt><dd>Concept to front-end build</dd></div></dl>
+      </div>
 
   <!-- ── EXPERIENTIAL HUBS ── -->
   <article class="project-body">
+    <span class="cs-eyebrow scroll-reveal">UX Strategy · Campaign Design · Product Thinking</span>
     <h2 class="scroll-reveal">Experiential Hubs</h2>
-    <div class="project-tag scroll-reveal sr-d1">UX Strategy · Campaign Design · Product Thinking</div>
 
     <h3 class="scroll-reveal">Problem Statement</h3>
     <p class="scroll-reveal sr-d2">Asda's existing Branded Zones were highly effective but expensive, meaning suppliers typically only bought in when they had a specific campaign to promote. I identified a gap in the product offering and saw an opportunity to create something more accessible: a multi-supplier, event-led page that Asda would own editorially.</p>
@@ -210,13 +393,21 @@
     <p class="scroll-reveal sr-d1">The Coronation page proved the format—transforming a one-off pitch into a highly engaging commercial engine. These hubs not only boosted profits by opening up a new revenue stream, but they also became a regular, standalone offering for major FMCG suppliers.</p>
   </article>
 
-  <div class="stat-row scroll-reveal">
-    <div class="stat-item"><span class="stat-num">1.1M+</span><span class="stat-label">Competition entries (Lunar NY)</span></div>
-    <div class="stat-item"><span class="stat-num">1M</span><span class="stat-label">Clicks from Rewards App</span></div>
+  <div class="cs-stats cs-stats--simple cs-stats--2">
+    <div class="cs-stat scroll-reveal sr-d1">
+      <div class="cs-stat-viz"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#36109b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+      <div class="cs-stat-num">1.1M+</div>
+      <p class="cs-stat-label">competition entries on the Lunar New Year hub</p>
+    </div>
+    <div class="cs-stat scroll-reveal sr-d2">
+      <div class="cs-stat-viz"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#36109b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+      <div class="cs-stat-num">1M</div>
+      <p class="cs-stat-label">clicks from the Asda Rewards app</p>
+    </div>
   </div>
 
   <div class="inline-testimonial scroll-reveal sr-d2">
-    <p class="inline-testimonial-quote">"Just wanted to say that I (and the team) really love this Lunar New Year activation that is live and we are really pleased to be a part of it! It looks amazing &amp; we would be eager to take part in future activations like this!"</p>
+    <p class="inline-testimonial-quote">"Just wanted to say that I (and the team) really love this Lunar New Year activation that is live and we are really pleased to be a part of it! <mark>It looks amazing &amp; we would be eager to take part in future activations like this!</mark>"</p>
     <div class="inline-testimonial-author">
       <img src="/img/brand-logos/mars.png" alt="Mars">
       <div>
@@ -230,8 +421,8 @@
 
   <!-- ── BRANDED ZONES ── -->
   <article class="project-body">
+    <span class="cs-eyebrow scroll-reveal">Web · Branding · Design Consultancy</span>
     <h2 class="scroll-reveal">Branded Zones</h2>
-    <div class="project-tag scroll-reveal sr-d1">Web · Branding · Design Consultancy</div>
     <p class="scroll-reveal sr-d2">Asda offers two tiers of bespoke pages to suppliers: Simple and Complex Branded Zones. When suppliers had limited design resources, I created fully bespoke designs on their behalf — collaborating closely to understand each brand's identity, goals, and audience.</p>
   </article>
 
@@ -319,7 +510,7 @@
   <br>
   
   <div class="inline-testimonial scroll-reveal sr-d2">
-    <p class="inline-testimonial-quote">"Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone. Nick was creative, adaptive, agile and knowledgeable of what could be possible, which allowed us to deliver an exceptional brand page — industry leading."</p>
+    <p class="inline-testimonial-quote">"Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone. Nick was creative, adaptive, agile and knowledgeable of what could be possible, <mark>which allowed us to deliver an exceptional brand page — industry leading.</mark>"</p>
     <div class="inline-testimonial-author">
       <img src="/img/thumbs/cadbury-logo.png" alt="Cadbury">
       <div>
@@ -330,7 +521,7 @@
   </div>
 
   <div class="inline-testimonial scroll-reveal sr-d2" style="margin-top:24px;">
-    <p class="inline-testimonial-quote">"Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly. Nick delivered an incredible digital activation, and I hope to work with him again soon."</p>
+    <p class="inline-testimonial-quote">"Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly. <mark>Nick delivered an incredible digital activation</mark>, and I hope to work with him again soon."</p>
     <div class="inline-testimonial-author">
       <img src="/img/thumbs/lego-logo.png" alt="LEGO">
       <div>
@@ -364,15 +555,45 @@
     </button>
   </div>
 
-  <section class="next-project">
+  <!-- MORE WORK -->
+  <section class="cs-more">
     <div class="content-inner">
-      <span class="section-label scroll-reveal">Up Next</span>
-      <a href="digital-design-logos">
-        <h2 class="scroll-reveal sr-d1">Digital Design, Logos & Animations</h2>
-        <div class="btn-solid scroll-reveal sr-d2">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-      </a>
+      <div class="cs-more-head">
+        <h2 class="scroll-reveal">More work</h2>
+        <a href="/#portfolio" class="scroll-reveal">View all projects →</a>
+      </div>
+      <div class="cs-more-grid">
+        <a href="lha-london-ux" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/UX%20design/lha-ux.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Design</span><h3>LHA London UX</h3></div></a>
+        <a href="asda-design-guidelines" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-guidelines.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Strategy</span><h3>Asda Design Guidelines</h3></div></a>
+        <a href="website-design" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Web-Design.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · UX</span><h3>Website Design &amp; Build</h3></div></a>
+      </div>
     </div>
   </section>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact" style="content-visibility: visible;">
+    <div class="content-inner">
+      <div class="section-label scroll-reveal">Get in touch</div>
+      <h2 class="section-heading scroll-reveal sr-d1">Contact me</h2>
+      <p class="section-sub">For freelance projects or employment opportunities, please get in touch.</p>
+      <div class="contact-grid">
+        <div class="contact-details">
+          <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg><div><strong>Location</strong><span>UK / Remote</span></div></div>
+          <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><strong>Email</strong><a href="mailto:nickthompson4@hotmail.com">nickthompson4@hotmail.com</a></div></div>
+          <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div><strong>Phone</strong><a href="tel:+447971727886">+44 7971 727886</a></div></div>
+        </div>
+        <form class="contact-form" target="_blank" action="https://formsubmit.co/181d1785bd52831baeaf8526716d033c" method="POST">
+          <input type="hidden" name="_subject" value="Enquiry from Asda Bespoke Web Pages page">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Full Name" required aria-label="Full name">
+            <input type="email" name="email" placeholder="Email Address" required aria-label="Email address">
+          </div>
+          <textarea name="message" placeholder="Your Message" rows="6" required aria-label="Your message"></textarea>
+          <button type="submit" class="btn-solid">Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="content-inner footer-inner">
