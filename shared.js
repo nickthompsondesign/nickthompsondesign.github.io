@@ -372,70 +372,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Mouse effect — Pony-style: a white dot with "difference" blending that
-// inverts whatever it passes over, grows on links and shows a label on project cards.
-// Desktop mouse only; touch screens keep the normal cursor.
+// Old custom cursor elements are still in the HTML of each page — remove them
+// so the normal system cursor is used everywhere.
 document.addEventListener('DOMContentLoaded', () => {
   ['cursorDot', 'cursorOutline'].forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
-
-  // Switch on the first time a real mouse moves (works on any window width,
-  // and on touch laptops when a mouse/trackpad is used). Touch never triggers it.
-  const start = (e) => {
-    if (e.pointerType && e.pointerType !== 'mouse') return;
-    window.removeEventListener('pointermove', start);
-    initCursor(e.clientX, e.clientY);
-  };
-  window.addEventListener('pointermove', start, { passive: true });
 });
-
-function initCursor(startX, startY) {
-  const wrap = document.createElement('div');
-  wrap.className = 'ntd-cursor';
-  wrap.setAttribute('aria-hidden', 'true');
-  wrap.innerHTML = '<span class="ntd-cursor-dot"><span class="ntd-cursor-label"></span></span>';
-  document.body.appendChild(wrap);
-  document.documentElement.classList.add('has-ntd-cursor');
-
-  const dot = wrap.firstElementChild;
-  const label = dot.firstElementChild;
-  let x = startX, y = startY, cx = startX, cy = startY, raf = null, last = 0;
-  wrap.classList.add('is-active');
-  dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-
-  // Frame-rate independent smoothing: same feel at 60Hz, 120Hz or a busy 30fps
-  const render = (now) => {
-    const dt = last ? Math.min(now - last, 100) : 16.7;
-    last = now;
-    const ease = reduceMotion ? 1 : 1 - Math.pow(0.8, dt / 16.7);
-    cx += (x - cx) * ease;
-    cy += (y - cy) * ease;
-    dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-    if (Math.abs(x - cx) > 0.1 || Math.abs(y - cy) > 0.1) raf = requestAnimationFrame(render);
-    else { raf = null; last = 0; }
-  };
-
-  window.addEventListener('mousemove', e => {
-    x = e.clientX; y = e.clientY;
-    wrap.classList.add('is-active');
-    if (raf === null) raf = requestAnimationFrame(render);
-  }, { passive: true });
-  document.addEventListener('mouseleave', () => wrap.classList.remove('is-active'));
-  window.addEventListener('mousedown', () => wrap.classList.add('is-down'));
-  window.addEventListener('mouseup', () => wrap.classList.remove('is-down'));
-
-  // Grow over anything clickable; show a label over project cards
-  const LINKS = 'a, button, [role="button"], input[type="submit"], label, .ba input';
-  const CARDS = '.portfolio-card, .tile[data-src], [data-cursor]';
-  document.addEventListener('mouseover', e => {
-    const card = e.target.closest(CARDS);
-    const link = e.target.closest(LINKS);
-    const field = e.target.closest('input:not([type="submit"]):not([type="range"]), textarea');
-    wrap.classList.toggle('is-card', !!card);
-    wrap.classList.toggle('is-link', !card && !!link);
-    wrap.classList.toggle('is-hidden', !!field);
-    label.textContent = card ? (card.getAttribute('data-cursor') || 'View') : '';
-  });
-}
 
 /* =============================================
    Nick Thompson Design — DESIGN UPGRADE (Oct 2026, rev 2)
@@ -480,28 +421,4 @@ function initCursor(startX, startY) {
     document.body.appendChild(bar);
   }
 
-  // 3. Case study overview card: hero-style tilt + a sheen that follows the cursor
-  (function () {
-    var card = document.querySelector('.project-meta-light');
-    if (!card || !finePointer || reduceMotion) return;
-    var raf = null;
-    card.addEventListener('mousemove', function (e) {
-      var r = card.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(function () {
-        card.classList.add('is-tilting');
-        card.style.setProperty('--ry', ((x - 0.5) * 5).toFixed(2) + 'deg');
-        card.style.setProperty('--rx', ((0.5 - y) * 5).toFixed(2) + 'deg');
-        card.style.setProperty('--sx', (x * 100).toFixed(1) + '%');
-        card.style.setProperty('--sy', (y * 100).toFixed(1) + '%');
-      });
-    }, { passive: true });
-    card.addEventListener('mouseleave', function () {
-      if (raf) cancelAnimationFrame(raf);
-      card.classList.remove('is-tilting');
-      ['--rx', '--ry', '--sx', '--sy'].forEach(function (p) { card.style.removeProperty(p); });
-    });
-  })();
 })();
-
