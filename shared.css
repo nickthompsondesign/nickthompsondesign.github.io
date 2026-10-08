@@ -2060,3 +2060,23 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 /* Old custom cursor elements: hidden (the system cursor is used) */
 .cursor-dot, .cursor-outline, .trail-dot { display: none !important; }
 
+
+/* ---------------------------------------------
+   6. CONTACT — form sits alongside the intro text
+   The heading, intro and details stack on the left; the form fills the right
+   column from the top. (.contact-grid's children join the outer grid.)
+   --------------------------------------------- */
+@media (min-width: 901px) {
+  .contact-section .content-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    column-gap: 80px;
+    align-items: start;
+  }
+  .contact-section .content-inner > .section-label,
+  .contact-section .content-inner > .section-heading,
+  .contact-section .content-inner > .section-sub { grid-column: 1; }
+  .contact-section .contact-grid { display: contents; }
+  .contact-section .contact-details { grid-column: 1; margin-top: 36px; }
+  .contact-section .contact-form { grid-column: 2; grid-row: 1 / span 4; position: relative; z-index: 1; }
+}
