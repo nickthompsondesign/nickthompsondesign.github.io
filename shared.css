@@ -2043,62 +2043,20 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 }
 
 /* ---------------------------------------------
-   4. CASE STUDY OVERVIEW CARD — silver + border + tilt
-   (tilt + sheen position driven by shared.js)
+   4. CASE STUDY OVERVIEW CARD — soft silver + border
    --------------------------------------------- */
 .project-meta-light {
-  background:
-    radial-gradient(520px circle at var(--sx, 25%) var(--sy, 0%), rgba(255,255,255,0.9), rgba(255,255,255,0) 60%),
-    linear-gradient(125deg, #e3e5ec 0%, #f8f9fb 16%, #d2d5df 36%, #f2f3f7 52%, #c9ccd8 72%, #eceef3 88%, #dcdfe7 100%) !important;
-  border: 1.5px solid #b4b8c8 !important;
-  box-shadow:
-    0 24px 60px rgba(20,16,60,0.16),
-    0 2px 6px rgba(20,16,60,0.06),
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    inset 0 -1px 0 rgba(120,125,150,0.25) !important;
-  will-change: transform;
+  background: linear-gradient(135deg, #f4f5f8 0%, #eceef3 50%, #f5f6f9 100%) !important;
+  border: 1.5px solid #c9ccd8 !important;
+  box-shadow: 0 24px 60px rgba(20,16,60,0.12), 0 2px 6px rgba(20,16,60,0.05), inset 0 1px 0 rgba(255,255,255,0.9) !important;
 }
-body.loaded .project-meta-light.visible,
-body.loaded .project-meta-light:not(.scroll-reveal) {
-  transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform 0.6s var(--ease-out), opacity 1.6s var(--ease-out), filter 1.6s var(--ease-out);
-}
-body.loaded .project-meta-light.is-tilting { transition: transform 0.12s ease-out; }
 .project-meta-light .meta-col h4 { color: var(--brand-ink); }
 .project-meta-light .meta-col p { color: rgba(20,16,50,0.72); }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-meta-light { transform: none !important; }
   .card-glow { display: none; }
 }
 
-/* ---------------------------------------------
-   5. CURSOR — Pony-style difference dot (replaces the old dot + trail)
-   --------------------------------------------- */
+/* Old custom cursor elements: hidden (the system cursor is used) */
 .cursor-dot, .cursor-outline, .trail-dot { display: none !important; }
-html.has-ntd-cursor, html.has-ntd-cursor body, html.has-ntd-cursor a, html.has-ntd-cursor button,
-html.has-ntd-cursor [role="button"], html.has-ntd-cursor label, html.has-ntd-cursor .portfolio-card,
-html.has-ntd-cursor .ba input, html.has-ntd-cursor .cs-flow-scroll { cursor: none; }
-.ntd-cursor { position: fixed; inset: 0; z-index: 100002; pointer-events: none; mix-blend-mode: difference; }
-.ntd-cursor-dot {
-  position: absolute; top: -11px; left: -11px;
-  width: 22px; height: 22px;
-  will-change: transform;
-}
-.ntd-cursor-dot::before {
-  content: ''; position: absolute; inset: 0; border-radius: 50%; background: #fff;
-  transform: scale(0); transition: transform 0.45s var(--ease-out);
-}
-.ntd-cursor.is-active .ntd-cursor-dot::before { transform: scale(1); }
-.ntd-cursor.is-link .ntd-cursor-dot::before { transform: scale(2.4); }
-.ntd-cursor.is-card .ntd-cursor-dot::before { transform: scale(4.4); }
-.ntd-cursor.is-down .ntd-cursor-dot::before { transform: scale(0.75); }
-.ntd-cursor.is-card.is-down .ntd-cursor-dot::before { transform: scale(4); }
-.ntd-cursor.is-hidden .ntd-cursor-dot::before { transform: scale(0); }
-.ntd-cursor-label {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6);
-  font-family: var(--font-heading); font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
-  color: #000; white-space: nowrap; opacity: 0;
-  transition: opacity 0.25s, transform 0.45s var(--ease-out);
-}
-.ntd-cursor.is-card .ntd-cursor-label { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 0.08s; }
+
