@@ -1852,19 +1852,13 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
 /* 4. Cursor elements are now positioned with transform (no layout per frame). */
 .cursor-dot, .cursor-outline, .trail-dot { will-change: transform; }
 
-
-
-
-
-
-
-
 /* =============================================
-   Nick Thompson Design — design-upgrade.css (Oct 2026)
-   Load AFTER shared.css. Remove the <link> to revert everything in this file.
+   Nick Thompson Design — DESIGN UPGRADE (Oct 2026, rev 2)
+   Everything from here to the end of the file is the design upgrade.
    1. Pill buttons with an arrow circle
-   2. Portfolio cards with a notched corner arrow
-   3. Hover & scroll details
+   2. Portfolio cards with a curved notch + arrow
+   3. Hover details
+   4. Case study overview card (silver + tilt)
    ============================================= */
 
 :root {
@@ -1876,9 +1870,10 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
 
 /* ---------------------------------------------
    1. BUTTONS — pill + arrow circle
+   Hover matches the cards: circle darkens, arrow turns to point right.
+   No lift, no shadow, no movement.
    --------------------------------------------- */
 .btn, .btn-solid, .btn-outline, .btn-cv {
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -1886,12 +1881,11 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
   padding: 5px 5px 5px 26px !important;
   border-radius: 999px;
   box-sizing: border-box;
-  isolation: isolate;
-  overflow: hidden;
-  transition: background-position 0.6s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.3s, color 0.3s, transform 0.35s var(--ease-out);
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-/* The circle: the existing arrow SVG becomes a ringed disc */
 .btn svg, .btn-solid svg, .btn-outline svg, .btn-cv svg {
   width: 40px !important;
   height: 40px !important;
@@ -1903,68 +1897,50 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
   color: var(--brand);
   box-shadow: inset 0 0 0 2px var(--brand);
   transform: none !important;
-  overflow: hidden;
-  transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), rotate 0.5s var(--ease-out);
 }
-.btn svg > *, .btn-solid svg > *, .btn-outline svg > *, .btn-cv svg > * { transform-box: view-box; }
-
-/* Arrow flies out top-right and comes back in from bottom-left */
-@keyframes ntdArrowLoop {
-  0%   { transform: translate(0, 0); opacity: 1; }
-  45%  { transform: translate(10px, -10px); opacity: 0; }
-  46%  { transform: translate(-10px, 10px); opacity: 0; }
-  100% { transform: translate(0, 0); opacity: 1; }
-}
-.btn:hover svg > *, .btn-solid:hover svg > *, .btn-outline:hover svg > *, .btn-cv:hover svg > *,
-.btn:focus-visible svg > *, .btn-solid:focus-visible svg > *, .btn-outline:focus-visible svg > *, .btn-cv:focus-visible svg > * {
-  animation: ntdArrowLoop 0.55s var(--ease-out);
+.btn:hover svg, .btn-solid:hover svg, .btn-outline:hover svg, .btn-cv:hover svg,
+.btn:focus-visible svg, .btn-solid:focus-visible svg, .btn-outline:focus-visible svg, .btn-cv:focus-visible svg {
+  rotate: 45deg;
 }
 
-/* Primary: deep gradient pill with a soft sheen + white outline (the "Book Now" look) */
+/* Primary: deep gradient pill with a white outline (the "Book Now" look) */
 .btn-solid,
 .about-section .btn-solid,
 .contact-form .btn-solid {
-  background: linear-gradient(100deg, var(--brand-deep) 0%, var(--brand) 45%, #6a4fc4 50%, var(--brand) 55%, var(--brand-deep) 100%);
-  background-size: 260% 100%;
-  background-position: 100% 0;
+  background: linear-gradient(100deg, var(--brand-deep) 0%, var(--brand) 50%, var(--brand-deep) 100%);
   color: #fff;
   border: 2px solid #fff;
-  box-shadow: 0 10px 30px rgba(30,20,80,0.28);
   backdrop-filter: none;
 }
 .btn-solid:hover,
 .about-section .btn-solid:hover,
 .contact-form .btn-solid:hover {
-  background: linear-gradient(100deg, var(--brand-deep) 0%, var(--brand) 45%, #6a4fc4 50%, var(--brand) 55%, var(--brand-deep) 100%);
-  background-size: 260% 100%;
-  background-position: 0% 0;
+  background: linear-gradient(100deg, var(--brand-deep) 0%, var(--brand) 50%, var(--brand-deep) 100%);
   border-color: #fff;
-  box-shadow: 0 14px 40px rgba(76,53,147,0.4);
-  transform: translateY(-2px);
 }
-.btn-solid:hover svg { background: #fff; }
+.btn-solid:hover svg { background: #ede9f8; }
 
 /* Secondary: outline pill, filled circle */
-.btn-outline {
-  background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.45);
-  color: #fff;
-}
+.btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.45); color: #fff; }
 .btn-outline svg { background: var(--brand); color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9); }
-.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+.btn-outline:hover { border-color: #fff; }
+.btn-outline:hover svg { background: var(--brand-deep); }
 .about-section .btn-outline { border-color: var(--brand); color: var(--brand); }
 .about-section .btn-outline svg { box-shadow: inset 0 0 0 2px var(--brand); }
-.about-section .btn-outline:hover { background: #f3f0fb; }
+.about-section .btn-outline:hover { background: transparent; }
 
 /* Hero: glass pill + white circle */
-.btn-view { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.4); color: #fff; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-.btn-view:hover { background: rgba(255,255,255,0.18); border-color: #fff; transform: translateY(-2px); }
+.btn-view { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.4); color: #fff; }
+.btn-view:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
 .btn-view svg { box-shadow: none; }
+.btn-view:hover svg { background: #ede9f8; }
 
 /* Hero: white pill + brand circle */
 .btn-touch { background: #fff; border: 1.5px solid #fff; color: var(--brand-ink); }
-.btn-touch svg { background: linear-gradient(135deg, var(--brand-deep), var(--brand)); color: #fff; box-shadow: none; }
-.btn-touch:hover { background: #f3f0fb; transform: translateY(-2px); }
+.btn-touch:hover { background: #fff; }
+.btn-touch svg { background: var(--brand); color: #fff; box-shadow: none; }
+.btn-touch:hover svg { background: var(--brand-deep); }
 
 /* Header CV button: compact */
 .btn-cv { min-height: 42px; padding: 4px 4px 4px 20px !important; gap: 12px; }
@@ -1973,57 +1949,64 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 .btn-cv-mobile { padding: 6px 6px 6px 32px !important; }
 .btn-cv-mobile svg { width: 44px !important; height: 44px !important; }
 
-/* Contact form submit sits flush */
 .contact-form .btn-solid { padding: 5px 5px 5px 28px !important; }
 
 /* ---------------------------------------------
-   2. PORTFOLIO CARDS — notched corner arrow
-   (the notch element is injected by design-upgrade.js)
+   2. PORTFOLIO CARDS — curved notch + arrow
+   The image layers sit in .card-mask (added by JS), which has the notch
+   cut out of it with a mask, so there's no square edge or border to give
+   the shape away. The arrow button sits in the cut-out.
    --------------------------------------------- */
-.portfolio-section { --notch-bg: #f4f5f8; }
-.portfolio-card { border-radius: 22px; }
+.portfolio-card {
+  --notch: 118px;
+  border: 0 !important;
+  border-radius: 22px;
+  background: transparent !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+  transition: transform 0.45s var(--ease-out), filter 0.45s var(--ease-out);
+}
+.portfolio-card:hover {
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 18px 30px rgba(46,30,98,0.22));
+}
+.card-mask {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px 22px 0 22px; /* bottom-right corner is inside the notch */
+  overflow: hidden;
+  background: #2e1e62;
+  -webkit-mask:
+    linear-gradient(#000 0 0),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--notch) + 2px) calc(var(--notch) + 2px) no-repeat;
+  -webkit-mask-composite: xor;
+          mask:
+    linear-gradient(#000 0 0),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--notch) + 2px) calc(var(--notch) + 2px) no-repeat;
+          mask-composite: exclude;
+}
 .portfolio-card-arrow { display: none !important; }
-.portfolio-card-inner { padding-right: 92px !important; padding-bottom: 22px !important; }
-.portfolio-card:hover .portfolio-card-inner { padding-bottom: 28px !important; }
-
-.card-notch {
-  position: absolute;
-  right: -2px;
-  bottom: -2px;
-  width: 78px;
-  height: 78px;
-  background: var(--notch-bg, #fff);
-  border-top-left-radius: 28px;
-  z-index: 4;
-  pointer-events: none;
-}
-.card-notch::before,
-.card-notch::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  background: radial-gradient(circle at 0 0, transparent 23.5px, var(--notch-bg, #fff) 24px);
-}
-.card-notch::before { right: 0; top: -24px; }
-.card-notch::after  { left: -24px; bottom: 0; }
+.portfolio-card-inner { padding-right: calc(var(--notch) - 14px) !important; padding-bottom: 22px !important; }
+.portfolio-card:hover .portfolio-card-inner { padding-bottom: 26px !important; }
 
 .card-notch-btn {
   position: absolute;
-  right: 8px;
-  bottom: 8px;
-  width: 60px;
-  height: 60px;
+  right: calc(var(--notch) * 0.11);
+  bottom: calc(var(--notch) * 0.11);
+  width: calc(var(--notch) * 0.525);
+  height: calc(var(--notch) * 0.525);
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--brand);
   color: #fff;
-  transition: background 0.4s var(--ease-out), color 0.4s var(--ease-out), transform 0.5s var(--ease-out);
+  z-index: 5;
+  transition: background-color 0.4s var(--ease-out);
 }
-.card-notch-btn svg { width: 22px; height: 22px; transition: transform 0.5s var(--ease-out); }
-.portfolio-card:hover .card-notch-btn { background: var(--brand-deep); transform: scale(1.04); }
-.portfolio-card:hover .card-notch-btn svg { transform: rotate(45deg); }
+.card-notch-btn svg { width: 38%; height: 38%; transition: rotate 0.5s var(--ease-out); }
+.portfolio-card:hover .card-notch-btn { background: var(--brand-deep); }
+.portfolio-card:hover .card-notch-btn svg { rotate: 45deg; }
 
 /* Cursor spotlight on cards */
 .card-glow {
@@ -2034,30 +2017,21 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 .portfolio-card:hover .card-glow { opacity: 1; }
 
 @media (max-width: 600px) {
-  .card-notch { width: 66px; height: 66px; border-top-left-radius: 24px; }
-  .card-notch-btn { width: 50px; height: 50px; right: 7px; bottom: 7px; }
-  .portfolio-card-inner { padding-right: 76px !important; }
+  .portfolio-card { --notch: 100px; }
 }
 
 /* ---------------------------------------------
-   3. HOVER & SCROLL DETAILS
+   3. HOVER DETAILS
    --------------------------------------------- */
-
-/* Section headings rise out of a mask instead of blurring in */
-.section-heading.scroll-reveal { filter: none !important; clip-path: inset(0 0 100% 0); transform: translateY(40px); transition: clip-path 1.2s var(--ease-out), transform 1.2s var(--ease-out), opacity 1.2s var(--ease-out); }
-body.loaded .section-heading.scroll-reveal.visible { clip-path: inset(-10% -5% -20% -5%); transform: none; }
-
-/* Brand marquee: pause and light up on hover */
 .brands-track-wrap:hover .brands-track { animation-play-state: paused; }
-.brands-track img { transition: filter 0.4s, opacity 0.4s, transform 0.4s var(--ease-out); }
+.brands-track img { transition: opacity 0.4s, transform 0.4s var(--ease-out); }
 .brands-track-wrap:hover .brands-track img { opacity: 0.45; }
 .brands-track-wrap:hover .brands-track img:hover { opacity: 1; transform: scale(1.08); }
 
-/* Testimonial cards: lift + glow edge */
 .testimonial-card { transition: transform 0.5s var(--ease-out), border-color 0.4s, box-shadow 0.5s var(--ease-out); }
 .testimonial-card:hover { transform: translateY(-6px); border-color: rgba(167,139,250,0.45); box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(167,139,250,0.25); }
 
-/* Scroll progress bar (CSS-only, browsers that support scroll timelines) */
+/* Scroll progress bar (Chrome/Edge; other browsers simply don't show it) */
 @supports (animation-timeline: scroll()) {
   .ntd-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 100001; transform-origin: 0 50%; transform: scaleX(0);
     background: linear-gradient(90deg, #6a4fc4, #c084fc, #dc26aa);
@@ -2065,36 +2039,32 @@ body.loaded .section-heading.scroll-reveal.visible { clip-path: inset(-10% -5% -
   @keyframes ntdProgress { to { transform: scaleX(1); } }
 }
 
-/* Magnetic buttons are driven by JS; keep the transform smooth */
-.is-magnetic { transition: transform 0.35s var(--ease-out), background-position 0.6s var(--ease-out), box-shadow 0.4s, border-color 0.3s, color 0.3s !important; }
-
-@media (prefers-reduced-motion: reduce) {
-  .btn:hover svg > *, .btn-solid:hover svg > *, .btn-outline:hover svg > *, .btn-cv:hover svg > * { animation: none; }
-  .section-heading.scroll-reveal { clip-path: none; transform: none; }
-  .card-glow { display: none; }
-}
-
 /* ---------------------------------------------
-   4. CASE STUDY OVERVIEW CARD — brushed silver + tilt
-   (tilt + sheen position driven by design-upgrade.js)
+   4. CASE STUDY OVERVIEW CARD — silver + border + tilt
+   (tilt + sheen position driven by shared.js)
    --------------------------------------------- */
 .project-meta-light {
   background:
-    radial-gradient(600px circle at var(--sx, 30%) var(--sy, 0%), rgba(255,255,255,0.95), rgba(255,255,255,0) 55%),
-    linear-gradient(135deg, #f4f5f9 0%, #e4e6ee 28%, #fbfbfd 48%, #dfe1ea 68%, #f1f2f7 100%);
-  border: 1px solid #cfd2de;
+    radial-gradient(520px circle at var(--sx, 25%) var(--sy, 0%), rgba(255,255,255,0.9), rgba(255,255,255,0) 60%),
+    linear-gradient(125deg, #e3e5ec 0%, #f8f9fb 16%, #d2d5df 36%, #f2f3f7 52%, #c9ccd8 72%, #eceef3 88%, #dcdfe7 100%) !important;
+  border: 1.5px solid #b4b8c8 !important;
   box-shadow:
-    0 24px 60px rgba(20,16,60,0.14),
+    0 24px 60px rgba(20,16,60,0.16),
     0 2px 6px rgba(20,16,60,0.06),
-    inset 0 1px 0 rgba(255,255,255,1),
-    inset 0 -1px 0 rgba(150,155,180,0.25);
+    inset 0 1px 0 rgba(255,255,255,0.95),
+    inset 0 -1px 0 rgba(120,125,150,0.25) !important;
   will-change: transform;
 }
-/* once revealed, the card's transform is the tilt (beats the scroll-reveal rule) */
 body.loaded .project-meta-light.visible,
 body.loaded .project-meta-light:not(.scroll-reveal) {
   transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out), opacity 1.6s var(--ease-out), filter 1.6s var(--ease-out);
+  transition: transform 0.6s var(--ease-out), opacity 1.6s var(--ease-out), filter 1.6s var(--ease-out);
 }
-body.loaded .project-meta-light.is-tilting { transition: transform 0.12s ease-out, box-shadow 0.6s var(--ease-out); box-shadow: 0 34px 80px rgba(20,16,60,0.18), 0 2px 6px rgba(20,16,60,0.06), inset 0 1px 0 #fff, inset 0 -1px 0 rgba(150,155,180,0.25); }
-@media (prefers-reduced-motion: reduce) { .project-meta-light { transform: none !important; } }
+body.loaded .project-meta-light.is-tilting { transition: transform 0.12s ease-out; }
+.project-meta-light .meta-col h4 { color: var(--brand-ink); }
+.project-meta-light .meta-col p { color: rgba(20,16,50,0.72); }
+
+@media (prefers-reduced-motion: reduce) {
+  .project-meta-light { transform: none !important; }
+  .card-glow { display: none; }
+}
