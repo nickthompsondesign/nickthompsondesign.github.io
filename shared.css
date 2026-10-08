@@ -1876,20 +1876,23 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
 .btn, .btn-solid, .btn-outline, .btn-cv {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  min-height: 50px;
-  padding: 5px 15px 5px 26px !important;
+  gap: 12px;
+  min-height: 46px;
+  padding: 4px 4px 4px 20px !important;
   border-radius: 999px;
   box-sizing: border-box;
   box-shadow: none !important;
   transform: none !important;
-  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  transition: gap 0.5s var(--ease-out), margin 0.5s var(--ease-out), background-color 0.3s, border-color 0.3s, color 0.3s;
 }
+/* Hover: the pill grows a touch and the circle rolls along to the right edge */
+.btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
+.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible { gap: 22px; margin-right: -10px; } /* negative margin: nothing next to the button gets pushed along */
 
 .btn svg, .btn-solid svg, .btn-outline svg, .btn-cv svg {
-  width: 40px !important;
-  height: 40px !important;
-  padding: 11px;
+  width: 38px !important;
+  height: 38px !important;
+  padding: 10px;
   box-sizing: border-box;
   border-radius: 50%;
   flex-shrink: 0;
@@ -1897,12 +1900,11 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
   color: var(--brand);
   box-shadow: inset 0 0 0 2px var(--brand);
   transform: none !important;
-  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), rotate 0.5s var(--ease-out), translate 0.5s var(--ease-out);
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), rotate 0.5s var(--ease-out);
 }
 .btn:hover svg, .btn-solid:hover svg, .btn-outline:hover svg, .btn-cv:hover svg,
 .btn:focus-visible svg, .btn-solid:focus-visible svg, .btn-outline:focus-visible svg, .btn-cv:focus-visible svg {
   rotate: 45deg;
-  translate: 10px 0;
 }
 
 /* Primary: deep gradient pill with a white outline (the "Book Now" look) */
@@ -1944,13 +1946,13 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
 .btn-touch:hover svg { background: var(--brand-deep); }
 
 /* Header CV button: compact */
-.btn-cv { min-height: 42px; padding: 4px 12px 4px 20px !important; gap: 12px; }
+.btn-cv { min-height: 40px; padding: 4px 4px 4px 18px !important; }
 .btn-cv svg { width: 32px !important; height: 32px !important; padding: 9px; box-shadow: none; }
 header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
-.btn-cv-mobile { padding: 6px 16px 6px 32px !important; }
+.btn-cv-mobile { padding: 5px 5px 5px 28px !important; }
 .btn-cv-mobile svg { width: 44px !important; height: 44px !important; }
 
-.contact-form .btn-solid { padding: 5px 15px 5px 28px !important; }
+.contact-form .btn-solid { padding: 4px 4px 4px 22px !important; }
 
 /* ---------------------------------------------
    2. PORTFOLIO CARDS — curved notch + arrow
