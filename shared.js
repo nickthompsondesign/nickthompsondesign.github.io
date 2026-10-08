@@ -435,3 +435,82 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('mouseleave', () => outline.classList.remove('hovering'));
   });
 });
+
+
+
+/* =============================================
+   Nick Thompson Design — design-upgrade.js (Oct 2026)
+   Load AFTER shared.js. Remove the <script> to revert.
+   ============================================= */
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>';
+
+  // 1. Notched corner arrow + spotlight layer on every portfolio card
+  document.querySelectorAll('.portfolio-card').forEach(function (card) {
+    if (card.querySelector('.card-notch')) return;
+    var glow = document.createElement('span');
+    glow.className = 'card-glow';
+    card.appendChild(glow);
+    var notch = document.createElement('span');
+    notch.className = 'card-notch';
+    notch.setAttribute('aria-hidden', 'true');
+    notch.innerHTML = '<span class="card-notch-btn">' + ARROW + '</span>';
+    card.appendChild(notch);
+
+    if (finePointer && !reduceMotion) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      }, { passive: true });
+    }
+  });
+
+  // 2. Magnetic buttons (desktop, mouse only)
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.btn, .btn-solid, .btn-outline').forEach(function (btn) {
+      btn.classList.add('is-magnetic');
+      btn.addEventListener('mousemove', function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * 0.18;
+        var y = (e.clientY - r.top - r.height / 2) * 0.28;
+        btn.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+      }, { passive: true });
+      btn.addEventListener('mouseleave', function () { btn.style.transform = ''; });
+    });
+  }
+
+  // 3. Scroll progress bar (styled only where CSS scroll timelines are supported)
+  if (!document.querySelector('.ntd-progress')) {
+    var bar = document.createElement('div');
+    bar.className = 'ntd-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+  }
+
+  // 4. Overview card: hero-style tilt + a sheen that follows the cursor
+  (function () {
+    var card = document.querySelector('.project-meta-light');
+    if (!card || !finePointer || reduceMotion) return;
+    var raf = null;
+    card.addEventListener('mousemove', function (e) {
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        card.classList.add('is-tilting');
+        card.style.setProperty('--ry', ((x - 0.5) * 5).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - y) * 5).toFixed(2) + 'deg');
+        card.style.setProperty('--sx', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--sy', (y * 100).toFixed(1) + '%');
+      });
+    }, { passive: true });
+    card.addEventListener('mouseleave', function () {
+      if (raf) cancelAnimationFrame(raf);
+      card.classList.remove('is-tilting');
+      ['--rx', '--ry', '--sx', '--sy'].forEach(function (p) { card.style.removeProperty(p); });
+    });
+  })();
+})();
