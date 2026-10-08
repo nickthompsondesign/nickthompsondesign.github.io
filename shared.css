@@ -1887,7 +1887,7 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
 }
 /* Hover: the pill grows a touch and the circle rolls along to the right edge */
 .btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
-.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible { gap: 15px; margin-right: -10px; } /* negative margin: nothing next to the button gets pushed along */
+.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible { gap: 22px; margin-right: -10px; } /* negative margin: nothing next to the button gets pushed along */
 
 .btn svg, .btn-solid svg, .btn-outline svg, .btn-cv svg {
   width: 38px !important;
