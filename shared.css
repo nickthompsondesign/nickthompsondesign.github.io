@@ -1992,10 +1992,10 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 
 .card-notch-btn {
   position: absolute;
-  right: calc(var(--notch) * 0.11);
-  bottom: calc(var(--notch) * 0.11);
-  width: calc(var(--notch) * 0.525);
-  height: calc(var(--notch) * 0.525);
+  right: calc(var(--notch) * 0.05);
+  bottom: calc(var(--notch) * 0.05);
+  width: calc(var(--notch) * 0.51);
+  height: calc(var(--notch) * 0.51);
   border-radius: 50%;
   display: grid;
   place-items: center;
