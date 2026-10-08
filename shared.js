@@ -378,9 +378,17 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', () => {
   ['cursorDot', 'cursorOutline'].forEach(id => { const el = document.getElementById(id); if (el) el.remove(); });
 
-  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!fine || window.innerWidth < 1024) return;
+  // Switch on the first time a real mouse moves (works on any window width,
+  // and on touch laptops when a mouse/trackpad is used). Touch never triggers it.
+  const start = (e) => {
+    if (e.pointerType && e.pointerType !== 'mouse') return;
+    window.removeEventListener('pointermove', start);
+    initCursor(e.clientX, e.clientY);
+  };
+  window.addEventListener('pointermove', start, { passive: true });
+});
 
+function initCursor(startX, startY) {
   const wrap = document.createElement('div');
   wrap.className = 'ntd-cursor';
   wrap.setAttribute('aria-hidden', 'true');
@@ -390,7 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dot = wrap.firstElementChild;
   const label = dot.firstElementChild;
-  let x = -100, y = -100, cx = -100, cy = -100, raf = null, last = 0;
+  let x = startX, y = startY, cx = startX, cy = startY, raf = null, last = 0;
+  wrap.classList.add('is-active');
+  dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
 
   // Frame-rate independent smoothing: same feel at 60Hz, 120Hz or a busy 30fps
   const render = (now) => {
@@ -425,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     wrap.classList.toggle('is-hidden', !!field);
     label.textContent = card ? (card.getAttribute('data-cursor') || 'View') : '';
   });
-});
+}
 
 /* =============================================
    Nick Thompson Design — DESIGN UPGRADE (Oct 2026, rev 2)
@@ -494,3 +504,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 })();
+
