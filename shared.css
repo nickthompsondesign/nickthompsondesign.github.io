@@ -1961,7 +1961,7 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
    the shape away. The arrow button sits in the cut-out.
    --------------------------------------------- */
 .portfolio-card {
-  --notch: 99px;
+  --notch: 79px;
   border: 0 !important;
   border-radius: 22px;
   background: transparent !important;
