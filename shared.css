@@ -2133,7 +2133,7 @@ h2.section-heading {
   background: transparent;
   overflow: visible;
 }
-.tile > *:not(.tile-play-roundel) {
+.tile .tile-frame {
   border-radius: 10px 10px 0 10px; /* bottom-right sits inside the notch */
   -webkit-mask:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118' preserveAspectRatio='none'%3E%3Cpath d='M0 0H118A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118Z'/%3E%3C/svg%3E") right bottom / var(--tnotch) var(--tnotch) no-repeat,
@@ -2259,3 +2259,33 @@ h1, h2, h3, .section-heading {
 @media (prefers-reduced-motion: reduce) {
   .hero-text h1.ink-ready .gradient-line, .hero-text h1.ink-ready .indent-line { animation: none; }
 }
+
+/* =============================================
+   10. BUTTON HOVER + BORDERS THAT FOLLOW THE NOTCH
+   ============================================= */
+
+/* Button circle: a gentle 6px nudge to the right on hover */
+.btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
+.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible {
+  gap: 18px;
+  margin-right: -6px;
+}
+
+/* Tiles: image layers live in one notched frame (added by shared.js) */
+.tile-frame { position: absolute; inset: 0; display: block; overflow: hidden; }
+
+/* Border: traced around the notched frame only (not the round button),
+   so it follows the curve exactly. Recolour/resize with the two variables. */
+.portfolio-card, .tile {
+  --card-border: rgb(129 109 192 / 0.55);
+  --bw: 1px;
+}
+.card-frame, .tile-frame-wrap {
+  position: absolute; inset: 0; display: block; pointer-events: none;
+  filter:
+    drop-shadow(var(--bw) 0 0 var(--card-border))
+    drop-shadow(calc(var(--bw) * -1) 0 0 var(--card-border))
+    drop-shadow(0 var(--bw) 0 var(--card-border))
+    drop-shadow(0 calc(var(--bw) * -1) 0 var(--card-border));
+}
+.card-frame > *, .tile-frame-wrap > * { pointer-events: auto; }
