@@ -2293,3 +2293,8 @@ h1, h2, h3, .section-heading {
 .contact-section .section-sub {
    margin-bottom: 0px;
 }
+
+
+/* Hero: rounded bottom edge */
+.hero-wrapper { border-radius: 0 0 40px 40px; }
+@media (max-width: 1023px) { .hero-wrapper { border-radius: 0 0 24px 24px; } }
