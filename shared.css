@@ -2193,7 +2193,7 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 }
 .btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
 .btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible {
-  gap: 22px;          /* 12px at rest + 10px */
+  gap: 12px;          /* 12px at rest + 10px */
   margin-right: -10px;
 }
 .btn-cv-mobile { padding: 2px 2px 2px 28px !important; }
