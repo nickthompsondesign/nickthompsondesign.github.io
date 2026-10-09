@@ -422,3 +422,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 })();
+
+/* =============================================
+   Homepage hero H1: ink-bleed effect
+   An SVG turbulence filter roughens the letter edges like ink soaking into
+   paper; the text "bleeds" in on load, then settles to a very subtle texture.
+   ============================================= */
+(function () {
+  var h1 = document.querySelector('.hero-text h1');
+  if (!h1) return;
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '0'); svg.setAttribute('height', '0');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.style.position = 'absolute';
+  svg.innerHTML =
+    '<filter id="ntd-ink" x="-10%" y="-20%" width="120%" height="140%">' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="n"/>' +
+      '<feDisplacementMap in="SourceGraphic" in2="n" scale="0">' +
+        '<animate attributeName="scale" values="22;6;1.5" keyTimes="0;0.6;1" dur="2.4s" fill="freeze" begin="indefinite" id="ntd-ink-anim"/>' +
+      '</feDisplacementMap>' +
+    '</filter>' +
+    '<filter id="ntd-ink-rest" x="-5%" y="-10%" width="110%" height="120%">' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="n"/>' +
+      '<feDisplacementMap in="SourceGraphic" in2="n" scale="1.5"/>' +
+    '</filter>';
+  document.body.appendChild(svg);
+  var start = function () {
+    h1.classList.add('ink-ready');
+    var a = document.getElementById('ntd-ink-anim');
+    if (a && a.beginElement) { try { a.beginElement(); } catch (e) {} }
+    setTimeout(function () { h1.classList.add('ink-done'); }, 2900);
+  };
+  if (document.body.classList.contains('loaded')) start();
+  else new MutationObserver(function (m, o) {
+    if (document.body.classList.contains('loaded')) { o.disconnect(); start(); }
+  }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+})();
