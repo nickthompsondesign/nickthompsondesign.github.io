@@ -2319,3 +2319,55 @@ along. The circle now slides with translate, which is paint-only.
 .btn:focus-visible svg, .btn-solid:focus-visible svg, .btn-outline:focus-visible svg, .btn-cv:focus-visible svg {
    translate: 3px 0;
 }
+
+/* =============================================
+   12. FIXES: mobile menu CV button, logo strip, overview box
+   ============================================= */
+
+/* Mobile menu "Download CV": same pill + circle as the other buttons
+   (the mobile-nav link styles were making it huge and the circle is added by shared.js) */
+.mobile-nav a.btn-cv-mobile {
+  font-family: var(--font-heading);
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: var(--tracking-tight);
+  min-height: 0;
+  margin-top: 8px;
+  gap: 12px;
+  padding: 3px 3px 3px 24px !important;
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 999px;
+  color: #fff !important;
+}
+.mobile-nav a.btn-cv-mobile svg { width: 44px !important; height: 44px !important; padding: 12px; background: #fff; color: var(--brand); box-shadow: none; }
+.mobile-nav a:hover { color: #fff; }
+
+/* Logo strip: no zoom/crop on hover, consistent visual size, LEGO now an outline logo */
+.brands-track-wrap:hover .brands-track img:hover { transform: none; }
+.brands-track img { height: 30px; max-width: none; }
+.brands-track img[alt="Lego"]      { height: 34px; filter: none; }
+.brands-track img[alt="P&G"],
+.brands-track img[alt="Schwartz"]  { height: 36px; }
+.brands-track img[alt="Danone"]    { height: 40px; }
+.brands-track img[alt="Mondelez"]  { height: 36px; }
+.brands-track img[alt="Mars"],
+.brands-track img[alt="Coca-Cola"],
+.brands-track img[alt="Unilever"]  { height: 30px; }
+.brands-track img[alt="Nestle"],
+.brands-track img[alt="Diageo"],
+.brands-track img[alt="Essity"]    { height: 28px; }
+.brands-track img[alt="Heineken"]  { height: 26px; }
+.brands-track img[alt="Haleon"]    { height: 30px; }
+.brands-track img[alt="L'Oreal"]   { height: 23px; }
+
+/* Overview box: less padding, columns balanced, headings line up */
+.project-meta-light { padding: 32px 36px !important; }
+.cs .cs-meta-top { grid-template-columns: 1.25fr 1fr; gap: 28px; align-items: center; }
+.cs .cs-meta-top .meta-col:not(.meta-col--role) { padding: 0; }
+.cs .cs-meta-top .meta-col--role { padding: 22px 26px; }
+.cs .cs-meta-details { margin-top: 26px; padding-top: 22px; }
+@media (max-width: 900px) {
+  .project-meta-light { padding: 24px !important; }
+  .cs .cs-meta-top { grid-template-columns: 1fr; }
+}
