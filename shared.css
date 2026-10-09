@@ -2296,5 +2296,5 @@ h1, h2, h3, .section-heading {
 
 
 /* Hero: rounded bottom edge */
-.hero-wrapper { border-radius: 0 0 40px 40px; }
-@media (max-width: 1023px) { .hero-wrapper { border-radius: 0 0 24px 24px; } }
+.hero-wrapper, .hero-wrapper .gradient-bg { border-radius: 0 0 40px 40px; }
+@media (max-width: 1023px) { .hero-wrapper, .hero-wrapper .gradient-bg { border-radius: 0 0 24px 24px; } }
