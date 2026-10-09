@@ -2094,3 +2094,64 @@ h2, h3 {
 h2.section-heading {
   -webkit-text-stroke: 1.5px rgb(205 205 205);
 }
+
+/* ---------------------------------------------
+   7. ROUNDEL BUTTONS + NOTCHES EVERYWHERE
+   - Homepage card arrows take the .tile-play-roundel style
+   - Media tiles on case study pages get the same curved notch,
+     with their roundel sitting in it
+   --------------------------------------------- */
+
+/* Homepage / "More work" cards: roundel look */
+.card-notch-btn {
+  background: linear-gradient(135deg, #0e498c, #421fac);
+  border: 2px solid #636189;
+  box-sizing: border-box;
+  box-shadow: 0 8px 24px rgba(100, 40, 255, 0.25);
+  backface-visibility: hidden;
+  transition: transform 0.35s var(--ease-smooth), filter 0.35s var(--ease-smooth);
+}
+.portfolio-card:hover .card-notch-btn {
+  background: linear-gradient(135deg, #0e498c, #421fac);
+  transform: scale(1.08);
+  filter: brightness(1.15);
+}
+/* arrow fades out, chevron slides in — same as the tiles */
+.card-notch-btn svg { transition: opacity 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth); }
+.portfolio-card:hover .card-notch-btn svg { rotate: 0deg; opacity: 0; transform: scale(0.7); }
+.card-notch-btn::after {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 40%; height: 40%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 0; transform: translate3d(-8px, 0, 0) scale(0.7);
+  transition: opacity 0.35s var(--ease-smooth), transform 0.35s var(--ease-smooth);
+}
+.portfolio-card:hover .card-notch-btn::after { opacity: 1; transform: translate3d(1px, 0, 0) scale(1); }
+
+/* Media tiles: notch cut into every layer except the roundel */
+.tile {
+  --tnotch: 86px;
+  background: transparent;
+  overflow: visible;
+}
+.tile > *:not(.tile-play-roundel) {
+  border-radius: 10px 10px 0 10px; /* bottom-right sits inside the notch */
+  -webkit-mask:
+    linear-gradient(#000 0 0),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--tnotch) + 2px) calc(var(--tnotch) + 2px) no-repeat;
+  -webkit-mask-composite: xor;
+          mask:
+    linear-gradient(#000 0 0),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--tnotch) + 2px) calc(var(--tnotch) + 2px) no-repeat;
+          mask-composite: exclude;
+}
+.tile img { border-radius: 10px 10px 0 10px; }
+.tile:hover img, .tile:focus-visible img { transform: none; } /* zoom would push the image past the notch edge */
+.tile-play-roundel {
+  right: calc(var(--tnotch) * 0.05);
+  bottom: calc(var(--tnotch) * 0.05);
+  width: calc(var(--tnotch) * 0.51);
+  height: calc(var(--tnotch) * 0.51);
+  box-sizing: border-box;
+}
+.tile-caption { padding-right: calc(var(--tnotch) + 8px); }
+@media (max-width: 600px) { .tile { --tnotch: 74px; } }
