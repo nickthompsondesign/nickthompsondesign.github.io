@@ -2245,7 +2245,7 @@ h1, h2, h3, .section-heading {
   filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(34, 18, 83, 0.15));
 }
 
-/* --- Homepage hero H1: ink-bleed reveal (filter is set up by shared.js) --- */
+/* --- Homepage hero H1: ink-bleed reveal (filter is set up by shared.js) --- 
 @keyframes ntdInkBleed {
   0%   { filter: url(#ntd-ink) blur(10px); opacity: 0; letter-spacing: 0.04em; }
   45%  { opacity: 1; }
@@ -2259,6 +2259,8 @@ h1, h2, h3, .section-heading {
 @media (prefers-reduced-motion: reduce) {
   .hero-text h1.ink-ready .gradient-line, .hero-text h1.ink-ready .indent-line { animation: none; }
 }
+*/
+
 
 /* =============================================
    10. BUTTON HOVER + BORDERS THAT FOLLOW THE NOTCH
