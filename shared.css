@@ -1876,7 +1876,7 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
 .btn, .btn-solid, .btn-outline, .btn-cv {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-height: 46px;
   padding: 4px 4px 4px 20px !important;
   border-radius: 999px;
