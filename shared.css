@@ -1887,7 +1887,7 @@ body.hero-paused .g1, body.hero-paused .g2, body.hero-paused .g3, body.hero-paus
 }
 /* Hover: the pill grows a touch and the circle rolls along to the right edge */
 .btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
-.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible { gap: 22px; margin-right: -10px; } /* negative margin: nothing next to the button gets pushed along */
+.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible { gap: 20px; margin-right: -8px; } /* negative margin: nothing next to the button gets pushed along */
 
 .btn svg, .btn-solid svg, .btn-outline svg, .btn-cv svg {
   width: 38px !important;
@@ -1981,13 +1981,13 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
   overflow: hidden;
   background: #2e1e62;
   -webkit-mask:
-    linear-gradient(#000 0 0),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--notch) + 2px) calc(var(--notch) + 2px) no-repeat;
-  -webkit-mask-composite: xor;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118' preserveAspectRatio='none'%3E%3Cpath d='M0 0H118A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118Z'/%3E%3C/svg%3E") right bottom / var(--notch) var(--notch) no-repeat,
+    linear-gradient(#000 0 0) left top / 100% calc(100% - var(--notch)) no-repeat,
+    linear-gradient(#000 0 0) left bottom / calc(100% - var(--notch) + 0.5px) var(--notch) no-repeat;
           mask:
-    linear-gradient(#000 0 0),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--notch) + 2px) calc(var(--notch) + 2px) no-repeat;
-          mask-composite: exclude;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118' preserveAspectRatio='none'%3E%3Cpath d='M0 0H118A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118Z'/%3E%3C/svg%3E") right bottom / var(--notch) var(--notch) no-repeat,
+    linear-gradient(#000 0 0) left top / 100% calc(100% - var(--notch)) no-repeat,
+    linear-gradient(#000 0 0) left bottom / calc(100% - var(--notch) + 0.5px) var(--notch) no-repeat;
 }
 .portfolio-card-arrow { display: none !important; }
 .portfolio-card-inner { padding-right: calc(var(--notch) - 14px) !important; padding-bottom: 22px !important; }
@@ -2136,13 +2136,13 @@ h2.section-heading {
 .tile > *:not(.tile-play-roundel) {
   border-radius: 10px 10px 0 10px; /* bottom-right sits inside the notch */
   -webkit-mask:
-    linear-gradient(#000 0 0),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--tnotch) + 2px) calc(var(--tnotch) + 2px) no-repeat;
-  -webkit-mask-composite: xor;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118' preserveAspectRatio='none'%3E%3Cpath d='M0 0H118A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118Z'/%3E%3C/svg%3E") right bottom / var(--tnotch) var(--tnotch) no-repeat,
+    linear-gradient(#000 0 0) left top / 100% calc(100% - var(--tnotch)) no-repeat,
+    linear-gradient(#000 0 0) left bottom / calc(100% - var(--tnotch) + 0.5px) var(--tnotch) no-repeat;
           mask:
-    linear-gradient(#000 0 0),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118'%3E%3Cpath d='M118 0A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118H118Z'/%3E%3C/svg%3E") right -2px bottom -2px / calc(var(--tnotch) + 2px) calc(var(--tnotch) + 2px) no-repeat;
-          mask-composite: exclude;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 118' preserveAspectRatio='none'%3E%3Cpath d='M0 0H118A30 30 0 0 1 88 30H85A55 55 0 0 0 30 85V88A30 30 0 0 1 0 118Z'/%3E%3C/svg%3E") right bottom / var(--tnotch) var(--tnotch) no-repeat,
+    linear-gradient(#000 0 0) left top / 100% calc(100% - var(--tnotch)) no-repeat,
+    linear-gradient(#000 0 0) left bottom / calc(100% - var(--tnotch) + 0.5px) var(--tnotch) no-repeat;
 }
 .tile img { border-radius: 10px 10px 0 10px; }
 .tile:hover img, .tile:focus-visible img { transform: none; } /* zoom would push the image past the notch edge */
@@ -2155,3 +2155,28 @@ h2.section-heading {
 }
 .tile-caption { padding-right: calc(var(--tnotch) + 8px); }
 @media (max-width: 600px) { .tile { --tnotch: 74px; } }
+
+/* Overview card: "My Role" box */
+body.cs .cs-meta-top .meta-col--role { background: #f6f6f6; }
+
+/* Header "Download CV" matches the hero "My Work" button */
+.btn-cv {
+  min-height: 46px;
+  padding: 4px 4px 4px 20px !important;
+  gap: 12px;
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  box-shadow: none !important;
+  font-size: 15px !important;
+  font-weight: 400;
+  color: #fff !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.btn-cv:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+.btn-cv svg { width: 38px !important; height: 38px !important; padding: 10px; background: #fff; color: var(--brand); box-shadow: none; }
+.btn-cv:hover svg { background: #ede9f8; }
+/* once the header turns white on scroll: same shape, brand colours */
+header.scrolled-light .btn-cv { background: #fff !important; border-color: rgb(76 53 147 / 0.45) !important; color: var(--brand-ink) !important; }
+header.scrolled-light .btn-cv:hover { background: #fff !important; border-color: var(--brand) !important; }
+header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
