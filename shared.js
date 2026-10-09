@@ -396,7 +396,10 @@ document.addEventListener('DOMContentLoaded', () => {
     var glow = document.createElement('span');
     glow.className = 'card-glow';
     mask.appendChild(glow);
-    card.appendChild(mask);
+    var frame = document.createElement('span');
+    frame.className = 'card-frame';
+    frame.appendChild(mask);
+    card.appendChild(frame);
 
     var btn = document.createElement('span');
     btn.className = 'card-notch-btn';
@@ -458,3 +461,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.body.classList.contains('loaded')) { o.disconnect(); start(); }
   }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 })();
+
+/* Tiles: wrap the image layers in a notched frame (inside a wrapper that draws
+   the border), leaving the round play/eye button outside so it isn't outlined. */
+document.querySelectorAll('.tile').forEach(function (tile) {
+  if (tile.querySelector('.tile-frame')) return;
+  var wrap = document.createElement('span');
+  wrap.className = 'tile-frame-wrap';
+  var frame = document.createElement('span');
+  frame.className = 'tile-frame';
+  Array.prototype.slice.call(tile.children).forEach(function (child) {
+    if (!child.classList.contains('tile-play-roundel')) frame.appendChild(child);
+  });
+  wrap.appendChild(frame);
+  tile.insertBefore(wrap, tile.firstChild);
+});
