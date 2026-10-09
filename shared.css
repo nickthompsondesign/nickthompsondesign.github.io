@@ -2298,3 +2298,24 @@ h1, h2, h3, .section-heading {
 /* Hero: rounded bottom edge */
 .hero-wrapper, .hero-wrapper .gradient-bg { border-radius: 0 0 40px 40px; }
 @media (max-width: 1023px) { .hero-wrapper, .hero-wrapper .gradient-bg { border-radius: 0 0 24px 24px; } }
+
+
+/* =============================================
+11. BUTTON HOVER - NO LAYOUT SHIFT
+The hover used to animate gap + a negative margin-right. Both change the
+button's layout box, so everything beside it (the nav items) got pushed
+along. The circle now slides with translate, which is paint-only.
+============================================= */
+.btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
+.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible {
+   gap: 10px;
+   margin-right: 0;
+}
+.btn-cv:hover, .btn-cv:focus-visible { gap: 12px; }
+.btn svg, .btn-solid svg, .btn-outline svg, .btn-cv svg {
+   transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), rotate 0.5s var(--ease-out), translate 0.5s var(--ease-out);
+}
+.btn:hover svg, .btn-solid:hover svg, .btn-outline:hover svg, .btn-cv:hover svg,
+.btn:focus-visible svg, .btn-solid:focus-visible svg, .btn-outline:focus-visible svg, .btn-cv:focus-visible svg {
+   translate: 3px 0;
+}
