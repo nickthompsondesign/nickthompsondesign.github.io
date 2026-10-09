@@ -2180,3 +2180,82 @@ body.cs .cs-meta-top .meta-col--role { background: #f6f6f6; }
 header.scrolled-light .btn-cv { background: #fff !important; border-color: rgb(76 53 147 / 0.45) !important; color: var(--brand-ink) !important; }
 header.scrolled-light .btn-cv:hover { background: #fff !important; border-color: var(--brand) !important; }
 header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
+
+/* =============================================
+   9. REFINEMENTS (Oct 2026)
+   ============================================= */
+
+/* --- Buttons: tighter padding, 600 weight, circle moves 10px on hover --- */
+.btn, .btn-solid, .btn-outline, .btn-cv {
+  padding: 2px 2px 2px 20px !important;
+  min-height: 0;
+  font-weight: 600 !important;
+}
+.btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
+.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible {
+  gap: 22px;          /* 12px at rest + 10px */
+  margin-right: -10px;
+}
+.btn-cv-mobile { padding: 2px 2px 2px 28px !important; }
+
+/* --- Contact form button = the white hero "Get in touch" button --- */
+.contact-form .btn-solid,
+.contact-form .btn-solid:hover {
+  background: #fff;
+  border: 1.5px solid #fff;
+  color: var(--brand-ink);
+  padding: 2px 2px 2px 20px !important;
+  margin-top: 12px;
+}
+.contact-form .btn-solid svg { background: var(--brand); color: #fff; box-shadow: none; }
+.contact-form .btn-solid:hover svg { background: var(--brand-deep); }
+
+/* --- About buttons: keep their natural width on tablet/mobile (arrow stays on the right) --- */
+@media (max-width: 1100px) {
+  .about-btns { flex-direction: row; width: auto; flex-wrap: wrap; }
+  .about-btns .btn-solid,
+  .about-btns .btn-outline { width: auto; justify-content: flex-start; }
+}
+
+/* --- Round buttons: no shadow/glow; 1px border on the card button --- */
+.tile-play-roundel, .card-notch-btn,
+.tile:hover .tile-play-roundel, .tile:focus-visible .tile-play-roundel,
+.portfolio-card:hover .card-notch-btn { box-shadow: none !important; }
+.card-notch-btn { border-width: 1px; }
+
+/* --- Homepage / More work cards: arrow simply rotates (no chevron) --- */
+.card-notch-btn::after { display: none; }
+.portfolio-card:hover .card-notch-btn svg { opacity: 1; transform: none; rotate: 45deg; }
+.card-notch-btn svg { transition: rotate 0.5s var(--ease-out); }
+
+/* --- Tiles: play/eye icon swaps to a right-pointing arrow on hover --- */
+.tile-play-roundel::after {
+  width: 20px; height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E");
+}
+
+/* --- Tile hover ghosting: caption fades in place instead of sliding up
+       under the notch cut-out --- */
+.tile-caption,
+.tile:hover .tile-caption,
+.tile:focus-visible .tile-caption { transform: none !important; }
+
+/* --- Headings: soft depth --- */
+h1, h2, h3, .section-heading {
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(34, 18, 83, 0.15));
+}
+
+/* --- Homepage hero H1: ink-bleed reveal (filter is set up by shared.js) --- */
+@keyframes ntdInkBleed {
+  0%   { filter: url(#ntd-ink) blur(10px); opacity: 0; letter-spacing: 0.04em; }
+  45%  { opacity: 1; }
+  100% { filter: url(#ntd-ink) blur(0); opacity: 1; letter-spacing: var(--tracking-tight); }
+}
+.hero-text h1.ink-ready .gradient-line,
+.hero-text h1.ink-ready .indent-line { animation: ntdInkBleed 2.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-text h1.ink-ready .indent-line { animation-delay: 0.35s; }
+.hero-text h1.ink-done .gradient-line,
+.hero-text h1.ink-done .indent-line { animation: none; filter: url(#ntd-ink-rest); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-text h1.ink-ready .gradient-line, .hero-text h1.ink-ready .indent-line { animation: none; }
+}
