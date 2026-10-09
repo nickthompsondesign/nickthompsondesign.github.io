@@ -2279,8 +2279,8 @@ h1, h2, h3, .section-heading {
 /* Border: traced around the notched frame only (not the round button),
    so it follows the curve exactly. Recolour/resize with the two variables. */
 .portfolio-card, .tile {
-  --card-border: rgb(129 109 192 / 0.55);
-  --bw: 1px;
+  --card-border: rgb(129 109 192 / 0.75);
+  --bw: 3px;
 }
 .card-frame, .tile-frame-wrap {
   position: absolute; inset: 0; display: block; pointer-events: none;
