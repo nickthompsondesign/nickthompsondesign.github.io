@@ -2080,3 +2080,17 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
   .contact-section .contact-details { grid-column: 1; margin-top: 36px; }
   .contact-section .contact-form { grid-column: 2; grid-row: 1 / span 4; position: relative; z-index: 1; }
 }
+
+
+/* Heading outlines */
+h1, .section-heading {
+  -webkit-text-stroke: 1.5px rgb(205 205 205);
+  paint-order: stroke fill;
+}
+h2, h3 {
+  -webkit-text-stroke: 0.8px rgb(129 109 192);
+  paint-order: stroke fill;
+}
+h2.section-heading {
+  -webkit-text-stroke: 1.5px rgb(205 205 205);
+}
