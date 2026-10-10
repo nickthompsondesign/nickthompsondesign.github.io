@@ -2082,15 +2082,15 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 
 /* Heading outlines */
 h1, .section-heading {
-  -webkit-text-stroke: 1.5px rgb(205 205 205);
+  -webkit-text-stroke: 0.1rem rgb(205 205 205);
   paint-order: stroke fill;
 }
 h2, h3 {
-  -webkit-text-stroke: 0.8px rgb(129 109 192);
+  -webkit-text-stroke: 0.05rem rgb(129 109 192);
   paint-order: stroke fill;
 }
 h2.section-heading {
-  -webkit-text-stroke: 1.5px rgb(205 205 205);
+  -webkit-text-stroke: 0.05rem rgb(205 205 205);
 }
 
 /* ---------------------------------------------
