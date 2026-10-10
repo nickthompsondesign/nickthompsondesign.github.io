@@ -2084,13 +2084,16 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 h1, .section-heading {
   -webkit-text-stroke: 0.1rem rgb(205 205 205);
   paint-order: stroke fill;
+   text-shadow: 0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.1);
 }
 h2, h3 {
   -webkit-text-stroke: 0.05rem rgb(129 109 192);
   paint-order: stroke fill;
+   text-shadow: 0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.1);
 }
 h2.section-heading {
   -webkit-text-stroke: 0.05rem rgb(205 205 205);
+   text-shadow: 0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.1);
 }
 
 /* ---------------------------------------------
