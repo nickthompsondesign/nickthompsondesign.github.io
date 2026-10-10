@@ -2371,3 +2371,35 @@ along. The circle now slides with translate, which is paint-only.
   .project-meta-light { padding: 24px !important; }
   .cs .cs-meta-top { grid-template-columns: 1fr; }
 }
+
+
+
+/* =============================================
+   11. BUTTON HOVER: pill expands, neighbours stay put
+   --nudge: how far the circle slides right
+   --extra: additional growth of the pill's right edge, so the padding
+            around the circle matches the resting state
+   margin-right always cancels nudge + extra, so layout never changes.
+   ============================================= */
+.btn, .btn-solid, .btn-outline, .btn-cv {
+  --rest-gap: 7px;
+  --nudge: 7px;
+  --extra: 3px;
+  gap: var(--rest-gap);
+  transition: gap 0.5s var(--ease-out), padding-right 0.5s var(--ease-out), margin-right 0.5s var(--ease-out), background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+.btn-cv { --rest-gap: 12px; }
+
+.btn:hover, .btn-solid:hover, .btn-outline:hover, .btn-cv:hover,
+.btn:focus-visible, .btn-solid:focus-visible, .btn-outline:focus-visible, .btn-cv:focus-visible {
+  gap: calc(var(--rest-gap) + var(--nudge));
+  padding-right: calc(2px + var(--extra)) !important;
+  margin-right: calc((var(--nudge) + var(--extra)) * -1);
+}
+
+/* mobile menu CV button has its own padding rule (3px right), so match it */
+.mobile-nav a.btn-cv-mobile:hover,
+.mobile-nav a.btn-cv-mobile:focus-visible {
+  gap: calc(12px + var(--nudge));
+  padding-right: calc(3px + var(--extra)) !important;
+}
