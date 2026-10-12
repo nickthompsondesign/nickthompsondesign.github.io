@@ -2297,12 +2297,6 @@ h1, h2, h3, .section-heading {
    margin-bottom: 0px;
 }
 
-
-/* Hero: rounded bottom edge */
-.hero-wrapper, .hero-wrapper .gradient-bg { border-radius: 0 0 40px 40px; }
-@media (max-width: 1023px) { .hero-wrapper, .hero-wrapper .gradient-bg { border-radius: 0 0 24px 24px; } }
-
-
 /* =============================================
 11. BUTTON HOVER - NO LAYOUT SHIFT
 The hover used to animate gap + a negative margin-right. Both change the
