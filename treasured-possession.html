@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SH6GMRGSM5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
     gtag('config', 'G-SH6GMRGSM5');
   </script>
-  
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asda Design Guidelines | Nick Thompson Design</title>
+  <title>Treasured Possession Quote Flow | Nick Thompson Design</title>
+  <meta name="description" content="Treasured Possession case study: redesigning a wedding dress cleaning price form as a guided multi-step quote with upfront pricing and lead capture.">
+  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
 
   <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
+
   <style>
     /* ===== Case study v2 — page-specific styles (shared.css untouched) ===== */
     .cs {
@@ -68,7 +68,7 @@
 
     /* User flow: fits on desktop, swipe on mobile, plus a full-screen viewer */
     .cs-flow { position: relative; border-radius: 20px; border: 1px solid rgba(0,0,0,0.08); background: #fff; box-shadow: 0 20px 60px rgba(20,10,60,0.08); overflow: hidden; }
-    .cs-flow-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; cursor: grab; }
+    .cs-flow-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .cs-flow-scroll img { display: block; width: 100%; height: auto; -webkit-user-drag: none; user-select: none; pointer-events: none; }
     .cs-flow-tools { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid rgba(0,0,0,0.06); background: #faf9ff; font-size: 13px; color: var(--muted-ink); }
     .cs-flow-hint { display: none; align-items: center; gap: 8px; }
@@ -141,7 +141,7 @@
     .cs-quote figcaption strong { display: block; color: #fff; font-weight: 700; }
 
     /* More work */
-    .cs-more { position: relative; z-index: 10; background: #fff; padding: 40px 0 110px 0; --notch-bg: #fff; }
+    .cs-more { position: relative; z-index: 10; background: #fff; padding: 100px 0 110px 0; --notch-bg: #fff; }
     .cs-more-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; flex-wrap: wrap; }
     .cs-more-head h2 { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 44px); color: var(--ink); margin: 0; letter-spacing: var(--tracking-tight); }
     .cs-more-head a { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; }
@@ -177,28 +177,47 @@
       .cs-hero-result { font-size: 15px; }
     }
 
-    /* Stat cards without a graphic */
-    .cs-stats--simple .cs-stat { min-height: 0; gap: 12px; }
-    .cs-stats--2 { grid-template-columns: repeat(2, 1fr); max-width: 800px; }
-    .cs-stats--3 { grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 700px) { .cs-stats--2, .cs-stats--3 { grid-template-columns: 1fr; } }
-    /* Testimonials as purple statement cards */
-    .cs .inline-testimonial { position: relative; overflow: hidden; background: linear-gradient(135deg, #0c0930 0%, #1b0f4a 55%, #0a0f35 100%); border: 0; border-radius: 24px; padding: clamp(32px, 5vw, 56px); margin: 40px auto; max-width: 1200px; box-sizing: border-box; }
-    .cs .inline-testimonial::before { content: ''; position: absolute; width: 420px; height: 420px; right: -120px; top: -160px; border-radius: 50%; background: rgba(220,38,170,0.28); filter: blur(100px); pointer-events: none; }
-    .cs .inline-testimonial-quote { position: relative; font-family: var(--font-heading); font-size: clamp(18px, 1.9vw, 24px); line-height: 1.5; font-weight: 300; color: rgba(255,255,255,0.72); font-style: normal; margin: 0; }
-    .cs .inline-testimonial-quote::before { content: '\201C'; display: block; font-size: 3.2em; line-height: 0.5; color: #c0a7ff; margin-bottom: 16px; }
-    .cs .inline-testimonial-quote mark { background: linear-gradient(transparent 60%, rgba(167,139,250,0.45) 60%); color: #fff; font-weight: 600; padding: 0 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-    .cs .inline-testimonial-author { position: relative; margin-top: 28px; color: rgba(255,255,255,0.7); }
-    .cs .inline-testimonial-author strong { color: #fff; }
-    .cs .inline-testimonial-author span { color: rgba(255,255,255,0.7); }
-    .cs .inline-testimonial-author img { filter: brightness(0) invert(1); opacity: 0.9; }
-    .cs .project-body h3 { color: #4c3593; }
+    /* ===== Treasured Possession additions ===== */
+    /* Draft placeholders: dashed amber boxes so missing content is easy to spot. Delete .cs-todo blocks as real content lands. */
+    .cs-todo { border: 2px dashed #d39b1c; background: #fff8e6; color: #6b4a00; border-radius: 16px; padding: 22px 24px; font-size: 14px; line-height: 1.6; }
+    .cs-todo strong { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: #8a5f00; }
+    .cs-todo code { font-size: 12px; background: rgba(0,0,0,0.06); padding: 1px 6px; border-radius: 4px; word-break: break-all; }
+    .cs-todo--img { min-height: 280px; display: flex; flex-direction: column; justify-content: center; }
+    .project-body .cs-todo { margin: 20px 0; }
+    .cs-stat .cs-todo-num { color: #c9b98f; }
+
+    /* Audit findings list */
+    .cs-findings { list-style: none; padding: 0; margin: 20px 0 0 0; display: grid; gap: 12px; }
+    .cs-findings li { padding: 14px 18px; border-radius: 12px; background: #f7f5ff; border: 1px solid rgba(54,16,155,0.08); font-size: 15px; line-height: 1.6; color: rgba(0,0,0,0.75); }
+    .cs-findings li b { color: var(--ink); }
+
+    /* Competitor table (4 columns, scrolls on small screens) */
+    .cs-table-wrap { max-width: 1000px; margin: 32px auto 12px auto; overflow-x: auto; }
+    .cs-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; color: rgba(0,0,0,0.72); }
+    .cs-table th, .cs-table td { text-align: left; vertical-align: top; padding: 14px 12px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .cs-table thead th { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(46,30,98,0.55); }
+    .cs-table tbody th { font-weight: 700; color: var(--ink); white-space: nowrap; }
+    .cs-table .is-client { background: #f7f5ff; }
+
+    /* Steps strip */
+    .cs-steps { list-style: none; padding: 0; margin: 28px 0 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; counter-reset: step; }
+    .cs-steps li { counter-increment: step; background: #fff; border: 1px solid rgba(54,16,155,0.12); border-radius: 14px; padding: 18px; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,0.7); }
+    .cs-steps li::before { content: counter(step); display: block; font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+    .cs-steps li b { display: block; color: var(--ink); margin-bottom: 4px; }
+    @media (max-width: 800px) { .cs-steps { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .cs-steps { grid-template-columns: 1fr; } }
+
+    /* A/B test card */
+    .cs-test { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0 0 0; }
+    .cs-test > div { border-radius: 16px; padding: 20px 22px; border: 1px solid rgba(54,16,155,0.12); background: #fff; }
+    .cs-test h4 { margin: 0 0 6px 0; font-size: 15px; color: var(--ink); }
+    .cs-test p { margin: 0; font-size: 14px; line-height: 1.6; }
+    @media (max-width: 700px) { .cs-test { grid-template-columns: 1fr; } }
   </style>
-
-
 </head>
+
 <body class="sub-page cs">
-  
+  <!-- DRAFT: amber dashed boxes (.cs-todo) mark content still to come. Remove the noindex meta in <head> before linking this page from the homepage. -->
   <div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
 
   <div class="hero-bg-wrapper">
@@ -228,162 +247,284 @@
     <a href="/#contact">Contact</a>
     <a href="/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn btn-cv btn-cv-mobile">Download CV</a>
   </div>
-  
+
+  <!-- HERO -->
   <main class="project-hero">
     <div class="content-inner" style="width:100%;">
-      <span class="section-label scroll-reveal sr-d1">UX · Strategy</span>
-      <h1 class="scroll-reveal sr-d2">Asda Design Guidelines</h1>
-      <p class="section-sub scroll-reveal sr-d3">As Lead Web Designer at Asda, I owned the end-to-end creative specification process for digital display media — then identified the root cause of non-compliant submissions, and redesigned the entire information experience around them.</p>
+      <span class="section-label scroll-reveal sr-d1">UX · UI · Conversion</span>
+      <h1 class="scroll-reveal sr-d2">Treasured Possession: Instant Quote Flow</h1>
+      <p class="section-sub scroll-reveal sr-d3">Turning a long single-page price form into a guided, multi-step quote that shows the price from the first choice and gives the business a way to follow up with every customer.</p>
       <div class="scroll-reveal sr-d3">
         <span class="cs-hero-result">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c0a7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
-          <span><strong>Media implementation rate up</strong> from 95% to 98%</span>
+          <!-- TODO: replace with the headline result after launch -->
+          <span><strong>[Headline result]</strong> to add after launch</span>
         </span>
-      </div>    </div>
+      </div>
+    </div>
   </main>
 
   <section class="project-feature">
     <div class="content-inner">
+
+      <!-- OVERVIEW -->
       <div class="project-meta-light scroll-reveal sr-d3">
         <div class="cs-meta-top">
           <div class="meta-col">
-            <h4>Brief</h4>
-            <p>Redesign the supplier-facing guidelines for Asda's digital display media — replacing a PDF-based process with a structured interactive hub built around how suppliers actually work.</p>
+            <h4>The Brief</h4>
+            <p>Treasured Possession cleans and preserves wedding dresses for customers across the UK. Their online price form asked customers to complete every field before showing a price, and the business had no way to follow up with people who left. The brief was to make getting a price as easy as possible and to turn quote requests into contactable leads.</p>
           </div>
           <div class="meta-col meta-col--role">
             <h4>My Role</h4>
-            <p>Lead Web Designer — responsible for defining the creative specifications, designing the banner templates from scratch, and redesigning the entire guidelines experience based on supplier research.</p>
+            <p>Lead designer: audit, competitor research, user flow, wireframes, UI design and testing. Development by Tim at Infoserve.</p>
           </div>
         </div>
-        <dl class="cs-meta-details"><div><dt>Client</dt><dd>Asda</dd></div><div><dt>Role</dt><dd>Lead Web Designer</dd></div><div><dt>Audience</dt><dd>Asda suppliers</dd></div><div><dt>Replaced</dt><dd>PDF-based guidelines</dd></div></dl>
+        <dl class="cs-meta-details">
+          <div><dt>Client</dt><dd>Treasured Possession</dd></div>
+          <div><dt>Sector</dt><dd>Bridal · Garment care</dd></div>
+          <div><dt>Agency</dt><dd>Infoserve</dd></div>
+          <div><dt>Launched</dt><dd>[Month 2026]</dd></div>
+        </dl>
       </div>
-      
-      <!-- REPLACED VIDEO WRAPPER WITH INTERACTIVE TILE -->
-      <button class="tile scroll-reveal" style="margin-bottom:56px;" type="button" data-type="video" data-src="/img/portfolio/UX%20design/Guidelines-Preview-Design.mp4" data-label="Asda Design Guidelines Preview">
-        <img src="/img/portfolio/websites/Asda-Guidelines-Mockup.png" alt="Asda Design Guidelines Mockup">
-        <div class="tile-hover-overlay"></div>
-        <div class="tile-play-roundel"><i class="icon-play"></i></div>
-        <div class="tile-caption">
-          <h4 class="tile-caption-title">Asda Design Guidelines</h4>
-          <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </div>
-      </button>
 
+      <!-- THE CHALLENGE -->
       <article class="project-body">
-        <span class="cs-eyebrow scroll-reveal">UX Research · Problem Framing</span>
-        <h2 class="scroll-reveal">Problem Statement</h2>
-        <p class="scroll-reveal sr-d2">The existing guidelines were PDF-based and structured around internal logic rather than how suppliers actually used them. Non-compliant submissions were common, and the account team was fielding the same questions repeatedly.</p>
+        <span class="cs-eyebrow scroll-reveal">The Challenge</span>
+        <h2 class="scroll-reveal">An "instant price" you had to work for</h2>
+        <p class="scroll-reveal sr-d2">The page promised an instant price, but customers had to work through six sections (order type, dress style, dress value, additional items, Express and two required dates) before pressing "Calculate Order" at the bottom. Until then, the order summary on the right showed only placeholder text.</p>
+        <p class="scroll-reveal sr-d2">Anyone who left before the end left no trace. The business couldn't follow up with a customer who had shown clear interest but hadn't bought.</p>
       </article>
 
-      <div class="divider"></div>
-
-      <article class="project-body">
-        <span class="cs-eyebrow scroll-reveal">Context · Ownership</span>
-        <h2 class="scroll-reveal">Background</h2>
-        <p class="scroll-reveal sr-d2">As Lead Web Designer, I was responsible for the full creative specification process for Asda's digital display media — designing the banner templates and UI toolkit from scratch, defining technical requirements, and setting the WCAG accessibility standards suppliers had to meet. Owning the specs end-to-end meant I also had visibility of where they were breaking down.</p>
-      </article>
-
-      <div class="divider"></div>
-
-
-      <article class="project-body">
-        <span class="cs-eyebrow scroll-reveal">Information Architecture · UI Design · Build</span>
-        <h2 class="scroll-reveal">Process &amp; Approach</h2>
-        <p class="scroll-reveal sr-d2">Rather than updating the PDFs, I rebuilt the guidelines as a bespoke interactive hub — structured around how suppliers browse and make decisions, not how the information had always been internally organised. Each media format got its own dedicated page with in-situ examples, accessibility guidance, downloadable templates, and direct links to the relevant Photoshop UI toolkit.</p>
-        <p class="scroll-reveal sr-d2">The hub was aligned to Asda's brand guidelines throughout. The architecture was later adapted for Asda's new CMS, maintaining the original structure while moving to standardised, modular components.</p>
-      </article>
-      
-
-      <div class="scroll-reveal visible" style="margin-top: 3rem;">
+      <div class="cs-media scroll-reveal">
         <div class="project-compare-grid">
-          <div>
-            <img src="/img/portfolio/asda-pages/Asda-Guidelines-Wireframe.jpg" alt="Asda Design Guidelines - Low-fidelity Mockup" class="project-image-full">
-          </div>
-          <div>
-            <img src="/img/portfolio/asda-pages/Asda-Guidelines-High-Mockup.png" alt="Asda Design Guidelines - High-fidelity Mockup" class="project-image-full">
-          </div>
+          <!-- TODO: save your before screenshots to /img/portfolio/treasured-possession/ and swap these boxes for:
+               <div><img src="/img/portfolio/treasured-possession/tp-before-desktop.jpg" alt="The original quote form on desktop" class="project-image-full"></div> -->
+          <div class="cs-todo cs-todo--img"><strong>Image: before, desktop</strong>Full-page screenshot of the original form.<br><code>/img/portfolio/treasured-possession/tp-before-desktop.jpg</code></div>
+          <div class="cs-todo cs-todo--img"><strong>Image: before, mobile</strong>Full-page mobile screenshot, to show the length of the form.<br><code>/img/portfolio/treasured-possession/tp-before-mobile.jpg</code></div>
         </div>
+        <p class="cs-caption">The original form: six sections to complete before the price appears.</p>
       </div>
 
       <div class="divider"></div>
 
+      <!-- RESEARCH: AUDIT -->
       <article class="project-body">
-        <span class="cs-eyebrow scroll-reveal">Research · Synthesis · Iteration</span>
-        <h2 class="scroll-reveal">Usability Testing</h2>
-        <p class="scroll-reveal sr-d2">Before launch I ran separate calls with five suppliers — a mix of regular submitters and those with a history of rejections. Each was given the same task: find the specs for a specific format, check the accessibility requirements, and download the correct template. I observed without steering, then mapped the feedback to find common patterns.</p>
-        <p class="scroll-reveal sr-d2">Five insights emerged, each pointing to a specific gap.</p>
+        <span class="cs-eyebrow scroll-reveal">Research</span>
+        <h2 class="scroll-reveal">Auditing the existing form</h2>
+        <p class="scroll-reveal sr-d2">I started with a heuristic review of the live form, clicking through every option to map the conditional fields and note where customers were likely to hesitate.</p>
+        <ul class="cs-findings scroll-reveal sr-d2">
+          <li><b>The price came last.</b> Nothing showed until every section was complete, so customers couldn't compare options or check the cost early.</li>
+          <li><b>Pressure in the copy.</b> Customers were told to "ensure" they chose the correct dress value band, which puts the risk of getting it wrong on them.</li>
+          <li><b>Mismatched controls.</b> Additional items asked for a quantity but used single-select circles.</li>
+          <li><b>Placeholder-only text fields.</b> The designer and special-details boxes had no visible labels, failing WCAG 3.3.2 (Labels or Instructions).</li>
+          <li><b>An ambiguous required field.</b> "Delivery date" could mean the wedding date or when the dress should come back.</li>
+          <li><b>Rules as small print.</b> The 6pm cut-off for next-day collection was a note under the date field, not built into the date picker.</li>
+        </ul>
+        <!-- TODO (optional): annotated audit graphic -->
+        <div class="cs-todo"><strong>Optional image: annotated audit</strong>The before screenshot with numbered callouts matching the findings above.<br><code>/img/portfolio/treasured-possession/tp-audit-annotated.jpg</code></div>
       </article>
 
+      <!-- RESEARCH: ANALYTICS -->
       <article class="project-body">
+        <h3 class="scroll-reveal">Analytics baseline</h3>
+        <!-- TODO: once GA access is restored -->
+        <div class="cs-todo"><strong>To add: baseline numbers</strong>Monthly visits to the quote page, add-to-baskets, purchases and mobile share, over the last 12 months. These become the "before" figures in Results.</div>
+      </article>
+
+      <!-- RESEARCH: COMPETITORS -->
+      <article class="project-body">
+        <h3 class="scroll-reveal">How competitors price</h3>
+        <p class="scroll-reveal sr-d2">I worked through three competitors' booking flows up to the point of payment. Each one shows a price within one or two choices, and none asks for an email first.</p>
+      </article>
+
+      <div class="cs-table-wrap scroll-reveal">
+        <table class="cs-table">
+          <thead>
+            <tr><th scope="col"></th><th scope="col">Elsie May</th><th scope="col">Re:Finery</th><th scope="col">Dorothy</th><th scope="col" class="is-client">Treasured Possession</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Price set by</th><td>Gown style (7 tiers)</td><td>Purchase price (3 bands)</td><td>Flat price</td><td class="is-client">Purchase price (5 bands)</td></tr>
+            <tr><th scope="row">First price shown</th><td>After 2 clicks</td><td>After 1 click</td><td>Immediately</td><td class="is-client">After every section</td></tr>
+            <tr><th scope="row">Running total</th><td>Yes</td><td>Yes, itemised</td><td>No</td><td class="is-client">No</td></tr>
+            <tr><th scope="row">Extras</th><td>Separate products</td><td>Collapsed</td><td>Checkboxes</td><td class="is-client">10 items, always open</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cs-caption scroll-reveal">Competitor booking flows, reviewed October 2026.</p>
+
+      <article class="project-body">
+        <p class="scroll-reveal sr-d2">Two patterns stood out. Elsie May tells customers to pick their best guess because the team will confirm the tier when the gown arrives, which removes the fear of choosing wrongly. Re:Finery closes its summary with what to expect: turnaround, the limits of stain removal, and a promise to ask before doing anything that needs approval.</p>
+        <!-- TODO (optional): competitor screenshots -->
+        <div class="cs-todo"><strong>Optional image: competitor crops</strong>Three cropped screenshots of each competitor's pricing step, side by side.<br><code>/img/portfolio/treasured-possession/tp-competitors.jpg</code></div>
+      </article>
+
+      <!-- RESEARCH: USABILITY TEST OF CURRENT FORM -->
+      <article class="project-body">
+        <h3 class="scroll-reveal">Watching people use it</h3>
+        <!-- TODO: usability test of the current form -->
+        <div class="cs-todo"><strong>To add: usability test of the current form</strong>4–5 participants, same task: "Get a price to clean a £1,800 dress plus a veil, collected next week." Where did they hesitate, misread or give up? Include one or two direct quotes.</div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- USER FLOW -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">User Flow</span>
+        <h2 class="scroll-reveal">Splitting the journey by what's being sent</h2>
+        <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. Customers sending only bridesmaid dresses, suits or a preservation box still had to scroll past the dress questions. The new flow asks one question first, "What are you sending?", and customers with other items skip the dress steps entirely.</p>
+        <p class="scroll-reveal sr-d2">The wedding dress journey became four short steps, each with a single focus:</p>
+        <ol class="cs-steps scroll-reveal sr-d2">
+          <li><b>Your order</b>Service, dress value and style, with a price on every option</li>
+          <li><b>Extras</b>Bridesmaid dresses, veils and more, collapsed by default</li>
+          <li><b>Dates</b>Collection and "need it back by", with Express suggested only when needed</li>
+          <li><b>Review</b>Itemised total, what to expect and edit links</li>
+        </ol>
+      </article>
+
+      <div class="cs-media scroll-reveal">
+        <!-- TODO: export the user flow as an image, then replace this box with the .cs-flow block from the LHA page -->
+        <div class="cs-todo cs-todo--img"><strong>Image: user flow</strong>Export from the quote flow diagram, showing both paths, email capture and the resume and abandoned-cart paths.<br><code>/img/portfolio/treasured-possession/tp-user-flow.jpg</code></div>
+        <p class="cs-caption">Two entry paths, one review step, and automated emails that bring customers back to the step they left.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- WIREFRAMES -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Wireframes</span>
+        <h2 class="scroll-reveal">[Wireframes heading]</h2>
+        <div class="cs-todo"><strong>To add: wireframes</strong>Low-fidelity mobile-first screens for each step. Include an option you rejected, with a sentence on why.</div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- DESIGN DECISIONS -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Design Decisions</span>
+        <h2 class="scroll-reveal">Each change answers a problem from the audit</h2>
         <div class="insight-list scroll-reveal">
           <div class="insight-item">
-            <div class="insight-label">Insight 1 — Suppliers lost track of which package they were in</div>
-            <p>Asda's media offering was structured across five packages — Basic, Standard, Audience, Rich, and Premium. As participants moved between pages to compare formats, they lost track of which package they were browsing. Breadcrumb navigation was introduced so suppliers always knew where they were in the hierarchy and could step back without starting from scratch.</p>
+            <div class="insight-label">Price on every option, from the first step</div>
+            <p>Every card shows what it costs, and a running total follows the customer through the flow (a sticky bar on mobile, a sidebar on desktop). Nobody has to finish the form to find out whether they can afford it.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Insight 2 — In-page navigation wasn't obvious</div>
-            <p>Within each package page, suppliers were hunting for their specific format rather than reading top to bottom — but nothing signalled that the anchor links would jump them directly to it. Adding a "Jump to:" label made the function immediately clear and reduced the time spent scrolling in follow-up testing.</p>
-          </div>   
-          <div class="insight-item">
-            <div class="insight-label">Insight 3 — Accessibility requirements needed visual context</div>
-            <p>Suppliers couldn't internalise the accessibility requirements because the relationship between supplied dimensions and actual display size wasn't obvious. A banner delivered at 1000px wide might render at 400px on site — making text that looked fine at source potentially fail at the point of display. On top of that, Asda's UI dynamically overlaid elements like promotional roundels on banners, meaning content outside the safe zone would be obscured entirely. To make both constraints visible, I built the Artwork Checker Tool: it detects the template from the supplied dimensions and shows suppliers exactly how their artwork will appear on site — at the correct scale, with safe zone overlays applied.</p>
-            <video playsinline muted autoplay loop poster="/img/portfolio/UX%20design/Artwork-Checker-Poster.png" class="project-image-main scroll-reveal visible" style="margin-bottom:0;margin-top:20px;"><source src="/img/portfolio/UX%20design/Artwork-Checker.mp4" type="video/mp4"></video>
+            <div class="insight-label">Reassurance instead of pressure on dress value</div>
+            <p>[Final copy for the value band step, and why the tone changed.]</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Insight 4 — The Photoshop toolkit needed guided onboarding</div>
-            <p>Suppliers had the right file but no clear entry point into it. File structure, layer naming, and export settings weren't obvious without guidance. A step-by-step video tutorial was added to the toolkit section, walking through exactly how to use the file and export at the correct spec.</p>
+            <div class="insight-label">Quantity steppers for extras</div>
+            <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity, and sit behind "Add bridesmaid dresses, veils and more" so single-dress customers aren't slowed down.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Insight 5 — Suppliers had no sense of progress through a long page</div>
-            <p>Each package page covered multiple formats across a significant amount of content. Suppliers working through it linearly had no indication of how far through they were or how much remained. A progress bar added to the top of the page gave them that reference point at a glance — and in follow-up testing, more suppliers reported reading to the end.</p>
+            <div class="insight-label">Express suggested at the right moment</div>
+            <p>"Delivery date" became "When do you need it back by?". If that date falls inside the standard turnaround, the flow suggests Express there and then, instead of showing it as a standalone add-on.</p>
+          </div>
+          <div class="insight-item">
+            <div class="insight-label">Email capture framed as saving the quote</div>
+            <p>The email field is presented as "Save your quote so you can come back to it", which also powers the resume and abandoned-cart emails. An optional phone number on the review step lets customers ask for a call back.</p>
           </div>
         </div>
+        <!-- TODO: add a cropped detail image under each decision once hi-fi is ready -->
       </article>
-      
+
       <div class="divider"></div>
 
+      <!-- EMAIL CAPTURE TEST -->
       <article class="project-body">
-        <span class="cs-eyebrow scroll-reveal">Impact · Outcomes</span>
-        <h2 class="scroll-reveal">Results</h2>
-            <p class="scroll-reveal sr-d2">The media implementation rate rose from 95% to 98%, and supplier questions to the account team dropped noticeably. At the volume Asda's campaigns team was working at, that shift in the rejection rate had a real operational impact.</p>
-            <p class="scroll-reveal sr-d2">The Artwork Checker outlasted the project it was built for. What started as a response to a single usability finding became a core part of Asda's internal media approval process — used to verify artwork before any banner went live. At peak periods that meant checking hundreds of banners a week.</p>
+        <span class="cs-eyebrow scroll-reveal">Testing</span>
+        <h2 class="scroll-reveal">Testing where to ask for the email</h2>
+        <p class="scroll-reveal sr-d2">The client's priority was capturing leads, but none of the competitors ask for an email before showing a price. Instead of guessing, we set up a test.</p>
+        <div class="cs-test scroll-reveal sr-d2">
+          <div><h4>Version A: email first</h4><p>Customers enter their email before seeing any prices.</p></div>
+          <div><h4>Version B: price first</h4><p>Prices show from the first step, and the email is asked for at "Save your quote", before review.</p></div>
+        </div>
+        <p class="scroll-reveal sr-d2" style="margin-top:20px;">The main success measure is paid orders, with leads captured as a secondary measure. The optional phone field sits in the same place in both versions so it doesn't affect the result.</p>
+        <div class="cs-todo"><strong>To add: prototype testing and test result</strong>What changed between prototype rounds and why (before/after-iteration images). Then the A/B result, including if it was inconclusive.</div>
       </article>
 
+      <div class="divider"></div>
+
+      <!-- FINAL DESIGN -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Final Design</span>
+        <h2 class="scroll-reveal">[Final design heading]</h2>
+        <p class="scroll-reveal sr-d2">[One or two sentences introducing the final flow.]</p>
+      </article>
+
+      <div class="cs-media scroll-reveal">
+        <!-- TODO: swap for the .ba before/after slider block from the LHA page (and copy its script) once the after screenshot exists -->
+        <div class="cs-todo cs-todo--img"><strong>Before / after slider</strong>Old form vs new step 1, same viewport size.<br><code>/img/portfolio/treasured-possession/tp-before-desktop.jpg</code><br><code>/img/portfolio/treasured-possession/tp-after-step1.jpg</code></div>
+      </div>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-todo cs-todo--img"><strong>Video: full journey on mobile</strong>Screen recording from choosing a service through to the basket.<br><code>/img/portfolio/treasured-possession/tp-flow.mp4</code></div>
+      </div>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-todo cs-todo--img"><strong>Image: emails</strong>Confirmation and abandoned-cart email designs side by side.<br><code>/img/portfolio/treasured-possession/tp-emails.jpg</code></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ACCESSIBILITY -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Accessibility</span>
+        <h2 class="scroll-reveal">Built to WCAG 2.1 AA</h2>
+        <p class="scroll-reveal sr-d2">Every field has a visible label, errors are checked on each step with a clear message next to the field, and the step indicator, price cards and steppers work with a keyboard and screen reader.</p>
+        <div class="cs-todo"><strong>To confirm</strong>Check this against what was actually built, and add an annotated spec image if useful.</div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- RESULTS -->
+      <article class="project-body" style="margin-bottom:0;">
+        <span class="cs-eyebrow scroll-reveal">Results</span>
+        <h2 class="scroll-reveal">[Results heading]</h2>
+        <p class="scroll-reveal sr-d2">[Comparison period and what changed.]</p>
+      </article>
+
+      <!-- TODO: replace dashes with real figures; keep only stats that are meaningful -->
       <div class="cs-stats cs-stats--simple cs-stats--3">
         <div class="cs-stat scroll-reveal sr-d1">
-          <div class="cs-stat-viz"><div class="cs-bars" role="img" aria-label="Media implementation rate: 95% before, 98% after">
-            <div class="cs-bar-row"><span>Before</span><div class="cs-bar-track"><div class="cs-bar" style="width:95%;background:#b9b1d6"></div></div></div>
-            <div class="cs-bar-row"><span>After</span><div class="cs-bar-track"><div class="cs-bar cs-bar--after" style="width:98%"></div></div></div>
-          </div></div>
-          <div class="cs-stat-num">95→98%</div>
-          <p class="cs-stat-label">media implementation rate</p>
+          <div class="cs-stat-num cs-todo-num">—</div>
+          <p class="cs-stat-label">conversion from quote page to order</p>
+          <p class="cs-stat-sub">Before → after</p>
         </div>
         <div class="cs-stat scroll-reveal sr-d2">
-          <div class="cs-stat-viz"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#36109b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 7 9 13 13 9 21 17"/><polyline points="15 17 21 17 21 11"/></svg></div>
-          <div class="cs-stat-num">Fewer</div>
-          <p class="cs-stat-label">supplier questions &amp; rejections</p>
+          <div class="cs-stat-num cs-todo-num">—</div>
+          <p class="cs-stat-label">leads captured in the first [period]</p>
+          <p class="cs-stat-sub">Previously none</p>
         </div>
         <div class="cs-stat scroll-reveal sr-d3">
-          <div class="cs-stat-viz"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#36109b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <div class="cs-stat-num">100s</div>
-          <p class="cs-stat-label">banners checked per week via the Artwork Checker</p>
+          <div class="cs-stat-num cs-todo-num">—</div>
+          <p class="cs-stat-label">orders recovered by the abandoned-cart email</p>
+          <p class="cs-stat-sub">[Source]</p>
         </div>
       </div>
+
+      <p class="cs-compare-note scroll-reveal" style="text-align:center;margin-top:8px;">Source: [Treasured Possession Google Analytics and WooCommerce, dates].</p>
+
+      <div class="divider"></div>
+
+      <!-- REFLECTION -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Reflection</span>
+        <h2 class="scroll-reveal">What I'd do next</h2>
+        <div class="cs-todo"><strong>To add at the end</strong>What you learned, what you'd change, and any follow-up work (for example pricing for standalone items once confirmed).</div>
+      </article>
 
     </div>
   </section>
 
-  <!-- Lightbox Carousel Logic -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lightbox-backdrop" data-close></div>
-    
-    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Project media">
-      <button class="lightbox-close" type="button" data-close aria-label="Close">&times;</button>
-      <video class="lightbox-video" id="lightbox-video" muted loop playsinline controls></video>
-      <img class="lightbox-image" id="lightbox-image" alt="" style="display:none;">
-      <div class="lightbox-caption" id="lightbox-caption"></div>
+  <!-- TESTIMONIAL: TODO, add once the client has given a quote -->
+  <figure class="cs-quote">
+    <div class="content-inner">
+      <blockquote class="scroll-reveal">[Client quote to come. Highlight the key line with &lt;mark&gt;.]</blockquote>
+      <figcaption class="scroll-reveal sr-d1">
+        <div><strong>[Name]</strong>[Role], Treasured Possession</div>
+      </figcaption>
     </div>
-  </div>
+  </figure>
 
   <!-- MORE WORK -->
   <section class="cs-more">
@@ -393,9 +534,9 @@
         <a href="/#portfolio" class="scroll-reveal">View all projects →</a>
       </div>
       <div class="cs-more-grid">
-        <a href="lha-london-ux" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/UX%20design/lha-ux.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Design</span><h3>LHA London UX</h3></div></a>
-        <a href="asda-bespoke-web-pages" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Asda-Pages.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · Digital</span><h3>Asda Bespoke Web Pages</h3></div></a>
-        <a href="website-design" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Web-Design.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · UX</span><h3>Website Design &amp; Build</h3></div></a>
+        <a href="lha-london-ux" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/UX%20design/lha-ux.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Design</span><h3>LHA London UX</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+        <a href="asda-design-guidelines" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-guidelines.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Strategy</span><h3>Asda Design Guidelines</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+        <a href="sushi-restaurant-app" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/sora-sushi/thumb-sora-sushi-2.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Branding</span><h3>UX Mobile App Design</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
       </div>
     </div>
   </section>
@@ -413,7 +554,7 @@
           <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div><strong>Phone</strong><a href="tel:+447971727886">+44 7971 727886</a></div></div>
         </div>
         <form class="contact-form" target="_blank" action="https://formsubmit.co/181d1785bd52831baeaf8526716d033c" method="POST">
-          <input type="hidden" name="_subject" value="Enquiry from Asda Design Guidelines page">
+          <input type="hidden" name="_subject" value="Enquiry from Treasured Possession case study">
           <div class="form-row">
             <input type="text" name="name" placeholder="Full Name" required aria-label="Full name">
             <input type="email" name="email" placeholder="Email Address" required aria-label="Email address">
@@ -429,12 +570,13 @@
     <div class="content-inner footer-inner">
       <a href="/" class="footer-logo">NickThompson<em>Design</em></a>
       <p>© 2026 Nick Thompson. All rights reserved.</p>
+      <a href="/privacy-policy" class="privacy">Privacy Policy</a>
     </div>
   </footer>
 
   <script src="shared.js"></script>
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-outline" id="cursorOutline"></div>
-  
+
 </body>
 </html>
