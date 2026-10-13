@@ -104,6 +104,8 @@
     .cs-stat-num { font-family: var(--font-heading); font-size: clamp(36px, 3.6vw, 48px); font-weight: 800; line-height: 1; letter-spacing: var(--tracking-tight); color: var(--accent); }
     .cs-stat-label { font-size: 15px; line-height: 1.45; color: var(--ink); margin: 0; }
     .cs-stat-sub { font-size: 12px; color: var(--muted-ink); margin: auto 0 0 0; line-height: 1.5; }
+    .cs-stats--3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-stats--simple .cs-stat { min-height: 0; }
     /* 1 in 5: people */
     .cs-people { display: flex; gap: 6px; }
     .cs-people svg { width: 34px; height: 52px; }
@@ -429,10 +431,12 @@
             <tr><th scope="row">Heuristic evaluation</th><td>Where does the current form break usability principles?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Accessibility audit (WCAG 2.2 AA)</th><td>Can everyone complete the form, including keyboard and screen reader users?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Customer review analysis</th><td>What do customers value, and what goes wrong?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
-            <tr><th scope="row">Order baseline (WooCommerce)</th><td>How many orders, and which options do people choose?</td><td><span class="cs-status cs-status--plan">In progress</span></td></tr>
+            <tr><th scope="row">Order data analysis (WooCommerce)</th><td>How many orders, and which options do people choose?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Competitor journey benchmarking</th><td>How quickly do competitors show a price, and what do they ask for?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Analytics baseline (GA4)</th><td>How many people reach the form, add to basket and buy?</td><td><span class="cs-status cs-status--plan">Waiting on access</span></td></tr>
-                        <tr><th scope="row">Guerrilla usability test (current form)</th><td>Where do people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
+            <tr><th scope="row">Cross-industry patterns</th><td>Who outside the sector solves "configure, then see a price" well?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Form best-practice review</th><td>Does the design follow published form research?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Guerrilla usability test (current form)</th><td>Where do people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -471,11 +475,47 @@
         <p class="scroll-reveal sr-d2">The gap between the two results shaped the plan: every new component would be checked by hand with a keyboard and screen reader, not just with automated tools.</p>
       </article>
 
-      <!-- ANALYTICS -->
+      <!-- ORDER DATA -->
       <article class="project-body">
-        <h3 class="scroll-reveal">Analytics baseline</h3>
-        <p class="scroll-reveal sr-d2">The client already has Google Analytics and Microsoft Clarity, managed by another account. Access has been requested. In the meantime, the order baseline comes from WooCommerce.</p>
-        <div class="cs-todo"><strong>To add: baseline numbers</strong>WooCommerce (now): cleaning orders, net sales, average order value and option uptake over 12 months. GA4 and Clarity (when access arrives): visits to the quote page, add-to-baskets, purchases, device split, scroll depth and rage clicks.</div>
+        <h3 class="scroll-reveal">What 12 months of orders showed</h3>
+        <p class="scroll-reveal sr-d2">Analytics access was still pending, so I exported a year of WooCommerce orders with every product option. I removed test orders and all personal details, and looked only at totals: 338 orders, of which 295 were paid.</p>
+      </article>
+
+      <div class="cs-stats cs-stats--simple cs-stats--3">
+        <div class="cs-stat scroll-reveal sr-d1">
+          <div class="cs-stat-num">£251</div>
+          <p class="cs-stat-label">average order value</p>
+          <p class="cs-stat-sub">About 23 paid orders a month, rising to 38 in September</p>
+        </div>
+        <div class="cs-stat scroll-reveal sr-d2">
+          <div class="cs-stat-num">65%</div>
+          <p class="cs-stat-label">of dress orders include a preservation box</p>
+          <p class="cs-stat-sub">The box is part of the main journey, not an extra</p>
+        </div>
+        <div class="cs-stat scroll-reveal sr-d3">
+          <div class="cs-stat-num">12%</div>
+          <p class="cs-stat-label">of orders ended failed or cancelled</p>
+          <p class="cs-stat-sub">Baseline to compare after launch</p>
+        </div>
+      </div>
+
+      <div class="cs-table-wrap scroll-reveal">
+        <table class="cs-table">
+          <thead><tr><th scope="col">What the orders showed</th><th scope="col">What it changed</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">The price depends on dress style as well as value. Within each band, Slimline costs £20 less than Princess, and A Line £10 less.</th><td>Style is asked first, so each value band can show the customer's real price. It also explains the price ranges on the price list.</td></tr>
+            <tr><th scope="row">The box size always follows the style: Slimline gets Small, A Line gets Regular, Princess gets Large.</th><td>The box is sized automatically from the dress, so customers only choose a pattern.</td></tr>
+            <tr><th scope="row">A Line is 49% of dresses. Chelsea Ivory is 83% of box patterns.</th><td>The most common choices are listed first. The pattern most people choose is selected by default.</td></tr>
+            <tr><th scope="row">44% of dress orders add at least one extra, and most add just one. The veil is the most common (89 orders), then suits (21).</th><td>The five most-ordered extras show first, ordered by popularity. The rest sit behind "Show 4 more items".</td></tr>
+            <tr><th scope="row">Only 4% of orders choose Express. 40% of "delivery dates" were exactly 28 days after collection, the form's default.</th><td>"Need it back by" became optional, and Express is suggested only when that date is close.</td></tr>
+            <tr><th scope="row">About 1 in 10 orders is a box only, with no cleaning.</th><td>The no-wedding-dress route also handles box-only orders.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cs-caption scroll-reveal">WooCommerce orders, October 2025 to October 2026, with personal details removed before analysis.</p>
+
+      <article class="project-body">
+        <div class="cs-todo"><strong>To add when access arrives: GA4 and Clarity</strong>Visits to the quote page, add-to-baskets, purchases, device split, scroll depth and rage clicks.</div>
       </article>
 
       <div class="divider"></div>
@@ -530,7 +570,26 @@
 
       <article class="project-body">
         <p class="scroll-reveal sr-d2" style="margin-top:32px;">What it told me: every competitor shows a total within two clicks, and none asks for an email first. Re:Finery proved a value-band model can still feel instant. Elsie May showed that a single line of reassurance can take the stress out of a pricing choice.</p>
-        <div class="cs-todo"><strong>Optional: best-in-class comparison</strong>One quote flow from outside the sector that handles "configure, then see a price" well, and the pattern you took from it.</div>
+      </article>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">Looking outside the industry</h3>
+        <p class="scroll-reveal sr-d2">Competitors only show what the sector already does. I looked for services in other industries that solve the same problems.</p>
+      </article>
+      <div class="cs-table-wrap scroll-reveal">
+        <table class="cs-table">
+          <thead><tr><th scope="col">Problem</th><th scope="col">Who does it well</th><th scope="col">Pattern I took</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Pricing something whose value varies</th><td>Car-buying sites</td><td>A few questions give a price straight away, confirmed on inspection. The same model as "we'll check the band when your dress arrives".</td></tr>
+            <tr><th scope="row">Choosing a size without measuring</th><td>Parcel size pickers</td><td>Pick by what you're sending, not by dimensions. Box sizes are described by the dress they fit.</td></tr>
+            <tr><th scope="row">Customising a product</th><td>Card and frame builders</td><td>A live preview, a sensible default and a "most popular" label.</td></tr>
+            <tr><th scope="row">Several different items in one order</th><td>Laundry and dry-cleaning apps</td><td>Item lists with steppers and a running total, most popular items first.</td></tr>
+            <tr><th scope="row">Booking a collection</th><td>Courier and removals quotes</td><td>Unavailable days greyed out, and a faster option offered only when the date is tight.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <article class="project-body">
+        <div class="cs-todo"><strong>To add: screenshots</strong>One screenshot per pattern, captured and dated like the competitor screens.</div>
       </article>
 
       <!-- REVIEWS -->
@@ -579,7 +638,7 @@
         <p class="scroll-reveal sr-d2">Drawn from the review themes and the client's knowledge of their customers. These are assumptions to check as the project goes on.</p>
         <ul class="cs-jtbd scroll-reveal sr-d2">
           <li><b>When</b> my wedding is over and my dress is marked, <b>I want</b> to know what cleaning will cost before I commit, <b>so I can</b> decide whether it's worth it.</li>
-          <li><b>When</b> I'm getting my dress ready before the wedding, <b>I want</b> to know it will be back in time, <b>so I can</b> stop worrying about the date.</li>
+          <li><b>When</b> I need my dress back for a date, like an anniversary or a photoshoot, <b>I want</b> to know it will be back in time, <b>so I can</b> stop worrying about it.</li>
           <li><b>When</b> I'm only sending bridesmaid dresses, a suit or a box, <b>I want</b> to skip the wedding dress questions, <b>so I can</b> get a price quickly.</li>
         </ul>
       </article>
@@ -629,14 +688,14 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">User Flow</span>
         <h2 class="scroll-reveal">Splitting the journey by what's being sent</h2>
-        <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. The new flow asks one question first, "What are you sending?", and customers with other items skip the dress steps entirely.</p>
-        <p class="scroll-reveal sr-d2">Preservation boxes get the same treatment. Clean &amp; Box orders add a "Your box" step after the dress details, and box-only orders choose the box from the items list. Both use one shared component.</p>
-        <p class="scroll-reveal sr-d2">The wedding dress journey became four short steps, each with a single focus:</p>
+        <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. The new tool starts with one question, "Is there a wedding dress in your order?". Customers with other items, or a box only, skip the dress questions and go straight to the items list. They can still add a dress later without losing anything.</p>
+        <p class="scroll-reveal sr-d2">The journey is split into two parts: get a quote, then book. Customers see their price before being asked for dates, so the quote is useful even to people who aren't ready to book.</p>
         <ol class="cs-steps scroll-reveal sr-d2">
-          <li><b>Your order</b>Service, dress value and style, with a price on every option</li>
-          <li><b>Extras</b>Bridesmaid dresses, veils and more, collapsed by default</li>
-          <li><b>Dates</b>Collection and "need it back by", with Express suggested only when needed</li>
-          <li><b>Review</b>Itemised total, what to expect and edit links</li>
+          <li><b>Your dress</b>Style first, then value bands priced for that style, plus optional details</li>
+          <li><b>Add-ons</b>The most-ordered extras with steppers, and a preservation box sized from the dress</li>
+          <li><b>Your boxes</b>Only if a box was added: pattern for each box, with a live preview</li>
+          <li><b>Your quote</b>Itemised total, saved by email</li>
+          <li><b>Book</b>Collection date, "need it back by" and delivery speed, then a review step</li>
         </ol>
       </article>
 
@@ -652,6 +711,7 @@
           </div>
         </div>
         <p class="cs-caption">Two entry paths, one review step, and automated emails that bring customers back to the step they left.</p>
+        <div class="cs-todo"><strong>To update: flow diagram</strong>Redraw to match the final wireframes: wedding dress question, add-ons, optional box step, quote, then booking.</div>
       </div>
 
       <div class="divider"></div>
@@ -660,12 +720,31 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Wireframes</span>
         <h2 class="scroll-reveal">Sketching the steps</h2>
-        <p class="scroll-reveal sr-d2">Two ideas I dropped along the way:</p>
+        <p class="scroll-reveal sr-d2">I built the wireframes as a clickable mobile prototype, so the routes could be tried rather than just looked at. Prices and defaults come from the order data.</p>
+      </article>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-flow cs-flow--wide">
+          <div class="cs-flow-scroll">
+            <img src="/img/portfolio/treasured-possession/tp-wireframes.jpg" alt="Seven mobile wireframes in order: is there a wedding dress in your order; your dress with style cards and priced value bands; add-ons with quantity steppers and a preservation box; your boxes with a box preview and pattern swatches; your quote with an itemised £324 total and email field; booking dates with DPD collection, calendar and delivery speed; and review with edit links, what to expect and add to basket" loading="lazy">
+          </div>
+          <div class="cs-flow-tools">
+            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Scroll sideways to see every step</span>
+            <span aria-hidden="true"></span>
+            <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-wireframes.jpg" data-zoom-title="Wireframes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
+          </div>
+        </div>
+        <p class="cs-caption">The wedding dress route, from the first question to the basket.</p>
+      </div>
+
+      <article class="project-body">
+        <p class="scroll-reveal sr-d2">Ideas I dropped along the way:</p>
         <ul class="cs-findings scroll-reveal sr-d2">
-          <li><span class="cs-num cs-num--plain">×</span><div><b>A five-step flow.</b> My first version had a separate step for each decision. Benchmarking showed Re:Finery covers the same choices in three sections, so I merged them into four.</div></li>
-          <li><span class="cs-num cs-num--plain">×</span><div><b>"Box only" as a dress service.</b> Keeping it alongside Clean Only and Clean &amp; Box meant extra branching inside the dress path. Moving boxes into the items-only path removed a decision for everyone else.</div></li>
+          <li><span class="cs-num cs-num--plain">×</span><div><b>"What are you sending?" with four choices.</b> Most orders include a wedding dress, so a yes or no question is quicker. Extras are shown on the "yes" card so people know they can add them.</div></li>
+          <li><span class="cs-num cs-num--plain">×</span><div><b>"Box only" as a dress service.</b> Keeping it alongside Clean Only and Clean &amp; Box meant extra branching inside the dress path. Moving boxes into the add-ons removed a decision for everyone else.</div></li>
+          <li><span class="cs-num cs-num--plain">×</span><div><b>Asking customers to choose a box size.</b> The order data showed size always follows dress style, so the question was removed.</div></li>
+          <li><span class="cs-num cs-num--plain">×</span><div><b>Damage and stain fields.</b> Every item gets a pre-clean check anyway, so the form says that instead of asking.</div></li>
         </ul>
-        <div class="cs-todo"><strong>To add: wireframes</strong>Low-fidelity mobile-first screens for each step, including the five-step version.</div>
       </article>
 
       <div class="divider"></div>
@@ -685,12 +764,12 @@
             <div class="cs-todo"><strong>Confirm with the client</strong>That they will check the band on arrival and contact the customer before any change.</div>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Quantity steppers for extras · Finding 6</div>
-            <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity, and sit behind "Add bridesmaid dresses, veils and more" so single-dress customers aren't slowed down.</p>
+            <div class="insight-label">Quantity steppers for extras · Finding 6, order data</div>
+            <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity. The five most-ordered items show first, led by the veil, and the rest sit behind "Show 4 more items" so single-dress customers aren't slowed down.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Express suggested at the right moment · Findings 7, 8</div>
-            <p>"Delivery date" became "When do you need it back by?". If that date falls inside the standard turnaround, the flow suggests Express there and then. The 6pm cut-off is built into the date picker.</p>
+            <div class="insight-label">Express suggested at the right moment · Findings 7, 8, order data</div>
+            <p>"Delivery date" became an optional "When do you need it back by?". Most dresses are cleaned after the wedding, and only 4% of orders chose Express, so it isn't pushed. If the date falls inside the standard turnaround, the flow suggests Express there and then. The 6pm cut-off is built into the date picker.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Email capture framed as saving the quote · "No second chance"</div>
@@ -698,7 +777,7 @@
           </div>
           <div class="insight-item">
             <div class="insight-label">Choosing a box by sight, sized for you · Review themes</div>
-            <p>The current box page lists five patterns as text, with no pictures, and uses one photo for two sizes. Six of the 13 reviews praise the packaging, so it matters. The new box step recommends a size from the dress style already given (Princess → Large, for example), shows the five patterns as swatches, and updates a large packshot as the customer chooses.</p>
+            <p>The current box page lists five patterns as text, with no pictures, and uses one photo for two sizes. Six of the 13 reviews praise the packaging, so it matters. The new box step sizes the box from the dress style already given (A Line → Regular, for example), selects the most popular pattern, shows all five as swatches, and updates a large packshot as the customer chooses.</p>
             <div class="cs-todo"><strong>Image: box step</strong>The size cards, pattern swatches and live packshot, once designed and photographed.<br><code>/img/portfolio/treasured-possession/tp-box-step.jpg</code></div>
           </div>
           <div class="insight-item">
@@ -706,6 +785,32 @@
             <p>Cards are real radio buttons with visible focus, every field has a visible label, and price changes are announced to screen readers.</p>
           </div>
         </div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- EVIDENCE CHECK -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Designing with evidence</span>
+        <h2 class="scroll-reveal">Checking the design against form research</h2>
+        <p class="scroll-reveal sr-d2">Before testing with people, I checked the wireframes against published form research and ran an automated accessibility and touch-target scan on every screen.</p>
+      </article>
+      <div class="cs-table-wrap scroll-reveal">
+        <table class="cs-table">
+          <thead><tr><th scope="col">Principle</th><th scope="col">Source</th><th scope="col">What changed</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Ask only what's needed</th><td>Baymard</td><td>Required questions before a price cut from 5 to 2: dress style and value.</td></tr>
+            <tr><th scope="row">If the total number of steps can change, don't show it</th><td>GOV.UK</td><td>"Step 2 of 3" became the step's name, because the number of steps depends on the route.</td></tr>
+            <tr><th scope="row">Explain why you ask</th><td>NN/g</td><td>A "why we ask" line under the dress value question.</td></tr>
+            <tr><th scope="row">Don't preselect answers that change the outcome</th><td>GOV.UK</td><td>Style and value are listed most popular first but left unselected. Only the box pattern has a default.</td></tr>
+            <tr><th scope="row">Show options rather than hiding them in dropdowns</th><td>Baymard</td><td>Every choice is a visible card or radio button.</td></tr>
+            <tr><th scope="row">Check answers and change them</th><td>GOV.UK</td><td>A review step with edit links that each say what they change, for screen reader users.</td></tr>
+            <tr><th scope="row">Touch targets</th><td>WCAG 2.2</td><td>Quantity buttons shrank to 35px on long item names. They're now a fixed 44px.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <article class="project-body">
+        <p class="scroll-reveal sr-d2" style="margin-top:24px;">Some questions research can't settle for this audience, so they go into the office sessions: whether the dress questions work better on one screen or one per screen, and whether a progress label helps at all.</p>
       </article>
 
       <div class="divider"></div>
@@ -722,7 +827,7 @@
           <div><h4>Version A: email first</h4><p>Customers enter their email before seeing any prices.</p></div>
           <div><h4>Version B: price first</h4><p>Prices show from the first step, and the email is asked for at "Save your quote", before review.</p></div>
         </div>
-        <p class="scroll-reveal sr-d2" style="margin-top:20px;">A live A/B test only gives a reliable answer with enough traffic, and a specialist service like this may not have it. Detecting a rise in conversion from 3% to 4% needs roughly 5,000 visitors per version. Once the baseline is in, we'll run it live if traffic allows, and otherwise compare both versions in the office sessions.</p>
+        <p class="scroll-reveal sr-d2" style="margin-top:20px;">A live A/B test only gives a reliable answer with enough traffic. Detecting a rise in conversion from 3% to 4% needs roughly 5,000 visitors per version, and the order data showed about 23 orders a month. The plan is to launch with the client's email-first version, then test price-first measured on completed quotes and leads rather than orders, as those happen far more often. Both versions are also compared in the office sessions.</p>
         <div class="cs-todo"><strong>To add: which route was taken and the result</strong>Including if it was inconclusive.</div>
       </article>
 
@@ -750,7 +855,7 @@
 
       <article class="project-body">
         <h3 class="scroll-reveal">Accessibility</h3>
-        <p class="scroll-reveal sr-d2">Designed to WCAG 2.2 AA: keyboard-operable cards with visible focus, visible labels on every field, errors explained next to the field on each step, touch targets of at least 24px, and the running total announced to screen readers when it changes.</p>
+        <p class="scroll-reveal sr-d2">Designed to WCAG 2.2 AA: keyboard-operable cards with visible focus, visible labels on every field, errors explained next to the field on each step, quantity buttons and cards of at least 44px, and the running total announced to screen readers when it changes.</p>
         <div class="cs-todo"><strong>To confirm</strong>Check against what was built with a keyboard and a screen reader, and re-run the axe scan.</div>
       </article>
 
