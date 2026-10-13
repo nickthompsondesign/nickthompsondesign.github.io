@@ -225,6 +225,9 @@
     @media (max-width: 700px) { .cs-test { grid-template-columns: 1fr; } }
 
     /* ===== v2 additions: research, synthesis, testing ===== */
+    .cs-flow--wide .cs-flow-scroll img { width: 3000px; max-width: none; }
+    .cs-flow--wide .cs-flow-hint { display: inline-flex; }
+    .cs-flow--wide::after { content: ''; position: absolute; top: 0; right: 0; bottom: 49px; width: 48px; background: linear-gradient(to right, rgba(255,255,255,0), #fff); pointer-events: none; }
     .cs-goals { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0 0 0; padding: 28px 0 0 0; border-top: 1px solid rgba(0,0,0,0.08); }
     .cs-goals h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px 0; }
     .cs-goals ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: var(--ink); }
@@ -345,7 +348,7 @@
         <span class="cs-hero-result">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c0a7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
           <!-- TODO: replace with the headline result after launch -->
-          <span><strong>[Headline result]</strong> to add after launch</span>
+          <span><strong>In progress:</strong> research and design stage</span>
         </span>
       </div>
     </div>
@@ -389,7 +392,7 @@
           <div><dt>Client</dt><dd>Treasured Possession</dd></div>
           <div><dt>Sector</dt><dd>Bridal · Garment care</dd></div>
           <div><dt>Agency</dt><dd>Infoserve</dd></div>
-          <div><dt>Launched</dt><dd>[Month 2026]</dd></div>
+          <div><dt>Status</dt><dd>In progress</dd></div>
         </dl>
       </div>
 
@@ -425,10 +428,11 @@
             <tr><th scope="row">Stakeholder conversation</th><td>What does the business need, and what do customers ask about?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Heuristic evaluation</th><td>Where does the current form break usability principles?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Accessibility audit (WCAG 2.2 AA)</th><td>Can everyone complete the form, including keyboard and screen reader users?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Customer review analysis</th><td>What do customers value, and what goes wrong?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Order baseline (WooCommerce)</th><td>How many orders, and which options do people choose?</td><td><span class="cs-status cs-status--plan">In progress</span></td></tr>
             <tr><th scope="row">Competitor journey benchmarking</th><td>How quickly do competitors show a price, and what do they ask for?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Analytics baseline (GA4)</th><td>How many people reach the form, add to basket and buy?</td><td><span class="cs-status cs-status--plan">Waiting on access</span></td></tr>
-            <tr><th scope="row">Customer interviews</th><td>What worries customers when they send off their dress?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
-            <tr><th scope="row">Usability test of the current form</th><td>Where do real people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
+                        <tr><th scope="row">Guerrilla usability test (current form)</th><td>Where do people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -470,7 +474,8 @@
       <!-- ANALYTICS -->
       <article class="project-body">
         <h3 class="scroll-reveal">Analytics baseline</h3>
-        <div class="cs-todo"><strong>To add: baseline numbers</strong>From GA4 and WooCommerce, last 12 months: monthly visits to the quote page, add-to-baskets, checkouts started, purchases, device split. If the client agrees, add Microsoft Clarity for scroll depth and session recordings on the current form before launch.</div>
+        <p class="scroll-reveal sr-d2">The client already has Google Analytics and Microsoft Clarity, managed by another account. Access has been requested. In the meantime, the order baseline comes from WooCommerce.</p>
+        <div class="cs-todo"><strong>To add: baseline numbers</strong>WooCommerce (now): cleaning orders, net sales, average order value and option uptake over 12 months. GA4 and Clarity (when access arrives): visits to the quote page, add-to-baskets, purchases, device split, scroll depth and rage clicks.</div>
       </article>
 
       <div class="divider"></div>
@@ -528,10 +533,29 @@
         <div class="cs-todo"><strong>Optional: best-in-class comparison</strong>One quote flow from outside the sector that handles "configure, then see a price" well, and the pattern you took from it.</div>
       </article>
 
+      <!-- REVIEWS -->
+      <article class="project-body">
+        <h3 class="scroll-reveal">What customers already say</h3>
+        <p class="scroll-reveal sr-d2">Before speaking to anyone, I coded the 13 reviews on the client's site by theme. They're hand-picked and all five-star, so I used them for language and themes rather than frequency.</p>
+      </article>
+      <div class="cs-table-wrap scroll-reveal">
+        <table class="cs-table">
+          <thead><tr><th scope="col">Theme</th><th scope="col">Reviews</th><th scope="col">What it meant for the design</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Stain emergencies</th><td>8 of 13</td><td>Customers arrive with a specific problem: wine, grass, dirt, glitter. The details field asks what needs attention.</td></tr>
+            <tr><th scope="row">Collection and speed</th><td>7 of 13</td><td>Show the estimated return date during the quote.</td></tr>
+            <tr><th scope="row">Suits and other items</th><td>4 of 13</td><td>One customer sent only a tuxedo. Supports a separate path for items-only orders.</td></tr>
+            <tr><th scope="row">Several items in one order</th><td>3 of 13</td><td>Extras must be quick to add in quantity.</td></tr>
+            <tr><th scope="row">Communication gaps</th><td>2 of 13</td><td>Even happy customers mentioned unanswered emails. Automated confirmation emails fill the gap.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
       <!-- USER RESEARCH -->
       <article class="project-body">
-        <h3 class="scroll-reveal">Talking to customers</h3>
-        <div class="cs-todo"><strong>To add: customer interviews and usability test of the current form</strong>Interviews: 5 recent customers (via the client), 20 minutes each, about what worried them when sending their dress and how they chose a service. Usability test: 5 participants, same task as the benchmark. Record task success, time to price and direct quotes.</div>
+        <h3 class="scroll-reveal">Watching people use it</h3>
+        <p class="scroll-reveal sr-d2">With no budget for customer research, I ran a quick guerrilla test: five colleagues from outside the design and development team, each given the same three tasks on cards, two on their own phones. Colleagues aren't the real customers, so this shows where the form is hard to understand, not how customers feel about it. The review analysis covers that side.</p>
+        <div class="cs-todo"><strong>To add: results from the current form</strong>Task success, time to first price and ease score per task, plus two or three direct quotes. Keep it short: a small table and the quotes.</div>
       </article>
 
       <div class="divider"></div>
@@ -540,19 +564,19 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Synthesis</span>
         <h2 class="scroll-reveal">From findings to problems worth solving</h2>
-        <p class="scroll-reveal sr-d2">I grouped the audit, accessibility and benchmark findings into themes. Customer interview and test notes will be added to the same board.</p>
+        <p class="scroll-reveal sr-d2">I grouped the audit, accessibility and benchmark findings into themes. Notes from testing will be added to the same board.</p>
       </article>
 
       <div class="cs-themes scroll-reveal">
         <div class="cs-theme"><h4>The price is hidden</h4><ul><li>Summary never updates (1)</li><li>Total only in the basket (2)</li><li>Competitors show it in 1–2 clicks</li></ul></div>
         <div class="cs-theme"><h4>Questions are unclear</h4><ul><li>Pressure on dress value (4)</li><li>"Delivery date" (8)</li><li>Hidden quantity boxes (6)</li></ul></div>
-        <div class="cs-theme"><h4>Not built for everyone</h4><ul><li>No keyboard access (3)</li><li>Unlabelled fields (5)</li><li>Summary buried on mobile (M)</li><li>Non-dress orders forced through dress questions</li></ul></div>
-        <div class="cs-theme"><h4>No second chance</h4><ul><li>No email captured</li><li>No saved quote</li><li>No follow-up for abandoned baskets</li></ul></div>
+        <div class="cs-theme"><h4>Not built for everyone</h4><ul><li>No keyboard access (3)</li><li>Unlabelled fields (5)</li><li>Summary buried on mobile (M)</li><li>Suit-only customers forced through dress questions (4 reviews mention suits)</li></ul></div>
+        <div class="cs-theme"><h4>No second chance</h4><ul><li>No email captured</li><li>No saved quote</li><li>No follow-up for abandoned baskets</li><li>Reviews mention unanswered emails</li></ul></div>
       </div>
 
       <article class="project-body">
         <h3 class="scroll-reveal">Jobs to be done</h3>
-        <p class="scroll-reveal sr-d2">Based on the client's knowledge of their customers and the reviews on their site. These are assumptions to check in interviews.</p>
+        <p class="scroll-reveal sr-d2">Drawn from the review themes and the client's knowledge of their customers. These are assumptions to check as the project goes on.</p>
         <ul class="cs-jtbd scroll-reveal sr-d2">
           <li><b>When</b> my wedding is over and my dress is marked, <b>I want</b> to know what cleaning will cost before I commit, <b>so I can</b> decide whether it's worth it.</li>
           <li><b>When</b> I'm getting my dress ready before the wedding, <b>I want</b> to know it will be back in time, <b>so I can</b> stop worrying about the date.</li>
@@ -606,6 +630,7 @@
         <span class="cs-eyebrow scroll-reveal">User Flow</span>
         <h2 class="scroll-reveal">Splitting the journey by what's being sent</h2>
         <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. The new flow asks one question first, "What are you sending?", and customers with other items skip the dress steps entirely.</p>
+        <p class="scroll-reveal sr-d2">Preservation boxes get the same treatment. Clean &amp; Box orders add a "Your box" step after the dress details, and box-only orders choose the box from the items list. Both use one shared component.</p>
         <p class="scroll-reveal sr-d2">The wedding dress journey became four short steps, each with a single focus:</p>
         <ol class="cs-steps scroll-reveal sr-d2">
           <li><b>Your order</b>Service, dress value and style, with a price on every option</li>
@@ -616,7 +641,16 @@
       </article>
 
       <div class="cs-media scroll-reveal">
-        <div class="cs-todo cs-todo--img"><strong>Image: user flow</strong>Export from the quote flow diagram, showing both paths, email capture and the resume and abandoned-cart paths.<br><code>/img/portfolio/treasured-possession/tp-user-flow.jpg</code></div>
+        <div class="cs-flow cs-flow--wide">
+          <div class="cs-flow-scroll">
+            <img src="/img/portfolio/treasured-possession/tp-user-flow.jpg" alt="User flow: from the quote page, an email capture test sends customers either to an email step or straight on; customers choose wedding dress or other items, wedding dress orders go through order, extras and dates, items-only orders skip to dates; Clean and Box orders and box-only orders go through a Your box step for size and pattern; Express is suggested when the back-by date is tight; customers without an email give one at Save your quote; then review, basket and checkout, with resume and abandoned-cart emails bringing people back" loading="lazy">
+          </div>
+          <div class="cs-flow-tools">
+            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Scroll sideways to follow the flow</span>
+            <span aria-hidden="true"></span>
+            <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-user-flow.jpg" data-zoom-title="User flow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
+          </div>
+        </div>
         <p class="cs-caption">Two entry paths, one review step, and automated emails that bring customers back to the step they left.</p>
       </div>
 
@@ -625,7 +659,7 @@
       <!-- WIREFRAMES -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Wireframes</span>
-        <h2 class="scroll-reveal">[Wireframes heading]</h2>
+        <h2 class="scroll-reveal">Sketching the steps</h2>
         <p class="scroll-reveal sr-d2">Two ideas I dropped along the way:</p>
         <ul class="cs-findings scroll-reveal sr-d2">
           <li><span class="cs-num cs-num--plain">×</span><div><b>A five-step flow.</b> My first version had a separate step for each decision. Benchmarking showed Re:Finery covers the same choices in three sections, so I merged them into four.</div></li>
@@ -647,7 +681,8 @@
           </div>
           <div class="insight-item">
             <div class="insight-label">Reassurance instead of pressure on dress value · Finding 4</div>
-            <p>[Final copy for the value band step, and why the tone changed.]</p>
+            <p>The value step now explains why it asks and what happens if a customer isn't sure: "Choose the band closest to what you paid. Not sure? Pick your best guess and we'll check when your dress arrives." It removes the warning tone, and each band shows its price.</p>
+            <div class="cs-todo"><strong>Confirm with the client</strong>That they will check the band on arrival and contact the customer before any change.</div>
           </div>
           <div class="insight-item">
             <div class="insight-label">Quantity steppers for extras · Finding 6</div>
@@ -662,6 +697,11 @@
             <p>The email field is presented as "Save your quote so you can come back to it", which also powers the resume and abandoned-cart emails. An optional phone number on the review step lets customers ask for a call back.</p>
           </div>
           <div class="insight-item">
+            <div class="insight-label">Choosing a box by sight, sized for you · Review themes</div>
+            <p>The current box page lists five patterns as text, with no pictures, and uses one photo for two sizes. Six of the 13 reviews praise the packaging, so it matters. The new box step recommends a size from the dress style already given (Princess → Large, for example), shows the five patterns as swatches, and updates a large packshot as the customer chooses.</p>
+            <div class="cs-todo"><strong>Image: box step</strong>The size cards, pattern swatches and live packshot, once designed and photographed.<br><code>/img/portfolio/treasured-possession/tp-box-step.jpg</code></div>
+          </div>
+          <div class="insight-item">
             <div class="insight-label">Accessible by default · Finding 3, 5</div>
             <p>Cards are real radio buttons with visible focus, every field has a visible label, and price changes are announced to screen readers.</p>
           </div>
@@ -674,7 +714,7 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Testing</span>
         <h2 class="scroll-reveal">Testing with people, not just numbers</h2>
-        <p class="scroll-reveal sr-d2">The main validation is moderated usability testing with five participants on a clickable prototype. Each person completes the same tasks: price a wedding dress clean, add two bridesmaid dresses, and price a box only. I record task success, time to first price, errors and what they say.</p>
+        <p class="scroll-reveal sr-d2">The prototype goes through the same guerrilla test as the current form: five colleagues, the same three tasks (price a dress, add extras with a deadline, price a suit only). I record task success, time to first price, ease scores and what they say, so the two rounds compare directly.</p>
         <div class="cs-todo"><strong>To add: v1 → finding → v2</strong>For each change made after testing: the prototype before, what participants did or said, and the revised design.</div>
         <h3 class="scroll-reveal">Where to ask for the email</h3>
         <p class="scroll-reveal sr-d2">The client's priority was capturing leads, but none of the competitors ask for an email before showing a price. We compared two versions:</p>
@@ -682,7 +722,7 @@
           <div><h4>Version A: email first</h4><p>Customers enter their email before seeing any prices.</p></div>
           <div><h4>Version B: price first</h4><p>Prices show from the first step, and the email is asked for at "Save your quote", before review.</p></div>
         </div>
-        <p class="scroll-reveal sr-d2" style="margin-top:20px;">A live A/B test only gives a reliable answer with enough traffic, and a specialist service like this may not have it. Detecting a rise in conversion from 3% to 4% needs roughly 5,000 visitors per version. Once the baseline is in, we'll run it live if traffic allows, and otherwise compare both versions in the moderated sessions.</p>
+        <p class="scroll-reveal sr-d2" style="margin-top:20px;">A live A/B test only gives a reliable answer with enough traffic, and a specialist service like this may not have it. Detecting a rise in conversion from 3% to 4% needs roughly 5,000 visitors per version. Once the baseline is in, we'll run it live if traffic allows, and otherwise compare both versions in the office sessions.</p>
         <div class="cs-todo"><strong>To add: which route was taken and the result</strong>Including if it was inconclusive.</div>
       </article>
 
@@ -719,8 +759,8 @@
       <!-- RESULTS -->
       <article class="project-body" style="margin-bottom:0;">
         <span class="cs-eyebrow scroll-reveal">Results</span>
-        <h2 class="scroll-reveal">[Results heading]</h2>
-        <p class="scroll-reveal sr-d2">What we're measuring, against the baseline, [8 weeks] after launch:</p>
+        <h2 class="scroll-reveal">What we'll measure</h2>
+        <p class="scroll-reveal sr-d2">It's too early for results. Eight weeks after launch, these will be compared with the baseline and the same period last year, to allow for wedding season:</p>
       </article>
 
       <div class="cs-stats cs-stats--simple cs-stats--3">
@@ -737,7 +777,7 @@
         <div class="cs-stat scroll-reveal sr-d3">
           <div class="cs-stat-num cs-todo-num">—</div>
           <p class="cs-stat-label">orders recovered by the abandoned-cart email</p>
-          <p class="cs-stat-sub">[Source]</p>
+          <p class="cs-stat-sub">WooCommerce and email platform</p>
         </div>
       </div>
 
@@ -755,8 +795,8 @@
     </div>
   </section>
 
-  <!-- TESTIMONIAL: TODO, add once the client has given a quote -->
-  <figure class="cs-quote">
+  <!-- TESTIMONIAL: hidden until the client gives a quote. Uncomment and fill in.
+    <figure class="cs-quote">
     <div class="content-inner">
       <blockquote class="scroll-reveal">[Client quote to come. Highlight the key line with &lt;mark&gt;.]</blockquote>
       <figcaption class="scroll-reveal sr-d1">
@@ -764,6 +804,7 @@
       </figcaption>
     </div>
   </figure>
+  -->
 
   <!-- MORE WORK -->
   <section class="cs-more">
@@ -813,7 +854,64 @@
     </div>
   </footer>
 
+  <!-- Full-size user flow viewer -->
+  <div class="cs-viewer" id="flowViewer" role="dialog" aria-modal="true" aria-label="Full-size image viewer">
+    <div class="cs-viewer-bar">
+      <span id="viewerTitle">Click to zoom · drag to move</span>
+      <button type="button" class="cs-viewer-close" id="flowClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="cs-viewer-scroll">
+      <img src="" alt="" id="viewerImg">
+    </div>
+  </div>
+
   <script src="shared.js"></script>
+  <script>
+    (function () {
+      // Before/after slider
+      var ba = document.getElementById('beforeAfter');
+      if (ba) {
+        var range = ba.querySelector('input[type=range]');
+        var set = function (v) { ba.style.setProperty('--pos', v + '%'); };
+        range.addEventListener('input', function () { set(range.value); });
+        set(range.value);
+      }
+
+
+      // Full-size viewer: fit to screen, click to zoom, drag to pan, pinch on mobile
+      var viewer = document.getElementById('flowViewer');
+      var vImg = document.getElementById('viewerImg');
+      var vTitle = document.getElementById('viewerTitle');
+      var vScroll = viewer.querySelector('.cs-viewer-scroll');
+      var closeBtn = document.getElementById('flowClose');
+      var lastBtn = null, moved = false;
+      function openViewer(btn) {
+        lastBtn = btn;
+        vImg.src = btn.getAttribute('data-zoom-src');
+        vImg.alt = (btn.getAttribute('data-zoom-title') || '') + ', full size';
+        var touch = window.matchMedia('(pointer: coarse)').matches;
+        vTitle.textContent = (btn.getAttribute('data-zoom-title') || '') + (touch ? ' — pinch to zoom, swipe to move' : ' — click to zoom, drag to move');
+        viewer.classList.remove('is-zoomed');
+        viewer.classList.add('is-open'); document.body.style.overflow = 'hidden'; closeBtn.focus();
+      }
+      function closeViewer() { viewer.classList.remove('is-open', 'is-zoomed'); document.body.style.overflow = ''; if (lastBtn) lastBtn.focus(); }
+      document.querySelectorAll('[data-zoom-src]').forEach(function (btn) { btn.addEventListener('click', function () { openViewer(btn); }); });
+      closeBtn.addEventListener('click', closeViewer);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && viewer.classList.contains('is-open')) closeViewer(); });
+      vImg.addEventListener('click', function (e) {
+        if (moved) { moved = false; return; }
+        var r = vImg.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+        var zoom = viewer.classList.toggle('is-zoomed');
+        if (zoom) { vScroll.scrollLeft = fx * vImg.offsetWidth - vScroll.clientWidth / 2; vScroll.scrollTop = fy * vImg.offsetHeight - vScroll.clientHeight / 2; }
+      });
+      vScroll.addEventListener('click', function (e) { if (e.target === vScroll) closeViewer(); });
+      var vd = false, vx = 0, vy = 0, vl = 0, vt = 0;
+      vScroll.addEventListener('mousedown', function (e) { if (!viewer.classList.contains('is-zoomed')) return; vd = true; moved = false; vx = e.clientX; vy = e.clientY; vl = vScroll.scrollLeft; vt = vScroll.scrollTop; viewer.classList.add('is-dragging'); e.preventDefault(); });
+      window.addEventListener('mousemove', function (e) { if (!vd) return; if (Math.abs(e.clientX - vx) + Math.abs(e.clientY - vy) > 4) moved = true; vScroll.scrollLeft = vl - (e.clientX - vx); vScroll.scrollTop = vt - (e.clientY - vy); });
+      window.addEventListener('mouseup', function () { vd = false; viewer.classList.remove('is-dragging'); });
+
+    })();
+  </script>
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-outline" id="cursorOutline"></div>
 
