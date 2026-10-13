@@ -58,7 +58,7 @@
     .cs-section-head { max-width: 800px; margin: 0 auto 8px auto; }
     .cs .project-body h2 { margin-top: 8px; color: #4c3593; }
     .cs-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-text); }
-    .cs-eyebrow::before { content: ''; width: 20px; height: 2px; background: currentColor; border-radius: 2px; }
+    .cs-eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; border-radius: 2px; }
 
     /* Media frames */
     .cs-media { margin: 48px auto 56px auto; max-width: 1200px; }
@@ -186,6 +186,16 @@
     .project-body .cs-todo { margin: 20px 0; }
     .cs-stat .cs-todo-num { color: #c9b98f; }
 
+    /* Before screenshots: desktop beside a scrollable phone */
+    .cs-before { display: grid; grid-template-columns: 2.4fr 1fr; gap: 20px; align-items: start; }
+    .cs-before .cs-frame { background: #fff; }
+    .cs-phone { aspect-ratio: 1456 / 4320; overflow-y: auto; border-radius: 28px; border: 6px solid #1b1430; }
+    .cs-phone:focus-visible { outline: 3px solid #c0a7ff; outline-offset: 3px; }
+    @media (max-width: 700px) {
+      .cs-before { grid-template-columns: 1fr; }
+      .cs-phone { aspect-ratio: auto; height: 70vh; max-width: 320px; margin: 0 auto; }
+    }
+
     /* Audit findings list */
     .cs-findings { list-style: none; padding: 0; margin: 20px 0 0 0; display: grid; gap: 12px; }
     .cs-findings li { padding: 14px 18px; border-radius: 12px; background: #f7f5ff; border: 1px solid rgba(54,16,155,0.08); font-size: 15px; line-height: 1.6; color: rgba(0,0,0,0.75); }
@@ -213,6 +223,83 @@
     .cs-test h4 { margin: 0 0 6px 0; font-size: 15px; color: var(--ink); }
     .cs-test p { margin: 0; font-size: 14px; line-height: 1.6; }
     @media (max-width: 700px) { .cs-test { grid-template-columns: 1fr; } }
+
+    /* ===== v2 additions: research, synthesis, testing ===== */
+    .cs-goals { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0 0 0; padding: 28px 0 0 0; border-top: 1px solid rgba(0,0,0,0.08); }
+    .cs-goals h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px 0; }
+    .cs-goals ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.6; color: var(--ink); }
+    @media (max-width: 700px) { .cs-goals { grid-template-columns: 1fr; } }
+
+    .cs-status { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+    .cs-status--done { background: #e3f4ea; color: #1d6b3d; }
+    .cs-status--plan { background: #fff3d6; color: #7a5200; }
+    .cs-sev { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
+    .cs-sev--high { background: #fde3e3; color: #9b1c1c; }
+    .cs-sev--med { background: #fff1d6; color: #7a5200; }
+    .cs-sev--low { background: #e8eef7; color: #2b4a75; }
+    .cs-heur { display: block; font-size: 12px; color: var(--accent-text); font-weight: 700; margin-top: 4px; }
+    .cs-findings li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+    .cs-num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .cs-num--plain { background: #b9b1d6; }
+
+    .cs-audit { max-width: 760px; margin: 32px auto 0 auto; }
+    .cs-audit .cs-frame { background: #fff; max-height: 760px; overflow-y: auto; }
+
+    /* Benchmark gallery */
+    .cs-bench { display: grid; gap: 28px; max-width: 1200px; margin: 24px auto 0 auto; }
+    .cs-bench-row { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: start; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); }
+    .cs-bench-row h4 { margin: 0 0 6px 0; font-size: 17px; color: var(--ink); }
+    .cs-bench-row p { margin: 0; font-size: 14px; line-height: 1.6; color: rgba(0,0,0,0.65); }
+    .cs-bench-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .cs-bench-shots figure { margin: 0; }
+    .cs-bench-shots img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(0,0,0,0.1); }
+    .cs-bench-shots figcaption { font-size: 12px; color: rgba(0,0,0,0.55); margin-top: 6px; }
+    @media (max-width: 800px) { .cs-bench-row { grid-template-columns: 1fr; } }
+
+    /* Synthesis */
+    .cs-themes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0 0 0; }
+    .cs-theme { background: #fff8e1; border: 1px solid #f1e2a8; border-radius: 14px; padding: 18px; }
+    .cs-theme:nth-child(2) { background: #fde9ef; border-color: #f4c9d6; }
+    .cs-theme:nth-child(3) { background: #e9f2fd; border-color: #c6dbf4; }
+    .cs-theme:nth-child(4) { background: #ebf7ee; border-color: #c4e5cd; }
+    .cs-theme h4 { margin: 0 0 8px 0; font-size: 15px; color: #1f1640; }
+    .cs-theme ul { margin: 0; padding-left: 16px; font-size: 13px; line-height: 1.55; color: rgba(0,0,0,0.7); }
+    @media (max-width: 900px) { .cs-themes { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .cs-themes { grid-template-columns: 1fr; } }
+
+    .cs-jtbd { display: grid; gap: 12px; margin: 20px 0 0 0; padding: 0; list-style: none; }
+    .cs-jtbd li { border-left: 3px solid var(--accent); background: #f7f5ff; border-radius: 0 12px 12px 0; padding: 14px 18px; font-size: 15px; line-height: 1.6; color: var(--ink); }
+    .cs-jtbd b { color: var(--accent); }
+
+    .cs-journey-wrap { max-width: 1200px; margin: 24px auto 0 auto; overflow-x: auto; }
+    .cs-journey { width: 100%; min-width: 900px; border-collapse: separate; border-spacing: 6px; font-size: 13px; line-height: 1.5; }
+    .cs-journey th { text-align: left; vertical-align: top; }
+    .cs-journey thead th { background: var(--accent); color: #fff; padding: 10px 12px; border-radius: 10px; font-size: 13px; }
+    .cs-journey tbody th { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); padding: 10px 6px; width: 110px; }
+    .cs-journey td { background: #f7f5ff; border-radius: 10px; padding: 10px 12px; vertical-align: top; color: rgba(0,0,0,0.72); }
+    .cs-journey tr.pain td { background: #fdecec; }
+    .cs-journey tr.opp td { background: #e9f6ee; }
+    .cs-journey .mood { font-size: 18px; }
+
+    .cs-hmw { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 0 0; }
+    .cs-hmw div { border: 1px dashed rgba(54,16,155,0.35); border-radius: 14px; padding: 16px 18px; font-size: 15px; line-height: 1.5; color: var(--ink); }
+    @media (max-width: 700px) { .cs-hmw { grid-template-columns: 1fr; } }
+
+    .cs-matrix { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 10px; max-width: 900px; margin: 28px auto 0 auto; padding: 0 0 28px 28px; }
+    .cs-quad { border-radius: 14px; padding: 16px 18px; min-height: 150px; }
+    .cs-quad h4 { margin: 0 0 8px 0; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .cs-quad ul { margin: 0; padding-left: 16px; font-size: 14px; line-height: 1.55; }
+    .cs-quad--win { background: #e3f4ea; color: #134a2a; }
+    .cs-quad--big { background: #e9e4fb; color: #2e1e62; }
+    .cs-quad--fill { background: #f3f3f5; color: #3a3a46; }
+    .cs-quad--later { background: #fbf1e3; color: #6b4300; }
+    .cs-axis-y, .cs-axis-x { position: absolute; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(0,0,0,0.45); }
+    .cs-axis-y { left: 0; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left top; }
+    .cs-axis-x { bottom: 0; left: 50%; transform: translateX(-50%); }
+    @media (max-width: 600px) { .cs-matrix { grid-template-columns: 1fr; padding-left: 0; } .cs-axis-y, .cs-axis-x { display: none; } }
+
+    .cs-plan-note { font-size: 13px; color: rgba(0,0,0,0.55); margin-top: 8px; }
+
   </style>
 </head>
 
@@ -251,7 +338,7 @@
   <!-- HERO -->
   <main class="project-hero">
     <div class="content-inner" style="width:100%;">
-      <span class="section-label scroll-reveal sr-d1">UX · UI · Conversion</span>
+      <span class="section-label scroll-reveal sr-d1">UX Research · UI · Conversion</span>
       <h1 class="scroll-reveal sr-d2">Treasured Possession: Instant Quote Flow</h1>
       <p class="section-sub scroll-reveal sr-d3">Turning a long single-page price form into a guided, multi-step quote that shows the price from the first choice and gives the business a way to follow up with every customer.</p>
       <div class="scroll-reveal sr-d3">
@@ -272,11 +359,30 @@
         <div class="cs-meta-top">
           <div class="meta-col">
             <h4>The Brief</h4>
-            <p>Treasured Possession cleans and preserves wedding dresses for customers across the UK. Their online price form asked customers to complete every field before showing a price, and the business had no way to follow up with people who left. The brief was to make getting a price as easy as possible and to turn quote requests into contactable leads.</p>
+            <p>Treasured Possession cleans and preserves wedding dresses for customers across the UK. Their online price form asked customers to complete every field before showing a price, and the business had no way to follow up with people who left. The client asked us to make getting a price as easy as possible and to turn quote requests into contactable leads.</p>
           </div>
           <div class="meta-col meta-col--role">
             <h4>My Role</h4>
-            <p>Lead designer: audit, competitor research, user flow, wireframes, UI design and testing. Development by Tim at Infoserve.</p>
+            <p>Lead designer. I planned and ran the research, audit and competitor benchmarking, and designed the flow, wireframes and UI. Tim at Infoserve built it. The client set pricing and business rules.</p>
+          </div>
+        </div>
+        <div class="cs-goals">
+          <div>
+            <h5>What success looks like</h5>
+            <ul>
+              <li>More quote-page visitors completing an order</li>
+              <li>A contactable lead for every quote, even when the customer doesn't buy</li>
+              <li>Fewer people dropping out before they see a price</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Constraints</h5>
+            <ul>
+              <li>Fixed agency budget for design, build and testing</li>
+              <li>WooCommerce with an existing product-options plugin</li>
+              <li>Small client team handling orders and follow-up</li>
+              <li>Analytics access had to be restored before we could set a baseline</li>
+            </ul>
           </div>
         </div>
         <dl class="cs-meta-details">
@@ -291,50 +397,89 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">The Challenge</span>
         <h2 class="scroll-reveal">An "instant price" you had to work for</h2>
-        <p class="scroll-reveal sr-d2">The page promised an instant price, but customers had to work through six sections (order type, dress style, dress value, additional items, Express and two required dates) before pressing "Calculate Order" at the bottom. Until then, the order summary on the right showed only placeholder text.</p>
-        <p class="scroll-reveal sr-d2">Anyone who left before the end left no trace. The business couldn't follow up with a customer who had shown clear interest but hadn't bought.</p>
+        <p class="scroll-reveal sr-d2">The page promised an instant price, but customers had to work through every section of the form, including two required dates, before pressing "Calculate Order". That button was actually WooCommerce's add-to-basket button with a new label, so the first time a customer saw their total was in the basket.</p>
+        <p class="scroll-reveal sr-d2">The product-options plugin was already working out a running total as customers made their choices. The theme hid it. Anyone who left before the basket left no trace, and the business had no way to follow up.</p>
       </article>
 
       <div class="cs-media scroll-reveal">
-        <div class="project-compare-grid">
-          <!-- TODO: save your before screenshots to /img/portfolio/treasured-possession/ and swap these boxes for:
-               <div><img src="/img/portfolio/treasured-possession/tp-before-desktop.jpg" alt="The original quote form on desktop" class="project-image-full"></div> -->
-          <div class="cs-todo cs-todo--img"><strong>Image: before, desktop</strong>Full-page screenshot of the original form.<br><code>/img/portfolio/treasured-possession/tp-before-desktop.jpg</code></div>
-          <div class="cs-todo cs-todo--img"><strong>Image: before, mobile</strong>Full-page mobile screenshot, to show the length of the form.<br><code>/img/portfolio/treasured-possession/tp-before-mobile.jpg</code></div>
+        <div class="cs-before">
+          <div class="cs-frame"><img src="/img/portfolio/treasured-possession/tp-before-desktop.jpg" alt="The original quote form on desktop: order type, dress information, additional items, Express, two date fields and a Calculate Order button at the bottom, with an empty Your Order panel on the right" loading="lazy"></div>
+          <div class="cs-frame cs-phone" tabindex="0" aria-label="Original form on mobile, scroll to see the full page"><img src="/img/portfolio/treasured-possession/tp-before-mobile.jpg" alt="The original quote form on mobile, where the Your Order panel and reviews only appear below the Calculate Order button" loading="lazy"></div>
         </div>
-        <p class="cs-caption">The original form: six sections to complete before the price appears.</p>
+        <p class="cs-caption">The original form on desktop and mobile (scroll the phone).</p>
       </div>
 
       <div class="divider"></div>
 
-      <!-- RESEARCH: AUDIT -->
+      <!-- RESEARCH PLAN -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Research</span>
-        <h2 class="scroll-reveal">Auditing the existing form</h2>
-        <p class="scroll-reveal sr-d2">I started with a heuristic review of the live form, clicking through every option to map the conditional fields and note where customers were likely to hesitate.</p>
-        <ul class="cs-findings scroll-reveal sr-d2">
-          <li><b>The price came last.</b> Nothing showed until every section was complete, so customers couldn't compare options or check the cost early.</li>
-          <li><b>Pressure in the copy.</b> Customers were told to "ensure" they chose the correct dress value band, which puts the risk of getting it wrong on them.</li>
-          <li><b>Mismatched controls.</b> Additional items asked for a quantity but used single-select circles.</li>
-          <li><b>Placeholder-only text fields.</b> The designer and special-details boxes had no visible labels, failing WCAG 3.3.2 (Labels or Instructions).</li>
-          <li><b>An ambiguous required field.</b> "Delivery date" could mean the wedding date or when the dress should come back.</li>
-          <li><b>Rules as small print.</b> The 6pm cut-off for next-day collection was a note under the date field, not built into the date picker.</li>
-        </ul>
-        <!-- TODO (optional): annotated audit graphic -->
-        <div class="cs-todo"><strong>Optional image: annotated audit</strong>The before screenshot with numbered callouts matching the findings above.<br><code>/img/portfolio/treasured-possession/tp-audit-annotated.jpg</code></div>
+        <h2 class="scroll-reveal">Choosing the right methods</h2>
+        <p class="scroll-reveal sr-d2">With a small budget, I picked methods that would each answer a specific question, rather than running everything.</p>
       </article>
 
-      <!-- RESEARCH: ANALYTICS -->
+      <div class="cs-table-wrap scroll-reveal">
+        <table class="cs-table">
+          <thead><tr><th scope="col">Method</th><th scope="col">Question it answers</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Stakeholder conversation</th><td>What does the business need, and what do customers ask about?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Heuristic evaluation</th><td>Where does the current form break usability principles?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Accessibility audit (WCAG 2.2 AA)</th><td>Can everyone complete the form, including keyboard and screen reader users?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Competitor journey benchmarking</th><td>How quickly do competitors show a price, and what do they ask for?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
+            <tr><th scope="row">Analytics baseline (GA4)</th><td>How many people reach the form, add to basket and buy?</td><td><span class="cs-status cs-status--plan">Waiting on access</span></td></tr>
+            <tr><th scope="row">Customer interviews</th><td>What worries customers when they send off their dress?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
+            <tr><th scope="row">Usability test of the current form</th><td>Where do real people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- HEURISTIC EVALUATION -->
+      <article class="project-body">
+        <h3 class="scroll-reveal">Heuristic evaluation</h3>
+        <p class="scroll-reveal sr-d2">I reviewed the live form against Nielsen's 10 usability heuristics, clicking through every option to map the conditional fields. Each issue is tagged with the principle it breaks and a severity rating.</p>
+      </article>
+
+      <div class="cs-audit scroll-reveal">
+        <div class="cs-frame" tabindex="0" aria-label="Annotated audit of the original form, scroll to see all findings">
+          <img src="/img/portfolio/treasured-possession/tp-audit-annotated.jpg" alt="The original form with eight numbered callouts matching the findings listed below" loading="lazy">
+        </div>
+        <p class="cs-caption">Annotated audit of the original form (scroll the image). Numbers match the findings below.</p>
+      </div>
+
+      <article class="project-body">
+        <ul class="cs-findings scroll-reveal sr-d2">
+          <li><span class="cs-num">1</span><div><b>The order summary never showed a price.</b> The "Your Order" panel kept its placeholder text however many options were chosen. <span class="cs-sev cs-sev--high">High</span><span class="cs-heur">Visibility of system status</span></div></li>
+          <li><span class="cs-num">2</span><div><b>"Calculate Order" added the item to the basket.</b> The label described one action and the button did another. <span class="cs-sev cs-sev--high">High</span><span class="cs-heur">Match between system and the real world</span></div></li>
+          <li><span class="cs-num">3</span><div><b>Order type and dress style couldn't be chosen with a keyboard.</b> The radio buttons behind the picture cards were hidden in a way that removed them from the tab order. <span class="cs-sev cs-sev--high">High</span><span class="cs-heur">WCAG 2.1.1 Keyboard</span></div></li>
+          <li><span class="cs-num">4</span><div><b>Pressure instead of help on dress value.</b> Customers were told to "ensure" they chose the correct band, with no guidance if they weren't sure. <span class="cs-sev cs-sev--med">Medium</span><span class="cs-heur">Error prevention</span></div></li>
+          <li><span class="cs-num">5</span><div><b>Placeholder-only text fields.</b> The designer and special-details boxes had no visible label, and the hint disappeared once you started typing. <span class="cs-sev cs-sev--med">Medium</span><span class="cs-heur">Recognition rather than recall · WCAG 3.3.2</span></div></li>
+          <li><span class="cs-num">6</span><div><b>Quantity boxes hidden until ticked.</b> The copy asked for a quantity "in the boxes", but the boxes only appeared after ticking a circle. <span class="cs-sev cs-sev--med">Medium</span><span class="cs-heur">Consistency and standards</span></div></li>
+          <li><span class="cs-num">7</span><div><b>Rules as small print.</b> The 6pm cut-off for next-day collection was a note, not built into the date picker. <span class="cs-sev cs-sev--low">Low</span><span class="cs-heur">Error prevention</span></div></li>
+          <li><span class="cs-num">8</span><div><b>An ambiguous required field.</b> "Delivery date" could mean the wedding date or when the dress should come back. <span class="cs-sev cs-sev--high">High</span><span class="cs-heur">Match between system and the real world</span></div></li>
+          <li><span class="cs-num cs-num--plain">M</span><div><b>No summary or reassurance on mobile.</b> On phones, the order panel and customer reviews sat below the Calculate button, out of sight for the whole form. <span class="cs-sev cs-sev--med">Medium</span><span class="cs-heur">Visibility of system status</span></div></li>
+        </ul>
+      </article>
+
+      <!-- ACCESSIBILITY AUDIT -->
+      <article class="project-body">
+        <h3 class="scroll-reveal">Accessibility audit</h3>
+        <p class="scroll-reveal sr-d2">An automated axe scan against WCAG 2.2 AA flagged only one issue: two icon links with no text. Manual checks found the problems that matter most for this form. The service and style cards can't be reached by keyboard (finding 3), the two text areas and both date fields have no programmatic label.</p>
+        <p class="scroll-reveal sr-d2">The gap between the two results shaped the plan: every new component would be checked by hand with a keyboard and screen reader, not just with automated tools.</p>
+      </article>
+
+      <!-- ANALYTICS -->
       <article class="project-body">
         <h3 class="scroll-reveal">Analytics baseline</h3>
-        <!-- TODO: once GA access is restored -->
-        <div class="cs-todo"><strong>To add: baseline numbers</strong>Monthly visits to the quote page, add-to-baskets, purchases and mobile share, over the last 12 months. These become the "before" figures in Results.</div>
+        <div class="cs-todo"><strong>To add: baseline numbers</strong>From GA4 and WooCommerce, last 12 months: monthly visits to the quote page, add-to-baskets, checkouts started, purchases, device split. If the client agrees, add Microsoft Clarity for scroll depth and session recordings on the current form before launch.</div>
       </article>
 
-      <!-- RESEARCH: COMPETITORS -->
+      <div class="divider"></div>
+
+      <!-- COMPETITOR BENCHMARKING -->
       <article class="project-body">
-        <h3 class="scroll-reveal">How competitors price</h3>
-        <p class="scroll-reveal sr-d2">I worked through three competitors' booking flows up to the point of payment. Each one shows a price within one or two choices, and none asks for an email first.</p>
+        <span class="cs-eyebrow scroll-reveal">Competitor Analysis</span>
+        <h2 class="scroll-reveal">Benchmarking the same task</h2>
+        <p class="scroll-reveal sr-d2">I completed the same task on three UK competitors and on Treasured Possession: get a price to clean a wedding dress that cost between £1,000 and £2,500. I stopped before payment on each site, counting the steps to a total and the fields required along the way.</p>
       </article>
 
       <div class="cs-table-wrap scroll-reveal">
@@ -343,27 +488,116 @@
             <tr><th scope="col"></th><th scope="col">Elsie May</th><th scope="col">Re:Finery</th><th scope="col">Dorothy</th><th scope="col" class="is-client">Treasured Possession</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Price set by</th><td>Gown style (7 tiers)</td><td>Purchase price (3 bands)</td><td>Flat price</td><td class="is-client">Purchase price (5 bands)</td></tr>
-            <tr><th scope="row">First price shown</th><td>After 2 clicks</td><td>After 1 click</td><td>Immediately</td><td class="is-client">After every section</td></tr>
-            <tr><th scope="row">Running total</th><td>Yes</td><td>Yes, itemised</td><td>No</td><td class="is-client">No</td></tr>
-            <tr><th scope="row">Extras</th><td>Separate products</td><td>Collapsed</td><td>Checkboxes</td><td class="is-client">10 items, always open</td></tr>
+            <tr><th scope="row">Price based on</th><td>Gown style (7 tiers)</td><td>Purchase price (3 bands)</td><td>Flat price</td><td class="is-client">Purchase price (5 bands)</td></tr>
+            <tr><th scope="row">Clicks to a total</th><td>1</td><td>2</td><td>0</td><td class="is-client">Not shown until the basket</td></tr>
+            <tr><th scope="row">Required fields before basket</th><td>0 (drop-off booked after payment)</td><td>0 in the booking panel</td><td>4 (brand, wedding date, material, T&amp;Cs)</td><td class="is-client">5 choices, including 2 dates</td></tr>
+            <tr><th scope="row">Running total</th><td>Single price</td><td>Itemised summary</td><td>Base price shown</td><td class="is-client">Calculated, but hidden</td></tr>
+            <tr><th scope="row">Extras</th><td>Separate products</td><td>Collapsed, quantity steppers</td><td>Checkboxes</td><td class="is-client">10 items, always open</td></tr>
+            <tr><th scope="row">Sets expectations</th><td>"Pick your best guess"</td><td>Turnaround, results, approval</td><td>Turnaround in copy</td><td class="is-client">Turnaround for Express only</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="cs-caption scroll-reveal">Competitor booking flows, reviewed October 2026.</p>
+      <p class="cs-caption scroll-reveal">Benchmark completed October 2026. Each flow was followed up to the payment step.</p>
+
+      <div class="cs-bench">
+        <div class="cs-bench-row scroll-reveal">
+          <div><h4>Elsie May</h4><p>One choice gives a price. Reassuring copy removes the fear of picking the wrong tier.</p></div>
+          <div class="cs-bench-shots">
+            <figure><img src="/img/portfolio/treasured-possession/comp-elsiemay-step1.jpg" alt="Elsie May step one: illustrated gown style cards with descriptions" loading="lazy"><figcaption>Step 1: choose the closest gown style</figcaption></figure>
+            <figure><img src="/img/portfolio/treasured-possession/comp-elsiemay-step2.jpg" alt="Elsie May step two: service tabs and a £275 price with a Pay and Book button" loading="lazy"><figcaption>Step 2: price shown straight away</figcaption></figure>
+          </div>
+        </div>
+        <div class="cs-bench-row scroll-reveal">
+          <div><h4>Re:Finery</h4><p>The closest match to Treasured Possession. Two choices give a total, and the summary sets expectations before booking.</p></div>
+          <div class="cs-bench-shots">
+            <figure><img src="/img/portfolio/treasured-possession/comp-refinery-priced.jpg" alt="Re:Finery booking panel with value band and finishing selected and a £229 total in the summary" loading="lazy"><figcaption>Total updates as you choose</figcaption></figure>
+            <figure><img src="/img/portfolio/treasured-possession/comp-refinery-extras.jpg" alt="Re:Finery extras expanded, showing quantity steppers for veils, shoes and bridesmaid dresses" loading="lazy"><figcaption>Extras collapsed by default, with quantity steppers</figcaption></figure>
+          </div>
+        </div>
+        <div class="cs-bench-row scroll-reveal">
+          <div><h4>Dorothy</h4><p>The clearest price, but a standard product page with four required fields before the basket.</p></div>
+          <div class="cs-bench-shots">
+            <figure><img src="/img/portfolio/treasured-possession/comp-dorothy-top.jpg" alt="Dorothy product page showing a flat £230 price and turnaround information" loading="lazy"><figcaption>Flat price on arrival</figcaption></figure>
+            <figure><img src="/img/portfolio/treasured-possession/comp-dorothy-addons.jpg" alt="Dorothy add-on checkboxes and required brand, wedding date and material fields" loading="lazy"><figcaption>Add-ons as checkboxes, then required fields</figcaption></figure>
+          </div>
+        </div>
+      </div>
 
       <article class="project-body">
-        <p class="scroll-reveal sr-d2">Two patterns stood out. Elsie May tells customers to pick their best guess because the team will confirm the tier when the gown arrives, which removes the fear of choosing wrongly. Re:Finery closes its summary with what to expect: turnaround, the limits of stain removal, and a promise to ask before doing anything that needs approval.</p>
-        <!-- TODO (optional): competitor screenshots -->
-        <div class="cs-todo"><strong>Optional image: competitor crops</strong>Three cropped screenshots of each competitor's pricing step, side by side.<br><code>/img/portfolio/treasured-possession/tp-competitors.jpg</code></div>
+        <p class="scroll-reveal sr-d2" style="margin-top:32px;">What it told me: every competitor shows a total within two clicks, and none asks for an email first. Re:Finery proved a value-band model can still feel instant. Elsie May showed that a single line of reassurance can take the stress out of a pricing choice.</p>
+        <div class="cs-todo"><strong>Optional: best-in-class comparison</strong>One quote flow from outside the sector that handles "configure, then see a price" well, and the pattern you took from it.</div>
       </article>
 
-      <!-- RESEARCH: USABILITY TEST OF CURRENT FORM -->
+      <!-- USER RESEARCH -->
       <article class="project-body">
-        <h3 class="scroll-reveal">Watching people use it</h3>
-        <!-- TODO: usability test of the current form -->
-        <div class="cs-todo"><strong>To add: usability test of the current form</strong>4–5 participants, same task: "Get a price to clean a £1,800 dress plus a veil, collected next week." Where did they hesitate, misread or give up? Include one or two direct quotes.</div>
+        <h3 class="scroll-reveal">Talking to customers</h3>
+        <div class="cs-todo"><strong>To add: customer interviews and usability test of the current form</strong>Interviews: 5 recent customers (via the client), 20 minutes each, about what worried them when sending their dress and how they chose a service. Usability test: 5 participants, same task as the benchmark. Record task success, time to price and direct quotes.</div>
       </article>
+
+      <div class="divider"></div>
+
+      <!-- SYNTHESIS -->
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Synthesis</span>
+        <h2 class="scroll-reveal">From findings to problems worth solving</h2>
+        <p class="scroll-reveal sr-d2">I grouped the audit, accessibility and benchmark findings into themes. Customer interview and test notes will be added to the same board.</p>
+      </article>
+
+      <div class="cs-themes scroll-reveal">
+        <div class="cs-theme"><h4>The price is hidden</h4><ul><li>Summary never updates (1)</li><li>Total only in the basket (2)</li><li>Competitors show it in 1–2 clicks</li></ul></div>
+        <div class="cs-theme"><h4>Questions are unclear</h4><ul><li>Pressure on dress value (4)</li><li>"Delivery date" (8)</li><li>Hidden quantity boxes (6)</li></ul></div>
+        <div class="cs-theme"><h4>Not built for everyone</h4><ul><li>No keyboard access (3)</li><li>Unlabelled fields (5)</li><li>Summary buried on mobile (M)</li><li>Non-dress orders forced through dress questions</li></ul></div>
+        <div class="cs-theme"><h4>No second chance</h4><ul><li>No email captured</li><li>No saved quote</li><li>No follow-up for abandoned baskets</li></ul></div>
+      </div>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">Jobs to be done</h3>
+        <p class="scroll-reveal sr-d2">Based on the client's knowledge of their customers and the reviews on their site. These are assumptions to check in interviews.</p>
+        <ul class="cs-jtbd scroll-reveal sr-d2">
+          <li><b>When</b> my wedding is over and my dress is marked, <b>I want</b> to know what cleaning will cost before I commit, <b>so I can</b> decide whether it's worth it.</li>
+          <li><b>When</b> I'm getting my dress ready before the wedding, <b>I want</b> to know it will be back in time, <b>so I can</b> stop worrying about the date.</li>
+          <li><b>When</b> I'm only sending bridesmaid dresses, a suit or a box, <b>I want</b> to skip the wedding dress questions, <b>so I can</b> get a price quickly.</li>
+        </ul>
+      </article>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">Current journey</h3>
+        <p class="scroll-reveal sr-d2">Mapped from the audit, to be validated in testing.</p>
+      </article>
+      <div class="cs-journey-wrap scroll-reveal">
+        <table class="cs-journey">
+          <thead><tr><th></th><th>Arrive</th><th>Choose service</th><th>Describe dress</th><th>Add extras</th><th>Pick dates</th><th>Get a price</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Doing</th><td>Lands on "Get a instant price"</td><td>Picks Clean Only, Clean &amp; Box or Box Only</td><td>Chooses style and value band, adds notes</td><td>Scrolls past 10 items</td><td>Enters collection and delivery dates</td><td>Presses "Calculate Order"</td></tr>
+            <tr><th scope="row">Thinking</th><td>"How much will this cost?"</td><td>"Which one do I need?"</td><td>"What if I pick the wrong band?"</td><td>"Do I need any of these?"</td><td>"Is delivery the wedding date?"</td><td>"Why am I in the basket?"</td></tr>
+            <tr class="pain"><th scope="row">Pain points</th><td>No price in sight</td><td>Keyboard users stuck</td><td>Pressure, no help</td><td>Quantity boxes hidden</td><td>Ambiguous field, 6pm rule easy to miss</td><td>Total appears in the basket, not the form</td></tr>
+            <tr class="opp"><th scope="row">Opportunity</th><td>Show prices on every option</td><td>Split by what's being sent</td><td>Reassure, confirm on arrival</td><td>Collapse, use steppers</td><td>"Need it back by", Express suggested</td><td>Live total, save the quote</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">How might we…</h3>
+        <div class="cs-hmw scroll-reveal sr-d2">
+          <div>How might we show customers a price from their first choice?</div>
+          <div>How might we help customers pick a value band without fear of getting it wrong?</div>
+          <div>How might we capture contact details in a way that feels useful to the customer?</div>
+          <div>How might we let customers with other items skip questions that don't apply?</div>
+        </div>
+      </article>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">Prioritising</h3>
+        <p class="scroll-reveal sr-d2">I plotted each opportunity by impact and effort. Effort is my initial estimate, to confirm with Tim.</p>
+      </article>
+      <div class="cs-matrix scroll-reveal">
+        <span class="cs-axis-y">Impact →</span>
+        <div class="cs-quad cs-quad--win"><h4>Quick wins: high impact, low effort</h4><ul><li>Show the running total the plugin already calculates</li><li>Make service cards keyboard accessible</li><li>Rename "Calculate Order" and "Delivery date"</li><li>Visible labels on every field</li></ul></div>
+        <div class="cs-quad cs-quad--big"><h4>Big bets: high impact, high effort</h4><ul><li>Multi-step flow with a sticky total</li><li>Email capture, saved and resumable quotes</li><li>Separate path for items-only orders</li></ul></div>
+        <div class="cs-quad cs-quad--fill"><h4>Fill-ins: lower impact, low effort</h4><ul><li>6pm cut-off built into the date picker</li><li>Quantity steppers for extras</li><li>Abandoned-cart email</li></ul></div>
+        <div class="cs-quad cs-quad--later"><h4>Later: lower impact, high effort</h4><ul><li>Photo upload to help choose a service</li></ul></div>
+        <span class="cs-axis-x">Effort →</span>
+      </div>
 
       <div class="divider"></div>
 
@@ -371,7 +605,7 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">User Flow</span>
         <h2 class="scroll-reveal">Splitting the journey by what's being sent</h2>
-        <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. Customers sending only bridesmaid dresses, suits or a preservation box still had to scroll past the dress questions. The new flow asks one question first, "What are you sending?", and customers with other items skip the dress steps entirely.</p>
+        <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. The new flow asks one question first, "What are you sending?", and customers with other items skip the dress steps entirely.</p>
         <p class="scroll-reveal sr-d2">The wedding dress journey became four short steps, each with a single focus:</p>
         <ol class="cs-steps scroll-reveal sr-d2">
           <li><b>Your order</b>Service, dress value and style, with a price on every option</li>
@@ -382,7 +616,6 @@
       </article>
 
       <div class="cs-media scroll-reveal">
-        <!-- TODO: export the user flow as an image, then replace this box with the .cs-flow block from the LHA page -->
         <div class="cs-todo cs-todo--img"><strong>Image: user flow</strong>Export from the quote flow diagram, showing both paths, email capture and the resume and abandoned-cart paths.<br><code>/img/portfolio/treasured-possession/tp-user-flow.jpg</code></div>
         <p class="cs-caption">Two entry paths, one review step, and automated emails that bring customers back to the step they left.</p>
       </div>
@@ -393,7 +626,12 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Wireframes</span>
         <h2 class="scroll-reveal">[Wireframes heading]</h2>
-        <div class="cs-todo"><strong>To add: wireframes</strong>Low-fidelity mobile-first screens for each step. Include an option you rejected, with a sentence on why.</div>
+        <p class="scroll-reveal sr-d2">Two ideas I dropped along the way:</p>
+        <ul class="cs-findings scroll-reveal sr-d2">
+          <li><span class="cs-num cs-num--plain">×</span><div><b>A five-step flow.</b> My first version had a separate step for each decision. Benchmarking showed Re:Finery covers the same choices in three sections, so I merged them into four.</div></li>
+          <li><span class="cs-num cs-num--plain">×</span><div><b>"Box only" as a dress service.</b> Keeping it alongside Clean Only and Clean &amp; Box meant extra branching inside the dress path. Moving boxes into the items-only path removed a decision for everyone else.</div></li>
+        </ul>
+        <div class="cs-todo"><strong>To add: wireframes</strong>Low-fidelity mobile-first screens for each step, including the five-step version.</div>
       </article>
 
       <div class="divider"></div>
@@ -401,45 +639,51 @@
       <!-- DESIGN DECISIONS -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Design Decisions</span>
-        <h2 class="scroll-reveal">Each change answers a problem from the audit</h2>
+        <h2 class="scroll-reveal">Each change answers a finding</h2>
         <div class="insight-list scroll-reveal">
           <div class="insight-item">
-            <div class="insight-label">Price on every option, from the first step</div>
-            <p>Every card shows what it costs, and a running total follows the customer through the flow (a sticky bar on mobile, a sidebar on desktop). Nobody has to finish the form to find out whether they can afford it.</p>
+            <div class="insight-label">Price on every option, from the first step · Findings 1, 2</div>
+            <p>Every card shows what it costs, and a running total follows the customer through the flow (a sticky bar on mobile, a sidebar on desktop). Nobody has to reach the basket to find out the cost.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Reassurance instead of pressure on dress value</div>
+            <div class="insight-label">Reassurance instead of pressure on dress value · Finding 4</div>
             <p>[Final copy for the value band step, and why the tone changed.]</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Quantity steppers for extras</div>
+            <div class="insight-label">Quantity steppers for extras · Finding 6</div>
             <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity, and sit behind "Add bridesmaid dresses, veils and more" so single-dress customers aren't slowed down.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Express suggested at the right moment</div>
-            <p>"Delivery date" became "When do you need it back by?". If that date falls inside the standard turnaround, the flow suggests Express there and then, instead of showing it as a standalone add-on.</p>
+            <div class="insight-label">Express suggested at the right moment · Findings 7, 8</div>
+            <p>"Delivery date" became "When do you need it back by?". If that date falls inside the standard turnaround, the flow suggests Express there and then. The 6pm cut-off is built into the date picker.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Email capture framed as saving the quote</div>
+            <div class="insight-label">Email capture framed as saving the quote · "No second chance"</div>
             <p>The email field is presented as "Save your quote so you can come back to it", which also powers the resume and abandoned-cart emails. An optional phone number on the review step lets customers ask for a call back.</p>
           </div>
+          <div class="insight-item">
+            <div class="insight-label">Accessible by default · Finding 3, 5</div>
+            <p>Cards are real radio buttons with visible focus, every field has a visible label, and price changes are announced to screen readers.</p>
+          </div>
         </div>
-        <!-- TODO: add a cropped detail image under each decision once hi-fi is ready -->
       </article>
 
       <div class="divider"></div>
 
-      <!-- EMAIL CAPTURE TEST -->
+      <!-- TESTING -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Testing</span>
-        <h2 class="scroll-reveal">Testing where to ask for the email</h2>
-        <p class="scroll-reveal sr-d2">The client's priority was capturing leads, but none of the competitors ask for an email before showing a price. Instead of guessing, we set up a test.</p>
+        <h2 class="scroll-reveal">Testing with people, not just numbers</h2>
+        <p class="scroll-reveal sr-d2">The main validation is moderated usability testing with five participants on a clickable prototype. Each person completes the same tasks: price a wedding dress clean, add two bridesmaid dresses, and price a box only. I record task success, time to first price, errors and what they say.</p>
+        <div class="cs-todo"><strong>To add: v1 → finding → v2</strong>For each change made after testing: the prototype before, what participants did or said, and the revised design.</div>
+        <h3 class="scroll-reveal">Where to ask for the email</h3>
+        <p class="scroll-reveal sr-d2">The client's priority was capturing leads, but none of the competitors ask for an email before showing a price. We compared two versions:</p>
         <div class="cs-test scroll-reveal sr-d2">
           <div><h4>Version A: email first</h4><p>Customers enter their email before seeing any prices.</p></div>
           <div><h4>Version B: price first</h4><p>Prices show from the first step, and the email is asked for at "Save your quote", before review.</p></div>
         </div>
-        <p class="scroll-reveal sr-d2" style="margin-top:20px;">The main success measure is paid orders, with leads captured as a secondary measure. The optional phone field sits in the same place in both versions so it doesn't affect the result.</p>
-        <div class="cs-todo"><strong>To add: prototype testing and test result</strong>What changed between prototype rounds and why (before/after-iteration images). Then the A/B result, including if it was inconclusive.</div>
+        <p class="scroll-reveal sr-d2" style="margin-top:20px;">A live A/B test only gives a reliable answer with enough traffic, and a specialist service like this may not have it. Detecting a rise in conversion from 3% to 4% needs roughly 5,000 visitors per version. Once the baseline is in, we'll run it live if traffic allows, and otherwise compare both versions in the moderated sessions.</p>
+        <div class="cs-todo"><strong>To add: which route was taken and the result</strong>Including if it was inconclusive.</div>
       </article>
 
       <div class="divider"></div>
@@ -452,8 +696,8 @@
       </article>
 
       <div class="cs-media scroll-reveal">
-        <!-- TODO: swap for the .ba before/after slider block from the LHA page (and copy its script) once the after screenshot exists -->
-        <div class="cs-todo cs-todo--img"><strong>Before / after slider</strong>Old form vs new step 1, same viewport size.<br><code>/img/portfolio/treasured-possession/tp-before-desktop.jpg</code><br><code>/img/portfolio/treasured-possession/tp-after-step1.jpg</code></div>
+        <!-- TODO: swap for the .ba before/after slider block from the LHA page (and copy its script). Before image is ready: tp-before-desktop-viewport.jpg -->
+        <div class="cs-todo cs-todo--img"><strong>Before / after slider</strong>Old form vs new step 1, same viewport size.<br><code>/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg</code> (ready)<br><code>/img/portfolio/treasured-possession/tp-after-step1.jpg</code></div>
       </div>
 
       <div class="cs-media scroll-reveal">
@@ -464,14 +708,10 @@
         <div class="cs-todo cs-todo--img"><strong>Image: emails</strong>Confirmation and abandoned-cart email designs side by side.<br><code>/img/portfolio/treasured-possession/tp-emails.jpg</code></div>
       </div>
 
-      <div class="divider"></div>
-
-      <!-- ACCESSIBILITY -->
       <article class="project-body">
-        <span class="cs-eyebrow scroll-reveal">Accessibility</span>
-        <h2 class="scroll-reveal">Built to WCAG 2.1 AA</h2>
-        <p class="scroll-reveal sr-d2">Every field has a visible label, errors are checked on each step with a clear message next to the field, and the step indicator, price cards and steppers work with a keyboard and screen reader.</p>
-        <div class="cs-todo"><strong>To confirm</strong>Check this against what was actually built, and add an annotated spec image if useful.</div>
+        <h3 class="scroll-reveal">Accessibility</h3>
+        <p class="scroll-reveal sr-d2">Designed to WCAG 2.2 AA: keyboard-operable cards with visible focus, visible labels on every field, errors explained next to the field on each step, touch targets of at least 24px, and the running total announced to screen readers when it changes.</p>
+        <div class="cs-todo"><strong>To confirm</strong>Check against what was built with a keyboard and a screen reader, and re-run the axe scan.</div>
       </article>
 
       <div class="divider"></div>
@@ -480,19 +720,18 @@
       <article class="project-body" style="margin-bottom:0;">
         <span class="cs-eyebrow scroll-reveal">Results</span>
         <h2 class="scroll-reveal">[Results heading]</h2>
-        <p class="scroll-reveal sr-d2">[Comparison period and what changed.]</p>
+        <p class="scroll-reveal sr-d2">What we're measuring, against the baseline, [8 weeks] after launch:</p>
       </article>
 
-      <!-- TODO: replace dashes with real figures; keep only stats that are meaningful -->
       <div class="cs-stats cs-stats--simple cs-stats--3">
         <div class="cs-stat scroll-reveal sr-d1">
           <div class="cs-stat-num cs-todo-num">—</div>
-          <p class="cs-stat-label">conversion from quote page to order</p>
+          <p class="cs-stat-label">quote-page visitors who place an order</p>
           <p class="cs-stat-sub">Before → after</p>
         </div>
         <div class="cs-stat scroll-reveal sr-d2">
           <div class="cs-stat-num cs-todo-num">—</div>
-          <p class="cs-stat-label">leads captured in the first [period]</p>
+          <p class="cs-stat-label">contactable leads captured</p>
           <p class="cs-stat-sub">Previously none</p>
         </div>
         <div class="cs-stat scroll-reveal sr-d3">
@@ -502,7 +741,7 @@
         </div>
       </div>
 
-      <p class="cs-compare-note scroll-reveal" style="text-align:center;margin-top:8px;">Source: [Treasured Possession Google Analytics and WooCommerce, dates].</p>
+      <p class="cs-compare-note scroll-reveal" style="text-align:center;margin-top:8px;">Source: [Treasured Possession GA4 and WooCommerce, dates].</p>
 
       <div class="divider"></div>
 
@@ -510,7 +749,7 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Reflection</span>
         <h2 class="scroll-reveal">What I'd do next</h2>
-        <div class="cs-todo"><strong>To add at the end</strong>What you learned, what you'd change, and any follow-up work (for example pricing for standalone items once confirmed).</div>
+        <div class="cs-todo"><strong>To add at the end</strong>What you learned, what you'd change, and what you'd test next (for example standalone item pricing once confirmed).</div>
       </article>
 
     </div>
