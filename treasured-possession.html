@@ -105,6 +105,11 @@
     .cs-stat-label { font-size: 15px; line-height: 1.45; color: var(--ink); margin: 0; }
     .cs-stat-sub { font-size: 12px; color: var(--muted-ink); margin: auto 0 0 0; line-height: 1.5; }
     .cs-stats--3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-flow--tall .cs-flow-scroll { max-height: 820px; overflow-y: auto; overflow-x: hidden; }
+    .cs-flow--tall .cs-flow-scroll img { width: 100%; max-width: 640px; margin: 0 auto; }
+    @media (max-width: 800px) { .cs-flow--tall .cs-flow-scroll img { width: 100% !important; max-width: 100%; } .cs-flow--tall::after { display: none; } }
+    .cs-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .cs-photos { grid-template-columns: 1fr; } }
     .cs-stats--simple .cs-stat { min-height: 0; }
     /* 1 in 5: people */
     .cs-people { display: flex; gap: 6px; }
@@ -506,7 +511,7 @@
             <tr><th scope="row">The price depends on dress style as well as value. Within each band, Slimline costs £20 less than Princess, and A Line £10 less.</th><td>Style is asked first, so each value band can show the customer's real price. It also explains the price ranges on the price list.</td></tr>
             <tr><th scope="row">The box size always follows the style: Slimline gets Small, A Line gets Regular, Princess gets Large.</th><td>The box is sized automatically from the dress, so customers only choose a pattern.</td></tr>
             <tr><th scope="row">A Line is 49% of dresses. Chelsea Ivory is 83% of box patterns.</th><td>The most common choices are listed first. The pattern most people choose is selected by default.</td></tr>
-            <tr><th scope="row">44% of dress orders add at least one extra, and most add just one. The veil is the most common (89 orders), then suits (21).</th><td>The five most-ordered extras show first, ordered by popularity. The rest sit behind "Show 4 more items".</td></tr>
+            <tr><th scope="row">44% of dress orders add at least one extra, and most add just one. The veil is the most common (89 orders), then suits (21).</th><td>Extras are listed in order of popularity, starting with the veil.</td></tr>
             <tr><th scope="row">Only 4% of orders choose Express. 40% of "delivery dates" were exactly 28 days after collection, the form's default.</th><td>"Need it back by" became optional, and Express is suggested only when that date is close.</td></tr>
             <tr><th scope="row">About 1 in 10 orders is a box only, with no cleaning.</th><td>The no-wedding-dress route also handles box-only orders.</td></tr>
           </tbody>
@@ -688,30 +693,31 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">User Flow</span>
         <h2 class="scroll-reveal">Splitting the journey by what's being sent</h2>
-        <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. The new tool starts with one question, "Is there a wedding dress in your order?". Customers with other items, or a box only, skip the dress questions and go straight to the items list. They can still add a dress later without losing anything.</p>
+        <p class="scroll-reveal sr-d2">The old form assumed every customer had a wedding dress. The new tool starts with one question, "What can we help with?", with three answers: clean a wedding dress, clean other garments, or just a preservation box. Customers without a dress skip the dress questions entirely, and can still add one later without losing anything.</p>
         <p class="scroll-reveal sr-d2">The journey is split into two parts: get a quote, then book. Customers see their price before being asked for dates, so the quote is useful even to people who aren't ready to book.</p>
         <ol class="cs-steps scroll-reveal sr-d2">
-          <li><b>Your dress</b>Style first, then value bands priced for that style, plus optional details</li>
-          <li><b>Add-ons</b>The most-ordered extras with steppers, and a preservation box sized from the dress</li>
-          <li><b>Your boxes</b>Only if a box was added: pattern for each box, with a live preview</li>
-          <li><b>Your quote</b>Itemised total, saved by email</li>
-          <li><b>Book</b>Collection date, "need it back by" and delivery speed, then a review step</li>
+          <li><b>Your dress</b>Style first, then value bands priced for that style</li>
+          <li><b>Anything else to clean?</b>Extras with quantity steppers, most popular first</li>
+          <li><b>Returning your dress</b>Breathable bag, own box or a preservation box sized from the dress</li>
+          <li><b>Your preservation box</b>Only if a box was chosen: pattern, live preview, and extra boxes for other items</li>
+          <li><b>Your quote</b>Itemised total, saved and emailed</li>
+          <li><b>Book</b>Collection date, delivery speed and an optional "need it back by", then review</li>
         </ol>
       </article>
 
       <div class="cs-media scroll-reveal">
-        <div class="cs-flow cs-flow--wide">
+        <div class="cs-flow cs-flow--tall">
           <div class="cs-flow-scroll">
-            <img src="/img/portfolio/treasured-possession/tp-user-flow.jpg" alt="User flow: from the quote page, an email capture test sends customers either to an email step or straight on; customers choose wedding dress or other items, wedding dress orders go through order, extras and dates, items-only orders skip to dates; Clean and Box orders and box-only orders go through a Your box step for size and pattern; Express is suggested when the back-by date is tight; customers without an email give one at Save your quote; then review, basket and checkout, with resume and abandoned-cart emails bringing people back" loading="lazy">
+            <img src="/img/portfolio/treasured-possession/tp-user-flow.jpg" alt="User flow in three parts. Get an instant quote: from the quote page or a service page link, customers choose wedding dress, other garments or box only; dress customers choose style and value, extras and how the dress is returned; anyone choosing a preservation box customises it; then an itemised quote, saved with an email. Book: dates, delivery speed with Express offered when the need-by date is tight, review, basket and checkout. Coming back: quote, reminder, abandoned cart and confirmation emails, with a resume link that reopens the quote." loading="lazy">
           </div>
           <div class="cs-flow-tools">
-            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Scroll sideways to follow the flow</span>
+            <span class="cs-flow-hint" style="display:inline-flex">Scroll to follow the flow</span>
             <span aria-hidden="true"></span>
             <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-user-flow.jpg" data-zoom-title="User flow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
           </div>
         </div>
         <p class="cs-caption">Two entry paths, one review step, and automated emails that bring customers back to the step they left.</p>
-        <div class="cs-todo"><strong>To update: flow diagram</strong>Redraw to match the final wireframes: wedding dress question, add-ons, optional box step, quote, then booking.</div>
+        
       </div>
 
       <div class="divider"></div>
@@ -726,7 +732,7 @@
       <div class="cs-media scroll-reveal">
         <div class="cs-flow cs-flow--wide">
           <div class="cs-flow-scroll">
-            <img src="/img/portfolio/treasured-possession/tp-wireframes.jpg" alt="Seven mobile wireframes in order: is there a wedding dress in your order; your dress with style cards and priced value bands; add-ons with quantity steppers and a preservation box; your boxes with a box preview and pattern swatches; your quote with an itemised £324 total and email field; booking dates with DPD collection, calendar and delivery speed; and review with edit links, what to expect and add to basket" loading="lazy">
+            <img src="/img/portfolio/treasured-possession/tp-wireframes.jpg" alt="Eight mobile wireframes in order: what can we help with, with three choices; your dress, with style cards and priced value bands; anything else to clean, with quantity steppers; returning your dress, with bag, own box or preservation box; customise your preservation box, with a box preview and pattern swatches; your quote, with an itemised total and save options; booking dates, with DPD collection and delivery speed; and review, with edit links and add to basket" loading="lazy">
           </div>
           <div class="cs-flow-tools">
             <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Scroll sideways to see every step</span>
@@ -765,7 +771,7 @@
           </div>
           <div class="insight-item">
             <div class="insight-label">Quantity steppers for extras · Finding 6, order data</div>
-            <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity. The five most-ordered items show first, led by the veil, and the rest sit behind "Show 4 more items" so single-dress customers aren't slowed down.</p>
+            <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity. They're listed in order of popularity, led by the veil. The first version hid the less popular items behind "Show more"; testing showed people preferred to see everything, so all items now show.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Express suggested at the right moment · Findings 7, 8, order data</div>
@@ -819,16 +825,52 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Testing</span>
         <h2 class="scroll-reveal">Testing with people, not just numbers</h2>
-        <p class="scroll-reveal sr-d2">The prototype goes through the same guerrilla test as the current form: five colleagues, the same three tasks (price a dress, add extras with a deadline, price a suit only). I record task success, time to first price, ease scores and what they say, so the two rounds compare directly.</p>
-        <div class="cs-todo"><strong>To add: v1 → finding → v2</strong>For each change made after testing: the prototype before, what participants did or said, and the revised design.</div>
+        <p class="scroll-reveal sr-d2">Tim, the developer, and I built the wireframes into a working prototype that calculated real prices, then tested it with colleagues from outside the project. Each person worked through a scenario, such as a price-conscious customer or someone who needed their dress back quickly, on a phone or desktop.</p>
+        <div class="cs-todo"><strong>To add: test details</strong>Number of participants, the scenarios used, and any measures (task completion, time to a price).</div>
+      </article>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-photos">
+          <div class="cs-todo cs-todo--img"><strong>Photo: testing session 1</strong>A colleague working through the prototype.<br><code>/img/portfolio/treasured-possession/tp-testing-1.jpg</code></div>
+          <div class="cs-todo cs-todo--img"><strong>Photo: testing session 2</strong>A second session, ideally on a phone.<br><code>/img/portfolio/treasured-possession/tp-testing-2.jpg</code></div>
+        </div>
+        <p class="cs-caption">Testing the prototype with colleagues.</p>
+      </div>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">What we found and what changed</h3>
+      </article>
+      <div class="cs-table-wrap scroll-reveal">
+        <table class="cs-table">
+          <thead><tr><th scope="col">Step</th><th scope="col">What we found</th><th scope="col">Change for the next version</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Start</th><td>The extras listed on the wedding dress card (veil, suit, bridesmaid, box) cluttered the first decision.</td><td>Remove them, leaving three clear choices.</td></tr>
+            <tr><th scope="row">Your dress</th><td>Some testers weren't sure which style their dress was, and the price didn't change until a value band was chosen.</td><td>A "Not sure?" panel suggests choosing by the size of the dress, with a number to call for help. Each style shows its "from" price, so the total updates straight away. Styles reordered from slimmest to fullest: Slimline, Fishtail, Princess.</td></tr>
+            <tr><th scope="row">Extras</th><td>Testers preferred to see every item without tapping "Show more", and there was no option for a page boy.</td><td>Show all items, and add a page boy suit at the same price as a flower girl dress.</td></tr>
+            <tr><th scope="row">Your box</th><td>No issues.</td><td>No change.</td></tr>
+            <tr><th scope="row">Quote summary</th><td>"Edit quote" was a small text link and easy to miss.</td><td>Make it a full button, and add an "Edit" button with a pencil icon at the top of the summary.</td></tr>
+            <tr><th scope="row">Delivery</th><td>It wasn't clear that DPD comes to collect. The drop-off option sat above the dates, and the plain date picker didn't show what each date meant for delivery speed.</td><td>Reword the collection card, move drop-off below the dates, and use a calendar in the style of hotel booking sites that marks each date as Standard or Express (+£50), by colour and label. Put "(optional)" beside the phone number heading.</td></tr>
+            <tr><th scope="row">Desktop</th><td>On desktop, moving on relied on the running total bar.</td><td>Add a Continue button at the bottom of every step.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">What people questioned</h3>
+        <ul class="cs-findings scroll-reveal sr-d2">
+          <li><span class="cs-num cs-num--plain">“</span><div><b>"Why does it cost £30 to use your own box?"</b> People couldn't see what they were paying for. The next version explains that the dress is folded with acid-free tissue and packed for them. Whether £30 is the right price is a question for the client: only 8 orders used it last year.</div></li>
+          <li><span class="cs-num cs-num--plain">“</span><div><b>The admin fee felt like a penalty.</b> The client wanted a charge on orders without a wedding dress, to make small orders worth collecting. Testers saw the admin fee as a negative. One option for the next version is to name what the charge pays for, "collection and return, free with a wedding dress", so it reads as a service rather than a penalty.</div></li>
+        </ul>
+        <div class="cs-todo"><strong>To add: before and after</strong>Two or three of the changes above as v1 → v2 screenshots, for example the dress step with "from" prices and the colour-coded calendar.</div>
+
         <h3 class="scroll-reveal">Where to ask for the email</h3>
-        <p class="scroll-reveal sr-d2">The client's priority was capturing leads, but none of the competitors ask for an email before showing a price. We compared two versions:</p>
+        <p class="scroll-reveal sr-d2">The client's first instinct was to ask for an email before showing any prices, to capture leads. None of the competitors do this, and it adds effort before customers know whether the service is affordable. We compared two versions:</p>
         <div class="cs-test scroll-reveal sr-d2">
           <div><h4>Version A: email first</h4><p>Customers enter their email before seeing any prices.</p></div>
-          <div><h4>Version B: price first</h4><p>Prices show from the first step, and the email is asked for at "Save your quote", before review.</p></div>
+          <div><h4>Version B: price first</h4><p>The quote shows first, and the email saves it, with a promise to hold the price for 30 days.</p></div>
         </div>
-        <p class="scroll-reveal sr-d2" style="margin-top:20px;">A live A/B test only gives a reliable answer with enough traffic. Detecting a rise in conversion from 3% to 4% needs roughly 5,000 visitors per version, and the order data showed about 23 orders a month. The plan is to launch with the client's email-first version, then test price-first measured on completed quotes and leads rather than orders, as those happen far more often. Both versions are also compared in the office sessions.</p>
-        <div class="cs-todo"><strong>To add: which route was taken and the result</strong>Including if it was inconclusive.</div>
+        <p class="scroll-reveal sr-d2" style="margin-top:20px;">With around 23 orders a month, a live A/B test on orders would take months to give an answer. Instead, we agreed to launch price first, framing the email as "Save your quote" so it offers something in return. Every saved quote is recorded with its own status in WooCommerce, which shows how many quotes become orders and gives the client leads to follow up. Email first stays ready to test against it.</p>
+        <div class="cs-todo"><strong>To add after launch</strong>How many quotes were saved, and how many turned into orders.</div>
       </article>
 
       <div class="divider"></div>
