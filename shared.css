@@ -2458,14 +2458,13 @@ h1, h2, h3, .section-heading,
 }
 
 /* =============================================
-   Hero CRT screen: RGB mask, vignette, rolling bar, grain
+   Hero CRT screen: RGB mask, vignette, grain
    Sits on the hero background only, behind all content.
-   The mask and vignette are static. The rolling bar and grain only animate
-   transform, which the GPU handles without repainting.
+   The mask and vignette are static. The grain only animates transform,
+   which the GPU handles without repainting.
    The grain layer is added by shared.js.
    ============================================= */
-.gradient-bg::before, .gradient-bg::after,
-.hero-bg-wrapper::before, .hero-bg-wrapper::after {
+.gradient-bg::after, .hero-bg-wrapper::after {
   content: "";
   position: absolute;
   pointer-events: none;
@@ -2477,19 +2476,8 @@ h1, h2, h3, .section-heading,
   inset: 0;
   background:
     repeating-linear-gradient(90deg, rgba(255,0,0,.05) 0 1px, rgba(0,255,0,.02) 1px 2px, rgba(0,0,255,.05) 2px 3px),
-    radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(0,0,25,.55) 100%);
+    radial-gradient(ellipse 75% 70% at 50% 50%, transparent 40%, rgba(0,0,25,.8) 100%);
 }
-
-/* Rolling bar */
-.gradient-bg::before, .hero-bg-wrapper::before {
-  left: 0; right: 0; top: 0;
-  height: 30vh;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,.07) 50%, transparent);
-  transform: translateY(-35vh);
-  animation: crtRoll 9s linear infinite;
-  will-change: transform;
-}
-@keyframes crtRoll { to { transform: translateY(110vh); } }
 
 /* Grain */
 .crt-grain-layer {
@@ -2511,6 +2499,5 @@ h1, h2, h3, .section-heading,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gradient-bg::before, .hero-bg-wrapper::before { display: none; }
   .crt-grain-layer { animation: none; }
 }
