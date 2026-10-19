@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="shared-draft.css">
   <style>
     /* ===== Case study v2 — page-specific styles (shared.css untouched) ===== */
     .cs {
@@ -200,9 +200,6 @@
     .cs-related p { margin: 0; color: var(--ink); font-size: 15px; line-height: 1.5; }
     .cs-related a { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
     .cs-related a svg { width: 14px; height: 14px; }
-    .zone-grid .tile--zone:nth-child(5) { grid-column: 1 / -1; }
-    .zone-grid .tile--zone:nth-child(5)::before { padding-top: 31.25%; }
-    @media (max-width: 640px) { .zone-grid .tile--zone:nth-child(5)::before { padding-top: 80%; } }
   </style>
 
   </head>
@@ -323,6 +320,16 @@
       <div class="tile-play-roundel"><i class="icon-play"></i></div>
       <div class="tile-caption">
         <h4 class="tile-caption-title">Cow &amp; Gate</h4>
+        <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </button>
+
+    <button class="tile tile--zone" type="button" data-type="video" data-src="/img/portfolio/asda-pages/muller.mp4" data-label="Müller: Branded Zone with a tabbed carousel for each product range.">
+      <img src="/img/portfolio/websites/Muller-Mockup.png" alt="Müller Branded Zone">
+      <div class="tile-hover-overlay"></div>
+      <div class="tile-play-roundel"><i class="icon-play"></i></div>
+      <div class="tile-caption">
+        <h4 class="tile-caption-title">Müller</h4>
         <span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
       </div>
     </button>

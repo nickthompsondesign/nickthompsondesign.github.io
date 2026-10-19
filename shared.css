@@ -2080,20 +2080,9 @@ header.scrolled-light .btn-cv svg { background: var(--brand); color: #fff; }
 }
 
 
-/* Heading outlines */
-h1, .section-heading {
-  -webkit-text-stroke: 0.1rem rgb(205 205 205);
-  paint-order: stroke fill;
-   text-shadow: 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.05);
-}
-h2, h3 {
-  -webkit-text-stroke: 0.05rem rgb(129 109 192);
-  paint-order: stroke fill;
-   text-shadow: 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.05);
-}
-h2.section-heading {
-  -webkit-text-stroke: 0.05rem rgb(205 205 205);
-   text-shadow: 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.05);
+/* Heading shadow */
+h1, h2, h3, .section-heading {
+  text-shadow: 0.05rem 0.05rem 0.05rem rgba(0, 0, 0, 0.05);
 }
 
 /* ---------------------------------------------
@@ -2380,8 +2369,8 @@ along. The circle now slides with translate, which is paint-only.
    ============================================= */
 .btn, .btn-solid, .btn-outline, .btn-cv {
   --rest-gap: 7px;
-  --nudge: 7px;
-  --extra: 3px;
+  --nudge: 2px;
+  --extra: 1px;
   gap: var(--rest-gap);
   transition: gap 0.5s var(--ease-out), padding-right 0.5s var(--ease-out), margin-right 0.5s var(--ease-out), background-color 0.3s, border-color 0.3s, color 0.3s;
 }
