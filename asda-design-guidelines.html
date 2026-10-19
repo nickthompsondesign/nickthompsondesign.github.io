@@ -193,6 +193,8 @@
     .cs .inline-testimonial-author span { color: rgba(255,255,255,0.7); }
     .cs .inline-testimonial-author img { filter: brightness(0) invert(1); opacity: 0.9; }
     .cs .project-body h3 { color: #4c3593; }
+    .cs .project-body ul { margin: 0 0 24px 0; padding-left: 22px; }
+    .cs .project-body li { margin-bottom: 10px; line-height: 1.65; }
   </style>
 
 
@@ -233,7 +235,7 @@
     <div class="content-inner" style="width:100%;">
       <span class="section-label scroll-reveal sr-d1">UX · Strategy</span>
       <h1 class="scroll-reveal sr-d2">Asda Design Guidelines</h1>
-      <p class="section-sub scroll-reveal sr-d3">As Lead Web Designer at Asda, I owned the end-to-end creative specification process for digital display media — then identified the root cause of non-compliant submissions, and redesigned the entire information experience around them.</p>
+      <p class="section-sub scroll-reveal sr-d3">As Lead Web Designer at Asda, I owned the creative specifications for digital display media. I replaced PDF guidelines with an interactive hub for suppliers, then redesigned it for a new CMS with the product owner, account managers and suppliers themselves.</p>
       <div class="scroll-reveal sr-d3">
         <span class="cs-hero-result">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c0a7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
@@ -272,7 +274,8 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">UX Research · Problem Framing</span>
         <h2 class="scroll-reveal">Problem Statement</h2>
-        <p class="scroll-reveal sr-d2">The existing guidelines were PDF-based and structured around internal logic rather than how suppliers actually used them. Non-compliant submissions were common, and the account team was fielding the same questions repeatedly.</p>
+        <p class="scroll-reveal sr-d2">Suppliers were moving to self-service banners, so they had to get their artwork right without someone manually checking every piece. The existing guidelines were PDFs, structured around internal logic rather than how suppliers actually used them. Non-compliant submissions were common, and the account team was fielding the same questions repeatedly.</p>
+        <p class="scroll-reveal sr-d2">Those two signals, rejected media and repeated questions, came from the account managers who dealt with suppliers every day. They became the starting point for what the guidelines needed to fix.</p>
       </article>
 
       <div class="divider"></div>
@@ -281,6 +284,33 @@
         <span class="cs-eyebrow scroll-reveal">Context · Ownership</span>
         <h2 class="scroll-reveal">Background</h2>
         <p class="scroll-reveal sr-d2">As Lead Web Designer, I was responsible for the full creative specification process for Asda's digital display media — designing the banner templates and UI toolkit from scratch, defining technical requirements, and setting the WCAG accessibility standards suppliers had to meet. Owning the specs end-to-end meant I also had visibility of where they were breaking down.</p>
+        <p class="scroll-reveal sr-d2">The scale made that matter. In 2021 the campaigns team handled around 3,000 campaigns and 19,000 media assets, peaking at over 900 assets in a single week before Christmas. At that volume, every rejected banner or repeated question added up.</p>
+        <p class="scroll-reveal sr-d2">The project ran in two phases. First, the PDFs were replaced with an interactive guidelines hub. It was live and in use, but nobody was tracking how suppliers used it. Then Asda moved to a new CMS, and the hub had to be redesigned to work within it. That second phase became the chance to test it properly with suppliers and fix what wasn't working.</p>
+      </article>
+
+      <div class="divider"></div>
+
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Stakeholders · Collaboration</span>
+        <h2 class="scroll-reveal">Who I Worked With</h2>
+        <p class="scroll-reveal sr-d2">The CMS redesign meant balancing the needs of three groups.</p>
+      </article>
+
+      <article class="project-body">
+        <div class="insight-list scroll-reveal">
+          <div class="insight-item">
+            <div class="insight-label">The CMS product owner</div>
+            <p>Owned the new platform and its component library. I worked with them to understand what the CMS could and couldn't support, and to map the original page structure onto its standardised, modular components.</p>
+          </div>
+          <div class="insight-item">
+            <div class="insight-label">Account managers</div>
+            <p>The people suppliers came to with questions, and who handled rejected media. They knew where suppliers were getting stuck, and they needed the guidelines to cut down the back-and-forth so suppliers could work independently.</p>
+          </div>
+          <div class="insight-item">
+            <div class="insight-label">Suppliers</div>
+            <p>The end users: brand design teams and agencies creating banners against Asda's specs. They needed to find the right format, understand the requirements and get the template quickly.</p>
+          </div>
+        </div>
       </article>
 
       <div class="divider"></div>
@@ -290,7 +320,7 @@
         <span class="cs-eyebrow scroll-reveal">Information Architecture · UI Design · Build</span>
         <h2 class="scroll-reveal">Process &amp; Approach</h2>
         <p class="scroll-reveal sr-d2">Rather than updating the PDFs, I rebuilt the guidelines as a bespoke interactive hub — structured around how suppliers browse and make decisions, not how the information had always been internally organised. Each media format got its own dedicated page with in-situ examples, accessibility guidance, downloadable templates, and direct links to the relevant Photoshop UI toolkit.</p>
-        <p class="scroll-reveal sr-d2">The hub was aligned to Asda's brand guidelines throughout. The architecture was later adapted for Asda's new CMS, maintaining the original structure while moving to standardised, modular components.</p>
+        <p class="scroll-reveal sr-d2">The hub was aligned to Asda's brand guidelines throughout. When it moved to the new CMS, I kept the original architecture suppliers already knew, but rebuilt each page from the CMS's standardised components. The trade-off was less bespoke layout in exchange for pages the wider team could maintain without me.</p>
       </article>
       
 
@@ -310,8 +340,8 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Research · Synthesis · Iteration</span>
         <h2 class="scroll-reveal">Usability Testing</h2>
-        <p class="scroll-reveal sr-d2">Before launch I ran separate calls with five suppliers — a mix of regular submitters and those with a history of rejections. Each was given the same task: find the specs for a specific format, check the accessibility requirements, and download the correct template. I observed without steering, then mapped the feedback to find common patterns.</p>
-        <p class="scroll-reveal sr-d2">Five insights emerged, each pointing to a specific gap.</p>
+        <p class="scroll-reveal sr-d2">Before the CMS version launched, I ran separate calls with five suppliers, a mix of regular submitters and those with a history of rejections. Each was given the same task: find the specs for a specific format, check the accessibility requirements, and download the correct template. I observed without steering, then mapped the feedback to find common patterns.</p>
+        <p class="scroll-reveal sr-d2">Five insights emerged, each pointing to a specific gap. After making the changes, I ran follow-up sessions to check they had worked.</p>
       </article>
 
       <article class="project-body">
@@ -345,8 +375,8 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Impact · Outcomes</span>
         <h2 class="scroll-reveal">Results</h2>
-            <p class="scroll-reveal sr-d2">The media implementation rate rose from 95% to 98%, and supplier questions to the account team dropped noticeably. At the volume Asda's campaigns team was working at, that shift in the rejection rate had a real operational impact.</p>
-            <p class="scroll-reveal sr-d2">The Artwork Checker outlasted the project it was built for. What started as a response to a single usability finding became a core part of Asda's internal media approval process — used to verify artwork before any banner went live. At peak periods that meant checking hundreds of banners a week.</p>
+            <p class="scroll-reveal sr-d2">The media implementation rate rose from 95% to 98%, and supplier questions to the account team dropped by about half. At the volume Asda's campaigns team was working at, that shift in the rejection rate had a real operational impact.</p>
+            <p class="scroll-reveal sr-d2">The Artwork Checker outlasted the project it was built for. What started as a response to a single usability finding became a core part of Asda's internal media approval process — used to verify artwork before any banner went live. At peak periods that meant checking more than 1,000 banners.</p>
       </article>
 
       <div class="cs-stats cs-stats--simple cs-stats--3">
@@ -360,15 +390,29 @@
         </div>
         <div class="cs-stat scroll-reveal sr-d2">
           <div class="cs-stat-viz"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#36109b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 7 9 13 13 9 21 17"/><polyline points="15 17 21 17 21 11"/></svg></div>
-          <div class="cs-stat-num">Fewer</div>
-          <p class="cs-stat-label">supplier questions &amp; rejections</p>
+          <div class="cs-stat-num">~50%</div>
+          <p class="cs-stat-label">fewer supplier questions to the account team</p>
         </div>
         <div class="cs-stat scroll-reveal sr-d3">
           <div class="cs-stat-viz"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#36109b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <div class="cs-stat-num">100s</div>
-          <p class="cs-stat-label">banners checked per week via the Artwork Checker</p>
+          <div class="cs-stat-num">1,000+</div>
+          <p class="cs-stat-label">banners checked at peak periods via the Artwork Checker</p>
         </div>
       </div>
+
+      <div class="divider"></div>
+
+      <article class="project-body">
+        <span class="cs-eyebrow scroll-reveal">Reflection · Next Steps</span>
+        <h2 class="scroll-reveal">What I Learned</h2>
+        <p class="scroll-reveal sr-d2">The biggest lesson came from the first version. It went live without any tracking, so for a long time we only knew how it was doing through rejections and questions reaching the account team. Testing for the CMS redesign found problems that had been there from the start.</p>
+        <p class="scroll-reveal sr-d2">If I picked it up again, I would:</p>
+        <ul class="scroll-reveal sr-d2">
+          <li>Add analytics from day one, to see which formats suppliers looked at most and where they dropped off.</li>
+          <li>Use the Artwork Checker's results to find the most common failures, and feed those back into the guidelines.</li>
+          <li>Set up a regular check-in with account managers, so new supplier questions shaped the next round of changes.</li>
+        </ul>
+      </article>
 
     </div>
   </section>
