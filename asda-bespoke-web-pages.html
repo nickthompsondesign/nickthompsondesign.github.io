@@ -124,7 +124,7 @@
     .cs-dots i { aspect-ratio: 1; border-radius: 3px; background: var(--accent); opacity: 0.85; }
 
     /* Before/after comparison table */
-    .cs-compare { max-width: 800px; margin: 8px auto 12px auto; border-top: 1px solid rgba(0,0,0,0.1); }
+    .cs-compare { max-width: 800px; margin: 32px auto 40px auto; border-top: 1px solid rgba(0,0,0,0.1); }
     .cs-compare-row { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.1); align-items: baseline; font-size: 15px; color: rgba(0,0,0,0.7); }
     .cs-compare-row--head { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(46,30,98,0.55); padding: 12px 0; }
     .cs-compare-row b { font-family: var(--font-heading); font-size: 20px; color: var(--ink); font-weight: 700; }
@@ -200,6 +200,30 @@
     .cs-related a { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
     .cs-related a svg { width: 14px; height: 14px; }
     /* ===== Asda Pets section ===== */
+    .pets-decision { max-width: 1000px; margin: 36px auto 12px auto; }
+    .pets-decision-inputs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .pets-decision-input { background: #fff; border: 2px solid var(--accent); border-radius: 16px; padding: 18px 20px; }
+    .pets-decision-input--funded { border-color: #c2187c; border-style: dashed; background: #fdf0f7; }
+    .pets-decision-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
+    .pets-decision-input--funded .pets-decision-label { color: #a8146a; }
+    .pets-decision-input p, .pets-decision-outcome p { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,0.7); }
+    .pets-decision-arrow { height: 40px; position: relative; }
+    .pets-decision-arrow::before { content: ''; position: absolute; left: 50%; top: 6px; bottom: 10px; width: 2px; background: var(--accent); transform: translateX(-1px); }
+    .pets-decision-arrow::after { content: ''; position: absolute; left: 50%; bottom: 2px; transform: translateX(-50%); border-top: 10px solid var(--accent); border-left: 7px solid transparent; border-right: 7px solid transparent; }
+    .pets-decision-outcome { background: var(--accent); border-radius: 16px; padding: 20px 24px; text-align: center; max-width: 560px; margin: 0 auto; }
+    .pets-decision-outcome .pets-decision-label { color: #ddd6fe; }
+    .pets-decision-outcome p { color: #fff; font-size: 15px; }
+    @media (max-width: 760px) { .pets-decision-inputs { grid-template-columns: 1fr; } }
+    .pets-scale { display: flex; align-items: center; gap: 14px; max-width: 1200px; margin: 36px auto 0 auto; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); }
+    .pets-scale-line { flex: 1; height: 2px; background: linear-gradient(90deg, rgba(109,40,217,0.25), var(--accent)); position: relative; }
+    .pets-scale-line::after { content: ''; position: absolute; right: -2px; top: -5px; border-left: 10px solid var(--accent); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+    .pets-scale + .pets-options { margin-top: 18px; }
+    .pets-variants { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 1200px; margin: 32px auto 12px auto; }
+    .pets-variants figure { margin: 0; }
+    .pets-variants img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 12px 30px rgba(20,10,60,0.08); background: #fff; }
+    .pets-variants figcaption { margin-top: 10px; font-size: 13px; line-height: 1.45; color: var(--ink); }
+    .pets-variants figcaption b { display: inline-flex; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; align-items: center; justify-content: center; margin-right: 6px; }
+    @media (max-width: 900px) { .pets-variants { grid-template-columns: repeat(2, 1fr); } .pets-scale { font-size: 10px; } }
     .pets-flow { max-width: 1200px; margin: 40px auto 12px auto; border-radius: 20px; border: 1px solid rgba(0,0,0,0.08); background: #fff; box-shadow: 0 20px 60px rgba(20,10,60,0.08); overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .pets-flow svg { display: block; width: 100%; min-width: 860px; height: auto; }
     .pets-flow text { font-family: var(--font-body); }
@@ -384,9 +408,10 @@
 
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Information Architecture · User Flows · Commercial UX</span>
-        <h2 class="scroll-reveal">Asda Pets: A Category Hub</h2>
-        <p class="scroll-reveal sr-d2">Pet food on Asda.com sat on standard category pages: a list of departments and a product grid. The Asda Pets hub replaced those taxonomy pages with a dedicated destination for the category, with brand pages underneath it.</p>
-        <p class="scroll-reveal sr-d2">Because it took over pages the merchandising team owned, it had to work with them. The challenge was finding the right balance between funded content from brands and helping shoppers find the right product for their pet.</p>
+        <h2 class="scroll-reveal">Asda Pets: Redesigning a Category Takeover</h2>
+        <p class="scroll-reveal sr-d2">The pet category on Asda.com had been sold to suppliers as a permanent takeover. Historically, the Sales team sold it as a fixed piece of media, with a "skin": a background that took over the whole category. It made the category look different from every other part of Asda.com, and it raised questions about how category takeovers should work in the future.</p>
+        <p class="scroll-reveal sr-d2">A permanent fixture wasn't the right approach for shoppers or for the business. I redesigned the takeover as something modular that brands could buy into, that felt cohesive with the rest of the site, and that helped the user journey instead of simply taking over the page.</p>
+        <p class="scroll-reveal sr-d2">Because the takeover sat on category pages the merchandising team owned, the redesign had to work with them, balancing funded content from brands with helping shoppers find the right product for their pet.</p>
       </article>
 
       <article class="project-body">
@@ -401,24 +426,31 @@
           </div>
           <div class="insight-item">
             <div class="insight-label">Brands</div>
-            <p>Pay for visibility, so each funded placement had to be clearly defined and worth buying.</p>
+            <p>Pay for visibility. Instead of one permanent takeover, they needed clearly defined slots they could choose to buy into.</p>
           </div>
         </div>
       </article>
+
+      <div class="cs-compare scroll-reveal">
+        <div class="cs-compare-row cs-compare-row--head"><span></span><span>Before</span><span>After</span></div>
+        <div class="cs-compare-row"><span>How it was sold</span><span>A permanent fixture</span><span>Modular slots brands buy into</span></div>
+        <div class="cs-compare-row"><span>Look and feel</span><span>A full-category skin, unlike the rest of Asda.com</span><span>Consistent with the rest of the site</span></div>
+        <div class="cs-compare-row"><span>Shopper journey</span><span>The takeover came first</span><span>Navigation first, funded slots below</span></div>
+      </div>
 
       <article class="project-body">
         <h3 class="scroll-reveal">Mapping the journey</h3>
         <p class="scroll-reveal sr-d2">I mapped how shoppers would move from the existing category page into the hub, and from there either straight to a category or through a brand. Funded placements sit along the journey as alternative routes to products, rather than as obstacles in front of them.</p>
       </article>
 
-      <div class="pets-flow scroll-reveal"><svg viewBox="0 0 1180 400" role="img" aria-label="User flow: from the Pet Food category page, through the Asda Pets hub, to category sections or brand pages, then to the trolley"><defs><marker id="arrN" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#36109b"/></marker><marker id="arrF" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2187c"/></marker></defs><rect x="24" y="160" width="178" height="66" rx="14" fill="#f3f0ff" stroke="#36109b" stroke-width="2"/><text x="113.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Pet Food category</text><text x="113.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Existing taxonomy page</text><rect x="304" y="160" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="393.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Asda Pets hub</text><text x="393.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Takes over the taxonomy</text><rect x="528" y="52" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="617.0" y="81.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Category links</text><text x="617.0" y="101.0" text-anchor="middle" font-size="12" fill="#6b6585">Cat Food, Dog Food…</text><rect x="528" y="160" width="178" height="66" rx="14" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="6 4"/><text x="617.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Brand icons</text><text x="617.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Sponsored slot</text><rect x="528" y="268" width="178" height="66" rx="14" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="6 4"/><text x="617.0" y="297.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Billboard &amp; promos</text><text x="617.0" y="317.0" text-anchor="middle" font-size="12" fill="#6b6585">Sponsored slots</text><rect x="752" y="52" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="841.0" y="81.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Category section</text><text x="841.0" y="101.0" text-anchor="middle" font-size="12" fill="#6b6585">Product spotlight</text><rect x="752" y="214" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="841.0" y="243.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Brand page</text><text x="841.0" y="263.0" text-anchor="middle" font-size="12" fill="#6b6585">Brand’s own ranges</text><rect x="976" y="160" width="158" height="66" rx="14" fill="#36109b" stroke="#36109b" stroke-width="2"/><text x="1055.0" y="198.0" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Add to trolley</text><path d="M202,193.0 L304,193.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><text x="253.0" y="181.0" text-anchor="middle" font-size="11" fill="#6b6585">Asda Pets banner</text><path d="M482,193.0 C505.0,193.0 505.0,85.0 528,85.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M482,193.0 L528,193.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M482,193.0 C505.0,193.0 505.0,301.0 528,301.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M706,85.0 L752,85.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M706,193.0 C729.0,193.0 729.0,247.0 752,247.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M706,301.0 C729.0,301.0 729.0,247.0 752,247.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M930,85.0 C953.0,85.0 953.0,193.0 976,193.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M930,247.0 C953.0,247.0 953.0,193.0 976,193.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><rect x="24" y="358" width="16" height="16" rx="4" fill="#fff" stroke="#36109b" stroke-width="2"/><text x="48" y="371" font-size="13" fill="#2e1e62">Shopper navigation</text><rect x="210" y="358" width="16" height="16" rx="4" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="4 3"/><text x="234" y="371" font-size="13" fill="#2e1e62">Funded placement (paid for by brands)</text></svg></div>
+      <div class="pets-flow scroll-reveal"><svg viewBox="0 0 1180 400" role="img" aria-label="User flow: from the Pet Food category page, through the Asda Pets hub, to category sections or brand pages, then to the trolley"><defs><marker id="arrN" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#36109b"/></marker><marker id="arrF" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2187c"/></marker></defs><rect x="24" y="160" width="178" height="66" rx="14" fill="#f3f0ff" stroke="#36109b" stroke-width="2"/><text x="113.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Pet Food category</text><text x="113.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Existing taxonomy page</text><rect x="304" y="160" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="393.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Asda Pets hub</text><text x="393.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Redesigned takeover</text><rect x="528" y="52" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="617.0" y="81.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Category links</text><text x="617.0" y="101.0" text-anchor="middle" font-size="12" fill="#6b6585">Cat Food, Dog Food…</text><rect x="528" y="160" width="178" height="66" rx="14" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="6 4"/><text x="617.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Brand icons</text><text x="617.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Sponsored slot</text><rect x="528" y="268" width="178" height="66" rx="14" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="6 4"/><text x="617.0" y="297.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Billboard &amp; promos</text><text x="617.0" y="317.0" text-anchor="middle" font-size="12" fill="#6b6585">Sponsored slots</text><rect x="752" y="52" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="841.0" y="81.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Category section</text><text x="841.0" y="101.0" text-anchor="middle" font-size="12" fill="#6b6585">Product spotlight</text><rect x="752" y="214" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="841.0" y="243.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Brand page</text><text x="841.0" y="263.0" text-anchor="middle" font-size="12" fill="#6b6585">Brand’s own ranges</text><rect x="976" y="160" width="158" height="66" rx="14" fill="#36109b" stroke="#36109b" stroke-width="2"/><text x="1055.0" y="198.0" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Add to trolley</text><path d="M202,193.0 L304,193.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><text x="253.0" y="181.0" text-anchor="middle" font-size="11" fill="#6b6585">Criteo banner</text><path d="M482,193.0 C505.0,193.0 505.0,85.0 528,85.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M482,193.0 L528,193.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M482,193.0 C505.0,193.0 505.0,301.0 528,301.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M706,85.0 L752,85.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M706,193.0 C729.0,193.0 729.0,247.0 752,247.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M706,301.0 C729.0,301.0 729.0,247.0 752,247.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M930,85.0 C953.0,85.0 953.0,193.0 976,193.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M930,247.0 C953.0,247.0 953.0,193.0 976,193.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><rect x="24" y="358" width="16" height="16" rx="4" fill="#fff" stroke="#36109b" stroke-width="2"/><text x="48" y="371" font-size="13" fill="#2e1e62">Shopper navigation</text><rect x="210" y="358" width="16" height="16" rx="4" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="4 3"/><text x="234" y="371" font-size="13" fill="#2e1e62">Funded placement (paid for by brands)</text></svg></div>
       <p class="cs-caption">User flow from the Pet Food category page through the Asda Pets hub. Pink dashed routes are funded placements.</p>
 
       <div class="pets-journey scroll-reveal">
         <div class="pets-step">
           <div class="pets-phone"><img src="/img/portfolio/asda-pages/pets/pets-mobile-category.jpg" alt="Mobile: Pet Food and Accessories category page with an Asda Pets banner" loading="lazy"></div>
           <div class="pets-step-label"><span class="pets-step-num">1</span>Category page</div>
-          <p>The existing taxonomy page, with an Asda Pets banner leading into the hub.</p>
+          <p>The existing taxonomy page, with a Criteo banner leading into the hub.</p>
         </div>
         <div class="pets-step">
           <div class="pets-phone"><img src="/img/portfolio/asda-pages/pets/pets-mobile-hub.jpg" alt="Mobile: Asda Pets hub with category buttons, a sponsored billboard and brand icons" loading="lazy"></div>
@@ -434,35 +466,68 @@
       <p class="cs-caption">The same journey on mobile, where most shoppers browse.</p>
 
       <article class="project-body">
-        <h3 class="scroll-reveal">Exploring options</h3>
-        <p class="scroll-reveal sr-d2">I designed three versions of the hub, each balancing navigation and funded content differently, and presented them to stakeholders.</p>
+        <h3 class="scroll-reveal">Options at different levels of supplier involvement</h3>
+        <p class="scroll-reveal sr-d2">I presented three stripped-back versions, each built from modular slots, at different levels of supplier involvement. At one end, sponsored slots are added to the existing category page with minimal input from suppliers. At the other, a full Asda Pets hub, with or without navigation buttons, needs more supplier content.</p>
       </article>
 
+      <div class="pets-scale scroll-reveal" aria-hidden="true">
+        <span>Minimal supplier content</span>
+        <span class="pets-scale-line"></span>
+        <span>More supplier content</span>
+      </div>
       <div class="pets-options scroll-reveal">
+        <div class="pets-option">
+          <img src="/img/portfolio/asda-pages/pets/pets-option-category.jpg" alt="Four wireframe layouts for sponsored slots on the existing Pet Food category page" loading="lazy">
+          <div class="pets-option-body">
+            <span class="pets-option-tag">Option 1</span>
+            <h4>Sponsored category page</h4>
+            <p>The existing taxonomy page stays as it is, with sponsored slots added: a billboard or leaderboard, brand pods, a promo banner and sponsored product inserts. The quickest to set up, with the least asked of suppliers.</p>
+          </div>
+        </div>
         <div class="pets-option is-chosen">
-          <img src="/img/portfolio/asda-pages/pets/pets-option-1.jpg" alt="Option 1: hub with category links" loading="lazy">
+          <img src="/img/portfolio/asda-pages/pets/pets-option-1.jpg" alt="Option 2: Asda Pets hub with category navigation buttons" loading="lazy">
           <div class="pets-option-body">
-            <span class="pets-option-tag">Taken forward</span>
-            <h4>Hub with category links</h4>
-            <p>Category buttons at the top that jump down the page, then a section for each category. Funded banners sit within each section.</p>
+            <span class="pets-option-tag">Agreed option</span>
+            <h4>Hub with navigation buttons</h4>
+            <p>A dedicated Asda Pets hub. Category buttons jump down the page to a section for each category, each with its own promo banners, so shoppers can still go straight to what they need.</p>
           </div>
         </div>
         <div class="pets-option">
-          <img src="/img/portfolio/asda-pages/pets/pets-option-2.jpg" alt="Option 2: hub without category links, built around a Top Picks spotlight" loading="lazy">
-          <div class="pets-option-body">
-            <span class="pets-option-tag">Option 2</span>
-            <h4>Hub without category links</h4>
-            <p>A simpler page built around a single Top Picks spotlight. More room for funded content, but no quick route to a specific category.</p>
-          </div>
-        </div>
-        <div class="pets-option">
-          <img src="/img/portfolio/asda-pages/pets/pets-option-3.jpg" alt="Option 3: education-led hub organised by need, such as Dental and Healthy Gut" loading="lazy">
+          <img src="/img/portfolio/asda-pages/pets/pets-option-2.jpg" alt="Option 3: Asda Pets hub without navigation buttons, built around a Top Picks spotlight" loading="lazy">
           <div class="pets-option-body">
             <span class="pets-option-tag">Option 3</span>
-            <h4>Education-led hub</h4>
-            <p>Links organised by need, such as Dental, Healthy Gut and Low Fat, leading to sub-pages like Dental Care. Shoppers choose by their pet's needs rather than by product type.</p>
+            <h4>Hub without navigation buttons</h4>
+            <p>The same hub without the category buttons, built around a single Top Picks spotlight. More of the page is given to funded content, but there's no quick route to a specific category.</p>
           </div>
         </div>
+      </div>
+
+      <article class="project-body">
+        <p class="scroll-reveal sr-d2">For the lightest option, I mapped four combinations of sponsored slots on the category page, so the team could choose how much to sell without changing the page structure.</p>
+      </article>
+
+      <div class="pets-variants scroll-reveal">
+        <figure><img src="/img/portfolio/asda-pages/pets/pets-category-variant-1.jpg" alt="Variant 1: billboard, brand pods, promo banner and inserts" loading="lazy"><figcaption><b>1</b> Billboard, brand pods, promo, inserts</figcaption></figure>
+        <figure><img src="/img/portfolio/asda-pages/pets/pets-category-variant-2.jpg" alt="Variant 2: leaderboard, brand pods, promo banner and inserts" loading="lazy"><figcaption><b>2</b> Leaderboard, brand pods, promo, inserts</figcaption></figure>
+        <figure><img src="/img/portfolio/asda-pages/pets/pets-category-variant-3.jpg" alt="Variant 3: billboard, promo banner and inserts" loading="lazy"><figcaption><b>3</b> Billboard, promo, inserts</figcaption></figure>
+        <figure><img src="/img/portfolio/asda-pages/pets/pets-category-variant-4.jpg" alt="Variant 4: leaderboard, promo banner and inserts" loading="lazy"><figcaption><b>4</b> Leaderboard, promo, inserts</figcaption></figure>
+      </div>
+      <p class="cs-caption">Wireframes of the four sponsored slot combinations for the existing category page.</p>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">Agreeing the balance</h3>
+        <p class="scroll-reveal sr-d2">I pitched the options to senior stakeholders in the merchandising team. They brought their own insight into which merchandising performed better, and together we worked through how much supplier content the hub should carry.</p>
+        <p class="scroll-reveal sr-d2">We reached a compromise that worked for both sides. Funded placements stayed, but not at the expense of the user journey: shoppers came first, and supplier content was limited so it didn't get in the way of finding the right product.</p>
+      </article>
+
+      <div class="pets-decision scroll-reveal">
+        <div class="pets-decision-inputs">
+          <div class="pets-decision-input"><span class="pets-decision-label">Merchandising insight</span><p>What the merchandising team knew performed better on their pages.</p></div>
+          <div class="pets-decision-input pets-decision-input--funded"><span class="pets-decision-label">Supplier involvement</span><p>How much funded content the hub could carry.</p></div>
+          <div class="pets-decision-input"><span class="pets-decision-label">User first</span><p>Nothing should get in the way of shoppers finding what they need.</p></div>
+        </div>
+        <div class="pets-decision-arrow" aria-hidden="true"></div>
+        <div class="pets-decision-outcome"><span class="pets-decision-label">Agreed</span><p>The Asda Pets hub with navigation buttons, with funded slots placed below the navigation.</p></div>
       </div>
 
       <article class="project-body">
@@ -483,7 +548,7 @@
         <div>
           <div class="pets-keyline"><span><i class="pets-key--nav"></i>Navigation</span><span><i class="pets-key--funded"></i>Funded</span><span><i class="pets-key--mixed"></i>Both</span></div>
           <ol class="pets-legend">
-            <li><span class="pets-key pets-key--nav">1</span><div><strong>Asda Pets header</strong><span class="d">Gives the category its own identity, separate from standard category pages.</span></div></li>
+            <li><span class="pets-key pets-key--nav">1</span><div><strong>Asda Pets header</strong><span class="d">A simple banner in Asda's own style, replacing the full-page skin so the category feels part of the site.</span></div></li>
             <li><span class="pets-key pets-key--nav">2</span><div><strong>Category links</strong><span class="d">Simplified categories that jump down the page, so shoppers can go straight to what they need.</span></div></li>
             <li><span class="pets-key pets-key--funded">3</span><div><strong>Billboard</strong><span class="d">A sponsored hero carousel.</span></div></li>
             <li><span class="pets-key pets-key--funded">4</span><div><strong>Brand icons</strong><span class="d">Sponsored links to each brand's page.</span></div></li>
