@@ -195,6 +195,13 @@
     .cs .project-body h3 { color: #4c3593; }
     .cs .project-body ul { margin: 0 0 24px 0; padding-left: 22px; }
     .cs .project-body li { margin-bottom: 10px; line-height: 1.65; }
+    .who-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1000px; margin: 28px auto 8px auto; }
+    .who-card { background: #fff; border: 1px solid rgba(54,16,155,0.14); border-radius: 18px; padding: 24px 22px; box-shadow: 0 14px 40px rgba(20,10,60,0.06); }
+    .who-card-icon { width: 48px; height: 48px; border-radius: 14px; background: #f1ecff; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .who-card-icon svg { width: 24px; height: 24px; }
+    .who-card h4 { font-family: var(--font-heading); font-size: 18px; color: var(--ink); margin: 0 0 6px 0; }
+    .who-card p { margin: 0; font-size: 14px; line-height: 1.55; color: rgba(0,0,0,0.65); }
+    @media (max-width: 760px) { .who-cards { grid-template-columns: 1fr; } }
   </style>
 
 
@@ -296,22 +303,11 @@
         <p class="scroll-reveal sr-d2">The CMS redesign meant balancing the needs of three groups.</p>
       </article>
 
-      <article class="project-body">
-        <div class="insight-list scroll-reveal">
-          <div class="insight-item">
-            <div class="insight-label">The CMS product owner</div>
-            <p>Owned the new platform and its component library. I worked with them to understand what the CMS could and couldn't support, and to map the original page structure onto its standardised, modular components.</p>
-          </div>
-          <div class="insight-item">
-            <div class="insight-label">Account managers</div>
-            <p>The people suppliers came to with questions, and who handled rejected media. They knew where suppliers were getting stuck, and they needed the guidelines to cut down the back-and-forth so suppliers could work independently.</p>
-          </div>
-          <div class="insight-item">
-            <div class="insight-label">Suppliers</div>
-            <p>The end users: brand design teams and agencies creating banners against Asda's specs. They needed to find the right format, understand the requirements and get the template quickly.</p>
-          </div>
-        </div>
-      </article>
+      <div class="who-cards scroll-reveal">
+        <div class="who-card"><span class="who-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5l9 4.5 9-4.5L12 3z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span><h4>The CMS product owner</h4><p>Owned the new platform and its component library. I worked with them to understand what the CMS could and couldn't support, and to map the original page structure onto its standardised, modular components.</p></div>
+        <div class="who-card"><span class="who-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8"/><path d="M8 13h5"/></svg></span><h4>Account managers</h4><p>The people suppliers came to with questions, and who handled rejected media. They knew where suppliers were getting stuck, and they needed the guidelines to cut down the back-and-forth so suppliers could work independently.</p></div>
+        <div class="who-card"><span class="who-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.5 4.5 4 4L9 19H5v-4L15.5 4.5z"/><path d="m13.5 6.5 4 4"/></svg></span><h4>Suppliers</h4><p>The end users: brand design teams and agencies creating banners against Asda's specs. They needed to find the right format, understand the requirements and get the template quickly.</p></div>
+      </div>
 
       <div class="divider"></div>
 
