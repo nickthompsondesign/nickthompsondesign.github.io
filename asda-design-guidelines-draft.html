@@ -8,20 +8,19 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
   
-    // analytics disabled on draft pages
+    gtag('config', 'G-SH6GMRGSM5');
   </script>
   
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DRAFT · Asda Design Guidelines | Nick Thompson Design</title>
+  <title>Asda Design Guidelines | Nick Thompson Design</title>
 
   <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared-draft.css">
+  <link rel="stylesheet" href="shared.css">
   <style>
     /* ===== Case study v2 — page-specific styles (shared.css untouched) ===== */
     .cs {
@@ -196,6 +195,13 @@
     .cs .project-body h3 { color: #4c3593; }
     .cs .project-body ul { margin: 0 0 24px 0; padding-left: 22px; }
     .cs .project-body li { margin-bottom: 10px; line-height: 1.65; }
+    .who-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1000px; margin: 28px auto 8px auto; }
+    .who-card { background: #fff; border: 1px solid rgba(54,16,155,0.14); border-radius: 18px; padding: 24px 22px; box-shadow: 0 14px 40px rgba(20,10,60,0.06); }
+    .who-card-icon { width: 48px; height: 48px; border-radius: 14px; background: #f1ecff; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .who-card-icon svg { width: 24px; height: 24px; }
+    .who-card h4 { font-family: var(--font-heading); font-size: 18px; color: var(--ink); margin: 0 0 6px 0; }
+    .who-card p { margin: 0; font-size: 14px; line-height: 1.55; color: rgba(0,0,0,0.65); }
+    @media (max-width: 760px) { .who-cards { grid-template-columns: 1fr; } }
   </style>
 
 
@@ -297,22 +303,11 @@
         <p class="scroll-reveal sr-d2">The CMS redesign meant balancing the needs of three groups.</p>
       </article>
 
-      <article class="project-body">
-        <div class="insight-list scroll-reveal">
-          <div class="insight-item">
-            <div class="insight-label">The CMS product owner</div>
-            <p>Owned the new platform and its component library. I worked with them to understand what the CMS could and couldn't support, and to map the original page structure onto its standardised, modular components.</p>
-          </div>
-          <div class="insight-item">
-            <div class="insight-label">Account managers</div>
-            <p>The people suppliers came to with questions, and who handled rejected media. They knew where suppliers were getting stuck, and they needed the guidelines to cut down the back-and-forth so suppliers could work independently.</p>
-          </div>
-          <div class="insight-item">
-            <div class="insight-label">Suppliers</div>
-            <p>The end users: brand design teams and agencies creating banners against Asda's specs. They needed to find the right format, understand the requirements and get the template quickly.</p>
-          </div>
-        </div>
-      </article>
+      <div class="who-cards scroll-reveal">
+        <div class="who-card"><span class="who-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5l9 4.5 9-4.5L12 3z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span><h4>The CMS product owner</h4><p>Owned the new platform and its component library. I worked with them to understand what the CMS could and couldn't support, and to map the original page structure onto its standardised, modular components.</p></div>
+        <div class="who-card"><span class="who-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8"/><path d="M8 13h5"/></svg></span><h4>Account managers</h4><p>The people suppliers came to with questions, and who handled rejected media. They knew where suppliers were getting stuck, and they needed the guidelines to cut down the back-and-forth so suppliers could work independently.</p></div>
+        <div class="who-card"><span class="who-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.5 4.5 4 4L9 19H5v-4L15.5 4.5z"/><path d="m13.5 6.5 4 4"/></svg></span><h4>Suppliers</h4><p>The end users: brand design teams and agencies creating banners against Asda's specs. They needed to find the right format, understand the requirements and get the template quickly.</p></div>
+      </div>
 
       <div class="divider"></div>
 
@@ -342,6 +337,7 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Research · Synthesis · Iteration</span>
         <h2 class="scroll-reveal">Usability Testing</h2>
+        <p class="scroll-reveal sr-d2">I'd started from assumptions about what suppliers would look for first. Testing showed the bigger problem was somewhere else entirely.</p>
         <p class="scroll-reveal sr-d2">Before the CMS version launched, I ran separate calls with five suppliers, a mix of regular submitters and those with a history of rejections. Each was given the same task: find the specs for a specific format, check the accessibility requirements, and download the correct template. I observed without steering, then mapped the feedback to find common patterns.</p>
         <p class="scroll-reveal sr-d2">Five insights emerged, each pointing to a specific gap. After making the changes, I ran follow-up sessions to check they had worked.</p>
       </article>
@@ -358,6 +354,7 @@
           </div>   
           <div class="insight-item">
             <div class="insight-label">Insight 3 — Accessibility requirements needed visual context</div>
+            <p>This was the most important finding, and one the whole project had missed. Everything was set up for suppliers to supply their own artwork, but they had no way to see how it would actually look on site.</p>
             <p>Suppliers couldn't internalise the accessibility requirements because the relationship between supplied dimensions and actual display size wasn't obvious. A banner delivered at 1000px wide might render at 400px on site — making text that looked fine at source potentially fail at the point of display. On top of that, Asda's UI dynamically overlaid elements like promotional roundels on banners, meaning content outside the safe zone would be obscured entirely. To make both constraints visible, I built the Artwork Checker Tool: it detects the template from the supplied dimensions and shows suppliers exactly how their artwork will appear on site — at the correct scale, with safe zone overlays applied.</p>
             <video playsinline muted autoplay loop poster="/img/portfolio/UX%20design/Artwork-Checker-Poster.png" class="project-image-main scroll-reveal visible" style="margin-bottom:0;margin-top:20px;"><source src="/img/portfolio/UX%20design/Artwork-Checker.mp4" type="video/mp4"></video>
           </div>
@@ -439,8 +436,8 @@
         <a href="/#portfolio" class="scroll-reveal">View all projects →</a>
       </div>
       <div class="cs-more-grid">
-        <a href="asda-experiential-hubs-draft" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Product · UX Strategy</span><h3>Asda Experiential Hubs</h3></div></a>
-        <a href="asda-bespoke-web-pages-draft" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-branded-zones.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · Branding</span><h3>Asda Branded Zones</h3></div></a>
+        <a href="asda-experiential-hubs" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Product · UX Strategy</span><h3>Asda Experiential Hubs</h3></div></a>
+        <a href="asda-bespoke-web-pages" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-branded-zones.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · Branding</span><h3>Asda Branded Zones</h3></div></a>
         <a href="lha-london-ux" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/UX%20design/lha-ux.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Design</span><h3>LHA London UX</h3></div></a>
       </div>
     </div>
