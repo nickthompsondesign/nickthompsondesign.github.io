@@ -373,7 +373,7 @@
           </div>
           <div class="meta-col meta-col--role">
             <h4>My Role</h4>
-            <p>Lead designer. I planned and ran the research, audit and competitor benchmarking, and designed the flow, wireframes and UI. Tim at Infoserve built it. The client set pricing and business rules.</p>
+            <p>Lead designer. I planned and ran the research, audit and competitor benchmarking, and designed the flow, wireframes and the visual design. I created the look and feel in Figma, building on the brand's existing website, then turned it into a working prototype. Tim at Infoserve built it. The client set pricing and business rules.</p>
           </div>
         </div>
         <div class="cs-goals">
@@ -766,7 +766,7 @@
           </div>
           <div class="insight-item">
             <div class="insight-label">Reassurance instead of pressure on dress value · Finding 4</div>
-            <p>The value step now explains why it asks and what happens if a customer isn't sure: "Choose the band closest to what you paid. Not sure? Pick your best guess and we'll check when your dress arrives." It removes the warning tone, and each band shows its price.</p>
+            <p>The value step explains in one line why it asks: "Choose the band closest to what you paid. It sets your price and how your dress is covered." It removes the warning tone, each band shows its price, and the band is checked when the dress arrives. Style, value and optional details sit in three labelled cards on one screen, so the step feels short.</p>
             <div class="cs-todo"><strong>Confirm with the client</strong>That they will check the band on arrival and contact the customer before any change.</div>
           </div>
           <div class="insight-item">
@@ -774,23 +774,36 @@
             <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity. They're listed in order of popularity, led by the veil. The first version hid the less popular items behind "Show more"; testing showed people preferred to see everything, so all items now show.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Express suggested at the right moment · Findings 7, 8, order data</div>
-            <p>"Delivery date" became an optional "When do you need it back by?". Most dresses are cleaned after the wedding, and only 4% of orders chose Express, so it isn't pushed. If the date falls inside the standard turnaround, the flow suggests Express there and then. The 6pm cut-off is built into the date picker.</p>
+            <div class="insight-label">Delivery chosen on a colour-coded calendar · Findings 7, 8, order data</div>
+            <p>Customers pick a DPD collection date, then a return delivery date on a calendar in the style of hotel booking sites. Every return date is labelled and coloured by what it costs: Standard (+£18, back in around four weeks) or Express (+£50, back within 10 to 12 days), with a key underneath. Delivery is one price or the other, never both. Only 4% of orders chose Express, so Standard is the default and Express sits beside it as the faster option, rather than being pushed. Studio drop-off is still free, but it sits behind a quiet "Prefer to drop it off in person?" link because the client would rather collect.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Email capture framed as saving the quote · "No second chance"</div>
-            <p>The email field is presented as "Save your quote so you can come back to it", which also powers the resume and abandoned-cart emails. An optional phone number on the review step lets customers ask for a call back.</p>
+            <p>The quote page offers one clear choice: "Book now, or save for later". The email is needed for both, so it comes first, and the save button carries a save icon and a quiet "Price held for 30 days". After saving, customers see where the quote was sent with a "Change email" link, in case of a typo. The same email powers the resume and abandoned-cart emails.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Choosing a box by sight, sized for you · Review themes</div>
             <p>The current box page lists five patterns as text, with no pictures, and uses one photo for two sizes. Six of the 13 reviews praise the packaging, so it matters. The new box step sizes the box from the dress style already given (A Line → Regular, for example), selects the most popular pattern, shows all five as swatches, and updates a large packshot as the customer chooses.</p>
-            <div class="cs-todo"><strong>Image: box step</strong>The size cards, pattern swatches and live packshot, once designed and photographed.<br><code>/img/portfolio/treasured-possession/tp-box-step.jpg</code></div>
+            <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="The customise your preservation box step, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-box-step.jpg" alt="The customise your preservation box step: a blush panel tabbed Box 1, Your wedding dress, with the large box shown in a circle, sized for a Princess dress, and five round pattern swatches with prices" loading="lazy"></div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-label">Returns grouped by what customers are choosing · Testing</div>
+            <p>Return options are split into "Boxed and preserved" and "Bag options". Each name says who supplies it: "Our preservation box", "Your own box, packed by us", "Your own bag" and "Our breathable bag". The preservation box is marked "Most popular" and lists its benefits as short ticks, with the full explanation one tap away.</p>
+          </div>
+          <div class="insight-item">
+            <div class="insight-label">A review step that reads as one story · Testing</div>
+            <p>The review page is a set of numbered cards: your order (with an Edit button and edit links on every line), an optional phone number "so we can easily keep you updated about your order", what happens next as four illustrated steps, and the terms. Help is always one call away in the side panel.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Accessible by default · Finding 3, 5</div>
             <p>Cards are real radio buttons with visible focus, every field has a visible label, and price changes are announced to screen readers.</p>
           </div>
         </div>
+      </article>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">Look and feel</h3>
+        <p class="scroll-reveal sr-d2">I designed the visual style in Figma so the quote feels like part of the Treasured Possession site rather than a bolted-on form. It uses the brand's plum and blush, Poppins, and the blush circle that sits behind headings on the live site. I drew a new set of fine line icons for every garment, bag and box, and used rounded pill shapes for cards, buttons and tags so choices feel soft and easy to tap.</p>
       </article>
 
       <div class="divider"></div>
@@ -849,8 +862,9 @@
             <tr><th scope="row">Extras</th><td>Testers preferred to see every item without tapping "Show more", and there was no option for a page boy.</td><td>Show all items, and add a page boy suit at the same price as a flower girl dress.</td></tr>
             <tr><th scope="row">Your box</th><td>No issues.</td><td>No change.</td></tr>
             <tr><th scope="row">Quote summary</th><td>"Edit quote" was a small text link and easy to miss.</td><td>Make it a full button, and add an "Edit" button with a pencil icon at the top of the summary.</td></tr>
-            <tr><th scope="row">Delivery</th><td>It wasn't clear that DPD comes to collect. The drop-off option sat above the dates, and the plain date picker didn't show what each date meant for delivery speed.</td><td>Reword the collection card, move drop-off below the dates, and use a calendar in the style of hotel booking sites that marks each date as Standard or Express (+£50), by colour and label. Put "(optional)" beside the phone number heading.</td></tr>
-            <tr><th scope="row">Desktop</th><td>On desktop, moving on relied on the running total bar.</td><td>Add a Continue button at the bottom of every step.</td></tr>
+            <tr><th scope="row">Delivery</th><td>It wasn't clear that DPD comes to collect. The drop-off option sat above the dates, and the plain date picker didn't show what each date meant for delivery speed.</td><td>Reword the collection card, move drop-off below the dates as a quieter link, and use a calendar in the style of hotel booking sites that marks every return date as Standard (+£18) or Express (+£50), by colour and label, with a key. Put "(optional)" beside the phone number heading.</td></tr>
+            <tr><th scope="row">Desktop</th><td>On desktop, moving on relied on the running total bar, and testers tended to click towards the bottom of the page.</td><td>Add a Continue button across the bottom of every step, with the running total beside it.</td></tr>
+            <tr><th scope="row">Mobile</th><td>On phones, people move through forms with their thumbs and gestures: scrolling, tapping near the bottom of the screen and swiping back.</td><td>Keep the total and Continue in a bar fixed to the bottom of the screen, make the swipe-back gesture return to the previous step with answers kept, avoid sideways swiping except for the box pattern row, and keep every tap target at least 44px.</td></tr>
           </tbody>
         </table>
       </div>
@@ -877,7 +891,7 @@
         <ul class="cs-findings scroll-reveal sr-d2">
           <li><span class="cs-num cs-num--plain">1</span><div><b>"Own box" becomes a service.</b> Renamed "Pack and present with your own box", so the £30 is clearly for expert packing with acid-free tissue. The client is recording a short video showing the cleaning and packing process.</div></li>
           <li><span class="cs-num cs-num--plain">2</span><div><b>Fewer charges that feel like penalties.</b> The admin fee on orders without a wedding dress is removed, and the breathable bag is shown as included rather than as a £10 add-on.</div></li>
-          <li><span class="cs-num cs-num--plain">3</span><div><b>Clear delivery choices.</b> Standard at £18 with a four-week return, or Express for £50 more with a 10 to 15 day return, marked on the calendar.</div></li>
+          <li><span class="cs-num cs-num--plain">3</span><div><b>Clear delivery choices.</b> Standard at £18 with a four-week return, or Express at £50 with a 10 to 12 day return, marked on the calendar. It's one price or the other, not both.</div></li>
           <li><span class="cs-num cs-num--plain">4</span><div><b>A follow-up for saved quotes.</b> If a customer doesn't book, an email after 7 days offers 10% off, and a reminder after 20 days comes before the 30-day price hold ends.</div></li>
         </ul>
       </article>
@@ -887,13 +901,32 @@
       <!-- FINAL DESIGN -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Final Design</span>
-        <h2 class="scroll-reveal">[Final design heading]</h2>
-        <p class="scroll-reveal sr-d2">[One or two sentences introducing the final flow.]</p>
+        <h2 class="scroll-reveal">A quote that feels like the brand</h2>
+        <p class="scroll-reveal sr-d2">The final design takes the tested flow and gives it the look of the Treasured Possession site. I designed it in Figma, then built it as a working prototype with real prices on desktop and mobile, so the client and developer could click through every route before build.</p>
       </article>
 
       <div class="cs-media scroll-reveal">
-        <!-- TODO: swap for the .ba before/after slider block from the LHA page (and copy its script). Before image is ready: tp-before-desktop-viewport.jpg -->
-        <div class="cs-todo cs-todo--img"><strong>Before / after slider</strong>Old form vs new step 1, same viewport size.<br><code>/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg</code> (ready)<br><code>/img/portfolio/treasured-possession/tp-after-step1.jpg</code></div>
+        <!-- TODO (optional): swap for the .ba before/after slider block from the LHA page (and copy its script). -->
+        <div class="cs-photos">
+          <div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="Before: the original quote form, a long list of fields with no price until the basket" loading="lazy"></div>
+          <div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="After: the new first step, What can we help with, with three priced choices and a quote panel on the right" loading="lazy"></div>
+        </div>
+        <p class="cs-caption">Before and after: the first thing a customer sees.</p>
+      </div>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" alt="Seven mobile screens: what can we help with, tell us about your dress, how would you like your dress returned, customise your preservation box, the colour-coded delivery calendar, your instant quote and review your order, each with the total and button fixed to the bottom of the screen" loading="lazy"></div>
+        <p class="cs-caption">The journey on mobile, from the first choice to the review.</p>
+      </div>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-photos">
+          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Tell us about your dress on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dress.jpg" alt="Tell us about your dress on desktop: three tabbed cards for dress style, dress value and additional details, with the quote panel on the right" loading="lazy"></div>
+          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="How would you like your dress returned on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-returns.jpg" alt="How would you like your dress returned on desktop: boxed and preserved options with the preservation box marked most popular, then bag options" loading="lazy"></div>
+          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="When should DPD collect on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dates.jpg" alt="When should DPD collect on desktop: collection and return delivery dates, a two-month calendar with Standard dates marked +£18 and Express dates marked +£50, and a key" loading="lazy"></div>
+          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Review your order on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-review.jpg" alt="Review your order on desktop: numbered cards for the order with edit links, phone number, what happens next and the terms" loading="lazy"></div>
+        </div>
+        <p class="cs-caption">Desktop steps: your dress, returns, delivery dates and review (scroll each to see the full step).</p>
       </div>
 
       <div class="cs-media scroll-reveal">
@@ -906,7 +939,7 @@
 
       <article class="project-body">
         <h3 class="scroll-reveal">Accessibility</h3>
-        <p class="scroll-reveal sr-d2">Designed to WCAG 2.2 AA: keyboard-operable cards with visible focus, visible labels on every field, errors explained next to the field on each step, quantity buttons and cards of at least 44px, and the running total announced to screen readers when it changes.</p>
+        <p class="scroll-reveal sr-d2">Designed to WCAG 2.2 AA: keyboard-operable cards with visible focus, visible labels on every field, errors explained next to the field on each step, quantity buttons and cards of at least 44px, and the running total announced to screen readers when it changes. The picture cards keep a real radio button underneath for keyboard and screen reader users, and the calendar's colour key is backed up by a price label on every date, so colour is never the only signal.</p>
         <div class="cs-todo"><strong>To confirm</strong>Check against what was built with a keyboard and a screen reader, and re-run the axe scan.</div>
       </article>
 
