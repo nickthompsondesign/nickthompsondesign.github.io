@@ -75,6 +75,7 @@
     .cs-flow-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(54,16,155,0.25); background: #fff; color: var(--accent); font: 700 13px var(--font-body); cursor: pointer; }
     .cs-flow-btn:hover { background: var(--accent); color: #fff; }
     .cs-flow-btn svg { width: 14px; height: 14px; }
+    .cs-zoom { margin: 10px auto 0; display: flex; width: max-content; }
     .cs-viewer { position: fixed; inset: 0; z-index: 100000; background: rgba(8,6,30,0.98); display: none; flex-direction: column; }
     .cs-viewer.is-open { display: flex; }
     .cs-viewer-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; color: rgba(255,255,255,0.8); font-size: 14px; }
@@ -373,7 +374,7 @@
           </div>
           <div class="meta-col meta-col--role">
             <h4>My Role</h4>
-            <p>Lead designer. I planned and ran the research, audit and competitor benchmarking, and designed the flow, wireframes and the visual design. I created the look and feel in Figma, building on the brand's existing website, then turned it into a working prototype. Tim at Infoserve built it. The client set pricing and business rules.</p>
+            <p>Lead designer. I planned and ran the research, audit and competitor benchmarking, and designed the flow, wireframes and the visual design. I created the look and feel in Figma, building on the brand's existing website, then turned it into a working prototype. A developer at Infoserve built it. The client set pricing and business rules.</p>
           </div>
         </div>
         <div class="cs-goals">
@@ -441,7 +442,7 @@
             <tr><th scope="row">Analytics baseline (GA4)</th><td>How many people reach the form, add to basket and buy?</td><td><span class="cs-status cs-status--plan">Waiting on access</span></td></tr>
             <tr><th scope="row">Cross-industry patterns</th><td>Who outside the sector solves "configure, then see a price" well?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Form best-practice review</th><td>Does the design follow published form research?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
-            <tr><th scope="row">Guerrilla usability test (current form)</th><td>Where do people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
+            <tr><th scope="row">Usability test (current form)</th><td>Where do people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -483,7 +484,7 @@
       <!-- ORDER DATA -->
       <article class="project-body">
         <h3 class="scroll-reveal">What 12 months of orders showed</h3>
-        <p class="scroll-reveal sr-d2">Analytics access was still pending, so I exported a year of WooCommerce orders with every product option. I removed test orders and all personal details, and looked only at totals: 338 orders, of which 295 were paid.</p>
+        <p class="scroll-reveal sr-d2">Analytics access was still pending, so I exported a year of WooCommerce orders with every product option. I looked only at totals, with no personal details: 338 orders, of which 295 were paid.</p>
       </article>
 
       <div class="cs-stats cs-stats--simple cs-stats--3">
@@ -574,7 +575,7 @@
       </div>
 
       <article class="project-body">
-        <p class="scroll-reveal sr-d2" style="margin-top:32px;">What it told me: every competitor shows a total within two clicks, and none asks for an email first. Re:Finery proved a value-band model can still feel instant. Elsie May showed that a single line of reassurance can take the stress out of a pricing choice.</p>
+        <p class="scroll-reveal sr-d2" style="margin-top:32px;">What it told me: every competitor shows a total within two clicks, and none asks for an email first. That mattered because one of the client's goals was to capture emails: today they have no visibility of people who leave without buying, so no way to follow up on abandoned quotes. The research showed that asking for an email before the price adds effort before customers know whether they can afford it, so I chose to capture it later, as a way to save the quote, rather than as a gate at the start. Re:Finery proved a value-band model can still feel instant. Elsie May showed that a single line of reassurance can take the stress out of a pricing choice.</p>
       </article>
 
       <article class="project-body">
@@ -618,7 +619,7 @@
       <!-- USER RESEARCH -->
       <article class="project-body">
         <h3 class="scroll-reveal">Watching people use it</h3>
-        <p class="scroll-reveal sr-d2">With no budget for customer research, I ran a quick guerrilla test: five colleagues from outside the design and development team, each given the same three tasks on cards, two on their own phones. Colleagues aren't the real customers, so this shows where the form is hard to understand, not how customers feel about it. The review analysis covers that side.</p>
+        <p class="scroll-reveal sr-d2">With no budget for customer research, I ran a quick usability test: five colleagues from outside the design and development team, each given the same three tasks on cards, two on their own phones. Colleagues aren't the real customers, so this shows where the form is hard to understand, not how customers feel about it. The review analysis covers that side.</p>
         <div class="cs-todo"><strong>To add: results from the current form</strong>Task success, time to first price and ease score per task, plus two or three direct quotes. Keep it short: a small table and the quotes.</div>
       </article>
 
@@ -676,7 +677,7 @@
 
       <article class="project-body">
         <h3 class="scroll-reveal">Prioritising</h3>
-        <p class="scroll-reveal sr-d2">I plotted each opportunity by impact and effort. Effort is my initial estimate, to confirm with Tim.</p>
+        <p class="scroll-reveal sr-d2">I plotted each opportunity by impact and effort. Effort is my initial estimate, to confirm with the developer.</p>
       </article>
       <div class="cs-matrix scroll-reveal">
         <span class="cs-axis-y">Impact →</span>
@@ -784,7 +785,8 @@
           <div class="insight-item">
             <div class="insight-label">Choosing a box by sight, sized for you · Review themes</div>
             <p>The current box page lists five patterns as text, with no pictures, and uses one photo for two sizes. Six of the 13 reviews praise the packaging, so it matters. The new box step sizes the box from the dress style already given (A Line → Regular, for example), selects the most popular pattern, shows all five as swatches, and updates a large packshot as the customer chooses.</p>
-            <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="The customise your preservation box step, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-box-step.jpg" alt="The customise your preservation box step: a blush panel tabbed Box 1, Your wedding dress, with the large box shown in a circle, sized for a Princess dress, and five round pattern swatches with prices" loading="lazy"></div>
+            <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="The customise your preservation box step, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-box-step.jpg" alt="The customise your preservation box step: a blush panel tabbed Box 1, Your wedding dress, with the large box shown in a circle, sized for a Princess dress, and five round pattern swatches with prices" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-box-step.jpg" data-zoom-title="Customise your preservation box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
           </div>
           <div class="insight-item">
             <div class="insight-label">Returns grouped by what customers are choosing · Testing</div>
@@ -838,7 +840,7 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Testing</span>
         <h2 class="scroll-reveal">Testing with people, not just numbers</h2>
-        <p class="scroll-reveal sr-d2">Tim, the developer, and I built the wireframes into a working prototype that calculated real prices, then tested it with colleagues from outside the project. Each person worked through a scenario, such as a price-conscious customer or someone who needed their dress back quickly, on a phone or desktop.</p>
+        <p class="scroll-reveal sr-d2">The developer and I built the wireframes into a working prototype that calculated real prices, then tested it with colleagues from outside the project. Each person worked through a scenario, such as a price-conscious customer or someone who needed their dress back quickly, on a phone or desktop.</p>
         <div class="cs-todo"><strong>To add: test details</strong>Number of participants, the scenarios used, and any measures (task completion, time to a price).</div>
       </article>
 
@@ -908,23 +910,30 @@
       <div class="cs-media scroll-reveal">
         <!-- TODO (optional): swap for the .ba before/after slider block from the LHA page (and copy its script). -->
         <div class="cs-photos">
-          <div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="Before: the original quote form, a long list of fields with no price until the basket" loading="lazy"></div>
-          <div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="After: the new first step, What can we help with, with three priced choices and a quote panel on the right" loading="lazy"></div>
+          <div class="cs-shot"><div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="Before: the original quote form, a long list of fields with no price until the basket" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" data-zoom-title="Before: the original form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="After: the new first step, What can we help with, with three priced choices and a quote panel on the right" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-after-step1.jpg" data-zoom-title="After: the new first step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
         </div>
         <p class="cs-caption">Before and after: the first thing a customer sees.</p>
       </div>
 
       <div class="cs-media scroll-reveal">
-        <div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" alt="Seven mobile screens: what can we help with, tell us about your dress, how would you like your dress returned, customise your preservation box, the colour-coded delivery calendar, your instant quote and review your order, each with the total and button fixed to the bottom of the screen" loading="lazy"></div>
+        <div class="cs-shot"><div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" alt="Seven mobile screens: what can we help with, tell us about your dress, how would you like your dress returned, customise your preservation box, the colour-coded delivery calendar, your instant quote and review your order, each with the total and button fixed to the bottom of the screen" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" data-zoom-title="The journey on mobile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
         <p class="cs-caption">The journey on mobile, from the first choice to the review.</p>
       </div>
 
       <div class="cs-media scroll-reveal">
         <div class="cs-photos">
-          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Tell us about your dress on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dress.jpg" alt="Tell us about your dress on desktop: three tabbed cards for dress style, dress value and additional details, with the quote panel on the right" loading="lazy"></div>
-          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="How would you like your dress returned on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-returns.jpg" alt="How would you like your dress returned on desktop: boxed and preserved options with the preservation box marked most popular, then bag options" loading="lazy"></div>
-          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="When should DPD collect on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dates.jpg" alt="When should DPD collect on desktop: collection and return delivery dates, a two-month calendar with Standard dates marked +£18 and Express dates marked +£50, and a key" loading="lazy"></div>
-          <div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Review your order on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-review.jpg" alt="Review your order on desktop: numbered cards for the order with edit links, phone number, what happens next and the terms" loading="lazy"></div>
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Tell us about your dress on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dress.jpg" alt="Tell us about your dress on desktop: three tabbed cards for dress style, dress value and additional details, with the quote panel on the right" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-dress.jpg" data-zoom-title="Tell us about your dress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="How would you like your dress returned on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-returns.jpg" alt="How would you like your dress returned on desktop: boxed and preserved options with the preservation box marked most popular, then bag options" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-returns.jpg" data-zoom-title="How would you like your dress returned?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="When should DPD collect on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dates.jpg" alt="When should DPD collect on desktop: collection and return delivery dates, a two-month calendar with Standard dates marked +£18 and Express dates marked +£50, and a key" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-dates.jpg" data-zoom-title="When should DPD collect?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Review your order on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-review.jpg" alt="Review your order on desktop: numbered cards for the order with edit links, phone number, what happens next and the terms" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-review.jpg" data-zoom-title="Review your order"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
         </div>
         <p class="cs-caption">Desktop steps: your dress, returns, delivery dates and review (scroll each to see the full step).</p>
       </div>
