@@ -22,8 +22,8 @@
       --color3: 50,0,255;
       --color5: 0,50,255;
       --color-interactive: 0,30,255;
-      --font-heading: 'Fraunces', Georgia, serif;
-      --font-body: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: 'Fraunces', serif;
+      --font-body: 'Outfit', sans-serif;
       --tracking-tight: -0.03em;
       --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
       --crt-glow: rgba(240, 240, 255, .35);
@@ -88,6 +88,12 @@
     /* Type, as on the site */
     .label { display: block; font-family: var(--font-body); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-on-dark); margin: 0 0 16px; }
     h1, h2, h3 { font-family: var(--font-heading); letter-spacing: var(--tracking-tight); margin: 0; text-wrap: balance; }
+    /* Fraunces has an optical-size axis: by default, the bigger the text, the thinner
+       and higher-contrast its strokes become. Lock it to the small-size design so large
+       headings keep the same sturdy strokes as the logo. */
+    h1, h2, h3, .logo, .num-tag, .stat b, .agenda .n, .reveal .big, .ice .lbl, .quote blockquote, .card .icon, ol.pts li::before {
+      font-optical-sizing: none; font-variation-settings: "opsz" 24;
+    }
     h1 { font-size: 112px; line-height: 1.05; font-weight: 700; text-shadow: var(--crt-shadow); filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)); }
     h2 { font-size: 56px; line-height: 1.08; font-weight: 700; color: #fff; text-shadow: var(--crt-shadow); }
     .hero h2 { font-size: 64px; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)); }
@@ -101,6 +107,8 @@
     .foot { position: absolute; left: 96px; right: 96px; bottom: 26px; display: flex; justify-content: space-between; align-items: center; z-index: 6; pointer-events: none; }
     .logo { font-family: var(--font-heading); font-weight: 800; font-size: 20px; letter-spacing: var(--tracking-tight); color: #fff; text-shadow: var(--crt-shadow); }
     .logo span { font-style: italic; font-weight: 200; opacity: .9; margin-left: 2px; }
+    /* Title name set like the logo: bold NickThompson, light italic Design */
+    h1.logo-title { font-weight: 800; font-size: 104px; white-space: nowrap; }
     .pg { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
 
     /* Hero slide: everything on the gradient */
@@ -240,6 +248,25 @@
     .ice-wrap.open .reveal { opacity: 1; transform: none; }
     .ice-wrap.open .ice { pointer-events: none; }
 
+
+    /* Showreel box, from the homepage hero (shared.css), with five slides */
+    .square-box { width: 500px; aspect-ratio: 1 / 1; justify-self: end; border: 4px solid rgba(255,255,255,0.75); border-radius: 15px; position: relative; overflow: hidden; background: rgba(0,0,0,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,255,255,0.1); }
+    .showreel-slide { position: absolute; inset: 0; opacity: 0; filter: blur(15px); transform: scale(1.1); will-change: opacity, filter, transform; animation: slideFade 20s infinite ease-in-out; }
+    .showreel-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .showreel-slide:nth-child(1) { animation-delay: 0s; }
+    .showreel-slide:nth-child(2) { animation-delay: -16s; }
+    .showreel-slide:nth-child(3) { animation-delay: -12s; }
+    .showreel-slide:nth-child(4) { animation-delay: -8s; }
+    .showreel-slide:nth-child(5) { animation-delay: -4s; }
+    .reel-tag { position: absolute; left: 14px; bottom: 14px; padding: 7px 14px; border-radius: 999px; background: rgba(12,9,48,0.78); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    @keyframes slideFade {
+      0%, 16%  { opacity: 1; filter: blur(0); transform: scale(1); }
+      20%      { opacity: 0; filter: blur(15px); transform: scale(1.1); }
+      21%, 95% { opacity: 0; filter: none; transform: scale(1.1); }
+      96%      { opacity: 0; filter: blur(15px); transform: scale(1.1); }
+      100%     { opacity: 1; filter: blur(0); transform: scale(1); }
+    }
+
     /* ---------- Controls, overview, notes, lightbox ---------- */
     .controls { position: fixed; right: 18px; bottom: 16px; display: flex; gap: 8px; align-items: center; z-index: 20; opacity: 0; transition: opacity .25s; }
     body.show-ui .controls, .controls:focus-within { opacity: 1; }
@@ -263,6 +290,8 @@
 
     @media (prefers-reduced-motion: reduce) {
       .g1, .g2, .g3, .g5, .crt-grain-layer { animation: none; }
+      .showreel-slide { animation: none; }
+      .showreel-slide:first-child { opacity: 1; filter: none; transform: none; }
       .slide, .ice *, .reveal { transition: none !important; }
     }
   </style>
@@ -281,13 +310,21 @@
   <!-- 1 Title -->
   <section class="slide hero" data-sec="Intro" data-time="2.5 min" data-title="Title" data-gap
     data-notes="Thanks for having me. I'll take you through five projects, about 20 minutes, then I'm happy to take questions.">
-    <div class="hero-in one">
+    <div class="hero-in" style="grid-template-columns:7fr 5fr">
       <div class="txt">
         <span class="label">Portfolio presentation · The White Company</span>
-        <h1>Nick Thompson</h1>
+        <h1 class="logo-title">Nick Thompson</h1>
         <p class="lead" style="font-family:var(--font-heading);font-style:italic;font-size:36px;color:#fff;">Product Designer</p>
         <div class="chips"><span class="chip">Buy</span><span class="chip">Browse</span><span class="chip">Seasonal launches</span><span class="chip">Design system</span></div>
         <div class="todo" style="max-width:560px">Your title: Product Designer, or Lead Digital Designer</div>
+      </div>
+      <!-- Showreel box, as on the homepage hero: the five projects in this talk -->
+      <div class="square-box" aria-label="The five projects in this presentation">
+        <div class="showreel-slide"><img src="img/portfolio/treasured-possession/tp-box-step.jpg" alt=""><span class="reel-tag">01 · Treasured Possession</span></div>
+        <div class="showreel-slide"><img src="img/portfolio/thumbnail/thumb-n-design-guidelines.jpg" alt=""><span class="reel-tag">02 · Asda Design Guidelines</span></div>
+        <div class="showreel-slide"><img src="img/portfolio/UX%20design/lha-ux.jpg" alt=""><span class="reel-tag">03 · LHA London</span></div>
+        <div class="showreel-slide"><img src="img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg" alt=""><span class="reel-tag">04 · Asda Experiential Hubs</span></div>
+        <div class="showreel-slide"><img src="img/portfolio/asda-pages/pets/pets-option-2.jpg" alt=""><span class="reel-tag">05 · Asda Pets</span></div>
       </div>
     </div>
   </section>
@@ -799,7 +836,7 @@
       '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">Now</div><div id="now" style="font-size:28px;margin-top:4px"></div></div>' +
       '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">What to say</div><div id="n" style="font-size:24px;line-height:1.5;margin-top:6px"></div></div>' +
       '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">Next</div><div id="nx" style="font-size:20px;opacity:.75;margin-top:4px"></div></div>' +
-      '<p style="opacity:.5;font-size:14px">Use the arrow keys here or in the slides window.</p></body>';
+      '<p style="opacity:.5;font-size:14px">Use the arrow keys here or in the slides window.</p>';
   }
   function updatePresenter() {
     if (!pres || pres.closed) return;

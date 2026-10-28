@@ -2490,3 +2490,14 @@ h1, h2, h3, .section-heading,
 @media (prefers-reduced-motion: reduce) {
   .crt-grain-layer { animation: none; }
 }
+
+/* =============================================
+   Fraunces optical size
+   Fraunces changes its letter shapes with size: large text switches to a thin,
+   high-contrast display design. Lock it to the sturdier small-size design so big
+   headings match the logo. Outfit has no optical-size axis, so it's unaffected.
+   ============================================= */
+html {
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 24;
+}
