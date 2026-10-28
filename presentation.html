@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Portfolio Presentation | Nick Thompson Design</title>
+  <link rel="icon" type="image/png" href="img/portfolio/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Portfolio presentation. A 1600 x 900 stage, scaled to fit the screen.
+       The site's animated hero gradient sits behind every slide; content slides
+       carry a white panel like the case study overview card. */
+    :root {
+      /* From shared.css */
+      --color-bg1: rgb(2,2,6);
+      --color-bg2: rgb(0,0,5);
+      --color1: 0,20,255;
+      --color2: 20,0,200;
+      --color3: 50,0,255;
+      --color5: 0,50,255;
+      --color-interactive: 0,30,255;
+      --font-heading: 'Fraunces', Georgia, serif;
+      --font-body: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+      --tracking-tight: -0.03em;
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      --crt-glow: rgba(240, 240, 255, .35);
+      --crt-left: rgba(0, 204, 255, .85);
+      --crt-right: rgba(255, 0, 168, .85);
+      --crt-shadow: 0 0 .1em var(--crt-glow), .025em 0 .02em var(--crt-right), -.025em 0 .02em var(--crt-left);
+      /* From the case study pages */
+      --ink: #2e1e62;
+      --accent: #36109b;
+      --accent-text: #6d28d9;
+      --accent-on-dark: #ddd6fe;
+      --accent-bright: #a78bfa;
+      --muted-fill: #e6e1f5;
+      --muted-ink: rgba(0,0,0,0.6);
+      --stat-fill: #f7f5ff;
+      --deep: #0c0930;
+      --todo: #b45309;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html, body { margin: 0; height: 100%; background: #000113; overflow: hidden; font-family: var(--font-body); font-weight: 300; color: #fff; }
+
+    /* ---------- Stage ---------- */
+    .viewport { position: fixed; inset: 0; display: grid; place-items: center; }
+    .stage { position: relative; width: 1600px; height: 900px; flex: none; overflow: hidden; transform-origin: center center; background: #000113; }
+
+    /* ---------- Hero gradient (shared.css, sized to the stage) ---------- */
+    .gradient-bg { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2)); z-index: 0; }
+    .gradient-bg .gradients-container { position: absolute; inset: 0; filter: blur(40px) saturate(200%) contrast(120%); }
+    .g1, .g2, .g3, .g5 { position: absolute; mix-blend-mode: screen; border-radius: 50%; will-change: transform; }
+    .g1 { background: radial-gradient(circle at center, rgba(var(--color1),0.9) 0%, transparent 50%); width: 2880px; height: 1620px; top: -360px; left: -640px; animation: fluidMove1 40s ease-in-out infinite; box-shadow: inset 0 100px 300px #dc26aa; }
+    .g2 { background: radial-gradient(circle at center, rgba(var(--color2),0.9) 0%, transparent 50%); width: 2560px; height: 1440px; top: -270px; left: 320px; animation: fluidMove2 32s ease-in-out infinite reverse; box-shadow: inset 0 100px 300px #0ff877; }
+    .g3 { background: radial-gradient(ellipse at center, rgba(var(--color3),0.8) 0%, transparent 50%); width: 2240px; height: 1800px; top: 180px; left: -800px; animation: fluidMove1 35s ease-in-out infinite; }
+    .g5 { background: radial-gradient(circle at center, rgba(var(--color5),0.8) 0%, transparent 50%); width: 2400px; height: 1350px; top: -450px; left: -160px; animation: fluidMove1 38s ease-in-out infinite reverse; }
+    @keyframes fluidMove1 {
+      0%   { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+      33%  { transform: translate3d(160px,-135px,0) rotate(120deg) scale(1.1); }
+      66%  { transform: translate3d(-240px,90px,0) rotate(240deg) scale(0.9); }
+      100% { transform: translate3d(0,0,0) rotate(360deg) scale(1); }
+    }
+    @keyframes fluidMove2 {
+      0%   { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+      25%  { transform: translate3d(-240px,-90px,0) rotate(90deg) scale(0.9); }
+      50%  { transform: translate3d(160px,-180px,0) rotate(180deg) scale(1.2); }
+      75%  { transform: translate3d(320px,90px,0) rotate(270deg) scale(1); }
+      100% { transform: translate3d(0,0,0) rotate(360deg) scale(1); }
+    }
+    /* CRT mask, vignette and grain, as on the site hero */
+    .gradient-bg::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3;
+      background: repeating-linear-gradient(90deg, rgba(255,0,0,.05) 0 1px, rgba(0,255,0,.02) 1px 2px, rgba(0,0,255,.05) 2px 3px),
+                  radial-gradient(ellipse 75% 70% at 50% 50%, transparent 40%, rgba(0,0,25,.8) 100%); }
+    .crt-grain-layer { position: absolute; inset: -60px; pointer-events: none; z-index: 3; opacity: .35; mix-blend-mode: overlay;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: crtGrain .5s steps(4) infinite; }
+    @keyframes crtGrain { 0% { transform: translate(0,0); } 25% { transform: translate(-40px,24px); } 50% { transform: translate(32px,-32px); } 75% { transform: translate(-24px,-16px); } }
+
+    /* ---------- Slides ---------- */
+    .slide { position: absolute; inset: 0; z-index: 5; opacity: 0; visibility: hidden; transition: opacity .5s var(--ease-smooth), visibility .5s; }
+    .slide.active { opacity: 1; visibility: visible; }
+
+    /* Type, as on the site */
+    .label { display: block; font-family: var(--font-body); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent-on-dark); margin: 0 0 16px; }
+    h1, h2, h3 { font-family: var(--font-heading); letter-spacing: var(--tracking-tight); margin: 0; text-wrap: balance; }
+    h1 { font-size: 112px; line-height: 1.05; font-weight: 700; text-shadow: var(--crt-shadow); filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)); }
+    h2 { font-size: 56px; line-height: 1.08; font-weight: 700; color: #fff; text-shadow: var(--crt-shadow); }
+    .hero h2 { font-size: 64px; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.9)); }
+    p { margin: 0; }
+    strong, b { font-weight: 700; }
+    .lead { font-size: 24px; line-height: 1.6; color: rgba(255,255,255,0.75); max-width: 640px; }
+
+    /* Content slide: heading on the gradient, white panel below */
+    .head { position: absolute; left: 96px; right: 96px; top: 52px; }
+    .panel { position: absolute; left: 64px; right: 64px; top: 196px; bottom: 76px; background: #fff; color: var(--ink); border-radius: 28px; padding: 40px 52px; box-shadow: 0 30px 80px rgba(0,0,30,0.35); display: flex; flex-direction: column; justify-content: center; gap: 26px; overflow: hidden; }
+    .foot { position: absolute; left: 96px; right: 96px; bottom: 26px; display: flex; justify-content: space-between; align-items: center; z-index: 6; pointer-events: none; }
+    .logo { font-family: var(--font-heading); font-weight: 800; font-size: 20px; letter-spacing: var(--tracking-tight); color: #fff; text-shadow: var(--crt-shadow); }
+    .logo span { font-style: italic; font-weight: 200; opacity: .9; margin-left: 2px; }
+    .pg { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+    /* Hero slide: everything on the gradient */
+    .hero-in { position: absolute; inset: 0; padding: 0 96px; display: grid; grid-template-columns: 6fr 6fr; gap: 64px; align-items: center; }
+    .hero-in.one { grid-template-columns: 1fr; }
+    .hero-in .txt { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+    .num-tag { font-family: var(--font-heading); font-style: italic; font-weight: 300; font-size: 30px; color: var(--accent-on-dark); margin-bottom: -6px; }
+
+    /* Layout helpers inside panels */
+    .cols { display: grid; gap: 40px; flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+    .c2 { grid-template-columns: 1fr 1fr; } .c3 { grid-template-columns: repeat(3, 1fr); } .c4 { grid-template-columns: repeat(4, 1fr); }
+    .c57 { grid-template-columns: 5fr 7fr; } .c75 { grid-template-columns: 7fr 5fr; } .c66 { grid-template-columns: 1fr 1fr; }
+    .stack { display: flex; flex-direction: column; gap: 20px; min-width: 0; min-height: 0; }
+    .center { justify-content: center; }
+    .sub { font-size: 20px; line-height: 1.6; color: var(--muted-ink); }
+    .sub.strong { color: var(--ink); font-weight: 400; }
+
+    /* Eyebrow on white, as .cs-eyebrow */
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-text); }
+    .eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; border-radius: 2px; }
+
+    /* Numbered points */
+    ol.pts { list-style: none; margin: 0; padding: 0; counter-reset: p; display: flex; flex-direction: column; gap: 18px; }
+    ol.pts li { counter-increment: p; position: relative; padding-left: 58px; font-size: 22px; line-height: 1.5; color: rgba(0,0,0,0.7); }
+    ol.pts li b { color: var(--ink); }
+    ol.pts li::before { content: counter(p); position: absolute; left: 0; top: 0; width: 38px; height: 38px; border-radius: 12px; background: #f1ecff; color: var(--accent); font-family: var(--font-heading); font-weight: 800; font-size: 19px; display: grid; place-items: center; }
+    .hero ol.pts li { color: rgba(255,255,255,0.8); }
+    .hero ol.pts li b { color: #fff; }
+    .hero ol.pts li::before { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+
+    /* Cards, as .who-card */
+    .card { background: #fff; border: 1px solid rgba(54,16,155,0.14); border-radius: 18px; padding: 24px 26px; box-shadow: 0 14px 40px rgba(20,10,60,0.06); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .card h3 { font-size: 24px; line-height: 1.2; color: var(--ink); font-weight: 700; }
+    .card p { font-size: 18px; line-height: 1.55; color: rgba(0,0,0,0.65); }
+    .card .icon { width: 44px; height: 44px; border-radius: 14px; background: #f1ecff; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 6px; font-family: var(--font-heading); font-weight: 800; font-size: 18px; }
+    .card.tint { background: var(--stat-fill); border-color: rgba(54,16,155,0.08); box-shadow: none; }
+    /* Highlight card, as the purple statement card */
+    .card.dark { position: relative; overflow: hidden; background: linear-gradient(135deg, #0c0930 0%, #1b0f4a 55%, #0a0f35 100%); border: 0; color: #fff; }
+    .card.dark::before { content: ''; position: absolute; width: 300px; height: 300px; right: -90px; top: -120px; border-radius: 50%; background: rgba(220,38,170,0.28); filter: blur(80px); pointer-events: none; }
+    .card.dark h3 { color: #fff; position: relative; }
+    .card.dark p { color: rgba(255,255,255,0.75); position: relative; }
+    .card.dark .icon { background: rgba(255,255,255,0.12); color: #fff; position: relative; }
+    .hero .card { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); box-shadow: none; }
+    .hero .card h3 { color: #fff; }
+    .hero .card p { color: rgba(255,255,255,0.78); }
+
+    /* Stats, as .cs-stat */
+    .stats { display: grid; gap: 16px; }
+    .stats.s3 { grid-template-columns: repeat(3, 1fr); } .stats.s4 { grid-template-columns: repeat(4, 1fr); }
+    .stat { background: var(--stat-fill); border: 1px solid rgba(54,16,155,0.08); border-radius: 20px; padding: 24px 24px 22px; display: flex; flex-direction: column; gap: 10px; }
+    .stat b { font-family: var(--font-heading); font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: var(--tracking-tight); color: var(--accent); font-variant-numeric: tabular-nums; }
+    .stat span { font-size: 17px; line-height: 1.45; color: var(--ink); }
+    .stats.col1 { grid-template-columns: 1fr; }
+
+    /* Chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { font-size: 16px; font-weight: 400; padding: 9px 16px; border-radius: 999px; background: #f1ecff; color: var(--ink); }
+    .hero .chip { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.28); color: #fff; }
+
+    /* Found -> changed rows */
+    .rows { display: flex; flex-direction: column; gap: 10px; }
+    .rows-head, .row { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: center; gap: 8px; }
+    .rows-head { padding: 0 22px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(46,30,98,0.55); }
+    .row { background: #fff; border: 1px solid rgba(54,16,155,0.14); border-radius: 14px; padding: 14px 22px; font-size: 18px; line-height: 1.4; color: rgba(0,0,0,0.65); }
+    .row .arr { color: var(--accent-bright); text-align: center; font-size: 22px; }
+    .row .to { color: var(--ink); font-weight: 700; }
+    .row.key { background: var(--accent); border-color: transparent; color: rgba(255,255,255,0.85); }
+    .row.key .to { color: #fff; } .row.key .arr { color: var(--accent-on-dark); }
+
+    /* Media frames, as .cs-frame */
+    .frame { position: relative; border-radius: 20px; overflow: hidden; background: var(--deep); box-shadow: 0 30px 80px rgba(20,10,60,0.16), 0 2px 6px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); min-height: 0; }
+    .frame img, .frame video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .frame.contain img, .frame.contain video { object-fit: contain; background: #fff; }
+    .frame.fill { flex: 1 1 0; }
+    .frame.fill img, .frame.fill video { position: absolute; inset: 0; }
+    .hero .frame { box-shadow: 0 30px 80px rgba(0,0,30,0.6); border-color: rgba(255,255,255,0.12); }
+    .cap { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,0.5); }
+    .hero .cap { color: rgba(255,255,255,0.6); }
+    /* Phone frame for mobile recordings */
+    .phone { position: relative; height: 100%; aspect-ratio: 780 / 1688; max-height: 100%; margin: 0 auto; border-radius: 40px; padding: 10px; background: #0c0930; box-shadow: 0 30px 70px rgba(20,10,60,0.35), inset 0 0 0 2px rgba(255,255,255,0.08); }
+    .phone .frame { height: 100%; border-radius: 30px; border: 0; box-shadow: none; }
+
+    /* Video and image controls */
+    .media-ui { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 8px; opacity: 0; transition: opacity .2s; z-index: 2; }
+    .frame:hover .media-ui, .frame:focus-within .media-ui { opacity: 1; }
+    .media-ui button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: rgba(12,9,48,0.78); color: #fff; cursor: pointer; display: grid; place-items: center; padding: 0; }
+    .media-ui button:hover { background: var(--accent); }
+    .media-ui svg { width: 18px; height: 18px; }
+    button:focus-visible, a:focus-visible { outline: 3px solid #c0a7ff; outline-offset: 3px; }
+
+    /* To-add notes: delete these as you fill the gaps */
+    .todo { border: 2px dashed var(--todo); background: #fff7ed; border-radius: 14px; padding: 12px 18px; font-size: 16px; line-height: 1.45; color: #5b3a12; }
+    .todo::before { content: "To add · "; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; color: var(--todo); }
+    .hero .todo { background: rgba(255,247,237,0.95); }
+
+    /* Flow steps (How I work, Guidelines, 90 days) */
+    .steps { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 18px; }
+    .step { position: relative; }
+    .step .card { height: 100%; }
+    .step + .step::before { content: ''; position: absolute; left: -15px; top: 46px; width: 12px; height: 12px; border-top: 2px solid var(--accent-bright); border-right: 2px solid var(--accent-bright); transform: rotate(45deg); }
+
+    /* Agenda */
+    .agenda { display: flex; flex-direction: column; gap: 12px; }
+    .agenda a { display: grid; grid-template-columns: 64px 1fr 320px; align-items: center; gap: 16px; padding: 16px 24px; border-radius: 16px; border: 1px solid rgba(54,16,155,0.14); background: #fff; color: var(--ink); text-decoration: none; transition: transform .3s var(--ease-smooth), box-shadow .3s; }
+    .agenda a:hover { transform: translateX(6px); box-shadow: 0 14px 40px rgba(20,10,60,0.08); }
+    .agenda .n { font-family: var(--font-heading); font-style: italic; font-weight: 300; font-size: 30px; color: var(--accent-text); }
+    .agenda h3 { font-size: 26px; color: var(--ink); }
+    .agenda p { font-size: 16px; color: var(--muted-ink); margin-top: 2px; }
+    .agenda .sq { justify-self: end; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); text-align: right; }
+
+    /* Quote, as the statement card */
+    .quote { position: relative; overflow: hidden; background: linear-gradient(135deg, #0c0930 0%, #1b0f4a 55%, #0a0f35 100%); border-radius: 24px; padding: 30px 36px; color: #fff; }
+    .quote::before { content: ''; position: absolute; width: 360px; height: 360px; right: -100px; top: -150px; border-radius: 50%; background: rgba(220,38,170,0.28); filter: blur(90px); }
+    .quote blockquote { position: relative; margin: 0; font-family: var(--font-heading); font-weight: 300; font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.75); }
+    .quote mark { background: linear-gradient(transparent 60%, rgba(167,139,250,0.45) 60%); color: #fff; font-weight: 600; padding: 0 2px; }
+    .quote .who { position: relative; margin-top: 14px; font-size: 15px; color: rgba(255,255,255,0.7); }
+    .quote .who strong { color: #fff; }
+
+    /* Ice breaker */
+    .ice-wrap { position: relative; height: 104px; flex: none; }
+    .reveal { position: absolute; inset: 0; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; padding: 0 28px; border-radius: 18px; background: var(--stat-fill); border: 1px solid rgba(54,16,155,0.08); opacity: 0; transform: scale(.98); transition: opacity .6s .35s, transform .6s .35s; }
+    .reveal .big { font-family: var(--font-heading); font-size: 36px; font-weight: 800; letter-spacing: var(--tracking-tight); color: var(--accent); white-space: nowrap; }
+    .reveal p { font-size: 17px; line-height: 1.5; color: var(--ink); }
+    .ice { position: absolute; inset: 0; border: 0; padding: 0; background: none; cursor: pointer; font: inherit; }
+    .ice .half { position: absolute; inset: 0; border-radius: 18px; background: linear-gradient(160deg, #f6fcff 0%, #d6eef8 40%, #a9d6ea 100%); box-shadow: inset 0 0 0 2px rgba(255,255,255,.75), inset 0 -24px 50px rgba(70,140,175,.25), 0 18px 40px -24px rgba(40,90,120,.5); transition: transform .9s cubic-bezier(.2,.7,.2,1) .25s, opacity .9s .25s; }
+    .ice .l { clip-path: polygon(0 0, 52% 0, 49% 25%, 54% 50%, 48% 76%, 51% 100%, 0 100%); }
+    .ice .r { clip-path: polygon(52% 0, 100% 0, 100% 100%, 51% 100%, 48% 76%, 54% 50%, 49% 25%); }
+    .ice .shine { position: absolute; inset: 10px 22px auto; height: 26px; border-radius: 20px; background: linear-gradient(90deg, rgba(255,255,255,.8), rgba(255,255,255,0)); transition: opacity .3s; }
+    .ice .lbl { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; font-family: var(--font-heading); font-weight: 700; font-size: 26px; color: #1f5f7d; letter-spacing: var(--tracking-tight); transition: opacity .25s; }
+    .ice .lbl small { display: block; margin-top: 4px; font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .ice svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .3s .55s; }
+    .ice svg path { fill: none; stroke: #fff; stroke-width: 3; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset .3s ease-out; }
+    .ice-wrap.open .ice svg path { stroke-dashoffset: 0; }
+    .ice-wrap.open .ice svg, .ice-wrap.open .lbl, .ice-wrap.open .shine { opacity: 0; }
+    .ice-wrap.open .l { transform: translate(-700px, 50px) rotate(-10deg); opacity: 0; }
+    .ice-wrap.open .r { transform: translate(700px, 60px) rotate(9deg); opacity: 0; }
+    .ice-wrap.open .reveal { opacity: 1; transform: none; }
+    .ice-wrap.open .ice { pointer-events: none; }
+
+    /* ---------- Controls, overview, notes, lightbox ---------- */
+    .controls { position: fixed; right: 18px; bottom: 16px; display: flex; gap: 8px; align-items: center; z-index: 20; opacity: 0; transition: opacity .25s; }
+    body.show-ui .controls, .controls:focus-within { opacity: 1; }
+    .controls button { height: 42px; min-width: 42px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); background: rgba(10,10,40,0.7); color: #fff; font: 700 13px var(--font-body); letter-spacing: .06em; cursor: pointer; }
+    .controls button:hover { background: var(--accent); }
+    .progress { position: fixed; left: 0; top: 0; height: 3px; background: var(--accent-bright); z-index: 20; transition: width .4s var(--ease-smooth); }
+    .notes { position: fixed; left: 50%; bottom: 72px; transform: translateX(-50%); width: min(900px, calc(100% - 32px)); background: rgba(12,9,48,0.94); border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; padding: 16px 20px; z-index: 21; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.88); }
+    .notes h4 { margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-bright); }
+    .overview { position: fixed; inset: 0; z-index: 30; background: rgba(0,1,19,0.97); overflow-y: auto; padding: 32px max(16px, 4vw) 60px; }
+    .overview h4 { margin: 0 0 4px; font-family: var(--font-heading); font-size: 28px; letter-spacing: var(--tracking-tight); }
+    .overview .hint { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+    .ov-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+    .ov-sec { grid-column: 1 / -1; margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-bright); }
+    .ov-item { text-align: left; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #fff; font: 400 15px/1.35 var(--font-body); cursor: pointer; }
+    .ov-item small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-on-dark); margin-bottom: 4px; }
+    .ov-item.cur, .ov-item:hover { background: rgba(54,16,155,0.85); border-color: var(--accent-bright); }
+    .ov-item.gap small::after { content: " · to add"; color: #fdba74; }
+    .lightbox { position: fixed; inset: 0; z-index: 40; background: rgba(8,6,30,0.97); display: grid; place-items: center; padding: 56px 24px 24px; }
+    .lightbox img, .lightbox video { max-width: 100%; max-height: 100%; border-radius: 12px; background: #fff; }
+    .lightbox .close { position: absolute; top: 12px; right: 16px; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #fff; font-size: 22px; cursor: pointer; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .g1, .g2, .g3, .g5, .crt-grain-layer { animation: none; }
+      .slide, .ice *, .reveal { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="viewport">
+<main class="stage" id="stage">
+  <div class="gradient-bg" aria-hidden="true">
+    <div class="gradients-container"><div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g5"></div></div>
+    <div class="crt-grain-layer"></div>
+  </div>
+
+  <!-- ================= INTRO ================= -->
+
+  <!-- 1 Title -->
+  <section class="slide hero" data-sec="Intro" data-time="2.5 min" data-title="Title" data-gap
+    data-notes="Thanks for having me. I'll take you through five projects, about 20 minutes, then I'm happy to take questions.">
+    <div class="hero-in one">
+      <div class="txt">
+        <span class="label">Portfolio presentation · The White Company</span>
+        <h1>Nick Thompson</h1>
+        <p class="lead" style="font-family:var(--font-heading);font-style:italic;font-size:36px;color:#fff;">Product Designer</p>
+        <div class="chips"><span class="chip">Buy</span><span class="chip">Browse</span><span class="chip">Seasonal launches</span><span class="chip">Design system</span></div>
+        <div class="todo" style="max-width:560px">Your title: Product Designer, or Lead Digital Designer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 About me -->
+  <section class="slide" data-sec="Intro" data-title="A bit about me"
+    data-notes="Ten years, five at Asda. UX design and build of supplier-funded pages. Now Infoserve. I want to own a product in-house and improve it. [Click the ice] And a quick ice breaker: I spent seven months in Chile, learnt Spanish and taught English in schools. It's still how I mentor.">
+    <div class="head"><span class="label">Introduction</span><h2>A bit about me</h2></div>
+    <div class="panel">
+      <div class="cols c57">
+        <div class="stats col1">
+          <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>10+</b><span>years in digital design: UX, UI, web and brand</span></div>
+          <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>5 yrs</b><span>Lead Web Designer at Asda</span></div>
+          <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>~3,000</b><span>funded campaigns a year</span></div>
+        </div>
+        <ol class="pts" style="align-self:center">
+          <li><b>At Asda,</b> I was mainly responsible for the UX design and build of supplier-funded pages across the website and app.</li>
+          <li><b>Now,</b> I'm Lead Digital Designer at Infoserve, leading UX and web projects from research to launch.</li>
+          <li><b>What I'm looking for:</b> owning a product in-house, testing with customers, and improving it over time.</li>
+        </ol>
+      </div>
+      <div class="ice-wrap">
+        <div class="reveal"><span class="big">7 months in Chile</span><p>I learnt Spanish and taught English to primary and secondary school students on a government teaching programme. It's where I learnt to explain things clearly, and how I still mentor: show it, do it together, then let them do it.</p></div>
+        <button class="ice" type="button" aria-label="Break the ice"><span class="half l"></span><span class="half r"></span><span class="shine"></span><svg viewBox="0 0 1400 104" preserveAspectRatio="none" aria-hidden="true"><path d="M728 0 L686 26 L756 52 L672 78 L714 104 M686 26 L640 14 M756 52 L800 44 M672 78 L630 90"/></svg><span class="lbl"><span>Break the ice<small>Click or press Space</small></span></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 How I work -->
+  <section class="slide" data-sec="Intro" data-title="How I work, and where AI fits" data-gap
+    data-notes="This is how I work, and where AI fits in. Every step points to a project you're about to see.">
+    <div class="head"><span class="label">Approach</span><h2>How I work, and where AI fits</h2></div>
+    <div class="panel">
+      <div class="steps" style="flex:1">
+        <div class="step"><div class="card"><span class="icon">1</span><h3>Understand</h3><p>Stakeholders, data, and an audit of what exists.</p><p><b style="color:var(--accent)">AI:</b> summarising calls and compiling feedback, every summary checked.</p></div></div>
+        <div class="step"><div class="card"><span class="icon">2</span><h3>Explore</h3><p>Journeys and options, with honest trade-offs.</p></div></div>
+        <div class="step"><div class="card dark"><span class="icon">3</span><h3>Prototype and test</h3><p>In Figma, with real people.</p><p><b style="color:#fff">AI:</b> turning designs into working prototypes faster.</p></div></div>
+        <div class="step"><div class="card"><span class="icon">4</span><h3>Launch and improve</h3><p>Developers in early, measure, and keep supporting after launch.</p></div></div>
+      </div>
+      <p class="sub strong" style="font-family:var(--font-heading);font-size:24px">AI speeds up the making. The research and the decisions stay with me.</p>
+      <div class="todo">Any other real AI uses, such as research, copy or design system checks. Only if true.</div>
+    </div>
+  </section>
+
+  <!-- 4 Agenda -->
+  <section class="slide" data-sec="Intro" data-title="Five projects"
+    data-notes="In the first interview you mentioned the Buy and Browse squads, the app, seasonal launches and the design system. So I've picked five projects that line up with those areas. I'll spend most time on the first one.">
+    <div class="head"><span class="label">Today</span><h2>Five projects across the areas you work in</h2></div>
+    <div class="panel" style="justify-content:center">
+      <nav class="agenda">
+        <a href="#5" data-goto="5"><span class="n">01</span><div><h3>Treasured Possession</h3><p>A quote and checkout redesign, in progress</p></div><span class="sq">Buy · quote and checkout</span></a>
+        <a href="#13" data-goto="13"><span class="n">02</span><div><h3>Asda Design Guidelines</h3><p>One product, two versions</p></div><span class="sq">Design system · accessibility</span></a>
+        <a href="#16" data-goto="16"><span class="n">03</span><div><h3>LHA London</h3><p>Search, filters and room cards</p></div><span class="sq">Browse · search and room details</span></a>
+        <a href="#18" data-goto="18"><span class="n">04</span><div><h3>Asda Experiential Hubs</h3><p>From a gap in the offer to a repeatable product</p></div><span class="sq">Seasonal launches</span></a>
+        <a href="#20" data-goto="20"><span class="n">05</span><div><h3>Asda Pets</h3><p>Rules versus what shoppers came for</p></div><span class="sq">Browse · merchandising</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ================= 01 TREASURED POSSESSION ================= -->
+
+  <!-- 5 -->
+  <section class="slide hero" data-sec="01 Treasured Possession" data-time="7 min" data-title="A price from the first choice"
+    data-notes="This one's still in progress. I'm showing it because it's my most complete example of the full process, and of how I'm using AI to do more of it myself.">
+    <div class="hero-in">
+      <div class="txt">
+        <span class="num-tag">01</span>
+        <span class="label">Buy · quote and checkout · in progress</span>
+        <h2>A price from the first choice</h2>
+        <p class="lead">A quote and checkout redesign for a wedding dress cleaning service. Still in progress: I'm showing it because it's my most complete example of the full process, and of how I now use AI to take on more of the work myself.</p>
+        <div class="chips"><span class="chip">Lead designer</span><span class="chip">Research to prototype</span><span class="chip">Figma</span></div>
+      </div>
+      <figure class="frame" style="height:470px;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/treasured-possession/tp-flow-poster.jpg" data-src="img/portfolio/treasured-possession/tp-flow.mp4"></video></figure>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" data-sec="01 Treasured Possession" data-title="The problem"
+    data-notes="The price only appeared in the basket, and people who left left no trace. The client wanted more orders and a lead for every quote.">
+    <div class="head"><span class="label">01 · The problem</span><h2>An "instant price" you had to work for</h2></div>
+    <div class="panel">
+      <div class="cols c2">
+        <div class="stack">
+          <ol class="pts">
+            <li>Every field, including two dates, before <b>"Calculate Order"</b>.</li>
+            <li>That button <b>added to basket</b>, so the first price was in the basket.</li>
+            <li>People who left <b>left no trace</b>, so the business couldn't follow up.</li>
+          </ol>
+          <div class="cols c2" style="flex:none;gap:16px">
+            <div class="card dark"><h3>Goals</h3><p>More orders · a lead for every quote · fewer drop-outs</p></div>
+            <div class="card tint"><h3>Constraints</h3><p>Fixed budget · WooCommerce · small client team</p></div>
+          </div>
+        </div>
+        <figure class="frame fill" style="margin:0"><img src="img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="The original quote form"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" data-sec="01 Treasured Possession" data-title="Research"
+    data-notes="Small budget, so I picked each method for the question it answers. Order data: £251 average, about 23 orders a month. Every competitor shows a price in two clicks, and none asks for an email first.">
+    <div class="head"><span class="label">01 · Research</span><h2>Research chosen to answer specific questions</h2></div>
+    <div class="panel">
+      <div class="chips"><span class="chip">Heuristic audit</span><span class="chip">Accessibility (WCAG 2.2 AA)</span><span class="chip">12 months of order data</span><span class="chip">Competitor benchmark</span><span class="chip">Cross-industry patterns</span><span class="chip">Review analysis</span></div>
+      <div class="stats s4">
+        <div class="stat"><b>£251</b><span>average order value</span></div>
+        <div class="stat"><b>~23</b><span>paid orders a month</span></div>
+        <div class="stat"><b>65%</b><span>of dress orders add a box</span></div>
+        <div class="stat"><b>4%</b><span>choose Express</span></div>
+      </div>
+      <div class="cols c2" style="flex:none">
+        <div class="card dark"><h3>What competitors showed</h3><p>Every competitor shows a total within two clicks. None asks for an email first.</p></div>
+        <div class="card"><h3>What the order data changed</h3><p>Box size always follows dress style, so it's chosen automatically. Popular options are listed first.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" data-sec="01 Treasured Possession" data-title="From findings to a flow"
+    data-notes="I tested the current form with five colleagues, grouped what I found into four problems, and designed a flow split by what customers are sending: quote first, booking second.">
+    <div class="head"><span class="label">01 · Synthesis and flow</span><h2>From findings to a flow</h2></div>
+    <div class="panel">
+      <div class="cols c57">
+        <div class="stack">
+          <div class="card"><h3>Tested the current form</h3><p>Five colleagues, the same three tasks. Not real customers, so it shows where the form is hard to use. Reviews cover how customers feel.</p></div>
+          <div class="card dark"><h3>Four problems</h3><p>Price hidden · unclear questions · not built for everyone · no second chance</p></div>
+          <div class="card tint"><h3>The new flow</h3><p>Split by what's being sent. Quote first, booking second.</p></div>
+        </div>
+        <div class="stack">
+          <figure class="frame fill contain" style="margin:0"><img src="img/portfolio/treasured-possession/tp-wireframes.jpg" alt="Mobile wireframes, step by step" style="object-position:left top"></figure>
+          <figure class="frame fill contain" style="margin:0"><img src="img/portfolio/treasured-possession/tp-wireframes-desktop.jpg" alt="Desktop wireframes" style="object-position:left top"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" data-sec="01 Treasured Possession" data-title="Testing the prototype"
+    data-notes="We built a prototype with real prices and tested it. Each finding led to a change. Edit quote was easy to miss, so it became a full button.">
+    <div class="head"><span class="label">01 · Testing</span><h2>Testing the prototype</h2></div>
+    <div class="panel">
+      <div class="cols c57">
+        <div class="cols c2" style="gap:16px">
+          <figure class="frame" style="margin:0"><img src="img/portfolio/treasured-possession/tp-usability-testing-1.jpg" alt="A colleague testing the prototype on a laptop"></figure>
+          <figure class="frame" style="margin:0"><img src="img/portfolio/treasured-possession/tp-usability-testing-2.jpg" alt="A second testing session"></figure>
+        </div>
+        <div class="rows">
+          <div class="rows-head"><span>What testing showed</span><span></span><span>What changed</span></div>
+          <div class="row key"><span>"Edit quote" was easy to miss</span><span class="arr">→</span><span class="to">A full button</span></div>
+          <div class="row"><span>Unsure which style their dress was</span><span class="arr">→</span><span class="to">"Not sure?" panel and "from" prices</span></div>
+          <div class="row"><span>Dates were unclear</span><span class="arr">→</span><span class="to">A colour-coded calendar</span></div>
+          <div class="row"><span>Desktop relied on the total bar</span><span class="arr">→</span><span class="to">Continue on every step</span></div>
+          <div class="row"><span>Thumbs on mobile</span><span class="arr">→</span><span class="to">Fixed bottom bar, 44px targets</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" data-sec="01 Treasured Possession" data-title="Pushback with the client"
+    data-notes="The client wanted email first. I didn't argue opinion: I showed competitors, the effort it adds, and why an A/B test wasn't possible. We agreed price first, with email first ready to test.">
+    <div class="head"><span class="label">01 · Pushback</span><h2>Working through pushback with the client</h2></div>
+    <div class="panel">
+      <div class="cols c3" style="flex:none">
+        <div class="card dark"><span class="icon">1</span><h3>Email first or price first?</h3><p>The client wanted the email before any price. Competitors and the effort it adds said price first. Too few orders for an A/B test, so we launch price first, measure saved quotes, and keep email first ready to test.</p></div>
+        <div class="card"><span class="icon">2</span><h3>"Why £30 for my own box?"</h3><p>People couldn't see what it paid for. Renamed "Pack and present" to show the expert packing.</p></div>
+        <div class="card"><span class="icon">3</span><h3>Charges that felt like penalties</h3><p>Admin fee removed, the bag shown as included, and follow-up emails added for saved quotes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" data-sec="01 Treasured Possession" data-title="Look and feel in Figma"
+    data-notes="I designed the look in Figma, building on their brand, then made a working prototype so the client and developer could click through every route before build. Accessible to WCAG 2.2 AA.">
+    <div class="head"><span class="label">01 · Figma</span><h2>Look and feel in Figma</h2></div>
+    <div class="panel">
+      <div class="cols c75">
+        <div class="stack">
+          <figure class="frame fill contain" style="margin:0"><img src="img/portfolio/treasured-possession/tp-after-step1.jpg" alt="The final first step on desktop"></figure>
+          <div class="chips"><span class="chip">Brand plum and blush</span><span class="chip">New line icons</span><span class="chip">Pill-shaped cards</span><span class="chip">WCAG 2.2 AA</span></div>
+        </div>
+        <div class="phone"><figure class="frame" style="margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/treasured-possession/tp-flow-mobile-poster.jpg" data-src="img/portfolio/treasured-possession/tp-flow-mobile.mp4"></video></figure></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" data-sec="01 Treasured Possession" data-title="AI and after launch" data-gap
+    data-notes="[Depends on your AI answers.] After launch, we'll measure against the baseline, and the client already has next ideas, so the handover isn't the end.">
+    <div class="head"><span class="label">01 · AI and after launch</span><h2>Where AI helped, and what happens next</h2></div>
+    <div class="panel">
+      <div class="cols c2">
+        <div class="stack">
+          <div class="card dark"><h3>Where AI helped</h3><p>To fill in from your answers.</p></div>
+          <div class="todo">Which stages: order data, competitor summaries, prototype build, copy, testing notes?</div>
+          <div class="todo">How the prototype was built: Figma, code, or both</div>
+          <div class="todo">Where you held back: decisions, checking numbers, no personal data</div>
+        </div>
+        <div class="stack">
+          <div class="card"><h3>What we'll measure</h3><p>Quote visitors who order · leads captured · orders recovered by follow-up emails. Compared with the baseline after eight weeks.</p></div>
+          <div class="card tint"><h3>What the client wants next</h3><p>Seasonal box designs · suit preservation · preservation as a gift</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 GUIDELINES ================= -->
+
+  <!-- 13 -->
+  <section class="slide hero" data-sec="02 Asda Design Guidelines" data-time="3.5 min" data-title="One product, two versions" data-gap
+    data-notes="There were two versions. First I moved the PDFs to a navigable site. Then Asda changed CMS, so I worked with the CMS product owner to rebuild it from their components, so the team could update it without me.">
+    <div class="hero-in">
+      <div class="txt">
+        <span class="num-tag">02</span>
+        <span class="label">Design system · accessibility</span>
+        <h2>One product, two versions</h2>
+        <ol class="pts">
+          <li><b>Before:</b> PDFs, rejected banners and the same questions again and again.</li>
+          <li><b>Version 1:</b> a navigable site, within what Asda.com could do.</li>
+          <li><b>Platform change:</b> Asda moved to a new CMS.</li>
+          <li><b>Version 2:</b> rebuilt with the CMS product owner from standard components, so the team could update it without me.</li>
+        </ol>
+        <div class="todo">Any pushback, for example from the product owner over CMS limits. If none, the trade-off is enough.</div>
+      </div>
+      <figure class="frame" style="height:440px;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/asda-guidelines-poster.png" data-src="img/portfolio/UX%20design/AsdaDesignTemplateGuidelines.mp4"></video></figure>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Testing and the Artwork Checker"
+    data-notes="The suppliers were the users, so I tested with them directly. The big finding everyone had missed led to the Artwork Checker.">
+    <div class="head"><span class="label">02 · Testing</span><h2>Testing before version 2 went live</h2></div>
+    <div class="panel">
+      <div class="cols c57">
+        <ol class="pts" style="align-self:center">
+          <li><b>Five suppliers</b>, the same task, then follow-up sessions.</li>
+          <li>A banner supplied at <b>1000px</b> could show at <b>400px</b>, and roundels covered text.</li>
+          <li>So I designed and built the <b>Artwork Checker</b>: real size, with safe zones.</li>
+        </ol>
+        <figure class="frame contain" style="margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/Artwork-Checker-Poster.png" data-src="img/portfolio/UX%20design/Artwork-Checker.mp4"></video></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Results and handover" data-gap
+    data-notes="Implementation up from 95 to 98%, questions halved, and the Checker became part of approval. It was built so the team could keep it going without me.">
+    <div class="head"><span class="label">02 · Results and handover</span><h2>Results, and handing it on</h2></div>
+    <div class="panel">
+      <div class="stats s3">
+        <div class="stat"><b>95→98%</b><span>media implementation rate</span></div>
+        <div class="stat"><b>~50%</b><span>fewer supplier questions</span></div>
+        <div class="stat"><b>1,000+</b><span>banners checked at peak through the Checker</span></div>
+      </div>
+      <div class="cols c2" style="flex:none">
+        <div class="card dark"><h3>Handover</h3><p>Pages the team updates themselves · templates and UI toolkit · WCAG rules suppliers met</p></div>
+        <div class="card"><h3>Design system on the agency side</h3><p>Branded Zone code templates, and training for the designers on my team.</p></div>
+      </div>
+      <div class="todo">Anything handed to a client at Infoserve, such as a style guide or component set?</div>
+    </div>
+  </section>
+
+  <!-- ================= 03 LHA ================= -->
+
+  <!-- 16 -->
+  <section class="slide hero" data-sec="03 LHA London" data-time="1.5 min" data-title="Applicants were enquiring blind"
+    data-notes="People enquired blind about full rooms. I designed search, room cards and a waiting list, and built it in WordPress.">
+    <div class="hero-in">
+      <div class="txt">
+        <span class="num-tag">03</span>
+        <span class="label">Browse · search and room details</span>
+        <h2>Applicants were enquiring blind</h2>
+        <ol class="pts">
+          <li>No availability, photos or filters, so people asked about <b>full rooms</b>.</li>
+          <li>LHA vets everyone, so <b>no instant booking</b>.</li>
+          <li><b>Search by area and room type</b>, with room cards showing photos, price and availability.</li>
+          <li>Full rooms go to a <b>waiting list</b>.</li>
+        </ol>
+      </div>
+      <figure class="frame" style="height:420px;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/lha-ux.jpg" data-src="img/portfolio/UX%20design/lha-ux.mp4"></video></figure>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" data-sec="03 LHA London" data-title="Results"
+    data-notes="One in five use the search, engagement is five times longer, and generic enquiries fell 83%. The team runs it themselves.">
+    <div class="head"><span class="label">03 · Results</span><h2>Better enquiries, not more of them</h2></div>
+    <div class="panel">
+      <div class="stats s4">
+        <div class="stat"><b>1 in 5</b><span>visitors use the room search</span></div>
+        <div class="stat"><b>5×</b><span>longer engagement (13s to 1m 08s)</span></div>
+        <div class="stat"><b>83%</b><span>fewer generic enquiries</span></div>
+        <div class="stat"><b>70</b><span>rooms the team runs themselves</span></div>
+      </div>
+      <div class="cols c57" style="flex:none">
+        <div class="card tint"><h3>After launch</h3><p>The LHA team updates prices and availability themselves, without a developer.</p></div>
+        <div class="quote"><blockquote>We've already seen more confident user engagement and <mark>higher-quality enquiries</mark>.</blockquote><div class="who"><strong>Aggie Leighton</strong>, Operations Support Manager, LHA London</div></div>
+      </div>
+      <p class="cap">Google Analytics, March to October 2026 vs the same period in 2025.</p>
+    </div>
+  </section>
+
+  <!-- ================= 04 HUBS ================= -->
+
+  <!-- 18 -->
+  <section class="slide hero" data-sec="04 Asda Experiential Hubs" data-time="2 min" data-title="From a gap in the offer" data-gap
+    data-notes="A gap in what Asda could sell. I pitched a shared hub Asda owned, so I could design for customers. Sales and senior management wanted different things, so I got buy-in early with wireframes.">
+    <div class="hero-in">
+      <div class="txt">
+        <span class="num-tag">04</span>
+        <span class="label">Seasonal launches</span>
+        <h2>From a gap in the offer to a repeatable product</h2>
+        <ol class="pts">
+          <li>Branded Zones were too expensive, so I pitched a <b>shared hub</b>, owned by Asda.</li>
+          <li>Rejected a product list. Built it around a <b>competition</b>.</li>
+          <li><b>Piloted</b> on the King's Coronation.</li>
+        </ol>
+        <div class="card"><h3>Pushback</h3><p>Sales wanted engagement and a return for suppliers. Senior management wanted consistency and scale. Stakeholders questioned the artwork, so I found the real concern and let customer data decide.</p></div>
+        <div class="todo">One specific moment, if you remember it</div>
+      </div>
+      <figure class="frame" style="height:400px;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/Bus-Tour-Web-poster.png" data-src="img/portfolio/UX%20design/Bus-Tour-Web.mp4"></video></figure>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="A template for the biggest events"
+    data-notes="It became a template across Asda's biggest events, with nearly a million clicks from the app. Next time I'd A/B test within an event.">
+    <div class="head"><span class="label">04 · Results</span><h2>A template for Asda's biggest events</h2></div>
+    <div class="panel">
+      <div class="cols c57">
+        <div class="stack">
+          <div class="stats col1">
+            <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>910k+</b><span>Big Night In entries, 26 suppliers</span></div>
+            <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>1.1m+</b><span>Lunar New Year entries, 25% more</span></div>
+            <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>~1m</b><span>clicks from the Rewards app</span></div>
+          </div>
+          <div class="card"><h3>Next time</h3><p>A/B test the competition and layout within one event, and track product views and basket adds.</p></div>
+        </div>
+        <figure class="frame" style="margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/Year-of-the-dragon-poster.png" data-src="img/portfolio/UX%20design/Year-of-the-dragon.mp4"></video></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 PETS ================= -->
+
+  <!-- 20 -->
+  <section class="slide" data-sec="05 Asda Pets" data-time="1 min" data-title="Rules versus what shoppers came for" data-gap
+    data-notes="Several departments wanted different things. I showed options rather than one answer, and we agreed shoppers come first. That leads into what you said about personalisation.">
+    <div class="head"><span class="label">05 · Browse · merchandising</span><h2>Rules versus what shoppers came for</h2></div>
+    <div class="panel">
+      <div class="cols c3" style="flex:none;gap:16px">
+        <div class="card tint"><h3>Four groups, different needs</h3><p>Sales sold a takeover · merchandising owned the pages · brands paid for visibility · shoppers needed the right food fast.</p></div>
+        <div class="card dark"><h3>Agreed</h3><p>Three options pitched to senior merchandising. Navigation first, funded slots below.</p></div>
+        <div class="todo" style="align-self:start">What merchandising actually pushed back on</div>
+      </div>
+      <div class="cols c3" style="gap:16px">
+        <figure class="frame" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-option-1.jpg" alt="Option 1: sponsored category page"></figure>
+        <figure class="frame" style="margin:0;outline:3px solid var(--accent);outline-offset:-3px"><img src="img/portfolio/asda-pages/pets/pets-option-2.jpg" alt="The agreed option: hub with navigation first"></figure>
+        <figure class="frame" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-option-3.jpg" alt="Option 3: hub without navigation"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CLOSE ================= -->
+
+  <!-- 21 -->
+  <section class="slide" data-sec="Close" data-time="2.5 min" data-title="Opportunities" data-gap
+    data-notes="From the outside, these are the opportunities I'd want to explore, starting with what you told me about intent-based search and merchandising.">
+    <div class="head"><span class="label">Looking ahead</span><h2>Opportunities for The White Company</h2></div>
+    <div class="panel">
+      <div class="cols c3" style="flex:none">
+        <div class="card dark"><span class="icon">1</span><h3>Results based on intent</h3><p>You mentioned wanting search and merchandising based on what customers are looking for, not fixed rules. Pets was the same tension.</p></div>
+        <div class="card"><span class="icon">2</span><h3>Showing quality online</h3><p>Fabric, weight and finish: zoom, close-ups, styled rooms, and care and sizing one click away.</p></div>
+        <div class="card"><span class="icon">3</span><h3>Clear delivery</h3><p>Delivery dates near the basket and checkout, so customers feel confident buying.</p></div>
+      </div>
+      <div class="todo">Two or three of your own screenshots from their site or app</div>
+    </div>
+  </section>
+
+  <!-- 22 -->
+  <section class="slide" data-sec="Close" data-title="My first 90 days"
+    data-notes="If I joined, this is how I'd start: learn, contribute, then share what works.">
+    <div class="head"><span class="label">Hitting the ground running</span><h2>My first 90 days</h2></div>
+    <div class="panel" style="justify-content:center">
+      <div class="steps">
+        <div class="step"><div class="card"><span class="eyebrow">Month 1</span><h3>Learn</h3><p>The squads and the design system. Sit in on customer research and Contentsquare sessions.</p></div></div>
+        <div class="step"><div class="card dark"><span class="eyebrow" style="color:var(--accent-on-dark)">Month 2</span><h3>Contribute</h3><p>Pick up a Buy or Browse improvement and take it from problem to test.</p></div></div>
+        <div class="step"><div class="card"><span class="eyebrow">Month 3</span><h3>Share</h3><p>Bring my prototyping and testing approach, and contribute to the design system.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23 -->
+  <section class="slide hero" data-sec="Close" data-title="Questions"
+    data-notes="My title hasn't been Product Designer, but the work has been. What I've been missing is doing it inside a product team. Thank you, happy to take questions.">
+    <div class="hero-in">
+      <div class="txt">
+        <span class="label">Thank you</span>
+        <h1 style="font-size:104px">Questions?</h1>
+        <p class="lead">nickthompsondesign.co.uk</p>
+      </div>
+      <div class="stack" style="gap:18px">
+        <div class="card"><h3>What I'd bring</h3><p>I can build what I design · commercial sense from funded media · decisions grounded in research</p></div>
+        <div class="card"><h3>What I'm looking for</h3><p>Owning a product inside a product team, testing with customers, and improving it over time</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot" id="foot"><span class="logo">NickThompson<span>Design</span></span><span class="pg" id="pg"></span></div>
+</main>
+</div>
+
+<div class="controls" id="controls" aria-label="Slide controls">
+  <button type="button" id="bGrid" title="All slides (G)">All</button>
+  <button type="button" id="bPrev" title="Previous (←)" aria-label="Previous slide">←</button>
+  <button type="button" id="bCount" title="All slides (G)">1 / 23</button>
+  <button type="button" id="bNext" title="Next (→)" aria-label="Next slide">→</button>
+  <button type="button" id="bNotes" title="Notes (N)">Notes</button>
+  <button type="button" id="bPres" title="Presenter view (P)">Presenter</button>
+  <button type="button" id="bFull" title="Full screen (F)" aria-label="Full screen">⤢</button>
+</div>
+<div class="notes" id="notes" hidden><h4>What to say</h4><p id="noteText"></p></div>
+<div class="overview" id="overview" hidden role="dialog" aria-label="All slides">
+  <h4>All slides · about 20 minutes</h4>
+  <p class="hint">Click a slide to jump to it. Press G or Esc to close. Orange marks slides with something still to add.</p>
+  <div class="ov-grid" id="ovGrid"></div>
+</div>
+<div class="lightbox" id="lightbox" hidden><button class="close" type="button" id="lbClose" aria-label="Close">×</button><div id="lbBody" style="display:contents"></div></div>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var slides = Array.prototype.slice.call(stage.querySelectorAll('.slide'));
+  var total = slides.length, cur = 0;
+  var $ = function (id) { return document.getElementById(id); };
+  var ICONS = {
+    play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
+    muted: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>',
+    sound: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>',
+    expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>'
+  };
+
+  // Section times for the overview, and presenter notes
+  var secTime = {};
+  slides.forEach(function (s) { if (s.dataset.time) secTime[s.dataset.sec] = s.dataset.time; });
+
+  // Media controls: play/pause, sound, enlarge
+  stage.querySelectorAll('.frame').forEach(function (fr) {
+    var v = fr.querySelector('video'), img = fr.querySelector('img');
+    var ui = document.createElement('div'); ui.className = 'media-ui';
+    if (v) {
+      var bp = document.createElement('button'); bp.type = 'button'; bp.setAttribute('aria-label', 'Play or pause'); bp.innerHTML = ICONS.pause;
+      var bs = document.createElement('button'); bs.type = 'button'; bs.setAttribute('aria-label', 'Sound on or off'); bs.innerHTML = ICONS.muted;
+      bp.addEventListener('click', function (e) { e.stopPropagation(); if (v.paused) { v.play().catch(function () {}); v.dataset.held = ''; } else { v.pause(); v.dataset.held = '1'; } });
+      bs.addEventListener('click', function (e) { e.stopPropagation(); v.muted = !v.muted; bs.innerHTML = v.muted ? ICONS.muted : ICONS.sound; });
+      v.addEventListener('play', function () { bp.innerHTML = ICONS.pause; });
+      v.addEventListener('pause', function () { bp.innerHTML = ICONS.play; });
+      ui.appendChild(bp); ui.appendChild(bs);
+    }
+    var be = document.createElement('button'); be.type = 'button'; be.setAttribute('aria-label', 'Enlarge'); be.innerHTML = ICONS.expand;
+    be.addEventListener('click', function (e) { e.stopPropagation(); openLightbox(v || img); });
+    ui.appendChild(be);
+    fr.appendChild(ui);
+  });
+
+  function openLightbox(el) {
+    var body = $('lbBody'); body.innerHTML = '';
+    if (el.tagName === 'VIDEO') {
+      var v = document.createElement('video'); v.src = el.dataset.src; v.poster = el.poster; v.controls = true; v.muted = el.muted; v.playsInline = true;
+      v.addEventListener('loadedmetadata', function () { try { v.currentTime = el.currentTime || 0; } catch (e) {} v.play().catch(function () {}); });
+      el.pause(); body.appendChild(v);
+    } else { var i = document.createElement('img'); i.src = el.src; i.alt = el.alt; body.appendChild(i); }
+    $('lightbox').hidden = false;
+  }
+  function closeLightbox() { var lb = $('lightbox'); if (lb.hidden) return; $('lbBody').innerHTML = ''; lb.hidden = true; playActive(); }
+  $('lbClose').addEventListener('click', closeLightbox);
+
+  function playActive() {
+    slides.forEach(function (s, n) {
+      s.querySelectorAll('video').forEach(function (v) {
+        if (n === cur) {
+          if (!v.src && v.dataset.src) { v.src = v.dataset.src; }
+          if (!v.dataset.held) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        } else { v.pause(); }
+      });
+    });
+  }
+
+  // Ice breaker
+  function crack() {
+    var w = slides[cur].querySelector('.ice-wrap');
+    if (w && !w.classList.contains('open')) { w.classList.add('open'); return true; }
+    return false;
+  }
+  stage.addEventListener('click', function (e) { if (e.target.closest('.ice')) crack(); });
+
+  // Fit the stage to the window
+  function fit() {
+    var s = Math.min(window.innerWidth / 1600, window.innerHeight / 900);
+    stage.style.transform = 'scale(' + s + ')';
+  }
+
+  // Presenter view (a second window with notes, next slide and a timer)
+  var pres = null, startTime = null;
+  function presHTML() {
+    return '<!doctype html><title>Presenter view</title><body style="margin:0;background:#0c0930;color:#fff;font-family:Outfit,Arial,sans-serif;padding:28px;display:grid;gap:18px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:baseline"><b id="t" style="font-size:44px;font-variant-numeric:tabular-nums">0:00</b><span id="c" style="opacity:.7;font-size:18px"></span></div>' +
+      '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">Now</div><div id="now" style="font-size:28px;margin-top:4px"></div></div>' +
+      '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">What to say</div><div id="n" style="font-size:24px;line-height:1.5;margin-top:6px"></div></div>' +
+      '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">Next</div><div id="nx" style="font-size:20px;opacity:.75;margin-top:4px"></div></div>' +
+      '<p style="opacity:.5;font-size:14px">Use the arrow keys here or in the slides window.</p></body>';
+  }
+  function updatePresenter() {
+    if (!pres || pres.closed) return;
+    var d = pres.document, s = slides[cur], nx = slides[cur + 1];
+    d.getElementById('c').textContent = (cur + 1) + ' / ' + total + ' · ' + s.dataset.sec + (secTime[s.dataset.sec] ? ' · ' + secTime[s.dataset.sec] : '');
+    d.getElementById('now').textContent = s.dataset.title;
+    d.getElementById('n').textContent = s.dataset.notes || '';
+    d.getElementById('nx').textContent = nx ? nx.dataset.title : 'End';
+  }
+  function openPresenter() {
+    try { pres = window.open('', 'presenter', 'width=900,height=640'); } catch (e) { pres = null; }
+    if (!pres) { toggleNotes(true); return; }
+    pres.document.open(); pres.document.write(presHTML()); pres.document.close();
+    pres.document.addEventListener('keydown', onKey);
+    startTime = Date.now();
+    updatePresenter();
+  }
+  setInterval(function () {
+    if (!pres || pres.closed || !startTime) return;
+    var sec = Math.floor((Date.now() - startTime) / 1000);
+    pres.document.getElementById('t').textContent = Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+  }, 1000);
+
+  function toggleNotes(force) { var n = $('notes'); n.hidden = typeof force === 'boolean' ? !force : !n.hidden; }
+
+  function show(i) {
+    cur = Math.max(0, Math.min(total - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('active', n === cur); });
+    var s = slides[cur];
+    $('pg').textContent = s.dataset.sec + ' · ' + (cur + 1);
+    $('bCount').textContent = (cur + 1) + ' / ' + total;
+    $('progress').style.width = ((cur + 1) / total * 100) + '%';
+    $('noteText').textContent = s.dataset.notes || '';
+    if (location.hash !== '#' + (cur + 1)) { try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) {} }
+    document.querySelectorAll('.ov-item').forEach(function (b, n) { b.classList.toggle('cur', n === cur); });
+    playActive();
+    updatePresenter();
+  }
+  function next() { if (!crack()) show(cur + 1); }
+
+  // Overview
+  var ovGrid = $('ovGrid'), last = '';
+  slides.forEach(function (s, n) {
+    if (s.dataset.sec !== last) { var h = document.createElement('div'); h.className = 'ov-sec'; h.textContent = s.dataset.sec + (secTime[s.dataset.sec] ? ' · ' + secTime[s.dataset.sec] : ''); ovGrid.appendChild(h); last = s.dataset.sec; }
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'ov-item' + (s.hasAttribute('data-gap') ? ' gap' : '');
+    b.innerHTML = '<small>Slide ' + (n + 1) + '</small>' + s.dataset.title;
+    b.addEventListener('click', function () { show(n); toggleOverview(false); });
+    ovGrid.appendChild(b);
+  });
+  function toggleOverview(force) { var o = $('overview'); o.hidden = typeof force === 'boolean' ? !force : !o.hidden; }
+
+  stage.querySelectorAll('[data-goto]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); show(parseInt(a.getAttribute('data-goto'), 10) - 1); });
+  });
+  $('bNext').addEventListener('click', next);
+  $('bPrev').addEventListener('click', function () { show(cur - 1); });
+  $('bGrid').addEventListener('click', function () { toggleOverview(); });
+  $('bCount').addEventListener('click', function () { toggleOverview(); });
+  $('bNotes').addEventListener('click', function () { toggleNotes(); });
+  $('bPres').addEventListener('click', openPresenter);
+  $('bFull').addEventListener('click', toggleFull);
+  function toggleFull() {
+    try {
+      if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(function () {}); }
+      else { document.exitFullscreen().catch(function () {}); }
+    } catch (e) {}
+  }
+
+  function onKey(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+    if (k === 'Escape') { if (!$('lightbox').hidden) return closeLightbox(); return toggleOverview(false); }
+    if (!$('lightbox').hidden) return;
+    if (k === 'g' || k === 'G') return toggleOverview();
+    if (!$('overview').hidden) return;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); show(cur - 1); }
+    else if (k === 'Home') show(0);
+    else if (k === 'End') show(total - 1);
+    else if (k === 'n' || k === 'N') toggleNotes();
+    else if (k === 'p' || k === 'P') openPresenter();
+    else if (k === 'f' || k === 'F') toggleFull();
+  }
+  document.addEventListener('keydown', onKey);
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) { if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) { if (dx < 0) next(); else show(cur - 1); } tx = null; });
+
+  var hideT;
+  document.addEventListener('mousemove', function () { document.body.classList.add('show-ui'); clearTimeout(hideT); hideT = setTimeout(function () { document.body.classList.remove('show-ui'); }, 2000); });
+
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function () { var n = parseInt(location.hash.slice(1), 10); if (!isNaN(n) && n - 1 !== cur) show(n - 1); });
+  fit();
+  var start = parseInt((location.hash || '').slice(1), 10);
+  show(isNaN(start) ? 0 : start - 1);
+})();
+</script>
+</body>
+</html>
