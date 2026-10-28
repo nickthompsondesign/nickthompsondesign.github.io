@@ -337,6 +337,7 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Research · Synthesis · Iteration</span>
         <h2 class="scroll-reveal">Usability Testing</h2>
+        <p class="scroll-reveal sr-d2">I'd started from assumptions about what suppliers would look for first. Testing showed the bigger problem was somewhere else entirely.</p>
         <p class="scroll-reveal sr-d2">Before the CMS version launched, I ran separate calls with five suppliers, a mix of regular submitters and those with a history of rejections. Each was given the same task: find the specs for a specific format, check the accessibility requirements, and download the correct template. I observed without steering, then mapped the feedback to find common patterns.</p>
         <p class="scroll-reveal sr-d2">Five insights emerged, each pointing to a specific gap. After making the changes, I ran follow-up sessions to check they had worked.</p>
       </article>
@@ -353,6 +354,7 @@
           </div>   
           <div class="insight-item">
             <div class="insight-label">Insight 3 — Accessibility requirements needed visual context</div>
+            <p>This was the most important finding, and one the whole project had missed. Everything was set up for suppliers to supply their own artwork, but they had no way to see how it would actually look on site.</p>
             <p>Suppliers couldn't internalise the accessibility requirements because the relationship between supplied dimensions and actual display size wasn't obvious. A banner delivered at 1000px wide might render at 400px on site — making text that looked fine at source potentially fail at the point of display. On top of that, Asda's UI dynamically overlaid elements like promotional roundels on banners, meaning content outside the safe zone would be obscured entirely. To make both constraints visible, I built the Artwork Checker Tool: it detects the template from the supplied dimensions and shows suppliers exactly how their artwork will appear on site — at the correct scale, with safe zone overlays applied.</p>
             <video playsinline muted autoplay loop poster="/img/portfolio/UX%20design/Artwork-Checker-Poster.png" class="project-image-main scroll-reveal visible" style="margin-bottom:0;margin-top:20px;"><source src="/img/portfolio/UX%20design/Artwork-Checker.mp4" type="video/mp4"></video>
           </div>
