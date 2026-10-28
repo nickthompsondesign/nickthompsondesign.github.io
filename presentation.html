@@ -400,6 +400,7 @@
     ol.pts { gap: 24px; }
     .about-pts { gap: 34px !important; }
       .panel .stack.center:not(.tight) { gap: 30px; }
+      .frame.reel-video { aspect-ratio: 16 / 9; width: 100%; border: 4px solid rgba(255,255,255,0.75); border-radius: 15px; box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,255,255,0.1); }
   </style>
 </head>
 <body>
@@ -418,7 +419,7 @@
   <!-- 1 Title -->
   <section class="slide hero" data-sec="Intro" data-time="2.5 min" data-title="Title" data-gap
     data-notes="Thanks for having me. I'll take you through five projects, about 20 minutes, then I'm happy to take questions.">
-    <div class="hero-in" style="grid-template-columns:7fr 5fr">
+    <div class="hero-in" style="grid-template-columns:1fr 1fr">
       <div class="txt">
         <span class="label">Portfolio presentation · The White Company</span>
         <h1 class="logo-title">Nick Thompson</h1>
@@ -426,14 +427,8 @@
         <div class="chips"><span class="chip">Buy</span><span class="chip">Browse</span><span class="chip">Seasonal launches</span><span class="chip">Design system</span></div>
         <div class="todo" style="max-width:560px">Your title: Product Designer, or Lead Digital Designer</div>
       </div>
-      <!-- Showreel box, as on the homepage hero: the five projects in this talk -->
-      <div class="square-box" aria-label="The five projects in this presentation">
-        <div class="showreel-slide"><img src="img/portfolio/treasured-possession/tp-box-step.jpg" alt=""><span class="reel-tag">01 · Treasured Possession</span></div>
-        <div class="showreel-slide"><img src="img/portfolio/thumbnail/thumb-n-design-guidelines.jpg" alt=""><span class="reel-tag">02 · Asda Design Guidelines</span></div>
-        <div class="showreel-slide"><img src="img/portfolio/UX%20design/lha-ux.jpg" alt=""><span class="reel-tag">03 · LHA London</span></div>
-        <div class="showreel-slide"><img src="img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg" alt=""><span class="reel-tag">04 · Asda Experiential Hubs</span></div>
-        <div class="showreel-slide"><img src="img/portfolio/asda-pages/pets/pets-option-1.jpg" alt=""><span class="reel-tag">05 · Asda Pets</span></div>
-      </div>
+      <!-- Showreel video -->
+      <figure class="frame reel-video" style="margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/nick-thompson-showreel-poster.jpg" data-src="img/portfolio/nick-thompson-showreel-v6%20(1).mp4"></video></figure>
     </div>
   </section>
 
