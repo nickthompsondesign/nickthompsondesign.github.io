@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // Background animation off: remembered choice, or ?still in the URL
+    try { if (/[?&]still\b/.test(location.search) || localStorage.getItem('bgStill') === '1') document.documentElement.classList.add('still'); } catch (e) {}
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Portfolio Presentation | Nick Thompson Design</title>
@@ -303,6 +307,24 @@
     body.show-ui .controls, .controls:focus-within { opacity: 1; }
     .controls button { height: 42px; min-width: 42px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); background: rgba(10,10,40,0.7); color: #fff; font: 700 13px var(--font-body); letter-spacing: .06em; cursor: pointer; }
     .controls button:hover { background: var(--accent); }
+
+    /* Small screens: let the controls wrap so every button stays reachable */
+    @media (max-width: 760px) {
+      .controls { width: calc(100vw - 24px); flex-wrap: wrap; justify-content: center; gap: 6px; bottom: 10px; }
+      .controls button { height: 36px; min-width: 36px; padding: 0 10px; font-size: 12px; }
+    }
+
+    /* Background animation off: a still gradient instead of the animated, blurred layers */
+    html.still .gradients-container { display: none; }
+    html.still .crt-grain-layer { animation: none; }
+    html.still .gradient-bg {
+      background:
+        radial-gradient(55% 70% at 28% 45%, rgba(0,40,255,.95), transparent 70%),
+        radial-gradient(50% 60% at 72% 35%, rgba(20,0,220,.85), transparent 70%),
+        radial-gradient(30% 55% at 55% 35%, rgba(0,190,255,.4), transparent 70%),
+        radial-gradient(30% 40% at 96% 6%, rgba(220,38,170,.35), transparent 70%),
+        linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+    }
     .progress { position: fixed; left: 0; top: 0; height: 3px; background: var(--accent-bright); z-index: 20; transition: width .4s var(--ease-smooth); }
     .notes { position: fixed; left: 50%; bottom: 72px; transform: translateX(-50%); width: min(900px, calc(100% - 32px)); background: rgba(12,9,48,0.94); border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; padding: 16px 20px; z-index: 21; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.88); }
     .notes h4 { margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-bright); }
@@ -1320,6 +1342,7 @@
   <button type="button" id="bNext" title="Next (→)" aria-label="Next slide">→</button>
   <button type="button" id="bNotes" title="Notes (N)">Notes</button>
   <button type="button" id="bPres" title="Presenter view (P)">Presenter</button>
+  <button type="button" id="bBg" title="Background animation (M)" aria-pressed="false">BG on</button>
   <button type="button" id="bFull" title="Full screen (F)" aria-label="Full screen">⤢</button>
 </div>
 <div class="notes" id="notes" hidden><h4>Key points</h4><div id="noteText"></div></div>
@@ -1615,6 +1638,17 @@
   $('bNotes').addEventListener('click', function () { toggleNotes(); });
   $('bPres').addEventListener('click', openPresenter);
   $('bFull').addEventListener('click', toggleFull);
+
+  // Background animation on/off (remembered on this device)
+  function setStill(on) {
+    document.documentElement.classList.toggle('still', on);
+    $('bBg').textContent = on ? 'BG off' : 'BG on';
+    $('bBg').setAttribute('aria-pressed', on ? 'true' : 'false');
+    try { localStorage.setItem('bgStill', on ? '1' : '0'); } catch (e) {}
+  }
+  function toggleStill() { setStill(!document.documentElement.classList.contains('still')); }
+  $('bBg').addEventListener('click', toggleStill);
+  if (document.documentElement.classList.contains('still')) setStill(true);
   function toggleFull() {
     try {
       if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(function () {}); }
@@ -1636,6 +1670,7 @@
     else if (k === 'n' || k === 'N') toggleNotes();
     else if (k === 'p' || k === 'P') openPresenter();
     else if (k === 'f' || k === 'F') toggleFull();
+    else if (k === 'm' || k === 'M') toggleStill();
   }
   document.addEventListener('keydown', onKey);
 
