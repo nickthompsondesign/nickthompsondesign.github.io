@@ -295,7 +295,7 @@
     .hero .shows .chip { font-size: 14px; padding: 7px 13px; }
 
     /* ---------- Controls, overview, notes, lightbox ---------- */
-    .controls { position: fixed; right: 18px; bottom: 16px; display: flex; gap: 8px; align-items: center; z-index: 20; opacity: 0; transition: opacity .25s; }
+    .controls { position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; display: flex; gap: 8px; align-items: center; z-index: 20; opacity: 0; transition: opacity .25s; }
     body.show-ui .controls, .controls:focus-within { opacity: 1; }
     .controls button { height: 42px; min-width: 42px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); background: rgba(10,10,40,0.7); color: #fff; font: 700 13px var(--font-body); letter-spacing: .06em; cursor: pointer; }
     .controls button:hover { background: var(--accent); }
@@ -436,13 +436,47 @@
     .stage[data-tr="3"] .slide.enter { transition: none; transform: translateX(120px); }
     .stage[data-tr="3"][data-dir="back"] .slide.enter { transform: translateX(-120px); }
     .stage[data-tr="3"] .slide.active { transform: none; }
+      /* Controls in the middle, clear of the page number */
+    /* Slideshows can hold videos too */
+    .frame.slideshow > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0; transition: opacity .6s ease; background: #0c0930; }
+    .frame.slideshow > video.on { opacity: 1; }
+    .frame.slideshow.pan img { height: 150%; animation-duration: 6s; }
+    /* Big icons above stats */
+    .sicon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); color: #fff; flex: none; }
+    .sicon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .stat > .sicon { margin-bottom: 6px; }
+    .stats.big .stat { padding: 30px 28px 28px; gap: 12px; }
+    .stats.big .stat b { font-size: 60px; }
+    /* Results: spread down the slide */
+    .panel.spread { justify-content: space-between; gap: 0; padding-bottom: 12px; }
+    /* Scale bar for options */
+    .scale { flex: none; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-on-dark); }
+    .scale i { height: 2px; background: linear-gradient(90deg, rgba(221,214,254,.3), #f0abfc); position: relative; }
+    .scale i::after { content: ''; position: absolute; right: -2px; top: -5px; border: 6px solid transparent; border-left: 9px solid #f0abfc; border-right: 0; }
+    /* Double diamond */
+    .dd { position: relative; flex: none; height: 260px; }
+    .dd-shape { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .dd-names { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; }
+    .dd-names span { text-align: center; font-family: var(--font-heading); font-weight: 700; font-size: 30px; letter-spacing: var(--tracking-tight); color: #fff; text-shadow: var(--crt-shadow); font-optical-sizing: none; font-variation-settings: "opsz" 24; }
+    .dd-names span:nth-child(odd) { padding-left: 50px; } .dd-names span:nth-child(even) { padding-right: 50px; }
+    .dd-cols { flex: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .dd-cols p { font-size: 18px; line-height: 1.55; color: rgba(255,255,255,0.8); text-align: center; }
+    .ai-note { flex: none; display: flex; align-items: center; gap: 14px; font-size: 18px; line-height: 1.5; color: rgba(255,255,255,0.8); padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.14); }
+    .ai-note b { color: #fff; }
+    .ai-note .icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.12); color: #fff; display: grid; place-items: center; flex: none; }
+    /* Headings fade up, combined with the chromatic intro */
+    @keyframes crtIn { 0% { opacity: 0; transform: translateY(32px); filter: blur(3px); } 100% { opacity: 1; transform: none; filter: blur(0); } }
+    .slide.in .crt2 > span { animation-duration: 1.4s; }
+      .stat b { white-space: nowrap; }
+    .flow { width: 100%; max-width: 1180px; align-self: center; }
+    .panel:has(> .point) > .cols { flex: 1 1 0; min-height: 0; }
   </style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
 <div class="viewport">
 <main class="stage" id="stage" data-tr="1">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M14.1 6 9 3.5 3 6v14.5l6-2.5 5.1 2.5 6-2.5V3.5z"/><path d="M9 3.5v15M15 6v14.5"/></symbol><symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol><symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol><symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol><symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15v4M17 17h4M5 3v3M3.5 4.5h3"/></symbol><symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol><symbol id="i-package" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.1 10.4A6 6 0 1 1 10.3 18"/><path d="M7 6h1v4"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol><symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 16 4-4 3 3 5-6"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></symbol><symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></symbol><symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H16c3.1 0 5.6-2.5 5.6-5.6C21.9 6.4 17.5 2 12 2z"/></symbol><symbol id="i-server" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol><symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.8 1.2 6.9-6.2-3.2-6.2 3.2L7 14.1 2 9.3l6.9-1z"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol><symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol><symbol id="i-cart" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 2h2l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L22 7H5.1"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="M22 17 13.5 8.5 8.5 13.5 2 7"/><path d="M16 17h6v-6"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol><symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol><symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M14.1 6 9 3.5 3 6v14.5l6-2.5 5.1 2.5 6-2.5V3.5z"/><path d="M9 3.5v15M15 6v14.5"/></symbol><symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol><symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol><symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol><symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15v4M17 17h4M5 3v3M3.5 4.5h3"/></symbol><symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol><symbol id="i-package" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol><symbol id="i-coins" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.1 10.4A6 6 0 1 1 10.3 18"/><path d="M7 6h1v4"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol><symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 16 4-4 3 3 5-6"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol><symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></symbol><symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></symbol><symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H16c3.1 0 5.6-2.5 5.6-5.6C21.9 6.4 17.5 2 12 2z"/></symbol><symbol id="i-server" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol><symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.8 1.2 6.9-6.2-3.2-6.2 3.2L7 14.1 2 9.3l6.9-1z"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol><symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol><symbol id="i-cart" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 2h2l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L22 7H5.1"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></symbol></svg>
 
   <div class="gradient-bg" aria-hidden="true">
     <div class="gradients-container"><div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g5"></div></div>
@@ -492,32 +526,42 @@
   </section>
 
   <!-- 3 How I work -->
-  <section class="slide" data-sec="Intro" data-title="How I work, and where AI fits" data-gap
-    data-notes="This is how I work, and where AI fits in. Every step points to a project you're about to see.">
-    <div class="head"><span class="label">Approach</span><h2>How I work, and where AI fits</h2></div>
+  <section class="slide" data-sec="Intro" data-title="How I work"
+    data-notes="This is how I work: the double diamond. First make sure we're solving the right problem, then the right solution. Every stage points to a project you're about to see. AI fits in at two points: summarising research and feedback, and turning designs into working prototypes faster. The decisions stay with me. [Any other real AI uses, such as research, copy or design system checks. Only if true.]">
+    <div class="head"><span class="label">Approach</span><h2>How I work</h2></div>
     <div class="panel">
-      <div class="steps">
-        <div class="step"><div class="card"><span class="icon"><svg><use href="#i-search"/></svg></span><h3>Understand</h3><p>Stakeholders, data, and an audit of what exists.</p><p><b style="color:var(--accent-on-dark)">AI:</b> summarising calls and compiling feedback, every summary checked.</p></div></div>
-        <div class="step"><div class="card"><span class="icon"><svg><use href="#i-map"/></svg></span><h3>Explore</h3><p>Journeys and options, with honest trade-offs.</p></div></div>
-        <div class="step"><div class="card dark"><span class="icon"><svg><use href="#i-layers"/></svg></span><h3>Prototype and test</h3><p>In Figma, with real people.</p><p><b style="color:#fff">AI:</b> turning designs into working prototypes faster.</p></div></div>
-        <div class="step"><div class="card"><span class="icon"><svg><use href="#i-trend"/></svg></span><h3>Launch and improve</h3><p>Developers in early, measure, and keep supporting after launch.</p></div></div>
+      <p class="point">The double diamond: the right problem first, then the right solution.</p>
+      <div class="dd">
+        <svg class="dd-shape" viewBox="0 0 1408 260" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="ddg" x1="0" x2="1"><stop offset="0" stop-color="#ddd6fe" stop-opacity=".9"/><stop offset="1" stop-color="#f0abfc" stop-opacity=".9"/></linearGradient></defs>
+          <polygon points="4,130 352,6 700,130 352,254" fill="rgba(255,255,255,0.04)" stroke="url(#ddg)" stroke-width="2"/>
+          <polygon points="708,130 1056,6 1404,130 1056,254" fill="rgba(255,255,255,0.04)" stroke="url(#ddg)" stroke-width="2"/>
+          <path d="M352 6 V254 M1056 6 V254" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="5 6"/>
+        </svg>
+        <div class="dd-names"><span>Discover</span><span>Define</span><span>Develop</span><span>Deliver</span></div>
       </div>
-      <p class="sub strong" style="font-family:var(--font-heading);font-size:24px">AI speeds up the making. The research and the decisions stay with me.</p>
-      <div class="todo">Any other real AI uses, such as research, copy or design system checks. Only if true.</div>
+      <div class="dd-cols">
+        <p>Stakeholders, data, and an audit of what exists.</p>
+        <p>Journeys, priorities and the problem worth solving.</p>
+        <p>Options and prototypes in Figma, tested with real people.</p>
+        <p>Developers in early, measure, and keep improving after launch.</p>
+      </div>
+      <p class="ai-note"><span class="icon"><svg><use href="#i-sparkles"/></svg></span><span><b>Where AI fits:</b> summarising research and feedback, and turning designs into working prototypes faster. The decisions stay with me.</span></p>
     </div>
   </section>
 
   <!-- 4 Agenda -->
-  <section class="slide" data-sec="Intro" data-title="Five projects"
-    data-notes="In the first interview you mentioned the Buy and Browse squads, the app, seasonal launches and the design system. So I've picked five projects that line up with those areas. I'll spend most time on the first one.">
-    <div class="head"><span class="label">Today</span><h2>Five projects across the areas you work in</h2></div>
+  <section class="slide" data-sec="Intro" data-title="Six projects"
+    data-notes="In the first interview you mentioned the Buy and Browse squads, the app, seasonal launches and the design system. So I've picked six projects that line up with those areas, ending with a quick look at visual design. I'll spend most time on the first one.">
+    <div class="head"><span class="label">Today</span><h2>Six projects across the areas you work in</h2></div>
     <div class="panel" style="justify-content:center">
       <nav class="agenda">
         <a href="#5" data-goto="5"><span class="n">01</span><div><h3>Treasured Possession</h3><p>A quote and checkout redesign, in progress</p></div><span class="sq">Buy · quote and checkout</span></a>
-        <a href="#13" data-goto="13"><span class="n">02</span><div><h3>Asda Design Guidelines</h3><p>A B2B hub for suppliers, from PDFs to a product</p></div><span class="sq">Design system · B2B</span></a>
+        <a href="#13" data-goto="13"><span class="n">02</span><div><h3>Asda Design Guidelines</h3><p>A B2B hub for suppliers, from PDFs to self-service</p></div><span class="sq">Design system · B2B</span></a>
         <a href="#20" data-goto="20"><span class="n">03</span><div><h3>LHA London</h3><p>Search, filters and room cards</p></div><span class="sq">Browse · search and room details</span></a>
         <a href="#23" data-goto="23"><span class="n">04</span><div><h3>Asda Experiential Hubs</h3><p>From a gap in the offer to a repeatable product</p></div><span class="sq">Seasonal launches</span></a>
         <a href="#29" data-goto="29"><span class="n">05</span><div><h3>Asda Pets</h3><p>A category hub, navigation first</p></div><span class="sq">Browse · merchandising</span></a>
+        <a href="#36" data-goto="36"><span class="n">06</span><div><h3>Website Design</h3><p>Websites and Asda Branded Zones</p></div><span class="sq">Visual design · brand</span></a>
       </nav>
     </div>
   </section>
@@ -526,13 +570,13 @@
 
   <!-- Intro -->
   <section class="slide hero" data-sec="01 Treasured Possession" data-time="6 min" data-title="Intro: Instant Quote Tool"
-    data-notes="This one's still in progress. I'm showing it because it's my most complete example of the full process, and of how I'm using AI in my work. It's closest to your Buy squad.">
+    data-notes="This one's still in progress. I'm showing it because it's my most complete example of the full process, and of how I'm using AI in my work. It's closest to your Buy squad. Mobile-first, because about 80% of their visitors are on mobile.">
     <div class="hero-in intro">
       <div class="txt">
         <span class="label">01 · Treasured Possession · Buy</span>
         <h2>Treasured Possession: Instant Quote Tool</h2>
-        <p class="subhead">A mobile-first quote and checkout journey with a live running total, giving customers transparency and control over what they pay.</p>
-        <p class="desc">The customer problem: there was no running total, so people only saw the full cost once they reached the basket, and anyone who left couldn't be followed up. I led it from research and order data through prototyping and usability testing, balancing the client's goal of capturing leads with what customers needed. <em>In progress.</em></p>
+        <p class="subhead">Mobile-first quote and checkout with a live total for transparent pricing.</p>
+        <p class="desc">Without a running total, customers only saw the full cost in the basket, and abandoned journeys couldn't be followed up. I led research, prototyping and usability testing, balancing lead capture with customer needs. <em>In progress.</em></p>
         <div class="shows"><span class="shows-label">What this shows</span><div class="chips"><span class="chip">Purchase journey</span><span class="chip">Research</span><span class="chip">Prototyping</span><span class="chip">Usability testing</span><span class="chip">AI in my process</span></div></div>
       </div>
       <figure class="frame" style="height:520px;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/treasured-possession/tp-flow-poster.jpg" data-src="img/portfolio/treasured-possession/tp-flow.mp4"></video></figure>
@@ -540,20 +584,21 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="The Problem"
-    data-notes="The page promised an instant price, but you had to fill in every field, including two dates, then press Calculate Order, which actually added it to the basket. Each item had a price, but there was no running total. And anyone who left left no trace.">
+    data-notes="The page promised an instant price, but you had to fill in every field, including two dates, then press Calculate Order, which actually added it to the basket. Each item had a price, but there was no running total. Quotes couldn't be edited once created. And anyone who left left no trace, so the business couldn't follow up.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>The Problem</h2></div>
     <div class="panel">
-      <p class="point">The page promised an "instant price", but the first total was in the basket.</p>
+      <p class="point">Customers were promised an "instant price", but only saw the total in the basket.</p>
       <div class="cols c2">
         <div class="stack center">
           <ol class="pts">
-            <li>Every field, including two dates, before <b>"Calculate Order"</b>.</li>
-            <li>Item prices showed, but <b>no running total</b>.</li>
-            <li>People who left <b>left no trace</b>, so the business couldn't follow up.</li>
+            <li><b>Too many fields</b>, including two dates, before calculating a quote.</li>
+            <li>Item prices were visible, but <b>no running total</b>.</li>
+            <li>Quotes <b>couldn't be edited</b> once created, making changes difficult.</li>
+            <li>Abandoned journeys left <b>no lead</b> for the business to follow up.</li>
           </ol>
           <div class="cols c2" style="flex:none;gap:16px">
-            <div class="card dark"><span class="icon"><svg><use href="#i-target"/></svg></span><h3>Goals</h3><p>More orders · a lead for every quote · fewer drop-outs</p></div>
-            <div class="card tint"><span class="icon"><svg><use href="#i-lock"/></svg></span><h3>Constraints</h3><p>Fixed budget · WooCommerce · small client team</p></div>
+            <div class="card dark"><span class="icon"><svg><use href="#i-target"/></svg></span><h3>Goals</h3><p>Increase orders · Capture every quote as a lead · Reduce drop-offs</p></div>
+            <div class="card tint"><span class="icon"><svg><use href="#i-lock"/></svg></span><h3>Constraints</h3><p>Fixed budget · WooCommerce · Small client team</p></div>
           </div>
         </div>
         <figure class="frame fill" style="margin:0"><img src="img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="The original quote form"></figure>
@@ -562,7 +607,7 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Research"
-    data-notes="Small budget, so I picked each method for the question it answers. For the competitors, I did the same task on each site: get a price to clean a dress that cost £1,000 to £2,500. Every one shows a total within two clicks, and none asks for an email first. Re:Finery showed a value-band price can still feel instant. Elsie May showed one line of reassurance takes the stress out of choosing.">
+    data-notes="Small budget, so I picked each method for the question it answers. For the competitors, I did the same task on each site: get a price to clean a dress that cost £1,000 to £2,500. Every one shows a total within two clicks, and none asks for an email first. The order data set our defaults: £251 average order, about 23 orders a month.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Research</h2></div>
     <div class="panel">
       <p class="point">Every competitor showed a total within two clicks. None asked for an email first.</p>
@@ -570,10 +615,10 @@
         <div class="stack center">
           <span class="eyebrow">Methods, each answering one question</span>
           <div class="chips"><span class="chip">Stakeholder conversation</span><span class="chip">Heuristic audit</span><span class="chip">Accessibility (WCAG 2.2 AA)</span><span class="chip">Review analysis</span><span class="chip">12 months of order data</span><span class="chip">Competitor benchmark</span><span class="chip">Cross-industry patterns</span></div>
-          <div class="card tint"><span class="icon"><svg><use href="#i-search"/></svg></span><h3>What I took from competitors</h3><p>Re:Finery: a price by value band can still feel instant. Elsie May: one line of reassurance takes the fear out of choosing.</p></div>
+          <div class="card tint"><span class="icon"><svg><use href="#i-search"/></svg></span><h3>What I took from competitors</h3><p><b>Re:Finery:</b> value-based price bands can still feel instant.</p><p><b>Elsie May:</b> a simple line of reassurance can make choosing feel less daunting.</p></div>
         </div>
         <div class="stack">
-          <figure class="frame fill slideshow" style="margin:0">
+          <figure class="frame fill slideshow" data-interval="2500" style="margin:0">
             <img class="on" src="img/portfolio/treasured-possession/comp-elsiemay-step1.jpg" alt="Elsie May, step 1" data-cap="Elsie May · Step 1: choose the closest gown style">
             <img src="img/portfolio/treasured-possession/comp-elsiemay-step2.jpg" alt="Elsie May, step 2" data-cap="Elsie May · Step 2: the price, straight away">
             <img src="img/portfolio/treasured-possession/comp-refinery-start.jpg" alt="Re:Finery booking panel" data-cap="Re:Finery · The booking panel">
@@ -589,22 +634,21 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Low-fidelity designs" data-gap
-    data-notes="I split the journey by what's being sent, and put the quote before the booking, so the price is useful even to people not ready to book. The order data set the defaults. AI sped up the designing and the roll-out, and I worked with Tim, our developer, so every idea was feasible in WooCommerce before we went further.">
+    data-notes="I split the journey by what's being sent, and put the quote before the booking, so the price is useful even to people not ready to book. The order data set the defaults: box size always follows dress style, so it's chosen for you. I worked with Tim, our developer, so every idea was checked against WooCommerce before we went further. [Say which AI tools you used, and for which steps.]">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Low-fidelity designs</h2></div>
     <div class="panel">
-      <p class="point">A clickable prototype, built with our developer so every idea was feasible.</p>
+      <p class="point">A clickable prototype, built with our developer to test and refine ideas early.</p>
       <div class="cols c57">
         <div class="stack center">
           <ol class="pts">
-            <li>Split by <b>what's being sent</b>. Quote first, booking second.</li>
-            <li>Order data set the defaults: <b>box size follows dress style</b>, so it's chosen for you.</li>
-            <li>Built with <b>Tim, our developer</b>, checking each idea worked in WooCommerce.</li>
+            <li>Split the journey by <b>what's being sent</b>: quote first, booking second.</li>
+            <li>Used <b>order data</b> to set smart defaults, with box size matched to dress style.</li>
+            <li>Worked with <b>our developer</b> to validate ideas against WooCommerce constraints.</li>
           </ol>
-          <div class="card dark"><span class="icon"><svg><use href="#i-sparkles"/></svg></span><h3>Where AI helped</h3><p>It sped up the designing and the roll-out.</p></div>
-          <div class="todo">Say exactly how: which AI tools, and for which steps</div>
+          <div class="card dark"><span class="icon"><svg><use href="#i-sparkles"/></svg></span><h3>Where AI helped</h3><p>AI accelerated the design process and rollout.</p></div>
         </div>
         <div class="stack">
-          <figure class="frame fill slideshow pan" data-interval="12000" style="margin:0">
+          <figure class="frame fill slideshow pan" data-interval="6000" style="margin:0">
             <img class="on" src="img/portfolio/treasured-possession/tp-wireframes.jpg" alt="Mobile wireframes, step by step" data-cap="Mobile wireframes, from the first question to the basket">
             <img src="img/portfolio/treasured-possession/tp-wireframes-desktop.jpg" alt="Desktop wireframes" data-cap="Desktop wireframes">
           </figure>
@@ -615,10 +659,10 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Testing"
-    data-notes="We tested the working prototype, with real prices, with colleagues from outside the project. Each worked through a scenario. Each finding led to a change.">
+    data-notes="We tested the working prototype, with real prices, with colleagues from outside the project. Each worked through a scenario, such as a price-conscious customer or someone who needed their dress back quickly. Each finding led to a change.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Testing</h2></div>
     <div class="panel">
-      <p class="point">Colleagues outside the project worked through real scenarios on the prototype.</p>
+      <p class="point">Colleagues outside the project tested the prototype using real-world scenarios.</p>
       <div class="cols c57">
         <div class="stack">
           <figure class="frame fill slideshow fade-cover" style="margin:0">
@@ -628,27 +672,27 @@
           <div class="ss-bar"><span class="ss-cap">Testing the prototype on desktop</span><span class="ss-dots"></span></div>
         </div>
         <div class="rows" style="align-self:center">
-          <div class="rows-head"><span>What testing showed</span><span></span><span>What changed</span></div>
-          <div class="row key"><span>"Edit quote" was easy to miss</span><span class="arr">→</span><span class="to">A full button</span></div>
-          <div class="row"><span>Unsure which style their dress was</span><span class="arr">→</span><span class="to">"Not sure?" panel and "from" prices</span></div>
-          <div class="row"><span>Dates were unclear</span><span class="arr">→</span><span class="to">A colour-coded calendar</span></div>
-          <div class="row"><span>Wanted to see every extra</span><span class="arr">→</span><span class="to">All items shown</span></div>
-          <div class="row"><span>Desktop relied on the total bar</span><span class="arr">→</span><span class="to">Continue on every step</span></div>
+          <div class="rows-head"><span>Finding</span><span></span><span>Design change</span></div>
+          <div class="row key"><span>"Edit quote" was easy to miss</span><span class="arr">→</span><span class="to">Made it a prominent button</span></div>
+          <div class="row"><span>Users were unsure which dress style to choose</span><span class="arr">→</span><span class="to">Added a "Not sure?" panel and "from" prices</span></div>
+          <div class="row"><span>Dates were unclear</span><span class="arr">→</span><span class="to">Introduced a colour-coded calendar</span></div>
+          <div class="row"><span>Users wanted to see all extras</span><span class="arr">→</span><span class="to">Displayed every available item</span></div>
+          <div class="row"><span>Desktop users relied on the total bar</span><span class="arr">→</span><span class="to">Added a "Continue" button at every step</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Client review"
-    data-notes="I took the testing findings and the open questions back to the client. The big one: they wanted the email before any price. I didn't argue opinion: competitors, the effort it adds, and why an A/B test wasn't realistic at 23 orders a month. We agreed price first, with email first ready to test.">
+    data-notes="I took the testing findings and the open questions back to the client. The big one: they wanted the email before any price. I didn't argue opinion: competitors, the effort it adds, and why an A/B test wasn't realistic at about 23 orders a month. We agreed price first, with email first ready to test. Every saved quote has its own status in WooCommerce, so we can see how many become orders.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Client review</h2></div>
     <div class="panel">
-      <p class="point">I took the findings back to the client, and we agreed the changes together.</p>
+      <p class="point">I presented the findings to the client, and we agreed the changes together.</p>
       <div class="cols c2" style="flex:none;gap:16px">
-        <div class="card dark"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Price first, not email first</h3><p>They wanted an email before any price. Competitors and the extra effort said price first. Too few orders for an A/B test, so we launch price first and keep email first ready to test.</p></div>
-        <div class="card"><span class="icon"><svg><use href="#i-package"/></svg></span><h3>"Own box" becomes a service</h3><p>Renamed "Pack and present with your own box", so the £30 is clearly for expert packing.</p></div>
-        <div class="card"><span class="icon"><svg><use href="#i-coins"/></svg></span><h3>Fewer charges that feel like penalties</h3><p>The admin fee removed, and the breathable bag shown as included.</p></div>
-        <div class="card"><span class="icon"><svg><use href="#i-mail"/></svg></span><h3>A follow-up for saved quotes</h3><p>10% off after 7 days, and a reminder before the 30-day price hold ends.</p></div>
+        <div class="card dark"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Price before email</h3><p>The client preferred capturing emails before showing prices. Competitor research and usability findings supported showing the price first. With too little order data for an A/B test, we agreed to launch price first and keep email first as a test option.</p></div>
+        <div class="card"><span class="icon"><svg><use href="#i-package"/></svg></span><h3>Clearer service pricing</h3><p>Renamed "Own box" to "Pack and present with your own box", clarifying what the £30 charge covered.</p></div>
+        <div class="card"><span class="icon"><svg><use href="#i-coins"/></svg></span><h3>Fewer unexpected charges</h3><p>Removed the admin fee and showed the breathable bag as included.</p></div>
+        <div class="card"><span class="icon"><svg><use href="#i-mail"/></svg></span><h3>Follow-up for saved quotes</h3><p>Planned a 10% discount after seven days, plus a reminder before the 30-day price hold expires.</p></div>
       </div>
     </div>
   </section>
@@ -671,7 +715,7 @@
   <section class="slide" data-sec="01 Treasured Possession" data-title="Results"
     data-notes="It's too early for results. With about 23 orders a month, a live A/B test would take months, so we measure against a baseline eight weeks after launch, and compare with last year for wedding season. The client already has next ideas, so the handover isn't the end.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Results</h2></div>
-    <div class="panel">
+    <div class="panel spread">
       <p class="point">Too early for results, so I've set up how we'll measure them.</p>
       <div class="cols c3" style="flex:none">
         <div class="card"><span class="icon"><svg><use href="#i-db"/></svg></span><h3>The baseline</h3><p>12 months of orders: £251 average order, about 23 paid orders a month, 12% failed or cancelled.</p></div>
@@ -685,69 +729,68 @@
   <!-- ================= 02 GUIDELINES ================= -->
 
   <section class="slide hero" data-sec="02 Asda Design Guidelines" data-time="4 min" data-title="Intro: Supplier Design Hub"
-    data-notes="This was a B2B product: suppliers were the users. It's a design system story, and it shows a product being improved over time, through a rebrand and a platform change.">
+    data-notes="This was a B2B product: suppliers were the users. It's a design system story, and it shows a product being improved over time, in two phases.">
     <div class="hero-in intro">
       <div class="txt">
         <span class="label">02 · Asda Design Guidelines · Design system · B2B</span>
         <h2>Asda Design Guidelines: Supplier Design Hub</h2>
-        <p class="subhead">A B2B website where suppliers find the specs, downloadable PSD templates and accessibility rules they need, designed around their journey and improved through testing.</p>
-        <p class="desc">Suppliers were moving to self-service, but PDF guidelines meant rejected banners and repeated questions. I rebuilt them as an interactive hub, kept it and the templates aligned with Asda's design system through the rebrand, rebuilt it with the CMS product owner, and tested it with suppliers, which led to the Artwork Checker.</p>
-        <div class="shows"><span class="shows-label">What this shows</span><div class="chips"><span class="chip">Design system</span><span class="chip">Rebrand</span><span class="chip">Accessibility guidance</span><span class="chip">Working with a product owner</span><span class="chip">Improving after launch</span></div></div>
+        <p class="subhead">An interactive B2B hub giving suppliers easy access to design specifications, downloadable PSD templates and accessibility guidelines.</p>
+        <p class="desc">The problem: PDF guidelines led to rejected banners and repeated supplier queries. I rebuilt them into a self-service hub, worked with the CMS product owner to develop it, maintained consistency through Asda's rebrand, and tested it with suppliers. The feedback also informed the development of the Artwork Checker.</p>
+        <div class="shows"><span class="shows-label">What this shows</span><div class="chips"><span class="chip">Design system</span><span class="chip">Accessibility guidance</span><span class="chip">Working with a product owner</span><span class="chip">Improving after launch</span></div></div>
       </div>
       <figure class="frame" style="aspect-ratio:1200/676;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/Guidelines-Preview-Design-poster.jpg" data-src="img/portfolio/UX%20design/Guidelines-Preview-Design.mp4"></video></figure>
     </div>
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="The Problem"
-    data-notes="Suppliers were moving to self-service banners, so they had to get artwork right without someone checking every piece. But the guidelines were PDFs, organised around internal logic. The account managers told me the two signals: rejected media, and the same questions again and again. At 3,000 campaigns a year, that added up.">
+    data-notes="The guidelines were PDFs, organised around internal logic. The account managers told me the two signals: rejected media, and the same questions again and again. At 3,000 campaigns a year, that added up. I owned the specs, the templates and the WCAG rules, so I could see where they broke down.">
     <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>The Problem</h2></div>
     <div class="panel">
-      <p class="point">Suppliers were moving to self-service, but the guidelines were PDFs.</p>
+      <p class="point">PDF guidelines meant rejected banners and the same supplier questions, again and again.</p>
       <div class="cols c57">
         <ol class="pts" style="align-self:center">
           <li>Organised around <b>internal logic</b>, not how suppliers worked.</li>
-          <li>Account managers saw <b>rejected media</b> and the <b>same questions</b> again and again.</li>
-          <li>I owned the specs, templates and WCAG rules, so I could see <b>where they broke down</b>.</li>
+          <li>Account managers saw <b>rejected media</b> and <b>repeated questions</b>.</li>
+          <li>PDFs were hard to keep up to date as <b>specs and the design system changed</b>.</li>
         </ol>
         <div class="stack center">
-          <span class="eyebrow">The scale, in 2021</span>
+          <span class="eyebrow">A typical year</span>
           <div class="stats s3">
-            <div class="stat"><b>3,000</b><span>campaigns a year</span></div>
-            <div class="stat"><b>19,000</b><span>media assets</span></div>
-            <div class="stat"><b>900+</b><span>assets in one week before Christmas</span></div>
+            <div class="stat"><span class="sicon"><svg><use href="#i-megaphone"/></svg></span><b>3,000</b><span>campaigns a year</span></div>
+            <div class="stat"><span class="sicon"><svg><use href="#i-image"/></svg></span><b>19,000</b><span>media assets</span></div>
+            <div class="stat"><span class="sicon"><svg><use href="#i-calendar"/></svg></span><b>900+</b><span>assets in a single week before Christmas</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Version 1: the hub"
-    data-notes="Rather than update the PDFs, I rebuilt them as an interactive hub, organised around how suppliers browse and decide. Each format got its own page, with examples in place, accessibility guidance, templates and links to the Photoshop toolkit.">
-    <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Version 1: the hub</h2></div>
+  <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Phase 1: from PDFs to a hub"
+    data-notes="Phase one: rather than update the PDFs, I rebuilt them as an interactive hub, organised around how suppliers browse and decide. Each format got its own page. It was an ongoing product, not a one-off: when Asda updated its design system and UI, I updated the templates and pages to match, which PDFs could never have kept up with.">
+    <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Phase 1: from PDFs to a hub</h2></div>
     <div class="panel">
       <p class="point">I replaced the PDFs with an interactive hub, built around how suppliers browse.</p>
       <div class="cols c57">
         <div class="stack center tight">
-        <div class="card tint"><span class="icon"><svg><use href="#i-layout"/></svg></span><h3>A page per format</h3><p>Examples shown in place on Asda.com, desktop and mobile.</p></div>
-        <div class="card tint"><span class="icon"><svg><use href="#i-eye"/></svg></span><h3>Accessibility built in</h3><p>The WCAG rules suppliers had to meet, on every page.</p></div>
-        <div class="card tint"><span class="icon"><svg><use href="#i-download"/></svg></span><h3>Templates and toolkit</h3><p>Downloadable PSD templates and the UI toolkit I designed.</p></div>
+          <div class="card tint"><span class="icon"><svg><use href="#i-layout"/></svg></span><h3>A page per format</h3><p>Examples shown in place on Asda.com, desktop and mobile.</p></div>
+          <div class="card tint"><span class="icon"><svg><use href="#i-download"/></svg></span><h3>Templates and toolkit</h3><p>Downloadable PSD templates and the UI toolkit I designed.</p></div>
+          <div class="card dark"><span class="icon"><svg><use href="#i-refresh"/></svg></span><h3>An ongoing product</h3><p>Regular updates, such as new design system and UI for the templates, that PDFs couldn't keep up with.</p></div>
         </div>
         <figure class="frame" style="margin:0;align-self:center;aspect-ratio:900/500"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/AsdaDesignTemplateGuidelines-poster.jpg" data-src="img/portfolio/UX%20design/AsdaDesignTemplateGuidelines.mp4"></video></figure>
       </div>
     </div>
   </section>
 
-  <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Rebrand and new CMS" data-gap
-    data-notes="Then Asda rebranded, so I updated the guidelines and PSD templates to the new design system and UI. Then Asda moved to a new CMS. I worked with the product owner to map the structure suppliers already knew onto the CMS's standard components. The trade-off: less bespoke layout, in exchange for pages the wider team could maintain without me.">
-    <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Rebrand and new CMS</h2></div>
+  <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Phase 2: self-service" data-gap
+    data-notes="Phase two: suppliers moved to self-service banners, so they had to get artwork right without someone checking every piece. At the same time Asda moved to a new CMS. I worked with the product owner to map the structure suppliers already knew onto the CMS's standard components. The trade-off: less bespoke layout, for pages the wider team could maintain without me. [Any pushback from the product owner over CMS limits?]">
+    <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Phase 2: self-service</h2></div>
     <div class="panel">
-      <p class="point">I kept it aligned through a rebrand, then rebuilt it for a new CMS.</p>
+      <p class="point">Suppliers moved to self-service, so the hub had to work without anyone checking.</p>
       <div class="cols c57">
         <div class="stack center tight">
-          <div class="card" style="flex:none"><span class="icon"><svg><use href="#i-palette"/></svg></span><h3>The rebrand</h3><p>Guidelines and PSD templates updated to Asda's new design system and UI.</p></div>
-          <div class="card dark" style="flex:none"><span class="icon"><svg><use href="#i-server"/></svg></span><h3>The new CMS</h3><p>With the product owner, I kept the structure suppliers knew and rebuilt each page from the CMS's standard components.</p></div>
-          <p class="sub strong">Trade-off: less bespoke layout, for pages the team could maintain without me.</p>
-          <div class="todo">Any pushback from the product owner over CMS limits? If none, the trade-off is enough.</div>
+          <div class="card"><span class="icon"><svg><use href="#i-users"/></svg></span><h3>Self-service banners</h3><p>Suppliers had to get artwork right first time, on their own.</p></div>
+          <div class="card dark"><span class="icon"><svg><use href="#i-server"/></svg></span><h3>Rebuilt in the new CMS</h3><p>With the product owner: the structure suppliers knew, rebuilt from standard components.</p></div>
+          <div class="card"><span class="icon"><svg><use href="#i-sliders"/></svg></span><h3>The trade-off</h3><p>Less bespoke layout, for pages the team could maintain without me.</p></div>
         </div>
         <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:1200/675"><img src="img/portfolio/asda-pages/Asda-Guidelines-Wireframe-v2.jpg" alt="Wireframe for the CMS version"></figure>
       </div>
@@ -761,7 +804,7 @@
       <p class="point">Five suppliers, one task: find the specs, check accessibility, download the template.</p>
       <div class="cols c2">
         <div class="rows" style="align-self:center">
-          <div class="rows-head"><span>What suppliers struggled with</span><span></span><span>What changed</span></div>
+          <div class="rows-head"><span>Finding</span><span></span><span>Design change</span></div>
           <div class="row"><span>Lost track of which package</span><span class="arr">→</span><span class="to">Breadcrumbs</span></div>
           <div class="row"><span>In-page links weren't obvious</span><span class="arr">→</span><span class="to">A "Jump to" label</span></div>
           <div class="row"><span>No way into the PSD toolkit</span><span class="arr">→</span><span class="to">A video tutorial</span></div>
@@ -790,14 +833,14 @@
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Results"
-    data-notes="Implementation went from 95 to 98%, and supplier questions to the account team roughly halved. Follow-up sessions showed the changes worked. And the Checker outlasted the project: it became part of Asda's approval process.">
+    data-notes="Implementation went from 95 to 98%, and supplier questions to the account team roughly halved. Follow-up sessions showed the changes worked: Jump to meant less scrolling, and the progress bar meant more suppliers read to the end. And the Checker outlasted the project: it became part of Asda's approval process.">
     <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Results</h2></div>
-    <div class="panel">
+    <div class="panel spread">
       <p class="point">Fewer rejections, fewer questions, and a tool that outlasted the project.</p>
-      <div class="stats s3">
-        <div class="stat"><b>95→98%</b><span>media implementation rate</span></div>
-        <div class="stat"><b>~50%</b><span>fewer supplier questions to the account team</span></div>
-        <div class="stat"><b>1,000+</b><span>banners checked at peak through the Checker</span></div>
+      <div class="stats s3 big">
+        <div class="stat"><span class="sicon"><svg><use href="#i-check"/></svg></span><b>95→98%</b><span>media implementation rate</span></div>
+        <div class="stat"><span class="sicon"><svg><use href="#i-chat"/></svg></span><b>~50%</b><span>fewer supplier questions to the account team</span></div>
+        <div class="stat"><span class="sicon"><svg><use href="#i-image"/></svg></span><b>1,000+</b><span>banners checked at peak through the Checker</span></div>
       </div>
       <div class="cols c2" style="flex:none;gap:16px">
         <div class="card dark"><span class="icon"><svg><use href="#i-trend"/></svg></span><h3>It outlasted the project</h3><p>The Artwork Checker became part of Asda's internal approval process, used before any banner went live.</p></div>
@@ -814,8 +857,8 @@
       <div class="txt">
         <span class="label">03 · LHA London · Browse</span>
         <h2>LHA London: Room Search and Enquiries</h2>
-        <p class="subhead">Search, filters and room cards that help applicants find an available room before they get in touch.</p>
-        <p class="desc">The customer problem: applicants enquired blind about rooms that were full. I led it end to end, from competitor research to the build, and measured the result in analytics: browse first, enquire second.</p>
+        <p class="subhead">A room search experience with filters and availability-led listings, helping applicants find suitable rooms before enquiring.</p>
+        <p class="desc">The problem: applicants were enquiring about rooms without knowing if they were available. I led the project from competitor research through to build, using analytics to measure the impact of a browse-first, enquire-second journey.</p>
         <div class="shows"><span class="shows-label">What this shows</span><div class="chips"><span class="chip">Discovery and evaluation</span><span class="chip">Competitor benchmarking</span><span class="chip">Measuring impact</span></div></div>
       </div>
       <figure class="frame" style="height:460px;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/lha-ux.jpg" data-src="img/portfolio/UX%20design/lha-ux.mp4"></video></figure>
@@ -823,20 +866,20 @@
   </section>
 
   <section class="slide" data-sec="03 LHA London" data-title="The Problem"
-    data-notes="LHA had one generic enquiry form and no room details, so people enquired about full rooms, and the small team couldn't act on most of it. LHA vets everyone, so instant booking was out. I designed search, room cards with live availability, and a waiting list for full rooms.">
+    data-notes="LHA had one generic enquiry form and no room details, so people enquired about full rooms, and the small team couldn't act on most of it. I audited Booking.com and YHA. LHA vets everyone, so instant booking was out. I designed search, room cards with live availability, and a waiting list for full rooms.">
     <div class="head"><span class="label">03 · LHA London</span><h2>The Problem</h2></div>
     <div class="panel">
-      <p class="point">One generic enquiry form. LHA wanted applicants to see which rooms were available before enquiring, to cut unqualified enquiries.</p>
+      <p class="point">LHA wanted applicants to check room availability before enquiring, reducing unsuitable enquiries.</p>
       <div class="cols c57">
         <div class="stack center">
           <ol class="pts">
-            <li>No availability, photos or filters, so people asked about <b>full rooms</b>.</li>
-            <li>LHA vets everyone, so <b>no instant booking</b>.</li>
+            <li>No availability, photos or filters meant applicants often asked about <b>full rooms</b>.</li>
+            <li>LHA needed to vet every applicant, so <b>instant booking</b> wasn't an option.</li>
           </ol>
           <span class="eyebrow">What I designed</span>
           <ol class="pts" style="counter-reset:p 2">
-            <li><b>Search by area and room type</b>, with room cards showing photos, price and availability.</li>
-            <li>Full rooms go to a <b>waiting list</b>, with similar rooms suggested.</li>
+            <li><b>Search by area and room type</b>, with cards showing photos, prices and availability.</li>
+            <li><b>Waiting lists</b> for full rooms, with similar available rooms suggested as alternatives.</li>
           </ol>
         </div>
         <div class="stack">
@@ -851,34 +894,33 @@
   </section>
 
   <section class="slide" data-sec="03 LHA London" data-title="Results"
-    data-notes="One in five use the search, engagement is five times longer, and visits to the generic enquiry form fell 83%. The team runs it themselves.">
+    data-notes="One in five use the search, engagement is five times longer, and visits to the generic enquiry form fell 83%. The team runs all 70 rooms themselves. Google Analytics, March to October 2026 against the same period in 2025.">
     <div class="head"><span class="label">03 · LHA London</span><h2>Results</h2></div>
-    <div class="panel">
+    <div class="panel spread">
       <p class="point">Better enquiries, not more of them.</p>
-      <div class="stats s4">
-        <div class="stat"><b>1 in 5</b><span>visitors use the room search</span></div>
-        <div class="stat"><b>5×</b><span>longer engagement (13s to 1m 08s)</span></div>
-        <div class="stat"><b>83%</b><span>fewer visits to the generic enquiry form</span></div>
-        <div class="stat"><b>70</b><span>rooms the team runs themselves</span></div>
+      <div class="stats s4 big">
+        <div class="stat"><span class="sicon"><svg><use href="#i-search"/></svg></span><b>1 in 5</b><span>visitors use the room search</span></div>
+        <div class="stat"><span class="sicon"><svg><use href="#i-clock"/></svg></span><b>5×</b><span>longer engagement (13s to 1m 08s)</span></div>
+        <div class="stat"><span class="sicon"><svg><use href="#i-down"/></svg></span><b>83%</b><span>fewer visits to the generic enquiry form</span></div>
+        <div class="stat"><span class="sicon"><svg><use href="#i-home"/></svg></span><b>70</b><span>rooms the team runs themselves</span></div>
       </div>
       <div class="cols c57" style="flex:none">
         <div class="card tint"><span class="icon"><svg><use href="#i-sliders"/></svg></span><h3>After launch</h3><p>The LHA team updates prices and availability themselves, without a developer.</p></div>
         <div class="quote"><blockquote>We've already seen more confident user engagement and <mark>higher-quality enquiries</mark>.</blockquote><div class="who"><strong>Aggie Leighton</strong>, Operations Support Manager, LHA London</div></div>
       </div>
-      <p class="cap">Google Analytics, March to October 2026 vs the same period in 2025.</p>
     </div>
   </section>
 
   <!-- ================= 04 HUBS ================= -->
 
-  <section class="slide hero" data-sec="04 Asda Experiential Hubs" data-time="3.5 min" data-title="Intro: Seasonal Brand Hubs"
+  <section class="slide hero" data-sec="04 Asda Experiential Hubs" data-time="3 min" data-title="Intro: Seasonal Brand Hubs"
     data-notes="This links to the seasonal launches you mentioned, and to the app, through the Rewards app.">
     <div class="hero-in intro">
       <div class="txt">
         <span class="label">04 · Asda Experiential Hubs · Seasonal launches</span>
         <h2>Asda Experiential Hubs: Seasonal Brand Hubs</h2>
-        <p class="subhead">A repeatable seasonal experience that gave customers a reason to visit and brands a lower-cost way in.</p>
-        <p class="desc">A strategic opportunity: smaller brands couldn't afford a Branded Zone. I took it from idea to a pilot, then a template, improving the competition each event and planning journeys in from the Rewards app.</p>
+        <p class="subhead">A repeatable seasonal experience driving customer engagement while giving brands a lower-cost alternative to a Branded Zone.</p>
+        <p class="desc">The opportunity: smaller brands couldn't afford a dedicated Branded Zone. I developed the concept from pilot to reusable template, working with development squads to build instant-win competitions, refining each event and planning customer journeys from the Rewards app.</p>
         <div class="shows"><span class="shows-label">What this shows</span><div class="chips"><span class="chip">Seasonal launches</span><span class="chip">Customer and commercial goals</span><span class="chip">Piloting</span><span class="chip">App journeys</span></div></div>
       </div>
       <figure class="frame" style="height:440px;margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/Year-of-the-dragon-poster.png" data-src="img/portfolio/UX%20design/Year-of-the-dragon.mp4"></video></figure>
@@ -905,31 +947,26 @@
   </section>
 
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="The Idea" data-gap
-    data-notes="My idea: one shared page, several brands each buying in for less, owned by Asda and tied to seasonal events. It had to be worth a customer's visit, so not just a product list. It had to ask very little of suppliers. And owning it was deliberate: on Branded Zones, the layout was often a compromise with the brand. Owning it meant I could design for customers. I made that central to the pitch.">
+    data-notes="My idea: one shared page, several brands each buying in for less, owned by Asda and tied to seasonal events. I mapped the journey and wireframed it first, and shared the wireframes early with Sales and senior management to get them invested before anything was built. Owning it was deliberate: on Branded Zones the layout was often a compromise with the brand. Owning it meant I could design for customers. Sales needed engagement and a return for suppliers; senior management needed consistency and scale. [One specific pushback moment, if you remember it.]">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>The Idea</h2></div>
     <div class="panel">
       <p class="point">One shared hub, several brands buying in, owned by Asda and tied to seasonal events.</p>
-      <div class="cols c2">
+      <div class="cols c57">
         <ol class="pts" style="align-self:center">
-          <li><b>Worth a visit</b>: an instant-win competition, brand shops and playful carousels, not just a product list.</li>
-          <li><b>Little asked of suppliers</b>: products, logos and banners. We designed and built the rest.</li>
-          <li><b>Owned by Asda</b>, so I could design for customers, not around one brand.</li>
+          <li><b>Worth a visit</b>: an instant-win competition, brand shops and playful carousels.</li>
+          <li><b>Little asked of suppliers</b>: products, logos and banners. We built the rest.</li>
+          <li><b>Mapped and wireframed first</b>, then shared early to get stakeholders invested.</li>
         </ol>
-        <div class="stack center">
-          <span class="eyebrow">Two groups to win over</span>
-          <div class="card"><span class="icon"><svg><use href="#i-briefcase"/></svg></span><h3>Sales</h3><p>Needed engagement, and a clear return for suppliers.</p></div>
-          <div class="card"><span class="icon"><svg><use href="#i-building"/></svg></span><h3>Senior management</h3><p>Needed brand consistency, and something that could scale.</p></div>
-          <div class="todo">One specific pushback moment, if you remember it</div>
-        </div>
+        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:1500/1000"><img src="img/portfolio/UX%20design/Asda-Hub-Wireframe.jpg" alt="Desktop and mobile hub wireframes"></figure>
       </div>
     </div>
   </section>
 
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="The Pilot"
-    data-notes="The King's Coronation was the moment to test it. I created The Big Get-Together Bus Tour, an online version of the branded bus touring Asda stores. Sales pitched it, and suppliers bought in. I designed and built it, with an instant-win game: pick a window on the bus to see if you've won. If you didn't win, you saw the products in your window, so every play led back to shopping.">
+    data-notes="The King's Coronation was the moment to prove it. I created The Big Get-Together Bus Tour, an online version of the branded bus touring Asda stores. Sales pitched it, and suppliers bought in. I designed and built it, with an instant-win game: pick a window on the bus to see if you've won. If you didn't win, you saw the products in your window, so every play led back to shopping. It worked very well, and turned a one-off pitch into a format worth repeating.">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>The Pilot</h2></div>
     <div class="panel">
-      <p class="point">The King's Coronation: The Big Get-Together Bus Tour.</p>
+      <p class="point">The King's Coronation: The Big Get-Together Bus Tour proved the format.</p>
       <div class="cols c57">
         <ol class="pts" style="align-self:center">
           <li>Designed and built it, <b>from wireframes to front end</b>.</li>
@@ -943,21 +980,24 @@
   </section>
 
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="Making It Repeatable"
-    data-notes="Once the pilot worked, the job changed: designing something that could run every season. I mapped the journey from every entry point, including the Rewards app. Then wireframes, shared early with senior stakeholders and supplier teams, so problems came up while they were cheap to fix. Each event kept the structure but refreshed the competition.">
+    data-notes="Once the pilot worked, the job changed: something that could run every season. I mapped the journey from every entry point, including the Rewards app. Each event kept the structure but refreshed the competition: spin to win for Big Night In, find the winning gift at Christmas, find the winning envelope for Lunar New Year. Prizes moved to Asda Rewards Cashpot.">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>Making It Repeatable</h2></div>
     <div class="panel">
       <p class="point">From one page to a template for every season.</p>
       <div class="cols c57">
-        <div class="stack center">
-          <ol class="pts">
-            <li>Mapped every way in, including the <b>Rewards app</b>.</li>
-            <li>Wireframes <b>shared early</b>, so problems surfaced while cheap to fix.</li>
-            <li>Same structure, <b>new competition</b> each event, with Rewards Cashpot prizes.</li>
-          </ol>
-        </div>
+        <ol class="pts" style="align-self:center">
+          <li>Mapped every way in, including the <b>Rewards app</b>.</li>
+          <li>Same structure, <b>new competition</b> each event.</li>
+          <li>Prizes moved to <b>Asda Rewards Cashpot</b>, tying the hubs to the app.</li>
+        </ol>
         <div class="stack">
-          <figure class="frame contain" style="margin:0;flex:none;aspect-ratio:1970/678"><img src="img/portfolio/UX%20design/Experiential-Hub-UX.png" alt="Journey map from every entry point into the hub"></figure>
-          <figure class="frame fill" style="margin:0"><img src="img/portfolio/UX%20design/Asda-Hub-Wireframe.jpg" alt="Desktop and mobile hub wireframes"></figure>
+          <figure class="frame fill slideshow" data-interval="2000" style="margin:0">
+            <video class="on" muted loop playsinline preload="none" poster="img/presentation/Kings-Coronation-VIdeo-Desktop-poster.jpg" data-src="img/portfolio/websites/Kings-Coronation-VIdeo-Desktop.mp4" data-cap="The Big Get-Together · King's Coronation"></video>
+            <video muted loop playsinline preload="none" poster="img/presentation/Stars-Show-Video-Desktop-poster.jpg" data-src="img/portfolio/websites/Stars-Show-Video-Desktop.mp4" data-cap="The Big Night In · spin to win"></video>
+            <video muted loop playsinline preload="none" poster="img/presentation/Festive-Favourites-Video-Desktop-poster.jpg" data-src="img/portfolio/websites/Festive-Favourites-Video-Desktop.mp4" data-cap="A Magical Christmas · find the winning gift"></video>
+            <video muted loop playsinline preload="none" poster="img/presentation/Year-of-the-dragon-Video-Desktop-poster.jpg" data-src="img/portfolio/websites/Year-of-the-dragon-Video-Desktop.mp4" data-cap="Lunar New Year · find the winning envelope"></video>
+          </figure>
+          <div class="ss-bar"><span class="ss-cap">The Big Get-Together · King's Coronation</span><span class="ss-dots"></span></div>
         </div>
       </div>
     </div>
@@ -966,12 +1006,12 @@
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="Results"
     data-notes="It became a regular product across Asda's biggest events, and a new revenue stream. Lunar New Year: over 1.1 million entries, with nearly a million clicks from the Rewards app. Next time I'd A/B test within one event.">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>Results</h2></div>
-    <div class="panel">
+    <div class="panel spread">
       <p class="point">A regular product across Asda's biggest events, and a new revenue stream.</p>
-      <div class="stats s3">
-        <div class="stat"><b>910k+</b><span>Big Night In entries, 26 suppliers</span></div>
-        <div class="stat"><b>1.1m+</b><span>Lunar New Year entries, 25% more</span></div>
-        <div class="stat"><b>~1m</b><span>clicks from the Rewards app</span></div>
+      <div class="stats s3 big">
+        <div class="stat"><span class="sicon"><svg><use href="#i-gift"/></svg></span><b>910k+</b><span>Big Night In entries, 26 suppliers</span></div>
+        <div class="stat"><span class="sicon"><svg><use href="#i-trend"/></svg></span><b>1.1m+</b><span>Lunar New Year entries, 25% more</span></div>
+        <div class="stat"><span class="sicon"><svg><use href="#i-phone"/></svg></span><b>~1m</b><span>clicks from the Rewards app</span></div>
       </div>
       <div class="card" style="flex:none"><span class="icon"><svg><use href="#i-refresh"/></svg></span><h3>Next time</h3><p>A/B test the competition and layout within one event, and track product views and basket adds, not just entries.</p></div>
     </div>
@@ -985,8 +1025,8 @@
       <div class="txt">
         <span class="label">05 · Asda Pets · Browse</span>
         <h2>Asda Pets: Category Hub</h2>
-        <p class="subhead">A category hub that puts finding the right product first, with funded brand content built in.</p>
-        <p class="desc">A permanent brand takeover was getting in the way of shoppers. I mapped the journeys, designed three options and built agreement with senior merchandising around navigation first.</p>
+        <p class="subhead">A category hub prioritising product discovery while integrating supplier-funded brand content.</p>
+        <p class="desc">The problem: a permanent brand takeover disrupted product discovery. I mapped customer journeys, designed multiple layout options and secured senior merchandising buy-in for a navigation-first approach.</p>
         <div class="shows"><span class="shows-label">What this shows</span><div class="chips"><span class="chip">Discovery</span><span class="chip">Stakeholder alignment</span><span class="chip">Options and trade-offs</span></div></div>
       </div>
       <figure class="frame" style="height:540px;margin:0"><img src="img/portfolio/asda-pages/pets/pets-hub-desktop.jpg" alt="The agreed Asda Pets category hub"></figure>
@@ -997,17 +1037,17 @@
     data-notes="The pet category had been sold as a permanent takeover, with a skin over the whole category. It made pets look different from the rest of Asda.com, and it raised a bigger question about how takeovers should work. Three groups needed different things.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>The Problem</h2></div>
     <div class="panel">
-      <p class="point">A permanent brand takeover was getting in the way of shoppers.</p>
+      <p class="point">A permanent brand takeover disrupted product discovery.</p>
       <div class="cols c2">
         <ol class="pts" style="align-self:center">
-          <li>Sold as a <b>fixed piece of media</b>, with a "skin" over the whole category.</li>
-          <li>It made the category <b>look different</b> from the rest of Asda.com.</li>
-          <li>It raised a bigger question: <b>how should takeovers work</b> in future?</li>
+          <li>Sold as a <b>fixed media placement</b>, with a branded skin across the entire category.</li>
+          <li>Made the category feel <b>inconsistent</b> with the rest of Asda.com.</li>
+          <li>Raised a wider question: <b>how should brand takeovers work</b> in future?</li>
         </ol>
         <div class="stack center tight">
-          <div class="card dark"><span class="icon"><svg><use href="#i-cart"/></svg></span><h3>Shoppers</h3><p>Needed the right food or treats for their pet, fast.</p></div>
-          <div class="card"><span class="icon"><svg><use href="#i-grid"/></svg></span><h3>Merchandising</h3><p>Owned the category pages and product ranges.</p></div>
-          <div class="card"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Brands</h3><p>Paid for visibility, and needed clear slots to buy into.</p></div>
+          <div class="card dark"><span class="icon"><svg><use href="#i-cart"/></svg></span><h3>Shoppers</h3><p>Needed to find the right food and treats for their pets quickly.</p></div>
+          <div class="card"><span class="icon"><svg><use href="#i-grid"/></svg></span><h3>Merchandising</h3><p>Managed category pages and product ranges.</p></div>
+          <div class="card"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Brands</h3><p>Paid for visibility and needed clear, defined placements.</p></div>
         </div>
       </div>
     </div>
@@ -1017,8 +1057,9 @@
     data-notes="I mapped how shoppers would move from the category page into the hub, then straight to a category or through a brand. Funded placements sit along the journey as other routes to products, not obstacles in front of them.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Mapping the Journey</h2></div>
     <div class="panel">
-      <p class="point">Funded placements as other routes to products, not obstacles in front of them.</p>
+      <p class="point">Integrating funded placements into the shopping journey, rather than putting them in the way.</p>
       <div class="flow"><svg viewBox="0 0 1180 400" role="img" aria-label="User flow: from the Pet Food category page, through the Asda Pets hub, to category sections or brand pages, then to the trolley"><defs><marker id="arrN" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#36109b"/></marker><marker id="arrF" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2187c"/></marker></defs><rect x="24" y="160" width="178" height="66" rx="14" fill="#f3f0ff" stroke="#36109b" stroke-width="2"/><text x="113.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Pet Food category</text><text x="113.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Existing taxonomy page</text><rect x="304" y="160" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="393.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Asda Pets hub</text><text x="393.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">The category hub</text><rect x="528" y="52" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="617.0" y="81.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Category links</text><text x="617.0" y="101.0" text-anchor="middle" font-size="12" fill="#6b6585">Cat Food, Dog Food…</text><rect x="528" y="160" width="178" height="66" rx="14" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="6 4"/><text x="617.0" y="189.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Brand icons</text><text x="617.0" y="209.0" text-anchor="middle" font-size="12" fill="#6b6585">Sponsored slot</text><rect x="528" y="268" width="178" height="66" rx="14" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="6 4"/><text x="617.0" y="297.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Billboard &amp; promos</text><text x="617.0" y="317.0" text-anchor="middle" font-size="12" fill="#6b6585">Sponsored slots</text><rect x="752" y="52" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="841.0" y="81.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Category section</text><text x="841.0" y="101.0" text-anchor="middle" font-size="12" fill="#6b6585">Product spotlight</text><rect x="752" y="214" width="178" height="66" rx="14" fill="#ffffff" stroke="#36109b" stroke-width="2"/><text x="841.0" y="243.0" text-anchor="middle" font-size="15" font-weight="700" fill="#2e1e62">Brand page</text><text x="841.0" y="263.0" text-anchor="middle" font-size="12" fill="#6b6585">Individual brand page</text><rect x="976" y="160" width="158" height="66" rx="14" fill="#36109b" stroke="#36109b" stroke-width="2"/><text x="1055.0" y="198.0" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Add to trolley</text><path d="M202,193.0 L304,193.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><text x="253.0" y="181.0" text-anchor="middle" font-size="11" fill="#6b6585">Criteo banner</text><path d="M482,193.0 C505.0,193.0 505.0,85.0 528,85.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M482,193.0 L528,193.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M482,193.0 C505.0,193.0 505.0,301.0 528,301.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M706,85.0 L752,85.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M706,193.0 C729.0,193.0 729.0,247.0 752,247.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M706,301.0 C729.0,301.0 729.0,247.0 752,247.0" fill="none" stroke="#c2187c" stroke-width="2" marker-end="url(#arrF)"/><path d="M930,85.0 C956.0,85.0 950.0,178.0 976,178.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><path d="M930,247.0 C956.0,247.0 950.0,208.0 976,208.0" fill="none" stroke="#36109b" stroke-width="2" marker-end="url(#arrN)"/><rect x="24" y="358" width="16" height="16" rx="4" fill="#fff" stroke="#36109b" stroke-width="2"/><text x="48" y="371" font-size="13" fill="#2e1e62">Shopper navigation</text><rect x="210" y="358" width="16" height="16" rx="4" fill="#fdf0f7" stroke="#c2187c" stroke-width="2" stroke-dasharray="4 3"/><text x="234" y="371" font-size="13" fill="#2e1e62">Funded placement (paid for by brands)</text></svg></div>
+      <p class="cap">From a banner on the Pet Food category page, through the hub, to a category or a brand page. Pink dashed routes are funded.</p>
     </div>
   </section>
 
@@ -1026,29 +1067,111 @@
     data-notes="I showed three stripped-back options rather than one answer, at different levels of supplier involvement: from sponsored slots on the existing page, to a full hub with or without navigation buttons.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Three Options</h2></div>
     <div class="panel">
-      <p class="point">Three options, from least to most supplier content.</p>
+      <p class="point">Three options, at different levels of supplier involvement.</p>
+      <div class="scale"><span>Minimal supplier content</span><i></i><span>More supplier content</span></div>
       <div class="cols c3" style="gap:24px">
         <div class="stack"><span class="eyebrow">Option 1</span><figure class="frame fill" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-option-category.jpg" alt="Option 1: sponsored category page wireframes"></figure><p class="cap">Sponsored slots on the existing category page.</p></div>
-        <div class="stack"><span class="eyebrow">Agreed option</span><figure class="frame fill" style="margin:0;outline:3px solid var(--accent);outline-offset:-3px"><img src="img/portfolio/asda-pages/pets/pets-option-1.jpg" alt="Agreed: hub with navigation buttons"></figure><p class="cap">A hub with category buttons, so shoppers go straight to what they need.</p></div>
+        <div class="stack"><span class="eyebrow">Agreed option</span><figure class="frame fill" style="margin:0;outline:3px solid var(--accent-on-dark);outline-offset:-3px"><img src="img/portfolio/asda-pages/pets/pets-option-1.jpg" alt="Agreed: hub with navigation buttons"></figure><p class="cap">A hub with category buttons, straight to what shoppers need.</p></div>
         <div class="stack"><span class="eyebrow">Option 3</span><figure class="frame fill" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-option-2.jpg" alt="Option 3: hub without navigation buttons"></figure><p class="cap">No category buttons, more funded content, built around Top Picks.</p></div>
       </div>
     </div>
   </section>
 
+  <section class="slide" data-sec="05 Asda Pets" data-title="Sponsored Opportunities"
+    data-notes="For the stripped-back option, I mapped four combinations of slots on the existing category page, so the team could see how much could be sold while the page still worked for shoppers.">
+    <div class="head"><span class="label">05 · Asda Pets</span><h2>Sponsored Opportunities</h2></div>
+    <div class="panel">
+      <p class="point">Four slot combinations, showing how much could be sold while the page still worked.</p>
+      <div class="cols c4" style="gap:20px">
+        <div class="stack"><figure class="frame fill contain" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-category-variant-1.jpg" alt="Variant 1"></figure><p class="cap">1 · Billboard, brand pods, promo, inserts</p></div>
+        <div class="stack"><figure class="frame fill contain" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-category-variant-2.jpg" alt="Variant 2"></figure><p class="cap">2 · Leaderboard, brand pods, promo, inserts</p></div>
+        <div class="stack"><figure class="frame fill contain" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-category-variant-3.jpg" alt="Variant 3"></figure><p class="cap">3 · Billboard, promo, inserts</p></div>
+        <div class="stack"><figure class="frame fill contain" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-category-variant-4.jpg" alt="Variant 4"></figure><p class="cap">4 · Leaderboard, promo, inserts</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="slide" data-sec="05 Asda Pets" data-title="Agreeing the Balance" data-gap
-    data-notes="I pitched the options to senior merchandising. They knew which merchandising performed better on their pages, and together we worked out how much supplier content the hub should carry. We agreed shoppers first: navigation at the top, funded slots below.">
+    data-notes="I pitched the options to senior merchandising. They knew which merchandising performed better on their pages, and together we worked out how much supplier content the hub should carry. We agreed shoppers first: navigation at the top, funded slots below. [What merchandising actually pushed back on.]">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Agreeing the Balance</h2></div>
     <div class="panel">
       <p class="point">With senior merchandising, we agreed navigation first and funded slots below.</p>
       <div class="cols c57">
-        <div class="stack center">
-          <div class="card tint"><span class="icon"><svg><use href="#i-chart"/></svg></span><h3>What merchandising brought</h3><p>Insight into which merchandising performed better on their pages.</p></div>
-          <div class="card dark"><span class="icon"><svg><use href="#i-check"/></svg></span><h3>Agreed</h3><p>The hub with navigation buttons. Funded slots kept, but limited so they didn't get in the way.</p></div>
-          <div class="todo">What merchandising actually pushed back on</div>
+        <div class="stack center tight">
+        <div class="card"><span class="icon"><svg><use href="#i-chart"/></svg></span><h3>Merchandising insight</h3><p>What performed better on their pages.</p></div>
+        <div class="card"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Supplier involvement</h3><p>How much funded content the hub could carry.</p></div>
+        <div class="card dark"><span class="icon"><svg><use href="#i-cart"/></svg></span><h3>User first</h3><p>Nothing should get in the way of finding products.</p></div>
         </div>
+        <div class="stack"><figure class="frame fill" style="margin:0;outline:3px solid var(--accent-on-dark);outline-offset:-3px"><img src="img/portfolio/asda-pages/pets/pets-option-1.jpg" alt="The agreed option: hub with navigation buttons"></figure><p class="cap">Agreed: the hub with navigation buttons, funded slots below.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-sec="05 Asda Pets" data-title="Anatomy of the Hub"
+    data-notes="The final layout puts navigation first, with funded placements as clear, sellable slots further down. On mobile, the category buttons become a two-column grid at the top, so navigation still comes before any funded content.">
+    <div class="head"><span class="label">05 · Asda Pets</span><h2>Anatomy of the Hub</h2></div>
+    <div class="panel">
+      <p class="point">Navigation first, with funded placements as clear, sellable slots.</p>
+      <div class="cols c57">
+        <ol class="pts" style="align-self:center;gap:16px">
+          <li><b>Asda Pets header</b> in Asda's own style, replacing the skin.</li>
+          <li><b>Category links</b> that jump straight to each section.</li>
+          <li><b>Billboard</b>: a sponsored hero carousel.</li>
+          <li><b>Brand icons</b> linking to each brand's page.</li>
+          <li><b>Product spotlight</b> per category, with sponsored products.</li>
+          <li><b>Promo banners</b>: up to four per category.</li>
+        </ol>
         <div class="cols c75" style="gap:16px">
           <figure class="frame" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-hub-desktop.jpg" alt="The final hub on desktop"></figure>
           <figure class="frame" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-mobile-hub.jpg" alt="The final hub on mobile"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 06 WEB DESIGN ================= -->
+
+  <section class="slide hero" data-sec="06 Website Design" data-time="1 min" data-title="Intro: Websites and Branded Zones"
+    data-notes="A quick look at the visual side. I've designed and built websites since 2014, in agency and freelance roles. For Alpha Hospital Group I set up the design system in Figma and used AI to help create 50+ service pages.">
+    <div class="hero-in intro">
+      <div class="txt">
+        <span class="label">06 · Website Design · Visual design</span>
+        <h2>Website Design: Websites and Branded Zones</h2>
+        <p class="subhead">Websites designed and built from scratch, and bespoke brand pages for Asda's biggest suppliers.</p>
+        <p class="desc">I've designed and built websites since 2014, in agency and freelance roles. Recent work includes Alpha Hospital Group, where I set up the design system in Figma and used AI to help create 50+ service pages.</p>
+        <div class="shows"><span class="shows-label">What this shows</span><div class="chips"><span class="chip">Visual design</span><span class="chip">Design systems</span><span class="chip">Front-end build</span></div></div>
+      </div>
+      <div class="stack">
+        <figure class="frame slideshow" data-interval="3000" style="margin:0;aspect-ratio:16/10">
+          <video class="on" muted loop playsinline preload="none" poster="img/presentation/AHG-Desktop-poster.jpg" data-src="img/portfolio/websites/AHG-Desktop.mp4" data-cap="Alpha Hospital Group"></video>
+          <video muted loop playsinline preload="none" poster="img/presentation/BDirect-Desktop-poster.jpg" data-src="img/portfolio/websites/BDirect-Desktop.mp4" data-cap="B-Direct"></video>
+          <video muted loop playsinline preload="none" poster="img/presentation/Tigon-poster.jpg" data-src="img/portfolio/websites/Tigon.mp4" data-cap="Tigon Scaffolding"></video>
+          <video muted loop playsinline preload="none" poster="img/presentation/JL-Dental-Care-Desktop-poster.jpg" data-src="img/portfolio/websites/JL-Dental-Care-Desktop.mp4" data-cap="JL Dental Care"></video>
+        </figure>
+        <div class="ss-bar"><span class="ss-cap">Alpha Hospital Group</span><span class="ss-dots"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-sec="06 Website Design" data-title="Branded Zones"
+    data-notes="Branded Zones were the bespoke brand pages my team designed and built for suppliers. For brands with their own design teams, I acted as a design consultant. With Cadbury, that meant a competition built into the page, which helped secure a £100K investment. As demand grew, I trained the team as it grew from two to five designers, and built reusable code so pages stayed consistent.">
+    <div class="head"><span class="label">06 · Website Design</span><h2>Branded Zones</h2></div>
+    <div class="panel">
+      <p class="point">Bespoke brand pages for Asda's biggest suppliers, balancing their campaign with Asda's look.</p>
+      <div class="cols c57">
+        <div class="stats col1">
+          <div class="stat" style="flex-direction:row;align-items:center;gap:18px"><span class="sicon"><svg><use href="#i-coins"/></svg></span><b>£100K</b><span>investment secured from Cadbury</span></div>
+          <div class="stat" style="flex-direction:row;align-items:center;gap:18px"><span class="sicon"><svg><use href="#i-users"/></svg></span><b>2 → 5</b><span>designers trained as the team grew</span></div>
+          <div class="stat" style="flex-direction:row;align-items:center;gap:18px"><span class="sicon"><svg><use href="#i-zap"/></svg></span><b>2 days</b><span>to deliver a fast-track Branded Zone</span></div>
+        </div>
+        <div class="stack">
+          <figure class="frame fill slideshow" data-interval="3000" style="margin:0">
+            <video class="on" muted loop playsinline preload="none" poster="img/presentation/lego-asda-poster.jpg" data-src="img/portfolio/videos/lego-asda.mp4" data-cap="LEGO · Christmas"></video>
+            <video muted loop playsinline preload="none" poster="img/presentation/Cadbury-BrandedZone-Video-poster.jpg" data-src="img/portfolio/websites/Cadbury-BrandedZone-Video.mp4" data-cap="Cadbury · Branded Zone and competition"></video>
+            <video muted loop playsinline preload="none" poster="img/presentation/coke-poster.jpg" data-src="img/portfolio/asda-pages/coke.mp4" data-cap="Coca-Cola · Perfect Pairings"></video>
+            <video muted loop playsinline preload="none" poster="img/presentation/cheese-shop-poster.jpg" data-src="img/portfolio/asda-pages/cheese-shop.mp4" data-cap="The Cheese Shop"></video>
+          </figure>
+          <div class="ss-bar"><span class="ss-cap">LEGO · Christmas</span><span class="ss-dots"></span></div>
         </div>
       </div>
     </div>
@@ -1120,7 +1243,7 @@
       ui.appendChild(bp); ui.appendChild(bs);
     }
     var be = document.createElement('button'); be.type = 'button'; be.setAttribute('aria-label', 'Enlarge'); be.innerHTML = ICONS.expand;
-    be.addEventListener('click', function (e) { e.stopPropagation(); openLightbox(v || fr.querySelector('img.on') || img); });
+    be.addEventListener('click', function (e) { e.stopPropagation(); openLightbox(fr.querySelector('video.on') || v || fr.querySelector('img.on') || img); });
     ui.appendChild(be);
     fr.appendChild(ui);
   });
@@ -1219,17 +1342,18 @@
 
   // Slideshows: advance every 4.5s on the current slide, or on click
   function ssGo(ss, d) {
-    var imgs = Array.prototype.slice.call(ss.querySelectorAll('img'));
+    var imgs = Array.prototype.slice.call(ss.querySelectorAll(':scope > img, :scope > video'));
     var i = imgs.findIndex(function (m) { return m.classList.contains('on'); });
     var n = (i + d + imgs.length) % imgs.length;
     imgs.forEach(function (m, k) { m.classList.toggle('on', k === n); });
     var wrap = ss.parentNode, cap = wrap.querySelector('.ss-cap'), dots = wrap.querySelectorAll('.ss-dots i');
     if (cap) cap.textContent = imgs[n].dataset.cap || '';
     dots.forEach(function (dt, k) { dt.classList.toggle('on', k === n); });
+    var nv = imgs[n]; if (nv.tagName === 'VIDEO') { if (!nv.src && nv.dataset.src) nv.src = nv.dataset.src; try { nv.currentTime = 0; } catch (e) {} var pp = nv.play(); if (pp && pp.catch) pp.catch(function () {}); }
   }
   stage.querySelectorAll('.slideshow').forEach(function (ss) {
     var dots = ss.parentNode.querySelector('.ss-dots');
-    if (dots) ss.querySelectorAll('img').forEach(function (m, k) { var dt = document.createElement('i'); if (k === 0) dt.className = 'on'; dots.appendChild(dt); });
+    if (dots) ss.querySelectorAll(':scope > img, :scope > video').forEach(function (m, k) { var dt = document.createElement('i'); if (k === 0) dt.className = 'on'; dots.appendChild(dt); });
     ss.addEventListener('click', function (e) { if (e.target.closest('.media-ui')) return; ss.dataset.t = Date.now(); ssGo(ss, 1); });
   });
   var ssCur = -1;
@@ -1244,7 +1368,7 @@
   }, 250);
 
   // Text animating in, as on the site
-  var SR = '.label, .point, .subhead, .desc, .shows, .lead, .hero-in > .txt > .chips, .todo, ol.pts li, .eyebrow, .card, .stat, .rows-head, .row, .frame, .phone, .ss-bar, .cap, .sub, .agenda a, .quote, .flow, .ice-wrap, .steps .step';
+  var SR = '.label, .point, .subhead, .desc, .shows, .lead, .hero-in > .txt > .chips, .todo, ol.pts li, .eyebrow, .card, .stat, .rows-head, .row, .frame, .phone, .ss-bar, .cap, .sub, .agenda a, .quote, .flow, .ice-wrap, .steps .step, .dd, .dd-cols p, .ai-note, .scale';
   slides.forEach(function (sl) {
     sl.querySelectorAll('.head h2, .hero-in h1, .hero-in h2').forEach(function (h) {
       if (h.querySelector('*')) return;
