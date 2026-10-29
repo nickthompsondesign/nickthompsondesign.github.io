@@ -49,7 +49,7 @@
 
     /* ---------- Stage ---------- */
     .viewport { position: fixed; inset: 0; display: grid; place-items: center; }
-    .stage { position: relative; width: 1600px; height: 900px; flex: none; overflow: hidden; transform-origin: center center; background: #000113; }
+    .stage { position: absolute; left: 50%; top: 50%; width: 1600px; height: 900px; flex: none; overflow: hidden; transform-origin: center center; transform: translate(-50%, -50%); background: #000113; }
 
     /* ---------- Hero gradient (shared.css, sized to the stage) ---------- */
     .gradient-bg { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2)); z-index: 0; }
@@ -1282,7 +1282,7 @@
   // Fit the stage to the window
   function fit() {
     var s = Math.min(window.innerWidth / 1600, window.innerHeight / 900);
-    stage.style.transform = 'scale(' + s + ')';
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
   }
 
   // Presenter view (a second window with notes, next slide and a timer)
