@@ -470,6 +470,38 @@
       .stat b { white-space: nowrap; }
     .flow { width: 100%; max-width: 1180px; align-self: center; }
     .panel:has(> .point) > .cols { flex: 1 1 0; min-height: 0; }
+      /* Spacing pass */
+    .panel ol.pts { gap: 32px; }
+    .panel .stack.center:not(.tight) { gap: 36px; }
+    .stack.tight { gap: 20px; }
+    .panel .rows { gap: 14px; }
+    .panel .rows .row { padding: 16px 22px; }
+    .about-pts { gap: 30px !important; }
+    /* Six projects grid */
+    .pgrid { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 20px; flex: 1 1 0; min-height: 0; }
+    .pcard { display: grid; grid-template-columns: 220px 1fr; gap: 22px; align-items: center; padding: 14px; text-decoration: none; color: #fff; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); border-radius: 15px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,255,255,0.05); transition: border-color .3s, background .3s; min-height: 0; }
+    .pcard:hover { border-color: rgba(167,139,250,0.45); background: rgba(255,255,255,0.06); }
+    .pcard img { width: 100%; height: 100%; max-height: 150px; object-fit: cover; object-position: top center; border-radius: 10px; display: block; }
+    .pcard .n { font-family: var(--font-heading); font-style: italic; font-weight: 300; font-size: 20px; color: var(--accent-on-dark); }
+    .pcard h3 { font-size: 26px; color: #fff; margin: 2px 0 6px; }
+    .pcard p { font-size: 16px; line-height: 1.45; color: rgba(255,255,255,0.75); }
+    .pcard .sq { display: block; margin-top: 10px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-on-dark); }
+    /* LHA results, as on the case study */
+    .cs-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; flex: none; }
+    .cs-stat { display: flex; flex-direction: column; gap: 12px; padding: 26px 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); border-radius: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,255,255,0.05); }
+    .cs-stat b { font-family: var(--font-heading); font-size: 56px; font-weight: 800; line-height: 1; letter-spacing: var(--tracking-tight); color: var(--accent-on-dark); font-optical-sizing: none; font-variation-settings: "opsz" 24; }
+    .cs-stat span { font-size: 16px; line-height: 1.45; color: #fff; }
+    .cs-stat small { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .cs-viz { height: 76px; display: flex; align-items: center; }
+    .cs-people { display: flex; gap: 6px; } .cs-people svg { width: 30px; height: 46px; } .cs-people .on { fill: #ddd6fe; } .cs-people .off { fill: rgba(255,255,255,0.18); }
+    .cs-bars { width: 100%; display: grid; gap: 10px; } .cs-bar-row { display: grid; grid-template-columns: 50px 1fr; align-items: center; gap: 10px; font-size: 12px; color: rgba(255,255,255,0.65); }
+    .cs-bar { height: 14px; border-radius: 4px; } .cs-bar--before { width: 19%; background: rgba(255,255,255,0.3); } .cs-bar--after { width: 100%; background: #ddd6fe; }
+    .cs-donut { width: 76px; height: 76px; }
+    .cs-dots { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; width: 100%; } .cs-dots i { aspect-ratio: 1; border-radius: 50%; background: #ddd6fe; opacity: .85; }
+    /* Notes: key points, then the script */
+    .notes ul, .np ul { margin: 0 0 12px; padding-left: 20px; }
+    .notes li { margin: 0 0 4px; font-weight: 600; }
+    .notes .script { opacity: .75; font-size: .92em; }
   </style>
 </head>
 <body>
@@ -487,14 +519,14 @@
 
   <!-- 1 Title -->
   <section class="slide hero" data-sec="Intro" data-time="2.5 min" data-title="Title" data-gap
+    data-points="Thank you for having me|Six projects, about 20 minutes, then questions|Chosen to match the squads you described"
     data-notes="Thank you for having me. I&#x27;ll take you through six projects, about 20 minutes, then I&#x27;m happy to take questions. I&#x27;ve chosen projects that line up with what you told me about the different squads.">
     <div class="hero-in" style="grid-template-columns:1fr 1fr">
       <div class="txt">
         <span class="label">Portfolio presentation · The White Company</span>
         <h1 class="logo-title">Nick Thompson</h1>
         <p class="lead" style="font-family:var(--font-heading);font-style:italic;font-size:36px;color:#fff;margin-top:-20px;">Product Designer</p>
-        <div class="chips"><span class="chip">Buy</span><span class="chip">Browse</span><span class="chip">Seasonal launches</span><span class="chip">Design system</span></div>
-        <div class="todo" style="max-width:560px">Your title: Product Designer, or Lead Digital Designer</div>
+        <p class="lead" style="max-width:600px">Over a decade of digital design and build across web, UX, brand, and front-end development.</p>
       </div>
       <!-- Showreel video -->
       <figure class="frame reel-video" style="margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/nick-thompson-showreel-poster.jpg" data-src="img/portfolio/nick-thompson-showreel-v6%20(1).mp4"></video></figure>
@@ -503,19 +535,20 @@
 
   <!-- 2 About me -->
   <section class="slide" data-sec="Intro" data-title="A bit about me"
-    data-notes="Ten years in digital design: UX, UI, web and brand. Five years as Lead Web Designer at Asda, where my team managed funded media across Asda.com: bespoke brand pages and online experiences, working with suppliers and internal Asda teams, around 3,000 funded campaigns a year. Now I&#x27;m Lead Digital Designer at Infoserve. What I&#x27;m looking for: owning a product in-house, testing with customers, and improving it over time. [Click the ice] A quick ice breaker: I spent seven months in Chile teaching English. Not design, but it shaped how I mentor: show it, do it together, then let them do it.">
+    data-points="10+ years in design|Highlight: 5 years at Asda, Lead Web Designer|Team ran all funded media: ~3,000 campaigns a year, ~£1m a week|UX design and build of supplier-funded pages, web and app|Led the Experiential Hubs, idea to launch|Owned the supplier guidelines: questions cut by about half|Now: Infoserve, UX and web projects end to end|Next: own a product, larger team, premium brand|[Click the ice] Chile: 7 months teaching English, how I mentor"
+    data-notes="I have over ten years&#x27; design experience. The highlight was five years at Asda as Lead Web Designer. I was in the team that ran all funded media across the Asda website: around 3,000 campaigns a year, bringing in about £1m a week. I was mainly responsible for the UX design and build of supplier-funded pages across the website and app. I led the Experiential Hubs from idea to launch, and I owned the supplier guidelines, where research-led changes cut supplier questions by about half. Now at Infoserve, I run UX and web projects end to end. Next, I want to own a product in a larger, collaborative team, on a premium brand where design quality matters. [Click the ice] A quick ice breaker: I spent seven months in Chile teaching English. Not design, but it shaped how I mentor: show it, do it together, then let them do it.">
     <div class="head"><span class="label">Introduction</span><h2>A bit about me</h2></div>
     <div class="panel" style="gap:60px">
       <div class="cols c57" style="flex:none;gap:72px">
         <div class="stats col1">
-          <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>10+</b><span>years in digital design: UX, UI, web and brand</span></div>
-          <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>5 yrs</b><span>Lead Web Designer at Asda</span></div>
-          <div class="stat" style="flex-direction:row;align-items:baseline;gap:18px"><b>~3,000</b><span>funded campaigns a year</span></div>
+          <div class="stat" style="flex-direction:row;align-items:center;gap:20px"><span class="sicon"><svg><use href="#i-clock"/></svg></span><b>10+</b><span>years in digital design: UX, UI, web and brand</span></div>
+          <div class="stat" style="flex-direction:row;align-items:center;gap:20px"><span class="sicon"><svg><use href="#i-cart"/></svg></span><b>5 yrs</b><span>Lead Web Designer at Asda</span></div>
         </div>
         <ol class="pts about-pts" style="align-self:center">
-          <li><b>At Asda,</b> I was mainly responsible for the UX design and build of supplier-funded pages across the website and app.</li>
-          <li><b>Now,</b> I'm Lead Digital Designer at Infoserve, leading UX and web projects from research to launch.</li>
-          <li><b>What I'm looking for:</b> owning a product in-house, testing with customers, and improving it over time.</li>
+          <li><b>At Asda:</b> UX design and build of supplier-funded pages, web and app.</li>
+          <li><b>Led</b> the Experiential Hubs, and <b>owned</b> the supplier guidelines.</li>
+          <li><b>Now at Infoserve:</b> UX and web projects, end to end.</li>
+          <li><b>Next:</b> owning a product in a larger team, on a premium brand.</li>
         </ol>
       </div>
       <div class="ice-wrap">
@@ -527,6 +560,7 @@
 
   <!-- 3 How I work -->
   <section class="slide" data-sec="Intro" data-title="How I work"
+    data-points="Double diamond: right problem, then right solution|Discover, Define, Develop, Deliver|AI speeds up research summaries and prototypes|The decisions stay with me"
     data-notes="I follow the double diamond. Discover: talk to stakeholders, look at the data, audit what&#x27;s there. Define: work out the real problem. Develop: options and prototypes, tested with people. Deliver: bring developers in early, launch, measure, keep improving. AI helps me move faster, summarising research and building prototypes, but the decisions stay with me. You&#x27;ll see each stage in the projects.">
     <div class="head"><span class="label">Approach</span><h2>How I work</h2></div>
     <div class="panel">
@@ -552,16 +586,17 @@
 
   <!-- 4 Agenda -->
   <section class="slide" data-sec="Intro" data-title="Six projects"
+    data-points="Six projects, matched to your squads|Most time on the first one"
     data-notes="These are the six projects. I picked them to match the squads you told me about: Buy, Browse, seasonal launches and the design system. I&#x27;ll spend most time on the first one.">
     <div class="head"><span class="label">Today</span><h2>Six projects across the areas you work in</h2></div>
-    <div class="panel" style="justify-content:center">
-      <nav class="agenda">
-        <a href="#5" data-goto="5"><span class="n">01</span><div><h3>Treasured Possession</h3><p>A quote and checkout redesign, in progress</p></div><span class="sq">Buy · quote and checkout</span></a>
-        <a href="#13" data-goto="13"><span class="n">02</span><div><h3>Asda Design Guidelines</h3><p>A B2B hub for suppliers, from PDFs to self-service</p></div><span class="sq">Design system · B2B</span></a>
-        <a href="#20" data-goto="20"><span class="n">03</span><div><h3>LHA London</h3><p>Search, filters and room cards</p></div><span class="sq">Browse · search and room details</span></a>
-        <a href="#23" data-goto="23"><span class="n">04</span><div><h3>Asda Experiential Hubs</h3><p>From a gap in the offer to a repeatable product</p></div><span class="sq">Seasonal launches</span></a>
-        <a href="#29" data-goto="29"><span class="n">05</span><div><h3>Asda Pets</h3><p>A category hub, navigation first</p></div><span class="sq">Browse · merchandising</span></a>
-        <a href="#36" data-goto="36"><span class="n">06</span><div><h3>Website Design</h3><p>Websites and Asda Branded Zones</p></div><span class="sq">Visual design · brand</span></a>
+    <div class="panel">
+      <nav class="pgrid">
+        <a class="pcard" href="#5" data-goto="5"><img src="img/portfolio/treasured-possession/tp-box-step.jpg" alt=""><div><span class="n">01</span><h3>Treasured Possession</h3><p>A quote and checkout redesign, in progress</p><span class="sq">Buy · quote and checkout</span></div></a>
+        <a class="pcard" href="#12" data-goto="12"><img src="img/portfolio/thumbnail/thumb-n-design-guidelines.jpg" alt=""><div><span class="n">02</span><h3>Asda Design Guidelines</h3><p>A B2B hub for suppliers, from PDFs to self-service</p><span class="sq">Design system · B2B</span></div></a>
+        <a class="pcard" href="#19" data-goto="19"><img src="img/portfolio/UX%20design/lha-ux.jpg" alt=""><div><span class="n">03</span><h3>LHA London</h3><p>Room search, filters and availability</p><span class="sq">Browse · search</span></div></a>
+        <a class="pcard" href="#24" data-goto="24"><img src="img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg" alt=""><div><span class="n">04</span><h3>Asda Experiential Hubs</h3><p>From a gap in the offer to a repeatable product</p><span class="sq">Seasonal launches</span></div></a>
+        <a class="pcard" href="#31" data-goto="31"><img src="img/portfolio/asda-pages/pets/pets-option-1.jpg" alt=""><div><span class="n">05</span><h3>Asda Pets</h3><p>A category hub, navigation first</p><span class="sq">Browse · merchandising</span></div></a>
+        <a class="pcard" href="#38" data-goto="38"><img src="img/presentation/AHG-Desktop-poster.jpg" alt=""><div><span class="n">06</span><h3>Website Design</h3><p>Websites and Asda Branded Zones</p><span class="sq">Visual design · brand</span></div></a>
       </nav>
     </div>
   </section>
@@ -570,7 +605,8 @@
 
   <!-- Intro -->
   <section class="slide hero" data-sec="01 Treasured Possession" data-time="6 min" data-title="Intro: Instant Quote Tool"
-    data-notes="A recent project, still in progress. I&#x27;m showing it because it&#x27;s my most complete example of the full process, and of how I use AI. It&#x27;s closest to your Buy squad. I designed it mobile first, because 80% of their traffic is on mobile, and it works the same way on desktop.">
+    data-points="My latest project, still in progress|An exciting example of AI in the design process|Could align with your Buy squad|Mobile first: 80% of their traffic is mobile"
+    data-notes="I want to show you this one because it&#x27;s my latest project, still in progress, and an exciting example of how AI can be used in the design process. It could align with your Buy squad. I designed it mobile first, because 80% of their traffic is on mobile, and it works the same way on desktop.">
     <div class="hero-in intro">
       <div class="txt">
         <span class="label">01 · Treasured Possession · Buy</span>
@@ -583,7 +619,8 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="The Problem"
-    data-notes="The client first came to us because they wanted to capture email addresses. When I looked at the quote tool, there were bigger issues. Too many fields: you had to fill in everything, including two dates, then press Calculate Order, which actually added it to the basket. No running total: each item had a price, but you only saw the total in the basket. No editing: once a quote was made, you couldn&#x27;t change it. And no leads: lots of people abandoned the page, and they left nothing the business could follow up.">
+    data-points="Client came to us wanting email addresses|Too many fields, no running total, no editing, no leads|Missed opportunity: not just dresses|Goals: more orders, every quote a lead, fewer drop-offs|Constraints: fixed budget, WooCommerce, small team"
+    data-notes="The client first came to us because they wanted to capture email addresses. When I looked at the quote tool, there were bigger issues. Too many fields: you had to fill in everything, including two dates, then press Calculate Order, which actually added it to the basket. No running total: you only saw the total in the basket. No editing: once a quote was made, you couldn&#x27;t change it. No leads: lots of people abandoned the page, and left nothing to follow up. There was also a missed opportunity. It wasn&#x27;t just dresses: a preservation box for a groomsman&#x27;s suit, for example, could make a great anniversary gift. So the goals were more orders, every quote captured as a lead, and fewer drop-offs. The constraints: a fixed budget, WooCommerce, and a small client team.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>The Problem</h2></div>
     <div class="panel">
       <p class="point">Customers were promised an "instant price", but only saw the total in the basket.</p>
@@ -605,34 +642,9 @@
     </div>
   </section>
 
-  <section class="slide" data-sec="01 Treasured Possession" data-title="Research"
-    data-notes="With a small budget, I picked each method to answer one question. First, an audit of the form against usability heuristics and WCAG 2.2: the order summary never showed a price, Calculate Order actually added the item to the basket, and the dress style cards couldn&#x27;t be reached with a keyboard. Then 12 months of orders: £251 average order, about 23 a month, and 65% of dress orders include a preservation box. Box size always follows dress style, so we could choose it for the customer. Then competitors: I did the same task on three UK sites, getting a price to clean a dress that cost £1,000 to £2,500. Every one showed a total within two clicks, and none asked for an email first. Re:Finery showed that price bands can still feel instant. Elsie May showed that one line of reassurance takes the fear out of choosing. I also looked outside the industry, at laundry apps with running totals and courier sites that grey out unavailable dates. And I read the client&#x27;s reviews: stain emergencies, speed, and people sending suits too, not just dresses.">
-    <div class="head"><span class="label">01 · Treasured Possession</span><h2>Research</h2></div>
-    <div class="panel">
-      <p class="point">Every competitor showed a total within two clicks. None asked for an email first.</p>
-      <div class="cols c57">
-        <div class="stack center">
-          <div class="chips"><span class="chip">Heuristic audit</span><span class="chip">WCAG 2.2 audit</span><span class="chip">Order data</span><span class="chip">Competitors</span><span class="chip">Reviews</span></div>
-          <div class="card tint"><span class="icon"><svg><use href="#i-search"/></svg></span><h3>What I took from competitors</h3><p><b>Re:Finery:</b> value-based price bands can still feel instant.</p><p><b>Elsie May:</b> a simple line of reassurance can make choosing feel less daunting.</p></div>
-          <div class="card"><span class="icon"><svg><use href="#i-db"/></svg></span><h3>What the order data showed</h3><p>Box size always follows dress style, so it can be set for you. 65% of dress orders add a box.</p></div>
-        </div>
-        <div class="stack">
-          <figure class="frame fill slideshow" data-interval="2500" style="margin:0">
-            <img class="on" src="img/portfolio/treasured-possession/comp-elsiemay-step1.jpg" alt="Elsie May, step 1" data-cap="Elsie May · Step 1: choose the closest gown style">
-            <img src="img/portfolio/treasured-possession/comp-elsiemay-step2.jpg" alt="Elsie May, step 2" data-cap="Elsie May · Step 2: the price, straight away">
-            <img src="img/portfolio/treasured-possession/comp-refinery-start.jpg" alt="Re:Finery booking panel" data-cap="Re:Finery · The booking panel">
-            <img src="img/portfolio/treasured-possession/comp-refinery-priced.jpg" alt="Re:Finery with a total" data-cap="Re:Finery · The total updates as you choose">
-            <img src="img/portfolio/treasured-possession/comp-refinery-extras.jpg" alt="Re:Finery extras" data-cap="Re:Finery · Extras collapsed, with quantity steppers">
-            <img src="img/portfolio/treasured-possession/comp-dorothy-top.jpg" alt="Dorothy product page" data-cap="Dorothy · A flat price on arrival">
-            <img src="img/portfolio/treasured-possession/comp-dorothy-addons.jpg" alt="Dorothy add-ons" data-cap="Dorothy · Add-ons as checkboxes, then required fields">
-          </figure>
-          <div class="ss-bar"><span class="ss-cap">Elsie May · Step 1: choose the closest gown style</span><span class="ss-dots"></span></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Low-fidelity designs" data-gap
+    data-points="Planned in Figma, then Claude to build a live prototype|Tested much earlier than usual|Price first, booking second|Smart defaults from the order data|Checked every idea with our developer"
     data-notes="This is where AI helped. I planned the flow in Figma, then took it into Claude, which made it much quicker to get to a live, clickable prototype with real prices. That meant we could test far earlier than usual. The price comes first and the booking second, so the quote is useful even to people who aren&#x27;t ready to book. The order data set the defaults: box size always follows dress style, so it&#x27;s chosen for you. And I checked each idea with our developer, so everything would work in WooCommerce.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Low-fidelity designs</h2></div>
     <div class="panel">
@@ -658,6 +670,7 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Testing"
+    data-points="Colleagues outside the project, real scenarios|Edit quote easy to miss: prominent button|Unsure of dress style: Not sure? panel|Dates unclear: colour-coded calendar, checked with developer|Everyone clicked Show more: all extras shown|Desktop scrolled down: Continue on every step"
     data-notes="I ran usability testing with colleagues from outside the project, using real-life scenarios. Edit quote was easy to miss, so I made it a prominent button. People weren&#x27;t sure which dress style they had, so I added a Not sure? panel. The dates were unclear, so I checked with our developer that it was possible, then added a colour-coded calendar: when we can collect, when it comes back, and unavailable dates greyed out. I&#x27;d hidden some extras behind Show more, but everyone clicked it, so now they all show. And on desktop, people scrolled to the bottom looking for a button, even though Continue was in the side panel, so every step now has a Continue button at the bottom.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Testing</h2></div>
     <div class="panel">
@@ -683,20 +696,22 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Client review"
-    data-notes="Once those changes were made, I presented the findings to the client and we agreed the changes together. The big one: price before email. The client wanted the email first. I showed them the findings and explained it could cost them orders, and suggested we A/B test it after launch so they can see the impact for themselves. We also looked at the £30 charge for using your own box. Testers felt it was disingenuous, because they couldn&#x27;t see what it was for. We worked out with the client what it actually covers, expert packing, and renamed it to say so.">
+    data-points="Presented findings, agreed changes together|Price before email: suggested an A/B test after launch|£30 box charge felt disingenuous: renamed to show what it covers|Few suit or flower girl orders: built for them anyway|Follow-up offer for saved quotes"
+    data-notes="Once those changes were made, I presented the findings to the client and we agreed the changes together. The big one was price before email. The client wanted the email first. I showed them the findings, explained it could cost them orders, and suggested we A/B test it after launch so they can see the impact. Testers felt the £30 charge for using your own box was disingenuous, because they couldn&#x27;t see what it was for. We worked out with the client what it covers, expert packing, and renamed it to say so. On the call, they said they don&#x27;t get many orders for groomsman suits or flower girl dresses, so they weren&#x27;t bothered about those options. I suggested we build for them anyway, as room to grow. And for saved quotes, we planned a follow-up offer after seven days.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Client review</h2></div>
     <div class="panel">
       <p class="point">I presented the findings to the client, and we agreed the changes together.</p>
-      <div class="cols c2" style="flex:none;gap:16px">
+      <div class="cols c2" style="flex:none;gap:24px">
         <div class="card dark"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Price before email</h3><p>The client preferred capturing emails before showing prices. Competitor research and usability findings supported showing the price first. With too little order data for an A/B test, we agreed to launch price first and keep email first as a test option.</p></div>
         <div class="card"><span class="icon"><svg><use href="#i-package"/></svg></span><h3>Clearer service pricing</h3><p>Renamed "Own box" to "Pack and present with your own box", clarifying what the £30 charge covered.</p></div>
-        <div class="card"><span class="icon"><svg><use href="#i-coins"/></svg></span><h3>Fewer unexpected charges</h3><p>Removed the admin fee and showed the breathable bag as included.</p></div>
+        <div class="card"><span class="icon"><svg><use href="#i-users"/></svg></span><h3>Room for every item</h3><p>The client saw few orders for groomsman suits or flower girl dresses. I suggested building for them anyway, as room to grow.</p></div>
         <div class="card"><span class="icon"><svg><use href="#i-mail"/></svg></span><h3>Follow-up for saved quotes</h3><p>Planned a 10% discount after seven days, plus a reminder before the 30-day price hold expires.</p></div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="High-fidelity designs"
+    data-points="Mobile first, on their brand|Accessible: WCAG 2.2 AA|Running total in a side panel on desktop"
     data-notes="Then the high-fidelity designs. Mobile first, on the client&#x27;s brand, and accessible to WCAG 2.2 AA: clear labels, keyboard access, and price changes read out by screen readers. On desktop, the running total sits in a side panel.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>High-fidelity designs</h2></div>
     <div class="panel">
@@ -712,6 +727,7 @@
   </section>
 
   <section class="slide" data-sec="01 Treasured Possession" data-title="Results"
+    data-points="Too early: just launching|Baseline: last 12 months of orders|Saved quotes become leads to follow up|Results in about 8 weeks|Next: seasonal or engraved boxes, gifts"
     data-notes="It&#x27;s too early for results, because it&#x27;s just launching. We&#x27;ll measure against a baseline from the last 12 months of orders. We&#x27;ll also see new leads: quotes that don&#x27;t become orders are saved, so the client can follow them up. I expect we&#x27;ll see results after about eight weeks. And the way it&#x27;s built opens up more to sell. The preservation box is an add-on, so there could be seasonal or engraved boxes, or preservation as a gift.">
     <div class="head"><span class="label">01 · Treasured Possession</span><h2>Results</h2></div>
     <div class="panel spread">
@@ -728,6 +744,7 @@
   <!-- ================= 02 GUIDELINES ================= -->
 
   <section class="slide hero" data-sec="02 Asda Design Guidelines" data-time="4 min" data-title="Intro: Supplier Design Hub"
+    data-points="B2B: suppliers were the users|A design system story|Improved over time, in two phases"
     data-notes="Next, the Asda Design Guidelines. A B2B product: suppliers were the users. It&#x27;s a design system story, and it shows a product improved over time, in two phases.">
     <div class="hero-in intro">
       <div class="txt">
@@ -741,20 +758,22 @@
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="The Problem"
-    data-notes="The guidelines were PDFs, organised around internal logic. The account managers gave me two signals: rejected media, and the same questions again and again. At 3,000 campaigns and 19,000 assets a year, with 900 in one week before Christmas, that added up. I owned the specs, the templates and the rules, so I could see where it broke down.">
+    data-points="Outdated format: PDFs, built around internal processes|Frequent errors: non-compliant artwork|Repeated questions to account managers|Limited self-service: suppliers needed clearer guidance|Scale: 3,000 campaigns, 19,000 assets a year"
+    data-notes="The guidelines were locked in PDFs, structured around our internal processes rather than what suppliers needed. Suppliers regularly sent non-compliant banner artwork, and account managers spent time answering the same questions again and again. Suppliers were also moving to self-service, so they needed clearer guidance to get it right without manual checks. At 3,000 campaigns and 19,000 assets a year, with 900 in one week before Christmas, that added up. I owned the specs, the templates and the rules, so I could see where it broke down.">
     <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>The Problem</h2></div>
     <div class="panel">
       <p class="point">PDF guidelines meant rejected banners and the same supplier questions, again and again.</p>
       <div class="cols c57">
         <ol class="pts" style="align-self:center">
-          <li>Organised around <b>internal logic</b>, not how suppliers worked.</li>
-          <li>Account managers saw <b>rejected media</b> and <b>repeated questions</b>.</li>
-          <li>PDFs were hard to keep up to date as <b>specs and the design system changed</b>.</li>
+          <li><b>Outdated format:</b> locked in PDFs, built around internal processes.</li>
+          <li><b>Frequent errors:</b> suppliers often sent non-compliant artwork.</li>
+          <li><b>Repeated questions:</b> account managers answered the same queries.</li>
+          <li><b>Limited self-service:</b> suppliers needed clearer guidance to get it right.</li>
         </ol>
         <div class="stack center">
           <span class="eyebrow">A typical year</span>
           <div class="stats s3">
-            <div class="stat"><span class="sicon"><svg><use href="#i-megaphone"/></svg></span><b>3,000</b><span>campaigns a year</span></div>
+            <div class="stat"><span class="sicon"><svg><use href="#i-layers"/></svg></span><b>3,000</b><span>campaigns a year</span></div>
             <div class="stat"><span class="sicon"><svg><use href="#i-image"/></svg></span><b>19,000</b><span>media assets</span></div>
             <div class="stat"><span class="sicon"><svg><use href="#i-calendar"/></svg></span><b>900+</b><span>assets in a single week before Christmas</span></div>
           </div>
@@ -764,22 +783,24 @@
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Phase 1: from PDFs to a hub"
-    data-notes="Phase one was turning the PDF guidelines into a website we could update quickly. Templates changed often, and new design system updates and rules had to be built into the guidelines, which PDFs couldn&#x27;t keep up with. Each format got its own page, with examples, downloadable PSD templates and the UI toolkit I designed. It was an ongoing product, not a one-off.">
-    <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Phase 1: from PDFs to a hub</h2></div>
+    data-points="PDFs to a bespoke hub, built around how suppliers browse|A page for every format, shown in context|PSD templates and the UI toolkit I designed|Built to update quickly as formats and the design system changed"
+    data-notes="Phase one: I replaced the static PDFs with a bespoke hub, built around how suppliers browse and use the guidelines. Every format got its own page, with examples shown in context on Asda.com, on desktop and mobile. Suppliers could download PSD templates and a Photoshop UI toolkit I designed. And it could move quickly: templates changed often, and design system updates and new rules had to go in fast, which PDFs couldn&#x27;t do.">
+    <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Phase 1: From PDFs to an interactive hub</h2></div>
     <div class="panel">
-      <p class="point">I replaced the PDFs with an interactive hub, built around how suppliers browse.</p>
+      <p class="point">I replaced static PDFs with a bespoke hub, built around how suppliers browse and use the guidelines.</p>
       <div class="cols c57">
         <div class="stack center tight">
-          <div class="card tint"><span class="icon"><svg><use href="#i-layout"/></svg></span><h3>A page per format</h3><p>Examples shown in place on Asda.com, desktop and mobile.</p></div>
-          <div class="card tint"><span class="icon"><svg><use href="#i-download"/></svg></span><h3>Templates and toolkit</h3><p>Downloadable PSD templates and the UI toolkit I designed.</p></div>
-          <div class="card dark"><span class="icon"><svg><use href="#i-refresh"/></svg></span><h3>An ongoing product</h3><p>Regular updates, such as new design system and UI for the templates, that PDFs couldn't keep up with.</p></div>
+          <div class="card tint"><span class="icon"><svg><use href="#i-layout"/></svg></span><h3>A page for every format</h3><p>Examples shown in context on Asda.com, across desktop and mobile.</p></div>
+          <div class="card tint"><span class="icon"><svg><use href="#i-download"/></svg></span><h3>Templates and UI toolkit</h3><p>Downloadable PSD templates and a Photoshop UI toolkit I designed, so suppliers could create compliant artwork.</p></div>
+          <div class="card dark"><span class="icon"><svg><use href="#i-refresh"/></svg></span><h3>Built for ongoing updates</h3><p>A resource that could evolve with new formats, design system changes and templates, unlike static PDFs.</p></div>
         </div>
-        <figure class="frame" style="margin:0;align-self:center;aspect-ratio:900/500"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/AsdaDesignTemplateGuidelines-poster.jpg" data-src="img/portfolio/UX%20design/AsdaDesignTemplateGuidelines.mp4"></video></figure>
+        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:1200/675"><img src="img/portfolio/asda-pages/Asda-Guidelines-Wireframe-v2.jpg" alt="Wireframe for the guidelines hub"></figure>
       </div>
     </div>
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Phase 2: self-service" data-gap
+    data-points="Suppliers sent final JPEGs, not PSDs|Guidance had to be clear first time|Rebuilt in the new CMS with the product owner|Trade-off: less bespoke, but the team could maintain it"
     data-notes="Phase two was the move to self-service. Suppliers stopped sending PSDs for us to finish. They sent the final JPEGs, so everything had to be very clear, first time. At the same time Asda moved to a new CMS. I worked with the product owner to rebuild the hub from the CMS&#x27;s standard components, keeping the structure suppliers knew. The trade-off: less bespoke layout, but pages the team could maintain without me. [Any pushback from the product owner over CMS limits?]">
     <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Phase 2: self-service</h2></div>
     <div class="panel">
@@ -790,12 +811,13 @@
           <div class="card dark"><span class="icon"><svg><use href="#i-server"/></svg></span><h3>Rebuilt in the new CMS</h3><p>With the product owner: the structure suppliers knew, rebuilt from standard components.</p></div>
           <div class="card"><span class="icon"><svg><use href="#i-sliders"/></svg></span><h3>The trade-off</h3><p>Less bespoke layout, for pages the team could maintain without me.</p></div>
         </div>
-        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:1200/675"><img src="img/portfolio/asda-pages/Asda-Guidelines-Wireframe-v2.jpg" alt="Wireframe for the CMS version"></figure>
+        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:1264/848"><img src="img/portfolio/websites/Asda-Guidelines-Mockup.png" alt="The guidelines hub in the new CMS"></figure>
       </div>
     </div>
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Testing"
+    data-points="Five suppliers, same task|Lost: breadcrumbs|Jump to links unclear: made clearer|PSD toolkit complicated: video tutorial|No sense of progress: progress bar|Couldn&#x27;t see artwork on site: the Artwork Checker"
     data-notes="I ran sessions with five suppliers, each given the same task: find the specs, check the accessibility rules and download the template. People got lost, so I added breadcrumbs. It wasn&#x27;t clear the Jump to links were buttons, so I made them clearer. The PSD toolkit felt complicated, so I made a video tutorial. There was no sense of progress on long pages, so I added a progress bar. And they couldn&#x27;t see how their banner would look on site, which led to the Artwork Checker.">
     <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Testing</h2></div>
     <div class="panel">
@@ -809,21 +831,22 @@
           <div class="row"><span>No sense of progress</span><span class="arr">→</span><span class="to">A progress bar</span></div>
           <div class="row key"><span>Couldn't see artwork on site</span><span class="arr">→</span><span class="to">The Artwork Checker</span></div>
         </div>
-        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:751/446"><img src="img/portfolio/asda-pages/Asda-Guidelines-High-Mockup.png" alt="The final design, with breadcrumbs and Jump to navigation"></figure>
+        <figure class="frame" style="margin:0;align-self:center;aspect-ratio:1200/676"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/Guidelines-Preview-Design-poster.jpg" data-src="img/portfolio/UX%20design/Guidelines-Preview-Design.mp4"></video></figure>
       </div>
     </div>
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="The Artwork Checker"
-    data-notes="This was the finding everyone had missed. Suppliers sent their own artwork, but couldn&#x27;t see how it would look on site. A banner supplied at 1000 pixels might show at 400, and Asda&#x27;s roundels covered anything outside the safe zone. So I designed and built the Artwork Checker: it shows the banner at real size, with the safe zones on top.">
+    data-points="The finding everyone had missed|Dynamic sizing: 1000px supplied, 400px on site|Safe zones: roundels covered the edges|Interactive preview: detects size, suggests placements"
+    data-notes="This was the finding everyone had missed. Suppliers sent their own artwork, but couldn&#x27;t see how it would look on site. So I designed and built the Artwork Checker. Dynamic banner sizing: it shows artwork at the size it really appears. A banner supplied at 1000 pixels might show at 400. Safe zones: it overlays where Asda&#x27;s roundels and UI sit, so nothing important gets covered. And an interactive preview: it detects the banner size, suggests compatible placements, and lets suppliers toggle safe zones and on-site elements to see how it will look.">
     <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>The Artwork Checker</h2></div>
     <div class="panel">
       <p class="point">The finding everyone had missed: suppliers couldn't see how artwork would look on site.</p>
       <div class="cols c57">
         <ol class="pts" style="align-self:center">
-          <li>A banner supplied at <b>1000px</b> could show at <b>400px</b>.</li>
-          <li>Asda's <b>roundels</b> covered anything outside the safe zone.</li>
-          <li>The Checker detects the template and shows artwork <b>at real size, with safe zones</b>.</li>
+          <li><b>Dynamic banner sizing:</b> shows artwork at the size it really appears, not the size supplied.</li>
+          <li><b>Safe zones:</b> overlays where Asda's roundels and UI sit, so nothing important is covered.</li>
+          <li><b>Interactive preview:</b> detects the banner size, suggests placements, and toggles on-site elements.</li>
         </ol>
         <figure class="frame contain" style="margin:0"><video muted loop playsinline preload="none" poster="img/portfolio/UX%20design/Artwork-Checker-Poster.png" data-src="img/portfolio/UX%20design/Artwork-Checker.mp4"></video></figure>
       </div>
@@ -831,25 +854,24 @@
   </section>
 
   <section class="slide" data-sec="02 Asda Design Guidelines" data-title="Results"
-    data-notes="Fewer rejections: implementation went from 95 to 98%. Fewer questions: roughly half as many to the account team. And the Checker outlasted the project. It became part of Asda&#x27;s approval process, used before any banner went live, over 1,000 banners at peak.">
+    data-points="Implementation up from 95% to 98%|About half as many supplier questions|Checker became part of Asda&#x27;s approval process|Over 1,000 banners checked at peak"
+    data-notes="The results: fewer rejections, with implementation up from 95 to 98%, and about half as many supplier questions to the account team. The Artwork Checker became a standard part of Asda&#x27;s approval process, used to check artwork before any banner went live. At peak times, over 1,000 banners went through it.">
     <div class="head"><span class="label">02 · Asda Design Guidelines</span><h2>Results</h2></div>
     <div class="panel spread">
-      <p class="point">Fewer rejections, fewer questions, and a tool that outlasted the project.</p>
+      <p class="point">Fewer rejections, fewer questions, and a tool Asda kept using.</p>
       <div class="stats s3 big">
         <div class="stat"><span class="sicon"><svg><use href="#i-check"/></svg></span><b>95→98%</b><span>media implementation rate</span></div>
         <div class="stat"><span class="sicon"><svg><use href="#i-chat"/></svg></span><b>~50%</b><span>fewer supplier questions to the account team</span></div>
         <div class="stat"><span class="sicon"><svg><use href="#i-image"/></svg></span><b>1,000+</b><span>banners checked at peak through the Checker</span></div>
       </div>
-      <div class="cols c2" style="flex:none;gap:16px">
-        <div class="card dark"><span class="icon"><svg><use href="#i-trend"/></svg></span><h3>It outlasted the project</h3><p>The Artwork Checker became part of Asda's internal approval process, used before any banner went live.</p></div>
-        <div class="card"><span class="icon"><svg><use href="#i-check"/></svg></span><h3>Checked in follow-up sessions</h3><p>"Jump to" meant less scrolling. The progress bar meant more suppliers read to the end.</p></div>
-      </div>
+      <div class="card dark" style="flex:none"><span class="icon"><svg><use href="#i-check"/></svg></span><h3>Part of Asda's approval process</h3><p>The Artwork Checker became a standard step, used to check artwork before any banner went live.</p></div>
     </div>
   </section>
 
   <!-- ================= 03 LHA ================= -->
 
   <section class="slide hero" data-sec="03 LHA London" data-time="2 min" data-title="Intro: Room Search and Enquiries"
+    data-points="Charity, 14 hostels|Could align with your Browse squad|Led end to end, research to build"
     data-notes="LHA London: a charity with 14 hostels. Closest to your Browse squad, helping people find and compare the right option. I led it end to end, from research to the build.">
     <div class="hero-in intro">
       <div class="txt">
@@ -863,20 +885,22 @@
   </section>
 
   <section class="slide" data-sec="03 LHA London" data-title="The Problem"
-    data-notes="LHA had one generic enquiry form. No availability, photos or filters, so people asked about rooms that were already full, and the small team couldn&#x27;t act on most of it. I looked at Booking.com and YHA. But LHA vets everyone, so instant booking was out. So I designed search by area and room type, room cards with photos, prices and live availability, and a waiting list for full rooms, with similar rooms suggested.">
+    data-points="One generic enquiry form|Poor room visibility: no photos, filters or availability|Manual vetting: no instant booking|Smarter search with live availability|Waiting lists and similar rooms"
+    data-notes="LHA had one generic enquiry form. There were no photos, filters or availability, so people asked about rooms that were already full, and the small team couldn&#x27;t act on most of it. I looked at Booking.com and YHA, but LHA vets every applicant, so instant booking was out. So I designed a smarter search, with photos, prices and live availability, and for full rooms, a waiting list with similar available rooms suggested.">
     <div class="head"><span class="label">03 · LHA London</span><h2>The Problem</h2></div>
     <div class="panel">
       <p class="point">LHA wanted applicants to check room availability before enquiring, reducing unsuitable enquiries.</p>
       <div class="cols c57">
         <div class="stack center">
+          <span class="eyebrow">The problem</span>
           <ol class="pts">
-            <li>No availability, photos or filters meant applicants often asked about <b>full rooms</b>.</li>
-            <li>LHA needed to vet every applicant, so <b>instant booking</b> wasn't an option.</li>
+            <li><b>Poor room visibility:</b> no photos, filters or availability.</li>
+            <li><b>Manual vetting:</b> every applicant needed approval.</li>
           </ol>
           <span class="eyebrow">What I designed</span>
           <ol class="pts" style="counter-reset:p 2">
-            <li><b>Search by area and room type</b>, with cards showing photos, prices and availability.</li>
-            <li><b>Waiting lists</b> for full rooms, with similar available rooms suggested as alternatives.</li>
+            <li><b>Smarter search:</b> photos, prices and live availability.</li>
+            <li><b>Alternative options:</b> waiting lists and similar available rooms.</li>
           </ol>
         </div>
         <div class="stack">
@@ -890,16 +914,51 @@
     </div>
   </section>
 
+  <section class="slide" data-sec="03 LHA London" data-title="Mapping the Journey"
+    data-points="Mapped the navigation first|Many entry points, including paid PPC ads to pages|Room status decides: booking or waiting list|Forms arrive pre-filled"
+    data-notes="I mapped out how it would navigate first, because there were lots of entry points, especially as they ran paid PPC ads to individual pages. Each room&#x27;s status decides the next step: available rooms lead to the booking form, full rooms to a waiting list. The room, hostel and type carry through, so every enquiry arrives pre-filled and ready to action.">
+    <div class="head"><span class="label">03 · LHA London</span><h2>Mapping the Journey</h2></div>
+    <div class="panel">
+      <p class="point">Every way in, including paid ads, leads to the right room and the right form.</p>
+      <div class="cols c57">
+        <ol class="pts" style="align-self:center">
+          <li><b>Many entry points:</b> homepage search, listings, and paid ads to room pages.</li>
+          <li><b>Room status decides:</b> available rooms go to booking, full rooms to a waiting list.</li>
+          <li><b>Pre-filled forms:</b> the room, hostel and type carry through, ready to action.</li>
+        </ol>
+        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:2170/667"><img src="img/portfolio/UX%20design/LHA-London-UX-Flowchart.jpg" alt="User flow from search to booking or waiting list"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-sec="03 LHA London" data-title="Wireframes"
+    data-points="Low-fidelity wireframes|Room card first: photo, price, type, availability|Reviewed with the client before final design"
+    data-notes="Then wireframes, to get the room card right before any visual design: photo, price, room type and a live availability badge. I reviewed them with the client before moving into the final design.">
+    <div class="head"><span class="label">03 · LHA London</span><h2>Wireframes</h2></div>
+    <div class="panel">
+      <p class="point">Low-fidelity wireframes to get the room card right before any visual design.</p>
+      <div class="cols c57">
+        <ol class="pts" style="align-self:center">
+          <li><b>Room card first:</b> photo, price, room type and a live availability badge.</li>
+          <li><b>Search to listings:</b> filters already applied from the homepage search.</li>
+          <li><b>Reviewed with the client</b> before moving into the final design.</li>
+        </ol>
+        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:2000/1252"><img src="img/portfolio/UX%20design/LHA-mockups-2.png" alt="Low-fidelity wireframes: homepage search, room listings and rooms widget"></figure>
+      </div>
+    </div>
+  </section>
+
   <section class="slide" data-sec="03 LHA London" data-title="Results"
+    data-points="Better enquiries, not more|1 in 5 use the room search|5x longer engagement|83% fewer visits to the generic form|Team manages all 70 rooms themselves"
     data-notes="Better enquiries, not more of them. One in five visitors now use the search. Engagement is five times longer. Visits to the generic enquiry form fell 83%. And the team runs all 70 rooms themselves, without a developer.">
     <div class="head"><span class="label">03 · LHA London</span><h2>Results</h2></div>
     <div class="panel spread">
       <p class="point">Better enquiries, not more of them.</p>
-      <div class="stats s4 big">
-        <div class="stat"><span class="sicon"><svg><use href="#i-search"/></svg></span><b>1 in 5</b><span>visitors use the room search</span></div>
-        <div class="stat"><span class="sicon"><svg><use href="#i-clock"/></svg></span><b>5×</b><span>longer engagement (13s to 1m 08s)</span></div>
-        <div class="stat"><span class="sicon"><svg><use href="#i-down"/></svg></span><b>83%</b><span>fewer visits to the generic enquiry form</span></div>
-        <div class="stat"><span class="sicon"><svg><use href="#i-home"/></svg></span><b>70</b><span>rooms the team runs themselves</span></div>
+      <div class="cs-stats">
+        <div class="cs-stat"><div class="cs-viz"><div class="cs-people"><svg viewBox="0 0 24 36" class="on"><circle cx="12" cy="7" r="6"/><path d="M1 35c0-9 4.9-15 11-15s11 6 11 15z"/></svg><svg viewBox="0 0 24 36" class="off"><circle cx="12" cy="7" r="6"/><path d="M1 35c0-9 4.9-15 11-15s11 6 11 15z"/></svg><svg viewBox="0 0 24 36" class="off"><circle cx="12" cy="7" r="6"/><path d="M1 35c0-9 4.9-15 11-15s11 6 11 15z"/></svg><svg viewBox="0 0 24 36" class="off"><circle cx="12" cy="7" r="6"/><path d="M1 35c0-9 4.9-15 11-15s11 6 11 15z"/></svg><svg viewBox="0 0 24 36" class="off"><circle cx="12" cy="7" r="6"/><path d="M1 35c0-9 4.9-15 11-15s11 6 11 15z"/></svg></div></div><b>1 in 5</b><span>visitors now use the room search</span><small>24,173 of 120,371 users</small></div>
+        <div class="cs-stat"><div class="cs-viz"><div class="cs-bars"><div class="cs-bar-row"><span>Before</span><div class="cs-bar cs-bar--before"></div></div><div class="cs-bar-row"><span>After</span><div class="cs-bar cs-bar--after"></div></div></div></div><b>5&times;</b><span>longer engagement than the old form</span><small>13s → 1m 08s average per user</small></div>
+        <div class="cs-stat"><div class="cs-viz"><svg class="cs-donut" viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.915" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="6"/><circle cx="21" cy="21" r="15.915" fill="none" stroke="#ddd6fe" stroke-width="6" stroke-dasharray="83 17" stroke-dashoffset="25"/></svg></div><b>83%</b><span>fewer visits to the generic enquiry form</span><small>24,161 → 4,156 users, year on year</small></div>
+        <div class="cs-stat"><div class="cs-viz"><div class="cs-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><b>70</b><span>rooms across 14 hostels, managed in-house</span><small>Prices and availability updated by the team</small></div>
       </div>
       <div class="cols c57" style="flex:none">
         <div class="card tint"><span class="icon"><svg><use href="#i-sliders"/></svg></span><h3>After launch</h3><p>The LHA team updates prices and availability themselves, without a developer.</p></div>
@@ -911,6 +970,7 @@
   <!-- ================= 04 HUBS ================= -->
 
   <section class="slide hero" data-sec="04 Asda Experiential Hubs" data-time="3 min" data-title="Intro: Seasonal Brand Hubs"
+    data-points="Seasonal launches|Links to the app, through the Rewards app"
     data-notes="Asda Experiential Hubs. This links to seasonal launches, and to the app, through the Rewards app.">
     <div class="hero-in intro">
       <div class="txt">
@@ -924,13 +984,14 @@
   </section>
 
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="The Problem and Opportunity"
+    data-points="The Campaigns Team ran all funded media|Branded Zones: bespoke, but expensive|Smaller brands had nothing to buy"
     data-notes="Some context. My team, the Campaigns Team, ran all funded media on Asda.com. Our biggest product was the Branded Zone, a bespoke brand page. They worked, but they were expensive, so smaller brands had nothing to buy. Sales kept hearing that brands wanted a page but didn&#x27;t have the budget. That was the gap.">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>The Problem and Opportunity</h2></div>
     <div class="panel">
       <p class="point">Brands with smaller budgets had nothing to buy, and Asda was missing revenue.</p>
       <div class="cols c57">
         <div class="stack center tight">
-          <div class="card"><span class="icon"><svg><use href="#i-megaphone"/></svg></span><h3>The Campaigns Team</h3><p>Ran all funded media on Asda.com: around 3,000 supplier campaigns a year.</p></div>
+          <div class="card"><span class="icon"><svg><use href="#i-users"/></svg></span><h3>The Campaigns Team</h3><p>Ran all funded media on Asda.com: around 3,000 supplier campaigns a year.</p></div>
           <div class="card"><span class="icon"><svg><use href="#i-star"/></svg></span><h3>What Branded Zones were</h3><p>Bespoke brand pages that suppliers paid for, which my team designed and built.</p></div>
           <div class="card dark"><span class="icon"><svg><use href="#i-coins"/></svg></span><h3>The gap</h3><p>Effective but expensive. Sales kept hearing brands wanted a page but didn't have the budget.</p></div>
         </div>
@@ -943,6 +1004,7 @@
   </section>
 
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="The Idea" data-gap
+    data-points="One shared hub, several brands, owned by Asda|Worth a visit: competition, brand shops|Little asked of suppliers|Wireframed first, shared early for buy-in"
     data-notes="My idea: one shared hub, several brands buying in for less, owned by Asda and tied to seasonal events. It had to be worth visiting, so an instant-win competition, brand shops and playful carousels. Suppliers only gave us products, logos and banners. I mapped the journey and wireframed it first, then shared it early with Sales and senior management to get them invested. Owning it meant I could design for customers, not around one brand. [One specific pushback moment, if you remember it.]">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>The Idea</h2></div>
     <div class="panel">
@@ -958,7 +1020,25 @@
     </div>
   </section>
 
+  <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="Mapping the Journey"
+    data-points="Had to add to the journey, not get in the way|Every way in: event pages, sponsored media, Rewards app|Every route leads back to products"
+    data-notes="I mapped how customers would reach the hub, because it had to add to the shopping journey, not get in its way. People came in from seasonal event pages, sponsored media and the Rewards app, some to browse and some to enter the competition. Every route led back to products and the trolley.">
+    <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>Mapping the Journey</h2></div>
+    <div class="panel">
+      <p class="point">The hub had to add to the shopping journey, not get in its way.</p>
+      <div class="cols c57">
+        <ol class="pts" style="align-self:center">
+          <li><b>Every way in:</b> event pages, sponsored media and the Rewards app.</li>
+          <li><b>Different intentions:</b> browsing products or entering the competition.</li>
+          <li><b>Back to shopping:</b> every route leads to products and the trolley.</li>
+        </ol>
+        <figure class="frame contain" style="margin:0;align-self:center;aspect-ratio:1970/678"><img src="img/portfolio/UX%20design/Experiential-Hub-UX.png" alt="Journey map from every entry point into the hub"></figure>
+      </div>
+    </div>
+  </section>
+
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="The Pilot"
+    data-points="King&#x27;s Coronation proved it|Big Get-Together Bus Tour|Find the Winning Window|No win? You saw the products in your window"
     data-notes="The King&#x27;s Coronation proved it. I created the Big Get-Together Bus Tour, an online version of the bus touring Asda stores. I designed and built it, with an instant-win game: pick a window on the bus to see if you&#x27;ve won. If you didn&#x27;t win, you saw the products in that window, so every play led back to shopping. Suppliers bought in, and it got stakeholders behind the format.">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>The Pilot</h2></div>
     <div class="panel">
@@ -976,13 +1056,14 @@
   </section>
 
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="Making It Repeatable"
-    data-notes="Then it became a template for every season. I mapped every way in, including the Rewards app. Same structure each time, new competition: spin to win, find the winning gift, find the winning envelope. Prizes moved to Asda Rewards Cashpot, which tied the hubs to the app.">
+    data-points="A tested template for every season|New competition each event|Prizes moved to Rewards Cashpot"
+    data-notes="Then it became a template, so each event started from a tested structure, not a blank page. Same structure each time, with a new competition: spin to win, find the winning gift, find the winning envelope. Prizes moved to Asda Rewards Cashpot, which tied the hubs to the app.">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>Making It Repeatable</h2></div>
     <div class="panel">
       <p class="point">From one page to a template for every season.</p>
       <div class="cols c57">
         <ol class="pts" style="align-self:center">
-          <li>Mapped every way in, including the <b>Rewards app</b>.</li>
+          <li><b>A tested template:</b> each event started from a proven structure, not a blank page.</li>
           <li>Same structure, <b>new competition</b> each event.</li>
           <li>Prizes moved to <b>Asda Rewards Cashpot</b>, tying the hubs to the app.</li>
         </ol>
@@ -1000,22 +1081,23 @@
   </section>
 
   <section class="slide" data-sec="04 Asda Experiential Hubs" data-title="Results"
-    data-notes="It became a regular product across Asda&#x27;s biggest events, and a new revenue stream. Big Night In: over 910,000 entries, 26 suppliers. Lunar New Year: over 1.1 million entries, with nearly a million clicks from the Rewards app. Next time, I&#x27;d A/B test within one event, and track basket adds, not just entries.">
+    data-points="A regular product, new revenue stream|Big Night In: 910,000+ entries, 26 suppliers|Lunar New Year: 1.1m+ entries|~1m clicks from the Rewards app"
+    data-notes="It became a regular product across Asda&#x27;s biggest events, and a new revenue stream. Big Night In: over 910,000 entries, with 26 suppliers. Lunar New Year: over 1.1 million entries, and nearly a million clicks from the Rewards app.">
     <div class="head"><span class="label">04 · Asda Experiential Hubs</span><h2>Results</h2></div>
-    <div class="panel spread">
+    <div class="panel">
       <p class="point">A regular product across Asda's biggest events, and a new revenue stream.</p>
       <div class="stats s3 big">
         <div class="stat"><span class="sicon"><svg><use href="#i-gift"/></svg></span><b>910k+</b><span>Big Night In entries, 26 suppliers</span></div>
         <div class="stat"><span class="sicon"><svg><use href="#i-trend"/></svg></span><b>1.1m+</b><span>Lunar New Year entries, 25% more</span></div>
         <div class="stat"><span class="sicon"><svg><use href="#i-phone"/></svg></span><b>~1m</b><span>clicks from the Rewards app</span></div>
       </div>
-      <div class="card" style="flex:none"><span class="icon"><svg><use href="#i-refresh"/></svg></span><h3>Next time</h3><p>A/B test the competition and layout within one event, and track product views and basket adds, not just entries.</p></div>
     </div>
   </section>
 
   <!-- ================= 05 PETS ================= -->
 
   <section class="slide hero" data-sec="05 Asda Pets" data-time="2 min" data-title="Intro: Category Hub"
+    data-points="Could align with Browse and merchandising|Business rules versus what customers came for"
     data-notes="Asda Pets. Closest to Browse and merchandising. It&#x27;s the same balance you mentioned with personalisation: business rules versus what customers came for.">
     <div class="hero-in intro">
       <div class="txt">
@@ -1029,26 +1111,28 @@
   </section>
 
   <section class="slide" data-sec="05 Asda Pets" data-title="The Problem"
-    data-notes="The pet category had been sold as a permanent takeover, with a brand skin over the whole category. It looked different from the rest of Asda.com, and it raised a bigger question: how should takeovers work? Three groups needed different things: shoppers, merchandising and the brands.">
+    data-points="Fixed placement: a skin over the whole category|Inconsistent with the rest of Asda.com|No clear framework for future takeovers|Shoppers, merchandising and brands all needed different things"
+    data-notes="The pet category had been sold as a permanent takeover, with a branded skin covering the whole category. It didn&#x27;t match the rest of Asda.com, and there was no clear framework for future takeovers. Three groups needed different things. Shoppers needed to find pet products quickly. Merchandising needed control over the categories and ranges. And brands needed clear, consistent paid placements.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>The Problem</h2></div>
     <div class="panel">
       <p class="point">A permanent brand takeover disrupted product discovery.</p>
       <div class="cols c2">
         <ol class="pts" style="align-self:center">
-          <li>Sold as a <b>fixed media placement</b>, with a branded skin across the entire category.</li>
-          <li>Made the category feel <b>inconsistent</b> with the rest of Asda.com.</li>
-          <li>Raised a wider question: <b>how should brand takeovers work</b> in future?</li>
+          <li><b>Fixed placement:</b> a branded skin covered the entire category.</li>
+          <li><b>Inconsistent experience:</b> it didn't match the rest of Asda.com.</li>
+          <li><b>No clear framework:</b> we needed a better way to manage future takeovers.</li>
         </ol>
         <div class="stack center tight">
-          <div class="card dark"><span class="icon"><svg><use href="#i-cart"/></svg></span><h3>Shoppers</h3><p>Needed to find the right food and treats for their pets quickly.</p></div>
-          <div class="card"><span class="icon"><svg><use href="#i-grid"/></svg></span><h3>Merchandising</h3><p>Managed category pages and product ranges.</p></div>
-          <div class="card"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Brands</h3><p>Paid for visibility and needed clear, defined placements.</p></div>
+          <div class="card dark"><span class="icon"><svg><use href="#i-cart"/></svg></span><h3>Shoppers</h3><p>Needed to find pet products quickly.</p></div>
+          <div class="card"><span class="icon"><svg><use href="#i-grid"/></svg></span><h3>Merchandising</h3><p>Needed control over categories and product ranges.</p></div>
+          <div class="card"><span class="icon"><svg><use href="#i-tag"/></svg></span><h3>Brands</h3><p>Needed clear, consistent paid placements.</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-sec="05 Asda Pets" data-title="Mapping the Journey"
+    data-points="Funded placements along the journey, not in the way|Straight to a category, or through a brand"
     data-notes="I mapped how shoppers move from the category page into the hub, then straight to a category or through a brand. The funded placements sit along the way, as other routes to products, not in the way.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Mapping the Journey</h2></div>
     <div class="panel">
@@ -1059,10 +1143,11 @@
   </section>
 
   <section class="slide" data-sec="05 Asda Pets" data-title="Three Options"
-    data-notes="I showed three options, not one answer, at different levels of supplier content: sponsored slots on the existing page, a hub with category buttons, or a hub without them.">
+    data-points="Worked through a range of options|Minimal, to more supplier-focused|Merchandising stays in control"
+    data-notes="I worked through a number of options for what we could achieve, from a minimal approach to a more supplier-focused one, while giving the merchandising team control.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Three Options</h2></div>
     <div class="panel">
-      <p class="point">Three options, at different levels of supplier involvement.</p>
+      <p class="point">From a minimal approach to more supplier-focused, with merchandising in control.</p>
       <div class="scale"><span>Minimal supplier content</span><i></i><span>More supplier content</span></div>
       <div class="cols c3" style="gap:24px">
         <div class="stack"><span class="eyebrow">Option 1</span><figure class="frame fill" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-option-category.jpg" alt="Option 1: sponsored category page wireframes"></figure><p class="cap">Sponsored slots on the existing category page.</p></div>
@@ -1073,10 +1158,11 @@
   </section>
 
   <section class="slide" data-sec="05 Asda Pets" data-title="Sponsored Opportunities"
-    data-notes="For the simplest option, I mapped four slot combinations, so the team could see how much they could sell while the page still worked.">
+    data-points="Wireframed every possibility|On the current site and the new CMS"
+    data-notes="I wireframed all the possibilities that could be achieved on the site, and in the new CMS that was coming in at the time, so the team could see how much could be sold while the page still worked.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Sponsored Opportunities</h2></div>
     <div class="panel">
-      <p class="point">Four slot combinations, showing how much could be sold while the page still worked.</p>
+      <p class="point">I wireframed every possibility the site, and the new CMS, could support.</p>
       <div class="cols c4" style="gap:20px">
         <div class="stack"><figure class="frame fill contain" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-category-variant-1.jpg" alt="Variant 1"></figure><p class="cap">1 · Billboard, brand pods, promo, inserts</p></div>
         <div class="stack"><figure class="frame fill contain" style="margin:0"><img src="img/portfolio/asda-pages/pets/pets-category-variant-2.jpg" alt="Variant 2"></figure><p class="cap">2 · Leaderboard, brand pods, promo, inserts</p></div>
@@ -1087,6 +1173,7 @@
   </section>
 
   <section class="slide" data-sec="05 Asda Pets" data-title="Agreeing the Balance" data-gap
+    data-points="Pitched to senior merchandising|Their insight on what performs|Agreed: shoppers first, navigation at the top"
     data-notes="I took the options to senior merchandising. They knew what performed best on their pages, and together we agreed shoppers come first: navigation at the top, funded slots below. [What merchandising pushed back on.]">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Agreeing the Balance</h2></div>
     <div class="panel">
@@ -1103,12 +1190,13 @@
   </section>
 
   <section class="slide" data-sec="05 Asda Pets" data-title="Anatomy of the Hub"
+    data-points="Navigation first|Funded slots as clear, sellable placements|Same order on mobile"
     data-notes="The final hub: an Asda Pets header instead of the skin, category links at the top, then the sponsored billboard, brand icons, product spotlights and promo banners. On mobile, the category buttons come first too.">
     <div class="head"><span class="label">05 · Asda Pets</span><h2>Anatomy of the Hub</h2></div>
     <div class="panel">
       <p class="point">Navigation first, with funded placements as clear, sellable slots.</p>
       <div class="cols c57">
-        <ol class="pts" style="align-self:center;gap:16px">
+        <ol class="pts" style="align-self:center;gap:26px">
           <li><b>Asda Pets header</b> in Asda's own style, replacing the skin.</li>
           <li><b>Category links</b> that jump straight to each section.</li>
           <li><b>Billboard</b>: a sponsored hero carousel.</li>
@@ -1127,6 +1215,7 @@
   <!-- ================= 06 WEB DESIGN ================= -->
 
   <section class="slide hero" data-sec="06 Website Design" data-time="1 min" data-title="Intro: Websites and Branded Zones"
+    data-points="Designing and building websites since 2014|Alpha Hospital Group: design system in Figma|AI helped create 50+ service pages"
     data-notes="Finally, a quick look at visual design. I&#x27;ve designed and built websites since 2014. For Alpha Hospital Group, I set up the design system in Figma, and used AI to help create over 50 service pages.">
     <div class="hero-in intro">
       <div class="txt">
@@ -1148,12 +1237,13 @@
   </section>
 
   <section class="slide" data-sec="06 Website Design" data-title="Branded Zones"
+    data-points="Bespoke pages for big suppliers|Cadbury: helped secure £100K|Trained the team as it grew from 2 to 5|Reusable code: a Branded Zone in 2 days"
     data-notes="And Branded Zones at Asda: bespoke pages for big suppliers, balancing their campaign with Asda&#x27;s look. With Cadbury, we built a competition into the page, which helped secure a £100K investment. As the team grew from two to five designers, I trained them and built reusable code, so we could deliver a Branded Zone in two days when needed.">
     <div class="head"><span class="label">06 · Website Design</span><h2>Branded Zones</h2></div>
     <div class="panel">
       <p class="point">Bespoke brand pages for Asda's biggest suppliers, balancing their campaign with Asda's look.</p>
-      <div class="cols c57">
-        <div class="stats col1">
+      <div class="cols c57" style="gap:56px">
+        <div class="stats col1" style="gap:30px">
           <div class="stat" style="flex-direction:row;align-items:center;gap:18px"><span class="sicon"><svg><use href="#i-coins"/></svg></span><b>£100K</b><span>investment secured from Cadbury</span></div>
           <div class="stat" style="flex-direction:row;align-items:center;gap:18px"><span class="sicon"><svg><use href="#i-users"/></svg></span><b>2 → 5</b><span>designers trained as the team grew</span></div>
           <div class="stat" style="flex-direction:row;align-items:center;gap:18px"><span class="sicon"><svg><use href="#i-zap"/></svg></span><b>2 days</b><span>to deliver a fast-track Branded Zone</span></div>
@@ -1174,6 +1264,7 @@
   <!-- ================= CLOSE ================= -->
 
   <section class="slide hero" data-sec="Close" data-title="Questions"
+    data-points="Thank you|Happy to take questions"
     data-notes="Thank you. Happy to take any questions.">
     <div class="hero-in one">
       <div class="txt">
@@ -1197,7 +1288,7 @@
   <button type="button" id="bPres" title="Presenter view (P)">Presenter</button>
   <button type="button" id="bFull" title="Full screen (F)" aria-label="Full screen">⤢</button>
 </div>
-<div class="notes" id="notes" hidden><h4>What to say</h4><p id="noteText"></p></div>
+<div class="notes" id="notes" hidden><h4>Key points</h4><div id="noteText"></div></div>
 <div class="overview" id="overview" hidden role="dialog" aria-label="All slides">
   <h4>All slides · about 20 minutes</h4>
   <p class="hint">Click a slide to jump to it. Press G or Esc to close. Orange marks slides with something still to add.</p>
@@ -1285,7 +1376,7 @@
     return '<!doctype html><title>Presenter view</title><body style="margin:0;background:#0c0930;color:#fff;font-family:Outfit,Arial,sans-serif;padding:28px;display:grid;gap:18px">' +
       '<div style="display:flex;justify-content:space-between;align-items:baseline"><b id="t" style="font-size:44px;font-variant-numeric:tabular-nums">0:00</b><span id="c" style="opacity:.7;font-size:18px"></span></div>' +
       '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">Now</div><div id="now" style="font-size:28px;margin-top:4px"></div></div>' +
-      '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">What to say</div><div id="n" style="font-size:24px;line-height:1.5;margin-top:6px"></div></div>' +
+      '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">Key points, then the script</div><div id="n" style="font-size:24px;line-height:1.5;margin-top:6px"></div><style>#n ul{margin:0 0 16px;padding-left:24px}#n li{font-weight:700;font-size:28px;margin-bottom:6px}#n .script{font-size:19px;opacity:.72}</style></div>' +
       '<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;font-weight:700">Next</div><div id="nx" style="font-size:20px;opacity:.75;margin-top:4px"></div></div>' +
       '<p style="opacity:.5;font-size:14px">Use the arrow keys here or in the slides window.</p>';
   }
@@ -1294,7 +1385,7 @@
     var d = pres.document, s = slides[cur], nx = slides[cur + 1];
     d.getElementById('c').textContent = (cur + 1) + ' / ' + total + ' · ' + s.dataset.sec + (secTime[s.dataset.sec] ? ' · ' + secTime[s.dataset.sec] : '');
     d.getElementById('now').textContent = s.dataset.title;
-    d.getElementById('n').textContent = s.dataset.notes || '';
+    d.getElementById('n').innerHTML = notesHTML(s);
     d.getElementById('nx').textContent = nx ? nx.dataset.title : 'End';
   }
   function openPresenter() {
@@ -1311,6 +1402,12 @@
     pres.document.getElementById('t').textContent = Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
   }, 1000);
 
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function notesHTML(sl) {
+    var pts = (sl.dataset.points || '').split('|').filter(Boolean);
+    return (pts.length ? '<ul>' + pts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '') +
+      (sl.dataset.notes ? '<p class="script">' + esc(sl.dataset.notes) + '</p>' : '');
+  }
   function toggleNotes(force) { var n = $('notes'); n.hidden = typeof force === 'boolean' ? !force : !n.hidden; }
 
   function show(i) {
@@ -1325,7 +1422,7 @@
     $('pg').textContent = s.dataset.sec + ' · ' + (cur + 1);
     $('bCount').textContent = (cur + 1) + ' / ' + total;
     $('progress').style.width = ((cur + 1) / total * 100) + '%';
-    $('noteText').textContent = s.dataset.notes || '';
+    $('noteText').innerHTML = notesHTML(s);
     if (location.hash !== '#' + (cur + 1)) { try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) {} }
     document.querySelectorAll('.ov-item').forEach(function (b, n) { b.classList.toggle('cur', n === cur); });
     animateIn(s);
@@ -1362,7 +1459,7 @@
   }, 250);
 
   // Text animating in, as on the site
-  var SR = '.label, .point, .subhead, .desc, .shows, .lead, .hero-in > .txt > .chips, .todo, ol.pts li, .eyebrow, .card, .stat, .rows-head, .row, .frame, .phone, .ss-bar, .cap, .sub, .agenda a, .quote, .flow, .ice-wrap, .steps .step, .dd, .dd-cols p, .ai-note, .scale';
+  var SR = '.label, .point, .subhead, .desc, .shows, .lead, .hero-in > .txt > .chips, .todo, ol.pts li, .eyebrow, .card, .stat, .rows-head, .row, .frame, .phone, .ss-bar, .cap, .sub, .agenda a, .quote, .flow, .ice-wrap, .steps .step, .dd, .dd-cols p, .ai-note, .scale, .pcard, .cs-stat';
   slides.forEach(function (sl) {
     sl.querySelectorAll('.head h2, .hero-in h1, .hero-in h2').forEach(function (h) {
       if (h.querySelector('*')) return;
