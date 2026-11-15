@@ -13,7 +13,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Treasured Possession Quote Flow | Nick Thompson Design</title>
   <meta name="description" content="Treasured Possession case study: redesigning a wedding dress cleaning price form as a guided multi-step quote with upfront pricing and lead capture.">
-  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
 
   <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,6 +74,7 @@
     .cs-flow-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(54,16,155,0.25); background: #fff; color: var(--accent); font: 700 13px var(--font-body); cursor: pointer; }
     .cs-flow-btn:hover { background: var(--accent); color: #fff; }
     .cs-flow-btn svg { width: 14px; height: 14px; }
+    .cs-zoom { margin: 10px auto 0; display: flex; width: max-content; }
     .cs-viewer { position: fixed; inset: 0; z-index: 100000; background: rgba(8,6,30,0.98); display: none; flex-direction: column; }
     .cs-viewer.is-open { display: flex; }
     .cs-viewer-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; color: rgba(255,255,255,0.8); font-size: 14px; }
@@ -185,13 +185,6 @@
     }
 
     /* ===== Treasured Possession additions ===== */
-    /* Draft placeholders: dashed amber boxes so missing content is easy to spot. Delete .cs-todo blocks as real content lands. */
-    .cs-todo { border: 2px dashed #d39b1c; background: #fff8e6; color: #6b4a00; border-radius: 16px; padding: 22px 24px; font-size: 14px; line-height: 1.6; }
-    .cs-todo strong { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: #8a5f00; }
-    .cs-todo code { font-size: 12px; background: rgba(0,0,0,0.06); padding: 1px 6px; border-radius: 4px; word-break: break-all; }
-    .cs-todo--img { min-height: 280px; display: flex; flex-direction: column; justify-content: center; }
-    .project-body .cs-todo { margin: 20px 0; }
-    .cs-stat .cs-todo-num { color: #c9b98f; }
 
     /* Before screenshots: desktop beside a scrollable phone */
     .cs-before { display: grid; grid-template-columns: 2.4fr 1fr; gap: 20px; align-items: start; }
@@ -234,6 +227,12 @@
     /* ===== v2 additions: research, synthesis, testing ===== */
     .cs-flow--wide .cs-flow-scroll img { width: 3000px; max-width: none; }
     .cs-flow--wide .cs-flow-hint { display: inline-flex; }
+    .cs-flow--journey .cs-flow-scroll { cursor: grab; }
+    .cs-flow--journey .cs-flow-scroll.is-dragging { cursor: grabbing; }
+    .cs-flow--journey .cs-flow-scroll img { width: 2800px; max-width: none; }
+    .cs-flow--journey .cs-flow-hint { display: inline-flex; }
+    .cs-flow--journey::after { content: ''; position: absolute; top: 0; right: 0; bottom: 49px; width: 48px; background: linear-gradient(to right, rgba(255,255,255,0), #fff); pointer-events: none; }
+    @media (max-width: 800px) { .cs-flow--journey .cs-flow-scroll img { width: 2200px; } }
     .cs-flow--wide::after { content: ''; position: absolute; top: 0; right: 0; bottom: 49px; width: 48px; background: linear-gradient(to right, rgba(255,255,255,0), #fff); pointer-events: none; }
     .cs-goals { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0 0 0; padding: 28px 0 0 0; border-top: 1px solid rgba(0,0,0,0.08); }
     .cs-goals h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px 0; }
@@ -314,7 +313,6 @@
 </head>
 
 <body class="sub-page cs">
-  <!-- DRAFT: amber dashed boxes (.cs-todo) mark content still to come. Remove the noindex meta in <head> before linking this page from the homepage. -->
   <div id="preloader"><div class="loader-logo">NickThompson<span>Design</span></div></div>
 
   <div class="hero-bg-wrapper">
@@ -354,7 +352,6 @@
       <div class="scroll-reveal sr-d3">
         <span class="cs-hero-result">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c0a7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
-          <!-- TODO: replace with the headline result after launch -->
           <span><strong>In progress:</strong> research and design stage</span>
         </span>
       </div>
@@ -373,7 +370,7 @@
           </div>
           <div class="meta-col meta-col--role">
             <h4>My Role</h4>
-            <p>Lead designer. I planned and ran the research, audit and competitor benchmarking, and designed the flow, wireframes and UI. Tim at Infoserve built it. The client set pricing and business rules.</p>
+            <p>Lead designer. I planned and ran the research, audit and competitor benchmarking, and designed the flow, wireframes and the visual design. I created the look and feel in Figma, building on the brand's existing website, then turned it into a working prototype. A developer at Infoserve built it. The client set pricing and business rules.</p>
           </div>
         </div>
         <div class="cs-goals">
@@ -441,7 +438,7 @@
             <tr><th scope="row">Analytics baseline (GA4)</th><td>How many people reach the form, add to basket and buy?</td><td><span class="cs-status cs-status--plan">Waiting on access</span></td></tr>
             <tr><th scope="row">Cross-industry patterns</th><td>Who outside the sector solves "configure, then see a price" well?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
             <tr><th scope="row">Form best-practice review</th><td>Does the design follow published form research?</td><td><span class="cs-status cs-status--done">Done</span></td></tr>
-            <tr><th scope="row">Guerrilla usability test (current form)</th><td>Where do people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
+            <tr><th scope="row">Usability test (current form)</th><td>Where do people hesitate or give up?</td><td><span class="cs-status cs-status--plan">Planned</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -483,7 +480,7 @@
       <!-- ORDER DATA -->
       <article class="project-body">
         <h3 class="scroll-reveal">What 12 months of orders showed</h3>
-        <p class="scroll-reveal sr-d2">Analytics access was still pending, so I exported a year of WooCommerce orders with every product option. I removed test orders and all personal details, and looked only at totals: 338 orders, of which 295 were paid.</p>
+        <p class="scroll-reveal sr-d2">Analytics access was still pending, so I exported a year of WooCommerce orders with every product option. I looked only at totals, with no personal details: 338 orders, of which 295 were paid.</p>
       </article>
 
       <div class="cs-stats cs-stats--simple cs-stats--3">
@@ -519,9 +516,6 @@
       </div>
       <p class="cs-caption scroll-reveal">WooCommerce orders, October 2025 to October 2026, with personal details removed before analysis.</p>
 
-      <article class="project-body">
-        <div class="cs-todo"><strong>To add when access arrives: GA4 and Clarity</strong>Visits to the quote page, add-to-baskets, purchases, device split, scroll depth and rage clicks.</div>
-      </article>
 
       <div class="divider"></div>
 
@@ -574,7 +568,7 @@
       </div>
 
       <article class="project-body">
-        <p class="scroll-reveal sr-d2" style="margin-top:32px;">What it told me: every competitor shows a total within two clicks, and none asks for an email first. Re:Finery proved a value-band model can still feel instant. Elsie May showed that a single line of reassurance can take the stress out of a pricing choice.</p>
+        <p class="scroll-reveal sr-d2" style="margin-top:32px;">What it told me: every competitor shows a total within two clicks, and none asks for an email first. That mattered because one of the client's goals was to capture emails: today they have no visibility of people who leave without buying, so no way to follow up on abandoned quotes. The research showed that asking for an email before the price adds effort before customers know whether they can afford it, so I chose to capture it later, as a way to save the quote, rather than as a gate at the start. Re:Finery proved a value-band model can still feel instant. Elsie May showed that a single line of reassurance can take the stress out of a pricing choice.</p>
       </article>
 
       <article class="project-body">
@@ -593,9 +587,6 @@
           </tbody>
         </table>
       </div>
-      <article class="project-body">
-        <div class="cs-todo"><strong>To add: screenshots</strong>One screenshot per pattern, captured and dated like the competitor screens.</div>
-      </article>
 
       <!-- REVIEWS -->
       <article class="project-body">
@@ -618,8 +609,7 @@
       <!-- USER RESEARCH -->
       <article class="project-body">
         <h3 class="scroll-reveal">Watching people use it</h3>
-        <p class="scroll-reveal sr-d2">With no budget for customer research, I ran a quick guerrilla test: five colleagues from outside the design and development team, each given the same three tasks on cards, two on their own phones. Colleagues aren't the real customers, so this shows where the form is hard to understand, not how customers feel about it. The review analysis covers that side.</p>
-        <div class="cs-todo"><strong>To add: results from the current form</strong>Task success, time to first price and ease score per task, plus two or three direct quotes. Keep it short: a small table and the quotes.</div>
+        <p class="scroll-reveal sr-d2">With no budget for customer research, I ran a quick usability test: five colleagues from outside the design and development team, each given the same three tasks on cards, two on their own phones. Colleagues aren't the real customers, so this shows where the form is hard to understand, not how customers feel about it. The review analysis covers that side.</p>
       </article>
 
       <div class="divider"></div>
@@ -628,7 +618,7 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Synthesis</span>
         <h2 class="scroll-reveal">From findings to problems worth solving</h2>
-        <p class="scroll-reveal sr-d2">I grouped the audit, accessibility and benchmark findings into themes. Notes from testing will be added to the same board.</p>
+        <p class="scroll-reveal sr-d2">I grouped the audit, accessibility and benchmark findings into themes.</p>
       </article>
 
       <div class="cs-themes scroll-reveal">
@@ -676,7 +666,7 @@
 
       <article class="project-body">
         <h3 class="scroll-reveal">Prioritising</h3>
-        <p class="scroll-reveal sr-d2">I plotted each opportunity by impact and effort. Effort is my initial estimate, to confirm with Tim.</p>
+        <p class="scroll-reveal sr-d2">I plotted each opportunity by impact and effort. Effort is my initial estimate, to confirm with the developer.</p>
       </article>
       <div class="cs-matrix scroll-reveal">
         <span class="cs-axis-y">Impact →</span>
@@ -698,25 +688,25 @@
         <ol class="cs-steps scroll-reveal sr-d2">
           <li><b>Your dress</b>Style first, then value bands priced for that style</li>
           <li><b>Anything else to clean?</b>Extras with quantity steppers, most popular first</li>
-          <li><b>Returning your dress</b>Breathable bag, own box or a preservation box sized from the dress</li>
-          <li><b>Your preservation box</b>Only if a box was chosen: pattern, live preview, and extra boxes for other items</li>
-          <li><b>Your quote</b>Itemised total, saved and emailed</li>
-          <li><b>Book</b>Collection date, delivery speed and an optional "need it back by", then review</li>
+          <li><b>Returning your dress</b>Boxed and preserved, or bag options</li>
+          <li><b>Your preservation box</b>Only if a box was chosen: sized from the dress, with pattern swatches and a live preview</li>
+          <li><b>Your quote</b>Itemised total, then an email to book now or save for later</li>
+          <li><b>Book</b>DPD collection, a return date marked Standard or Express, then review</li>
         </ol>
       </article>
 
       <div class="cs-media scroll-reveal">
-        <div class="cs-flow cs-flow--tall">
+        <div class="cs-flow cs-flow--journey">
           <div class="cs-flow-scroll">
-            <img src="/img/portfolio/treasured-possession/tp-user-flow.jpg" alt="User flow in three parts. Get an instant quote: from the quote page or a service page link, customers choose wedding dress, other garments or box only; dress customers choose style and value, extras and how the dress is returned; anyone choosing a preservation box customises it; then an itemised quote, saved with an email. Book: dates, delivery speed with Express offered when the need-by date is tight, review, basket and checkout. Coming back: quote, reminder, abandoned cart and confirmation emails, with a resume link that reopens the quote." loading="lazy">
+            <img src="/img/portfolio/treasured-possession/tp-user-flow.jpg" alt="User flow from left to right. Customers start from the quote page or a service page and answer What can we help with: other garments go to Your items, a wedding dress goes through Your dress, Anything else and Returning your dress, and Box only goes straight to Customise your box. A Preservation box decision leads either to Customise your box or straight to Your instant quote. Customers enter their email, then choose to book now or save for later. Saving holds the price for 30 days and sends a quote email, a 10% offer after 7 days and a reminder after 20 days, with a resume link back to the quote. Booking goes through Delivery dates, Review order and Basket; placed orders get a confirmation email, and customers who leave get an abandoned cart email back to their basket. Edit links on the review step jump back to any step." loading="lazy">
           </div>
           <div class="cs-flow-tools">
-            <span class="cs-flow-hint" style="display:inline-flex">Scroll to follow the flow</span>
+            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Drag or scroll sideways to follow the flow</span>
             <span aria-hidden="true"></span>
             <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-user-flow.jpg" data-zoom-title="User flow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
           </div>
         </div>
-        <p class="cs-caption">Two entry paths, one review step, and automated emails that bring customers back to the step they left.</p>
+        <p class="cs-caption">Three ways in, one quote, then book now or save for later, with automated emails that bring customers back.</p>
         
       </div>
 
@@ -740,7 +730,21 @@
             <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-wireframes.jpg" data-zoom-title="Wireframes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
           </div>
         </div>
-        <p class="cs-caption">The wedding dress route, from the first question to the basket.</p>
+        <p class="cs-caption">The wedding dress route on mobile, from the first question to the basket.</p>
+      </div>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-flow cs-flow--wide">
+          <div class="cs-flow-scroll">
+            <img src="/img/portfolio/treasured-possession/tp-wireframes-desktop.jpg" alt="Eight desktop wireframes of the same route, each with the running quote panel on the right: what can we help with; your dress; anything else to clean; returning your dress; customise your preservation box; your quote with save and book options; booking dates with a colour-coded calendar; and review your order" loading="lazy">
+          </div>
+          <div class="cs-flow-tools">
+            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Scroll sideways to see every step</span>
+            <span aria-hidden="true"></span>
+            <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-wireframes-desktop.jpg" data-zoom-title="Desktop wireframes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
+          </div>
+        </div>
+        <p class="cs-caption">The same route on desktop, with the quote panel kept beside every step.</p>
       </div>
 
       <article class="project-body">
@@ -766,31 +770,44 @@
           </div>
           <div class="insight-item">
             <div class="insight-label">Reassurance instead of pressure on dress value · Finding 4</div>
-            <p>The value step now explains why it asks and what happens if a customer isn't sure: "Choose the band closest to what you paid. Not sure? Pick your best guess and we'll check when your dress arrives." It removes the warning tone, and each band shows its price.</p>
-            <div class="cs-todo"><strong>Confirm with the client</strong>That they will check the band on arrival and contact the customer before any change.</div>
+            <p>The value step explains in one line why it asks: "Choose the band closest to what you paid. It sets your price and how your dress is covered." It removes the warning tone, each band shows its price, and the band is checked when the dress arrives. Style, value and optional details sit in three labelled cards on one screen, so the step feels short.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Quantity steppers for extras · Finding 6, order data</div>
             <p>Additional items use – 0 + steppers, matching the instruction to choose a quantity. They're listed in order of popularity, led by the veil. The first version hid the less popular items behind "Show more"; testing showed people preferred to see everything, so all items now show.</p>
           </div>
           <div class="insight-item">
-            <div class="insight-label">Express suggested at the right moment · Findings 7, 8, order data</div>
-            <p>"Delivery date" became an optional "When do you need it back by?". Most dresses are cleaned after the wedding, and only 4% of orders chose Express, so it isn't pushed. If the date falls inside the standard turnaround, the flow suggests Express there and then. The 6pm cut-off is built into the date picker.</p>
+            <div class="insight-label">Delivery chosen on a colour-coded calendar · Findings 7, 8, order data</div>
+            <p>Customers pick a DPD collection date, then a return delivery date on a calendar in the style of hotel booking sites. Every return date is labelled and coloured by what it costs: Standard (+£18, back in around four weeks) or Express (+£50, back within 10 to 12 days), with a key underneath. Delivery is one price or the other, never both. Only 4% of orders chose Express, so Standard is the default and Express sits beside it as the faster option, rather than being pushed. Studio drop-off is still free, but it sits behind a quiet "Prefer to drop it off in person?" link because the client would rather collect.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Email capture framed as saving the quote · "No second chance"</div>
-            <p>The email field is presented as "Save your quote so you can come back to it", which also powers the resume and abandoned-cart emails. An optional phone number on the review step lets customers ask for a call back.</p>
+            <p>The quote page offers one clear choice: "Book now, or save for later". The email is needed for both, so it comes first, and the save button carries a save icon and a quiet "Price held for 30 days". After saving, customers see where the quote was sent with a "Change email" link, in case of a typo. The same email powers the resume and abandoned-cart emails.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Choosing a box by sight, sized for you · Review themes</div>
             <p>The current box page lists five patterns as text, with no pictures, and uses one photo for two sizes. Six of the 13 reviews praise the packaging, so it matters. The new box step sizes the box from the dress style already given (A Line → Regular, for example), selects the most popular pattern, shows all five as swatches, and updates a large packshot as the customer chooses.</p>
-            <div class="cs-todo"><strong>Image: box step</strong>The size cards, pattern swatches and live packshot, once designed and photographed.<br><code>/img/portfolio/treasured-possession/tp-box-step.jpg</code></div>
+            <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="The customise your preservation box step, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-box-step.jpg" alt="The customise your preservation box step: a blush panel tabbed Box 1, Your wedding dress, with the large box shown in a circle, sized for a Princess dress, and five round pattern swatches with prices" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-box-step.jpg" data-zoom-title="Customise your preservation box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-label">Returns grouped by what customers are choosing · Testing</div>
+            <p>Return options are split into "Boxed and preserved" and "Bag options". Each name says who supplies it: "Our preservation box", "Your own box, packed by us", "Your own bag" and "Our breathable bag". The preservation box is marked "Most popular" and lists its benefits as short ticks, with the full explanation one tap away.</p>
+          </div>
+          <div class="insight-item">
+            <div class="insight-label">A review step that reads as one story · Testing</div>
+            <p>The review page is a set of numbered cards: your order (with an Edit button and edit links on every line), an optional phone number "so we can easily keep you updated about your order", what happens next as four illustrated steps, and the terms. Help is always one call away in the side panel.</p>
           </div>
           <div class="insight-item">
             <div class="insight-label">Accessible by default · Finding 3, 5</div>
             <p>Cards are real radio buttons with visible focus, every field has a visible label, and price changes are announced to screen readers.</p>
           </div>
         </div>
+      </article>
+
+      <article class="project-body">
+        <h3 class="scroll-reveal">Look and feel</h3>
+        <p class="scroll-reveal sr-d2">I designed the visual style in Figma so the quote feels like part of the Treasured Possession site rather than a bolted-on form. It uses the brand's plum and blush, Poppins, and the blush circle that sits behind headings on the live site. I drew a new set of fine line icons for every garment, bag and box, and used rounded pill shapes for cards, buttons and tags so choices feel soft and easy to tap.</p>
       </article>
 
       <div class="divider"></div>
@@ -825,14 +842,13 @@
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Testing</span>
         <h2 class="scroll-reveal">Testing with people, not just numbers</h2>
-        <p class="scroll-reveal sr-d2">Tim, the developer, and I built the wireframes into a working prototype that calculated real prices, then tested it with colleagues from outside the project. Each person worked through a scenario, such as a price-conscious customer or someone who needed their dress back quickly, on a phone or desktop.</p>
-        <div class="cs-todo"><strong>To add: test details</strong>Number of participants, the scenarios used, and any measures (task completion, time to a price).</div>
+        <p class="scroll-reveal sr-d2">The developer and I built the wireframes into a working prototype that calculated real prices, then tested it with colleagues from outside the project. Each person worked through a scenario, such as a price-conscious customer or someone who needed their dress back quickly, on a phone or desktop.</p>
       </article>
 
       <div class="cs-media scroll-reveal">
         <div class="cs-photos">
-          <div class="cs-todo cs-todo--img"><strong>Photo: testing session 1</strong>A colleague working through the prototype.<br><code>/img/portfolio/treasured-possession/tp-testing-1.jpg</code></div>
-          <div class="cs-todo cs-todo--img"><strong>Photo: testing session 2</strong>A second session, ideally on a phone.<br><code>/img/portfolio/treasured-possession/tp-testing-2.jpg</code></div>
+          <div class="cs-frame"><img src="/img/portfolio/treasured-possession/tp-usability-testing-1.jpg" alt="A colleague working through the quote prototype on a laptop" loading="lazy"></div>
+          <div class="cs-frame"><img src="/img/portfolio/treasured-possession/tp-usability-testing-2.jpg" alt="A second colleague testing the prototype on a laptop, on the step that saves the quote" loading="lazy"></div>
         </div>
         <p class="cs-caption">Testing the prototype with colleagues.</p>
       </div>
@@ -849,8 +865,9 @@
             <tr><th scope="row">Extras</th><td>Testers preferred to see every item without tapping "Show more", and there was no option for a page boy.</td><td>Show all items, and add a page boy suit at the same price as a flower girl dress.</td></tr>
             <tr><th scope="row">Your box</th><td>No issues.</td><td>No change.</td></tr>
             <tr><th scope="row">Quote summary</th><td>"Edit quote" was a small text link and easy to miss.</td><td>Make it a full button, and add an "Edit" button with a pencil icon at the top of the summary.</td></tr>
-            <tr><th scope="row">Delivery</th><td>It wasn't clear that DPD comes to collect. The drop-off option sat above the dates, and the plain date picker didn't show what each date meant for delivery speed.</td><td>Reword the collection card, move drop-off below the dates, and use a calendar in the style of hotel booking sites that marks each date as Standard or Express (+£50), by colour and label. Put "(optional)" beside the phone number heading.</td></tr>
-            <tr><th scope="row">Desktop</th><td>On desktop, moving on relied on the running total bar.</td><td>Add a Continue button at the bottom of every step.</td></tr>
+            <tr><th scope="row">Delivery</th><td>It wasn't clear that DPD comes to collect. The drop-off option sat above the dates, and the plain date picker didn't show what each date meant for delivery speed.</td><td>Reword the collection card, move drop-off below the dates as a quieter link, and use a calendar in the style of hotel booking sites that marks every return date as Standard (+£18) or Express (+£50), by colour and label, with a key. Put "(optional)" beside the phone number heading.</td></tr>
+            <tr><th scope="row">Desktop</th><td>On desktop, moving on relied on the running total bar, and testers tended to click towards the bottom of the page.</td><td>Add a Continue button across the bottom of every step, with the running total beside it.</td></tr>
+            <tr><th scope="row">Mobile</th><td>On phones, people move through forms with their thumbs and gestures: scrolling, tapping near the bottom of the screen and swiping back.</td><td>Keep the total and Continue in a bar fixed to the bottom of the screen, make the swipe-back gesture return to the previous step with answers kept, avoid sideways swiping except for the box pattern row, and keep every tap target at least 44px.</td></tr>
           </tbody>
         </table>
       </div>
@@ -861,7 +878,6 @@
           <li><span class="cs-num cs-num--plain">“</span><div><b>"Why does it cost £30 to use your own box?"</b> People couldn't see what they were paying for. The next version explains that the dress is folded with acid-free tissue and packed for them. Whether £30 is the right price is a question for the client: only 8 orders used it last year.</div></li>
           <li><span class="cs-num cs-num--plain">“</span><div><b>The admin fee felt like a penalty.</b> The client wanted a charge on orders without a wedding dress, to make small orders worth collecting. Testers saw the admin fee as a negative. One option for the next version is to name what the charge pays for, "collection and return, free with a wedding dress", so it reads as a service rather than a penalty.</div></li>
         </ul>
-        <div class="cs-todo"><strong>To add: before and after</strong>Two or three of the changes above as v1 → v2 screenshots, for example the dress step with "from" prices and the colour-coded calendar.</div>
 
         <h3 class="scroll-reveal">Where to ask for the email</h3>
         <p class="scroll-reveal sr-d2">The client's first instinct was to ask for an email before showing any prices, to capture leads. None of the competitors do this, and it adds effort before customers know whether the service is affordable. We compared two versions:</p>
@@ -870,14 +886,13 @@
           <div><h4>Version B: price first</h4><p>The quote shows first, and the email saves it, with a promise to hold the price for 30 days.</p></div>
         </div>
         <p class="scroll-reveal sr-d2" style="margin-top:20px;">With around 23 orders a month, a live A/B test on orders would take months to give an answer. Instead, we agreed to launch price first, framing the email as "Save your quote" so it offers something in return. Every saved quote is recorded with its own status in WooCommerce, which shows how many quotes become orders and gives the client leads to follow up. Email first stays ready to test against it.</p>
-        <div class="cs-todo"><strong>To add after launch</strong>How many quotes were saved, and how many turned into orders.</div>
 
         <h3 class="scroll-reveal">Agreeing changes with the client</h3>
         <p class="scroll-reveal sr-d2">I took the updated prototype to the client, Imran and Hamza, to review the testing findings and settle the open questions. We agreed:</p>
         <ul class="cs-findings scroll-reveal sr-d2">
           <li><span class="cs-num cs-num--plain">1</span><div><b>"Own box" becomes a service.</b> Renamed "Pack and present with your own box", so the £30 is clearly for expert packing with acid-free tissue. The client is recording a short video showing the cleaning and packing process.</div></li>
           <li><span class="cs-num cs-num--plain">2</span><div><b>Fewer charges that feel like penalties.</b> The admin fee on orders without a wedding dress is removed, and the breathable bag is shown as included rather than as a £10 add-on.</div></li>
-          <li><span class="cs-num cs-num--plain">3</span><div><b>Clear delivery choices.</b> Standard at £18 with a four-week return, or Express for £50 more with a 10 to 15 day return, marked on the calendar.</div></li>
+          <li><span class="cs-num cs-num--plain">3</span><div><b>Clear delivery choices.</b> Standard at £18 with a four-week return, or Express at £50 with a 10 to 12 day return, marked on the calendar. It's one price or the other, not both.</div></li>
           <li><span class="cs-num cs-num--plain">4</span><div><b>A follow-up for saved quotes.</b> If a customer doesn't book, an email after 7 days offers 10% off, and a reminder after 20 days comes before the 30-day price hold ends.</div></li>
         </ul>
       </article>
@@ -887,27 +902,52 @@
       <!-- FINAL DESIGN -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">Final Design</span>
-        <h2 class="scroll-reveal">[Final design heading]</h2>
-        <p class="scroll-reveal sr-d2">[One or two sentences introducing the final flow.]</p>
+        <h2 class="scroll-reveal">A quote that feels like the brand</h2>
+        <p class="scroll-reveal sr-d2">The final design takes the tested flow and gives it the look of the Treasured Possession site. I designed it in Figma, then built it as a working prototype with real prices on desktop and mobile, so the client and developer could click through every route before build.</p>
       </article>
 
       <div class="cs-media scroll-reveal">
-        <!-- TODO: swap for the .ba before/after slider block from the LHA page (and copy its script). Before image is ready: tp-before-desktop-viewport.jpg -->
-        <div class="cs-todo cs-todo--img"><strong>Before / after slider</strong>Old form vs new step 1, same viewport size.<br><code>/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg</code> (ready)<br><code>/img/portfolio/treasured-possession/tp-after-step1.jpg</code></div>
+        <div class="cs-photos">
+          <div class="cs-shot"><div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="Before: the original quote form, a long list of fields with no price until the basket" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" data-zoom-title="Before: the original form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="After: the new first step, What can we help with, with three priced choices and a quote panel on the right" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-after-step1.jpg" data-zoom-title="After: the new first step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+        </div>
+        <p class="cs-caption">Before and after: the first thing a customer sees.</p>
       </div>
 
       <div class="cs-media scroll-reveal">
-        <div class="cs-todo cs-todo--img"><strong>Video: full journey on mobile</strong>Screen recording from choosing a service through to the basket.<br><code>/img/portfolio/treasured-possession/tp-flow.mp4</code></div>
+        <div class="cs-shot"><div class="cs-frame" style="background:#fff"><img src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" alt="Seven mobile screens: what can we help with, tell us about your dress, how would you like your dress returned, customise your preservation box, the colour-coded delivery calendar, your instant quote and review your order, each with the total and button fixed to the bottom of the screen" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" data-zoom-title="The journey on mobile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+        <p class="cs-caption">The journey on mobile, from the first choice to the review.</p>
       </div>
 
       <div class="cs-media scroll-reveal">
-        <div class="cs-todo cs-todo--img"><strong>Image: emails</strong>Confirmation and abandoned-cart email designs side by side.<br><code>/img/portfolio/treasured-possession/tp-emails.jpg</code></div>
+        <div class="cs-photos">
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Tell us about your dress on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dress.jpg" alt="Tell us about your dress on desktop: three tabbed cards for dress style, dress value and additional details, with the quote panel on the right" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-dress.jpg" data-zoom-title="Tell us about your dress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="How would you like your dress returned on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-returns.jpg" alt="How would you like your dress returned on desktop: boxed and preserved options with the preservation box marked most popular, then bag options" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-returns.jpg" data-zoom-title="How would you like your dress returned?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="When should DPD collect on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-dates.jpg" alt="When should DPD collect on desktop: collection and return delivery dates, a two-month calendar with Standard dates marked +£18 and Express dates marked +£50, and a key" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-dates.jpg" data-zoom-title="When should DPD collect?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+          <div class="cs-shot"><div class="cs-frame" style="max-height:620px;overflow-y:auto;background:#fff" tabindex="0" aria-label="Review your order on desktop, scroll to see the full step"><img src="/img/portfolio/treasured-possession/tp-final-review.jpg" alt="Review your order on desktop: numbered cards for the order with edit links, phone number, what happens next and the terms" loading="lazy"></div>
+          <button type="button" class="cs-flow-btn cs-zoom" data-zoom-src="/img/portfolio/treasured-possession/tp-final-review.jpg" data-zoom-title="Review your order"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button></div>
+        </div>
+        <p class="cs-caption">Desktop steps: your dress, returns, delivery dates and review (scroll each to see the full step).</p>
       </div>
+
+      <div class="cs-media scroll-reveal">
+        <div class="cs-photos" style="grid-template-columns:2.2fr 1fr;align-items:start;">
+          <div class="cs-frame"><video src="/img/portfolio/treasured-possession/tp-flow.mp4" poster="/img/portfolio/treasured-possession/tp-flow-poster.jpg" controls muted playsinline preload="metadata" aria-label="Screen recording of the quote journey on desktop"></video></div>
+          <div class="cs-frame"><video src="/img/portfolio/treasured-possession/tp-flow-mobile.mp4" poster="/img/portfolio/treasured-possession/tp-flow-mobile-poster.jpg" controls muted playsinline preload="metadata" aria-label="Screen recording of the quote journey on mobile"></video></div>
+        </div>
+        <p class="cs-caption">The full journey on desktop and mobile, from choosing a service to the basket.</p>
+      </div>
+
 
       <article class="project-body">
         <h3 class="scroll-reveal">Accessibility</h3>
-        <p class="scroll-reveal sr-d2">Designed to WCAG 2.2 AA: keyboard-operable cards with visible focus, visible labels on every field, errors explained next to the field on each step, quantity buttons and cards of at least 44px, and the running total announced to screen readers when it changes.</p>
-        <div class="cs-todo"><strong>To confirm</strong>Check against what was built with a keyboard and a screen reader, and re-run the axe scan.</div>
+        <p class="scroll-reveal sr-d2">Designed to WCAG 2.2 AA: keyboard-operable cards with visible focus, visible labels on every field, errors explained next to the field on each step, quantity buttons and cards of at least 44px, and the running total announced to screen readers when it changes. The picture cards keep a real radio button underneath for keyboard and screen reader users, and the calendar's colour key is backed up by a price label on every date, so colour is never the only signal.</p>
       </article>
 
       <div class="divider"></div>
@@ -919,25 +959,13 @@
         <p class="scroll-reveal sr-d2">It's too early for results. Eight weeks after launch, these will be compared with the baseline and the same period last year, to allow for wedding season:</p>
       </article>
 
-      <div class="cs-stats cs-stats--simple cs-stats--3">
-        <div class="cs-stat scroll-reveal sr-d1">
-          <div class="cs-stat-num cs-todo-num">—</div>
-          <p class="cs-stat-label">quote-page visitors who place an order</p>
-          <p class="cs-stat-sub">Before → after</p>
-        </div>
-        <div class="cs-stat scroll-reveal sr-d2">
-          <div class="cs-stat-num cs-todo-num">—</div>
-          <p class="cs-stat-label">contactable leads captured</p>
-          <p class="cs-stat-sub">Previously none</p>
-        </div>
-        <div class="cs-stat scroll-reveal sr-d3">
-          <div class="cs-stat-num cs-todo-num">—</div>
-          <p class="cs-stat-label">orders recovered by the abandoned-cart email</p>
-          <p class="cs-stat-sub">WooCommerce and email platform</p>
-        </div>
-      </div>
-
-      <p class="cs-compare-note scroll-reveal" style="text-align:center;margin-top:8px;">Source: [Treasured Possession GA4 and WooCommerce, dates].</p>
+      <article class="project-body">
+        <ul class="cs-findings scroll-reveal sr-d2">
+          <li><span class="cs-num cs-num--plain">1</span><div><b>Quote-page visitors who place an order</b>, before and after.</div></li>
+          <li><span class="cs-num cs-num--plain">2</span><div><b>Contactable leads captured</b> from saved quotes, where previously there were none.</div></li>
+          <li><span class="cs-num cs-num--plain">3</span><div><b>Orders recovered by the abandoned-cart email</b>, from WooCommerce and the email platform.</div></li>
+        </ul>
+      </article>
 
       <div class="divider"></div>
 
@@ -946,22 +974,11 @@
         <span class="cs-eyebrow scroll-reveal">Reflection</span>
         <h2 class="scroll-reveal">What I'd do next</h2>
         <p class="scroll-reveal sr-d2">The new flow also opens up ideas the client wants to explore next: themed and seasonal box designs, suit preservation as its own service, and buying preservation as a gift, such as an anniversary present.</p>
-        <div class="cs-todo"><strong>To add at the end</strong>What you learned, what you'd change, and what you'd test next (for example standalone item pricing once confirmed).</div>
       </article>
 
     </div>
   </section>
 
-  <!-- TESTIMONIAL: hidden until the client gives a quote. Uncomment and fill in.
-    <figure class="cs-quote">
-    <div class="content-inner">
-      <blockquote class="scroll-reveal">[Client quote to come. Highlight the key line with &lt;mark&gt;.]</blockquote>
-      <figcaption class="scroll-reveal sr-d1">
-        <div><strong>[Name]</strong>[Role], Treasured Possession</div>
-      </figcaption>
-    </div>
-  </figure>
-  -->
 
   <!-- MORE WORK -->
   <section class="cs-more">
@@ -1023,6 +1040,14 @@
   </div>
 
   <script src="shared.js"></script>
+  <script>
+    document.querySelectorAll('.cs-flow--journey .cs-flow-scroll').forEach(function (el) {
+      var down = false, startX = 0, startLeft = 0;
+      el.addEventListener('mousedown', function (e) { down = true; startX = e.pageX; startLeft = el.scrollLeft; el.classList.add('is-dragging'); e.preventDefault(); });
+      window.addEventListener('mouseup', function () { down = false; el.classList.remove('is-dragging'); });
+      el.addEventListener('mousemove', function (e) { if (!down) return; el.scrollLeft = startLeft - (e.pageX - startX); });
+    });
+  </script>
   <script>
     (function () {
       // Before/after slider
