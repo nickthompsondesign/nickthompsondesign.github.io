@@ -782,15 +782,15 @@ body.index-page.loaded .showreel-slide { animation-play-state: running; }
 .portfolio-card:hover .portfolio-card-arrow svg { transform: rotate(45deg) translate(2px,-2px); }
 
 /* Portfolio grid spans */
+/* 1 = large feature tile; 2-5 = four small tiles beside it; 6, 8, 9 = tall tiles */
 .portfolio-card:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-.portfolio-card:nth-child(3) { grid-column: span 1; grid-row: span 2; }
-.portfolio-card:nth-child(5) { grid-column: span 1; grid-row: span 2; }
-.portfolio-card:nth-child(7) { grid-column: span 1; grid-row: span 2; }
+.portfolio-card:nth-child(6) { grid-column: span 1; grid-row: span 2; }
 .portfolio-card:nth-child(8) { grid-column: span 1; grid-row: span 2; }
+.portfolio-card:nth-child(9) { grid-column: span 1; grid-row: span 2; }
 
 @media (max-width: 1024px) {
   .portfolio-card:nth-child(n) { grid-column: span 1; grid-row: span 1; }
-  .portfolio-card:nth-child(1), .portfolio-card:nth-child(6) { grid-column: span 2; grid-row: span 2; }
+  .portfolio-card:nth-child(1), .portfolio-card:nth-child(6), .portfolio-card:nth-child(11) { grid-column: span 2; grid-row: span 2; }
 }
 
 @media (max-width: 600px) {
