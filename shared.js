@@ -475,19 +475,18 @@ document.querySelectorAll('.gradient-bg, .hero-bg-wrapper').forEach(function (bg
 
 
 /* =============================================
-   Hero showreel: Dance Music Therapy logo clip
-   Restarts the clip each time its slide fades in and pauses it while hidden.
-   The clip only starts downloading once the rest of the page has loaded.
+   Hero showreel: video slides (Dance Music Therapy logo, Treasured Possession quote flow)
+   Each clip restarts when its slide fades in and pauses while hidden.
+   Clips only start downloading once the rest of the page has loaded.
    ============================================= */
 (function () {
-  var v = document.querySelector('.slide-dmt video');
-  if (!v) return;
-  var slide = v.parentElement;
-  window.addEventListener('load', function () { v.preload = 'auto'; v.load(); });
-  var showing = false;
-  setInterval(function () {
-    var o = parseFloat(getComputedStyle(slide).opacity);
-    if (o > 0.02 && !showing) { showing = true; try { v.currentTime = 0; } catch (e) {} v.play().catch(function () {}); }
-    else if (o === 0 && showing) { showing = false; v.pause(); }
-  }, 100);
+  document.querySelectorAll('.showreel-slide video').forEach(function (v) {
+    var slide = v.parentElement, showing = false;
+    window.addEventListener('load', function () { v.preload = 'auto'; v.load(); });
+    setInterval(function () {
+      var o = parseFloat(getComputedStyle(slide).opacity);
+      if (o > 0.02 && !showing) { showing = true; try { v.currentTime = 0; } catch (e) {} v.play().catch(function () {}); }
+      else if (o === 0 && showing) { showing = false; v.pause(); }
+    }, 100);
+  });
 })();
