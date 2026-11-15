@@ -2508,16 +2508,23 @@ html {
 
 
 /* =============================================
-   Case study section labels: gradient dot instead of the short line
+   Case study section labels: gradient text with a gradient diamond
    (overrides the .cs-eyebrow::before rule in each page's own <style>)
    ============================================= */
-body .cs-eyebrow { gap: 12px; }
+body .cs-eyebrow {
+  gap: 9px;
+  background: linear-gradient(90deg, #5b3fc0 0%, #8a3fd0 55%, #c2187c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 body .cs-eyebrow::before {
   content: '';
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   flex-shrink: 0;
-  border-radius: 50%;
+  border-radius: 1.5px;
+  transform: rotate(45deg);
   background: linear-gradient(135deg, #6a4fc4, #dc26aa);
-  box-shadow: 0 0 0 4px rgba(106, 79, 196, 0.14);
+  box-shadow: none;
 }
