@@ -2505,3 +2505,19 @@ html {
   font-optical-sizing: none;
   font-variation-settings: "opsz" 24;
 }
+
+
+/* =============================================
+   Case study section labels: gradient dot instead of the short line
+   (overrides the .cs-eyebrow::before rule in each page's own <style>)
+   ============================================= */
+body .cs-eyebrow { gap: 12px; }
+body .cs-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6a4fc4, #dc26aa);
+  box-shadow: 0 0 0 4px rgba(106, 79, 196, 0.14);
+}
