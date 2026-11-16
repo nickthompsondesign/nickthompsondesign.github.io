@@ -198,7 +198,7 @@
 
     /* Audit findings list */
     .cs-findings { list-style: none; padding: 0; margin: 20px 0 0 0; display: grid; gap: 12px; }
-    .cs-findings li { padding: 14px 18px; border-radius: 12px; background: #f7f5ff; border: 1px solid rgba(54,16,155,0.08); font-size: 15px; line-height: 1.6; color: rgba(0,0,0,0.75); }
+    .cs-findings li { padding: 16px 18px; border-radius: 14px; background: #fff; border: 1px solid #e6e0f7; box-shadow: 0 8px 24px rgba(20,10,60,0.05); font-size: 15px; line-height: 1.6; color: rgba(0,0,0,0.75); }
     .cs-findings li b { color: var(--ink); }
 
     /* Competitor table (4 columns, scrolls on small screens) */
@@ -249,7 +249,7 @@
     .cs-heur { display: block; font-size: 12px; color: var(--accent-text); font-weight: 700; margin-top: 4px; }
     .cs-findings li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
     .cs-num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-    .cs-num--plain { background: #b9b1d6; }
+    .cs-num--plain { background: var(--accent); }
 
     .cs-audit { max-width: 760px; margin: 32px auto 0 auto; }
     .cs-audit .cs-frame { background: #fff; max-height: 760px; overflow-y: auto; }
@@ -334,7 +334,7 @@
     .cs-route { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 20px 0 4px; padding: 0; list-style: none; }
     .cs-route li { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #2e1e62; }
     .cs-route li span { padding: 8px 14px; border-radius: 999px; background: #f1edff; border: 1px solid #e2dafb; white-space: nowrap; }
-    .cs-route li:not(:last-child)::after { content: '→'; color: #a78bfa; font-weight: 400; }
+    .cs-route li:not(:last-child)::after { content: ''; width: 16px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a78bfa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E") center / contain no-repeat; }
     .cs-route li.is-end span { background: #2e1e62; color: #fff; border-color: #2e1e62; }
     /* What we found / what changed */
     .cs-changes { max-width: 1200px; margin: 32px auto 12px auto; display: grid; gap: 14px; }
@@ -375,6 +375,49 @@
     .cs-viewer.is-zoomed .cs-viewer-nav { display: none; }
     .cs-viewer-prev { left: 18px; } .cs-viewer-next { right: 18px; }
     .cs-viewer-count { margin-left: 10px; opacity: .6; }
+    /* ===== Round 3 (Nov 2026) ===== */
+    .cs-change .arrow svg, .cs-viewer-nav svg { width: 22px; height: 22px; }
+    .cs-more-head a svg { width: 14px; height: 14px; vertical-align: -2px; margin-left: 4px; }
+    /* Problem: equal-height scrollable before shots */
+    .cs .cs-before { grid-template-columns: 1fr 300px; align-items: stretch; }
+    .cs .cs-before .cs-frame { height: min(560px, 62vh); overflow-y: auto; }
+    .cs .cs-before .cs-phone { aspect-ratio: auto; }
+    @media (max-width: 800px) { .cs .cs-before { grid-template-columns: 1fr; } .cs .cs-before .cs-phone { max-width: 300px; margin: 0 auto; width: 100%; } }
+    /* Research: audit list numbered to match the image, image height follows the text */
+    .rf-audit-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .rf-audit-list li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; font-size: 14.5px; line-height: 1.55; color: rgba(0,0,0,.75); }
+    .rf-audit-list li span { width: 26px; height: 26px; border-radius: 50%; background: #2f1a9b; color: #fff; font-size: 13px; font-weight: 700; display: grid; place-items: center; }
+    .rf-audit-list b { color: #2e1e62; }
+    .rf--audit { align-items: stretch; }
+    .rf-media { position: relative; min-height: 420px; }
+    .rf-media .cs-frame { position: absolute; inset: 0 0 52px 0; max-height: none !important; }
+    .rf-media .cs-flow-btn { position: absolute; left: 0; bottom: 0; margin: 0; }
+    @media (max-width: 900px) { .rf-media { min-height: 0; } .rf-media .cs-frame { position: relative; inset: auto; height: 460px; } .rf-media .cs-flow-btn { position: static; margin-top: 12px; } }
+    .rf-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 4px; }
+    .rf-stats div { padding: 14px 16px; border-radius: 14px; background: #f7f5fd; }
+    .rf-stats strong { display: block; font-size: 26px; line-height: 1.1; color: #2e1e62; font-family: var(--font-heading); }
+    .rf-stats small { display: block; margin-top: 4px; font-size: 13px; line-height: 1.45; color: rgba(0,0,0,.65); }
+    @media (max-width: 640px) { .rf-stats { grid-template-columns: 1fr; } }
+    /* Small screenshot tiles that open in the site lightbox */
+    .cs-tilegrid { display: grid; gap: 14px; }
+    .cs-tilegrid--2 { grid-template-columns: repeat(2, 1fr); }
+    .cs-tilegrid--3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-tilegrid--comp { grid-template-columns: repeat(6, 1fr); gap: 10px; }
+    .cs-tilegrid .tile { border: 1px solid #ebe6f8; background: #fff; }
+    .tile--wide::before { padding-top: 30.6% !important; }
+    .tile--wide { border: 1px solid #ebe6f8; background: #fff; }
+    .cs-tilegrid--comp .tile-caption { padding: 22px 56px 10px 10px; }
+    .cs-tilegrid--comp .tile-caption-title { font-size: 12.5px; margin: 0; }
+    .cs-tilegrid--comp .tile-caption-cta { display: none; }
+    .cs-tilegrid--comp .tile-play-roundel { width: 34px; height: 34px; right: 8px; bottom: 8px; }
+    .cs-tilegrid--comp .tile-play-roundel svg { width: 15px !important; height: 15px !important; }
+    .cs-final .cs-caption { margin: 2px auto 10px; }
+    @media (max-width: 900px) { .cs-tilegrid--comp { grid-template-columns: repeat(3, 1fr); } .cs-tilegrid--3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .cs-tilegrid--2, .cs-tilegrid--3 { grid-template-columns: 1fr; } .cs-tilegrid--comp { grid-template-columns: repeat(2, 1fr); } .tile--wide::before { padding-top: 62% !important; } }
+    /* Low-fi prototype drags like the user flow */
+    .cs-flow--wide .cs-flow-scroll { cursor: grab; }
+    .cs-flow--wide .cs-flow-scroll.is-dragging { cursor: grabbing; }
+    .cs-flow-hint svg { width: 16px; height: 16px; }
   </style>
 </head>
 
@@ -467,17 +510,17 @@
       <!-- 1. THE PROBLEM -->
       <article class="project-body">
         <span class="cs-eyebrow scroll-reveal">The Problem</span>
-        <h2 class="scroll-reveal">The price was only shown in the basket</h2>
-        <p class="cs-takeaway scroll-reveal sr-d2">Customers had to complete the whole form and add it to the basket before they saw a total.</p>
+        <h2 class="scroll-reveal">Getting a price was hard work</h2>
+        <p class="cs-takeaway scroll-reveal sr-d2">The form was confusing, and customers only saw a price once they reached the basket.</p>
         <p class="scroll-reveal sr-d2">The "Calculate Order" button was WooCommerce's add-to-basket button with a different label. The form was already calculating the price as options were chosen, but the theme hid it. The business had no contact details for anyone who left before the basket, so it couldn't follow up.</p>
       </article>
 
       <div class="cs-media scroll-reveal">
         <div class="cs-before">
-          <div class="cs-frame"><img src="/img/portfolio/treasured-possession/tp-before-desktop.jpg" alt="The original quote form on desktop: order type, dress information, additional items, Express, two date fields and a Calculate Order button at the bottom, with an empty Your Order panel on the right" loading="lazy"></div>
+          <div class="cs-frame" tabindex="0" aria-label="Original form on desktop, scroll to see the full page"><img src="/img/portfolio/treasured-possession/tp-before-desktop.jpg" alt="The original quote form on desktop: order type, dress information, additional items, Express, two date fields and a Calculate Order button at the bottom, with an empty Your Order panel on the right" loading="lazy"></div>
           <div class="cs-frame cs-phone" tabindex="0" aria-label="Original form on mobile, scroll to see the full page"><img src="/img/portfolio/treasured-possession/tp-before-mobile.jpg" alt="The original quote form on mobile, where the Your Order panel and reviews only appear below the Calculate Order button" loading="lazy"></div>
         </div>
-        <p class="cs-caption">The original form on desktop and mobile (scroll the phone).</p>
+        <p class="cs-caption">The original form on desktop and mobile. Scroll each one to see the full page.</p>
       </div>
 
 
@@ -491,18 +534,24 @@
         <p class="scroll-reveal sr-d2">With a small budget, I chose methods that each answered a specific question: an audit of the live form, a year of order data and a benchmark of three competitors, backed up by customer reviews and a quick usability test with colleagues.</p>
       </article>
 
-      <div class="rf scroll-reveal">
+      <div class="rf rf--audit scroll-reveal">
         <div>
           <div class="rf-kicker"><b>1</b>Audit of the live form</div>
-          <h3>The price was hidden, and parts of the form didn't work by keyboard</h3>
-          <ul class="rf-list">
-            <li><b>The order summary never showed a price.</b> The "Your Order" panel kept its placeholder text however many options were chosen.</li>
-            <li><b>"Calculate Order" added the item to the basket.</b> The label described one action and the button did another.</li>
-            <li><b>The picture cards couldn't be used with a keyboard.</b> An automated scan missed this; checking by hand found it, so every new component was tested by keyboard and screen reader.</li>
-          </ul>
+          <h3>The price was hidden, and parts failed accessibility checks</h3>
+          <p>I marked up the live form against usability heuristics and WCAG 2.2. The numbers match the image.</p>
+          <ol class="rf-audit-list">
+            <li><span>1</span><div><b>The order summary never showed a price.</b> The "Your Order" panel kept its placeholder text.</div></li>
+            <li><span>2</span><div><b>"Calculate Order" added the item to the basket.</b> The label said one thing and the button did another.</div></li>
+            <li><span>3</span><div><b>Order type and dress style couldn't be chosen with a keyboard.</b> An automated scan missed this; checking by hand found it.</div></li>
+            <li><span>4</span><div><b>Pressure instead of help on dress value.</b> Customers were told to "ensure" they chose the right band, with no guidance.</div></li>
+            <li><span>5</span><div><b>Text fields had no labels.</b> The hint disappeared once you started typing.</div></li>
+            <li><span>6</span><div><b>Quantity boxes were hidden until ticked.</b> The copy asked for a quantity before the box appeared.</div></li>
+            <li><span>7</span><div><b>Rules were in small print.</b> The 6pm cut-off for next-day collection wasn't built into the date picker.</div></li>
+            <li><span>8</span><div><b>"Delivery date" was ambiguous.</b> It could mean the wedding date or when the dress should come back.</div></li>
+          </ol>
         </div>
-        <div>
-          <div class="cs-frame" tabindex="0" aria-label="Annotated audit of the original form, scroll to see all findings"><img src="/img/portfolio/treasured-possession/tp-audit-annotated.jpg" alt="The original form with numbered callouts marking each usability and accessibility issue" loading="lazy"></div>
+        <div class="rf-media">
+          <div class="cs-frame" tabindex="0" aria-label="Annotated audit of the original form, scroll to see all findings"><img src="/img/portfolio/treasured-possession/tp-audit-annotated.jpg" alt="The original form with numbered callouts 1 to 8 marking each issue" loading="lazy"></div>
           <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-audit-annotated.jpg" data-zoom-title="Annotated audit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
         </div>
       </div>
@@ -510,17 +559,24 @@
       <div class="rf scroll-reveal">
         <div>
           <div class="rf-kicker"><b>2</b>12 months of order data</div>
-          <h3>The orders made some questions unnecessary</h3>
-          <p>Analytics access was pending, so I exported a year of WooCommerce orders: 338 orders, with personal details removed. The patterns in them meant some questions could be answered for the customer.</p>
+          <h3>The orders showed what most customers choose</h3>
+          <p>I exported a year of WooCommerce orders (338, with personal details removed) to see which options people actually pick. That set the order of each step and the defaults.</p>
+          <div class="rf-stats">
+            <div><strong>65%</strong><small>of dress orders include a preservation box</small></div>
+            <div><strong>83%</strong><small>of boxes use the Chelsea Ivory pattern</small></div>
+            <div><strong>4%</strong><small>of orders choose Express delivery</small></div>
+          </div>
         </div>
         <div class="cs-table-wrap">
           <table class="cs-table">
-            <thead><tr><th scope="col">What the orders showed</th><th scope="col">What it changed</th></tr></thead>
+            <thead><tr><th scope="col">What the orders showed</th><th scope="col">How it shaped the form</th></tr></thead>
             <tbody>
+              <tr><th scope="row">Most dress orders include a preservation box</th><td>The box is part of the main journey and marked "Most popular"</td></tr>
               <tr><th scope="row">Box size always follows dress style</th><td>The box is sized automatically; customers only pick a pattern</td></tr>
-              <tr><th scope="row">Price depends on style as well as value</th><td>Style comes first, so every value band shows the real price</td></tr>
-              <tr><th scope="row">83% choose the Chelsea Ivory pattern</th><td>It's selected by default</td></tr>
-              <tr><th scope="row">Only 4% choose Express</th><td>Standard is the default, Express sits beside it</td></tr>
+              <tr><th scope="row">Price depends on style as well as value</th><td>Style is asked first, so every value band shows the real price</td></tr>
+              <tr><th scope="row">Chelsea Ivory is the most popular pattern</th><td>It's selected by default</td></tr>
+              <tr><th scope="row">The veil is the most common extra</th><td>Extras are listed in order of popularity, starting with the veil</td></tr>
+              <tr><th scope="row">Very few choose Express</th><td>Standard is the default, with Express beside it</td></tr>
             </tbody>
           </table>
         </div>
@@ -544,7 +600,17 @@
             </tbody>
           </table>
         </div>
-        <p class="cs-caption" style="margin:0;text-align:left;max-width:none;">Benchmark completed October 2026, following each flow up to the payment step.</p>
+        <div class="masonry-grid" style="margin:0">
+          <div class="cs-tilegrid cs-tilegrid--comp">
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/comp-elsiemay-step1.jpg" data-label="Elsie May: choose a gown style"><img src="/img/portfolio/treasured-possession/comp-elsiemay-step1.jpg" alt="Elsie May step one: illustrated gown style cards" loading="lazy" style="object-position:top left"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">Elsie May: choose a gown style</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/comp-elsiemay-step2.jpg" data-label="Elsie May: price shown straight away"><img src="/img/portfolio/treasured-possession/comp-elsiemay-step2.jpg" alt="Elsie May step two: a £275 price with a Pay and Book button" loading="lazy" style="object-position:top left"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">Elsie May: price shown straight away</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/comp-refinery-priced.jpg" data-label="Re:Finery: total updates as you choose"><img src="/img/portfolio/treasured-possession/comp-refinery-priced.jpg" alt="Re:Finery booking panel with a £229 total in the summary" loading="lazy" style="object-position:top left"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">Re:Finery: total updates as you choose</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/comp-refinery-extras.jpg" data-label="Re:Finery: extras with quantity steppers"><img src="/img/portfolio/treasured-possession/comp-refinery-extras.jpg" alt="Re:Finery extras with quantity steppers for veils, shoes and bridesmaid dresses" loading="lazy" style="object-position:top left"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">Re:Finery: extras with quantity steppers</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/comp-dorothy-top.jpg" data-label="Dorothy: flat price on arrival"><img src="/img/portfolio/treasured-possession/comp-dorothy-top.jpg" alt="Dorothy product page showing a flat £230 price" loading="lazy" style="object-position:top left"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">Dorothy: flat price on arrival</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/comp-dorothy-addons.jpg" data-label="Dorothy: add-ons, then required fields"><img src="/img/portfolio/treasured-possession/comp-dorothy-addons.jpg" alt="Dorothy add-on checkboxes and required brand, wedding date and material fields" loading="lazy" style="object-position:top left"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">Dorothy: add-ons, then required fields</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+          </div>
+        </div>
+        <p class="cs-caption" style="margin:0;text-align:left;max-width:none;">Benchmark completed October 2026, following each flow up to the payment step. Select a screenshot to view it full size.</p>
       </div>
 
       <div class="divider"></div>
@@ -570,13 +636,13 @@
         <p class="cs-takeaway scroll-reveal sr-d2">The first question decides which steps each customer sees, and the quote is shown before any dates are asked for.</p>
         <p class="scroll-reveal sr-d2">The old form was built around wedding dresses only. The new one starts with "What can we help with?": clean a wedding dress, clean other garments, or just a preservation box. Customers see their price before being asked for dates, so the quote is useful even to people who aren't ready to book.</p>
         <ol class="cs-route scroll-reveal sr-d2" aria-label="Steps in the wedding dress route">
-          <li><span>What can we help with?</span></li>
-          <li><span>Your dress</span></li>
-          <li><span>Anything else?</span></li>
-          <li><span>Returns</span></li>
-          <li><span>Your box</span></li>
-          <li><span>Your quote</span></li>
-          <li class="is-end"><span>Book</span></li>
+          <li><span>What do you need?</span></li>
+          <li><span>Dress details</span></li>
+          <li><span>Additional items</span></li>
+          <li><span>Customise box</span></li>
+          <li><span>Quote details</span></li>
+          <li><span>Book/Save Quote</span></li>
+          <li class="is-end"><span>Delivery Details</span></li>
         </ol>
       </article>
 
@@ -590,7 +656,7 @@
             <img src="/img/portfolio/treasured-possession/tp-user-flow.jpg" alt="User flow from left to right. Customers start from the quote page or a service page and answer What can we help with: other garments go to Your items, a wedding dress goes through Your dress, Anything else and Returning your dress, and Box only goes straight to Customise your box. A Preservation box decision leads either to Customise your box or straight to Your instant quote. Customers enter their email, then choose to book now or save for later. Saving holds the price for 30 days and sends a quote email, a 10% offer after 7 days and a reminder after 20 days, with a resume link back to the quote. Booking goes through Delivery dates, Review order and Basket; placed orders get a confirmation email, and customers who leave get an abandoned cart email back to their basket. Edit links on the review step jump back to any step." loading="lazy">
           </div>
           <div class="cs-flow-tools">
-            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Drag or scroll sideways to follow the flow</span>
+            <span class="cs-flow-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>Drag or scroll sideways to follow the flow</span>
             <span aria-hidden="true"></span>
             <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-user-flow.jpg" data-zoom-title="User flow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
           </div>
@@ -609,7 +675,7 @@
             <img src="/img/portfolio/treasured-possession/tp-wireframes.jpg" alt="Eight mobile wireframes in order: what can we help with, with three choices; your dress, with style cards and priced value bands; anything else to clean, with quantity steppers; returning your dress, with bag, own box or preservation box; customise your preservation box, with a box preview and pattern swatches; your quote, with an itemised total and save options; booking dates, with DPD collection and delivery speed; and review, with edit links and add to basket" loading="lazy">
           </div>
           <div class="cs-flow-tools">
-            <span class="cs-flow-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 21 12 15 18"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Scroll sideways to see every step</span>
+            <span class="cs-flow-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>Drag or scroll sideways to see every step</span>
             <span aria-hidden="true"></span>
             <button type="button" class="cs-flow-btn" data-zoom-src="/img/portfolio/treasured-possession/tp-wireframes.jpg" data-zoom-title="Wireframes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>View full size</button>
           </div>
@@ -637,9 +703,9 @@
       </div>
 
       <div class="cs-changes scroll-reveal">
-        <div class="cs-change"><div class="found"><small>What we found</small>Some testers weren't sure which style their dress was, and the price didn't move until a value band was chosen.</div><div class="arrow" aria-hidden="true">→</div><div class="changed"><small>What changed</small>A "Not sure?" panel helps people choose, and each style shows its "from" price, so the total updates straight away.</div></div>
-        <div class="cs-change"><div class="found"><small>What we found</small>The plain date picker didn't show what each date meant for delivery speed.</div><div class="arrow" aria-hidden="true">→</div><div class="changed"><small>What changed</small>A calendar in the style of hotel booking sites marks every return date as Standard (+£18) or Express (+£50), by colour and label.</div></div>
-        <div class="cs-change"><div class="found"><small>What we found</small>"Why does it cost £30 to use your own box?" People couldn't see what they were paying for.</div><div class="arrow" aria-hidden="true">→</div><div class="changed"><small>What changed</small>Renamed "Pack and present with your own box", so it reads as an expert packing service.</div></div>
+        <div class="cs-change"><div class="found"><small>What we found</small>Some testers weren't sure which style their dress was, and the price didn't move until a value band was chosen.</div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div><div class="changed"><small>What changed</small>A "Not sure?" panel helps people choose, and each style shows its "from" price, so the total updates straight away.</div></div>
+        <div class="cs-change"><div class="found"><small>What we found</small>The plain date picker didn't show what each date meant for delivery speed.</div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div><div class="changed"><small>What changed</small>A calendar in the style of hotel booking sites marks every return date as Standard (+£18) or Express (+£50), by colour and label.</div></div>
+        <div class="cs-change"><div class="found"><small>What we found</small>"Why does it cost £30 to use your own box?" People couldn't see what they were paying for.</div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div><div class="changed"><small>What changed</small>Renamed "Pack and present with your own box", so it reads as an expert packing service.</div></div>
       </div>
 
       <div class="cs-callout scroll-reveal">
@@ -662,35 +728,29 @@
         <p class="scroll-reveal sr-d2">I designed it in Figma using the brand's plum and blush, Poppins and a new set of fine line icons, then built it as a clickable prototype with real prices so the client and developer could try every route before build. It's designed to WCAG 2.2 AA, with keyboard-friendly cards, visible labels and price changes announced to screen readers.</p>
       </article>
 
-      <div class="cs-media scroll-reveal">
-        <div class="cs-gallery cs-gallery--2">
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" data-zoom-title="Before: the original form" data-zoom-group="ba"><img style="object-position:left top" src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="The original quote form, a long list of fields with no price until the basket" loading="lazy"><figcaption>Before: the original form</figcaption></button>
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-after-step1.jpg" data-zoom-title="After: the new first step" data-zoom-group="ba"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="The new first step, What can we help with, with three priced choices and a quote panel" loading="lazy"><figcaption>After: the new first step</figcaption></button>
+      <div class="cs-media cs-final scroll-reveal">
+        <div class="masonry-grid" style="margin:0">
+          <div class="device-row">
+            <button class="tile tile--desktop" type="button" data-type="video" data-src="/img/portfolio/treasured-possession/tp-flow.mp4" data-label="Treasured Possession — desktop"><img src="/img/portfolio/websites/TP-Mockup-Desktop.png" alt="The quote form on a laptop: the dress details step" loading="lazy"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><i class="icon-play"></i></div><div class="tile-caption"><h4 class="tile-caption-title">Treasured Possession — desktop</h4><span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile tile--mobile" type="button" data-type="video" data-src="/img/portfolio/treasured-possession/tp-flow-mobile.mp4" data-label="Treasured Possession — mobile"><img src="/img/portfolio/websites/TP-Mockup-Mobile.png" alt="The quote form on a phone: the returning your dress step" loading="lazy"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><i class="icon-play"></i></div><div class="tile-caption"><h4 class="tile-caption-title">Treasured Possession — mobile</h4><span class="tile-caption-cta">View Video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+          </div>
+          <p class="cs-caption">The full journey on desktop and mobile, from choosing a service to the basket.</p>
+          <div class="cs-tilegrid cs-tilegrid--2">
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" data-label="Before: the original form"><img src="/img/portfolio/treasured-possession/tp-before-desktop-viewport.jpg" alt="The original quote form with no price until the basket" loading="lazy" style="object-position:top left"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">Before: the original form</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-after-step1.jpg" data-label="After: the new first step"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="The new first step with three priced choices and a quote panel" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">After: the new first step</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+          </div>
+          <p class="cs-caption">Before and after: the first thing a customer sees.</p>
+          <div class="cs-tilegrid cs-tilegrid--3">
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-after-step1.jpg" data-label="1. What do you need?"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="The first step with three priced choices and a quote panel" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">1. What do you need?</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-final-dress.jpg" data-label="2. Dress details"><img src="/img/portfolio/treasured-possession/tp-final-dress.jpg" alt="Dress style, dress value and optional details in three labelled cards, with the quote panel" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">2. Dress details</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-final-returns.jpg" data-label="3. Returning your dress"><img src="/img/portfolio/treasured-possession/tp-final-returns.jpg" alt="Boxed and preserved options with the preservation box marked most popular" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">3. Returning your dress</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-box-step.jpg" data-label="4. Customise your box"><img src="/img/portfolio/treasured-possession/tp-box-step.jpg" alt="The box sized for the dress, with five pattern swatches and a live preview" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">4. Customise your box</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-final-dates.jpg" data-label="5. Collection and return dates"><img src="/img/portfolio/treasured-possession/tp-final-dates.jpg" alt="A two-month calendar with Standard and Express return dates marked by colour and price" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">5. Collection and return dates</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+            <button class="tile" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-final-review.jpg" data-label="6. Review your order"><img src="/img/portfolio/treasured-possession/tp-final-review.jpg" alt="Numbered cards for the order with edit links and the terms" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">6. Review your order</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+          </div>
+          <button class="tile tile--wide" type="button" data-type="image" data-src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" data-label="The journey on mobile"><img src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" alt="Seven mobile screens from the first choice to the review, each with the total fixed to the bottom" loading="lazy" style="object-position:top"><div class="tile-hover-overlay"></div><div class="tile-play-roundel"><svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tile-caption"><h4 class="tile-caption-title">The journey on mobile</h4><span class="tile-caption-cta">View Image <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></div></button>
+          <p class="cs-caption">Select any screen to view it full size, then use the arrows to move through them.</p>
         </div>
-        <p class="cs-caption">Before and after: the first thing a customer sees.</p>
-      </div>
-
-      <div class="cs-media scroll-reveal">
-        <div class="cs-gallery">
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-after-step1.jpg" data-zoom-title="1. What can we help with?" data-zoom-group="final"><img src="/img/portfolio/treasured-possession/tp-after-step1.jpg" alt="The first step with three priced choices and a quote panel" loading="lazy"><figcaption>1. What can we help with?</figcaption></button>
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-final-dress.jpg" data-zoom-title="2. Tell us about your dress" data-zoom-group="final"><img src="/img/portfolio/treasured-possession/tp-final-dress.jpg" alt="Dress style, dress value and optional details in three labelled cards, with the quote panel" loading="lazy"><figcaption>2. Tell us about your dress</figcaption></button>
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-final-returns.jpg" data-zoom-title="3. Returning your dress" data-zoom-group="final"><img src="/img/portfolio/treasured-possession/tp-final-returns.jpg" alt="Boxed and preserved options with the preservation box marked most popular, then bag options" loading="lazy"><figcaption>3. Returning your dress</figcaption></button>
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-box-step.jpg" data-zoom-title="4. Customise your box" data-zoom-group="final"><img src="/img/portfolio/treasured-possession/tp-box-step.jpg" alt="The box sized for the dress, with five pattern swatches and a live preview" loading="lazy"><figcaption>4. Customise your box</figcaption></button>
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-final-dates.jpg" data-zoom-title="5. When should DPD collect?" data-zoom-group="final"><img src="/img/portfolio/treasured-possession/tp-final-dates.jpg" alt="A two-month calendar with Standard and Express return dates marked by colour and price" loading="lazy"><figcaption>5. When should DPD collect?</figcaption></button>
-          <button type="button" class="cs-tile" data-zoom-src="/img/portfolio/treasured-possession/tp-final-review.jpg" data-zoom-title="6. Review your order" data-zoom-group="final"><img src="/img/portfolio/treasured-possession/tp-final-review.jpg" alt="Numbered cards for the order with edit links, phone number, what happens next and the terms" loading="lazy"><figcaption>6. Review your order</figcaption></button>
-        </div>
-        <div style="margin-top:18px">
-          <button type="button" class="cs-tile cs-tile--wide" data-zoom-src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" data-zoom-title="The journey on mobile" data-zoom-group="final"><img src="/img/portfolio/treasured-possession/tp-final-mobile.jpg" alt="Seven mobile screens from the first choice to the review, each with the total fixed to the bottom" loading="lazy"><figcaption>The journey on mobile</figcaption></button>
-        </div>
-        <p class="cs-caption">Desktop steps and the mobile journey. Select any screen to see it full size and move through them in order.</p>
-      </div>
-
-      <div class="cs-media scroll-reveal">
-        <div class="cs-videos">
-          <div class="cs-frame"><video src="/img/portfolio/treasured-possession/tp-flow.mp4" poster="/img/portfolio/treasured-possession/tp-flow-poster.jpg" controls muted playsinline preload="metadata" aria-label="Screen recording of the quote journey on desktop"></video></div>
-          <div class="cs-frame"><video src="/img/portfolio/treasured-possession/tp-flow-mobile.mp4" poster="/img/portfolio/treasured-possession/tp-flow-mobile-poster.jpg" controls muted playsinline preload="metadata" aria-label="Screen recording of the quote journey on mobile"></video></div>
-        </div>
-        <p class="cs-caption">The full journey on desktop and mobile, from choosing a service to the basket.</p>
       </div>
 
       <div class="divider"></div>
@@ -717,7 +777,7 @@
     <div class="content-inner">
       <div class="cs-more-head">
         <h2 class="scroll-reveal">More work</h2>
-        <a href="/#portfolio" class="scroll-reveal">View all projects →</a>
+        <a href="/#portfolio" class="scroll-reveal">View all projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <div class="cs-more-grid">
         <a href="lha-london-ux" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/UX%20design/lha-ux.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Design</span><h3>LHA London UX</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
@@ -761,6 +821,23 @@
   </footer>
 
   <!-- Full-size user flow viewer -->
+  <!-- Lightbox carousel (same as other project pages) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close></div>
+    <button class="lightbox-arrow lightbox-arrow--prev" id="lightbox-prev" type="button" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:22px; height:22px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </button>
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Project media">
+      <button class="lightbox-close" type="button" data-close aria-label="Close">&times;</button>
+      <video class="lightbox-video" id="lightbox-video" muted loop playsinline controls></video>
+      <img class="lightbox-image" id="lightbox-image" alt="" style="display:none;">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <button class="lightbox-arrow lightbox-arrow--next" id="lightbox-next" type="button" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:22px; height:22px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+  </div>
+
   <div class="cs-viewer" id="flowViewer" role="dialog" aria-modal="true" aria-label="Full-size image viewer">
     <div class="cs-viewer-bar">
       <span id="viewerTitle">Click to zoom · drag to move</span>
@@ -769,13 +846,13 @@
     <div class="cs-viewer-scroll">
       <img src="" alt="" id="viewerImg">
     </div>
-    <button type="button" class="cs-viewer-nav cs-viewer-prev" id="viewerPrev" aria-label="Previous image">&#8592;</button>
-    <button type="button" class="cs-viewer-nav cs-viewer-next" id="viewerNext" aria-label="Next image">&#8594;</button>
+    <button type="button" class="cs-viewer-nav cs-viewer-prev" id="viewerPrev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+    <button type="button" class="cs-viewer-nav cs-viewer-next" id="viewerNext" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
   </div>
 
   <script src="shared.js"></script>
   <script>
-    document.querySelectorAll('.cs-flow--journey .cs-flow-scroll').forEach(function (el) {
+    document.querySelectorAll('.cs-flow--journey .cs-flow-scroll, .cs-flow--wide .cs-flow-scroll').forEach(function (el) {
       var down = false, startX = 0, startLeft = 0;
       el.addEventListener('mousedown', function (e) { down = true; startX = e.pageX; startLeft = el.scrollLeft; el.classList.add('is-dragging'); e.preventDefault(); });
       window.addEventListener('mouseup', function () { down = false; el.classList.remove('is-dragging'); });
