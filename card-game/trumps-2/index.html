@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SH6GMRGSM5"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SH6GMRGSM5');</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Trumps: 2 players | Nick Thompson Design</title>
+<link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --font-heading: 'Fraunces', serif;
+    --font-body: 'Outfit', sans-serif;
+    --ink: #ffffff;
+    --muted: rgba(255,255,255,0.62);
+    --line: rgba(167,139,250,0.22);
+    --panel: rgba(255,255,255,0.06);
+    --panel-strong: rgba(255,255,255,0.1);
+    --field: rgba(1,4,45,0.7);
+    --lav: #a78bfa;
+    --lav-light: #c4b5fd;
+    --grad: linear-gradient(135deg, #5b3fc0 0%, #8a3fd0 55%, #c2187c 100%);
+    --red: #ff7aa8;
+    --black: #e6e3ff;
+    --ok: #7ee0a8;
+    --warn: #ffb86b;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --tracking-tight: -0.03em;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--ink);
+    min-height: 100vh;
+    background: #000113;
+    -webkit-font-smoothing: antialiased;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(circle at 12% -8%, rgba(0,20,255,0.55), transparent 45%),
+      radial-gradient(circle at 96% 6%, rgba(220,38,170,0.32), transparent 40%),
+      radial-gradient(circle at 50% 112%, rgba(50,0,255,0.42), transparent 52%),
+      radial-gradient(circle at center, #01042d 0%, #000113 100%);
+  }
+  button, input, select { font-family: inherit; }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--lav); outline-offset: 2px; }
+
+  /* Site header */
+  .site-top { max-width: 520px; margin: 0 auto; padding: 18px 16px 0; display: flex; align-items: center; justify-content: space-between; }
+  .site-logo { font-family: var(--font-heading); font-weight: 800; font-size: 17px; color: #fff; text-decoration: none; letter-spacing: var(--tracking-tight); }
+  .site-logo span { font-style: italic; font-weight: 200; opacity: 0.9; margin-left: 2px; }
+  .site-back { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; text-decoration: none; }
+  .site-back:hover { color: #fff; }
+  .site-back svg { width: 13px; height: 13px; }
+  .app-head { max-width: 520px; margin: 0 auto; padding: 22px 16px 4px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; background: linear-gradient(90deg, #a78bfa 0%, #d38cf5 55%, #ff7ac6 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 1.5px; transform: rotate(45deg); background: linear-gradient(135deg, #a78bfa, #ff7ac6); }
+  .app-title { font-family: var(--font-heading); font-weight: 600; font-size: 38px; line-height: 1.05; letter-spacing: var(--tracking-tight); margin: 8px 0 0; }
+
+  /* Shared button styles */
+  .btn-grad, .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 10px 20px; border-radius: 100px; font-family: var(--font-heading); font-weight: 400; font-size: 15px; letter-spacing: var(--tracking-tight); cursor: pointer; transition: transform .3s var(--ease), background .3s, border-color .3s, box-shadow .3s; }
+  .btn-grad { background: var(--grad); color: #fff; border: 0; box-shadow: 0 8px 24px rgba(100,40,255,0.25); }
+  .btn-grad:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(100,40,255,0.35); }
+  .btn-ghost { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(167,139,250,0.4); }
+  .btn-ghost:hover { border-color: var(--lav); color: #fff; }
+  button:disabled { opacity: 0.35; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+  /* 2-player scorekeeper */
+  #app { max-width: 520px; margin: 0 auto; padding: 20px 16px 48px; display: flex; flex-direction: column; gap: 14px; }
+  .scores { display: flex; gap: 10px; }
+  .sc { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 14px 10px; text-align: center; font-size: 14px; color: var(--muted); }
+  .sc b { display: block; font-family: var(--font-heading); font-size: 42px; font-weight: 600; line-height: 1.05; color: #fff; letter-spacing: var(--tracking-tight); }
+  .sc.lead { border-color: rgba(167,139,250,0.7); background: rgba(91,63,192,0.25); box-shadow: 0 12px 40px rgba(100,40,255,0.25); }
+  .turn { background: var(--grad); color: #fff; border-radius: 100px; padding: 10px 16px; text-align: center; font-size: 15px; }
+  .turn b { font-weight: 700; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 14px; backdrop-filter: blur(10px); box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+  .panel h2 { margin: 0; font-family: var(--font-heading); font-weight: 600; font-size: 22px; letter-spacing: var(--tracking-tight); }
+  .meta { font-size: 14px; line-height: 1.55; color: var(--muted); }
+  .meta b { color: #fff; }
+  .line { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 15px; }
+  .stepper { display: flex; align-items: center; gap: 8px; }
+  .stepper button { width: 46px; height: 46px; min-height: 0; padding: 0; border-radius: 50%; font-size: 22px; font-family: var(--font-body); }
+  .stepper span { min-width: 38px; text-align: center; font-family: var(--font-heading); font-size: 28px; font-weight: 600; }
+  button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 10px 20px; border-radius: 100px; font-family: var(--font-heading); font-weight: 400; font-size: 15px; letter-spacing: var(--tracking-tight); cursor: pointer; background: transparent; color: rgba(255,255,255,0.88); border: 1.5px solid rgba(167,139,250,0.4); transition: transform .3s var(--ease), background .3s, border-color .3s, box-shadow .3s; }
+  button:hover:not(:disabled) { border-color: var(--lav); color: #fff; }
+  button.gold { background: var(--grad); color: #fff; border: 0; box-shadow: 0 8px 24px rgba(100,40,255,0.25); }
+  button.gold:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(100,40,255,0.35); }
+  button.ghost { background: transparent; }
+  .seg { display: flex; gap: 6px; }
+  .seg button { flex: 1; }
+  .seg button.on { background: rgba(167,139,250,0.2); border-color: var(--lav); color: #fff; }
+  .warn { color: var(--red); font-size: 14px; }
+  .btns { display: flex; gap: 8px; }
+  .btns button { flex: 1; }
+  .wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: center; }
+  th, td { padding: 9px 4px; border-bottom: 1px solid rgba(167,139,250,0.12); }
+  th { font-weight: 700; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  tr[style*="pointer"]:hover { background: rgba(167,139,250,0.1); }
+  .hit { color: var(--lav-light); font-weight: 700; }
+  .foot { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+</style>
+</head>
+<body>
+<div class="site-top"><a href="/" class="site-logo">NickThompson<span>Design</span></a><a href="/" class="site-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Portfolio</a></div>
+<div class="app-head"><span class="eyebrow">Card game · 2 players</span><h1 class="app-title">Trumps for two</h1></div>
+<div id="app"></div>
+<script>
+const N=['Nick','Iona'],KEY='ohhell-score-v1',UP=[1,2,3,4,5,6,7,8,9,10,11,12,13];let SEQ=UP;
+let S={fd:1,rounds:[]},ph='bid',bids=[0,0],won=0,ed=null,cfm=false,pick='';
+try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.rounds)S=x}catch(e){}
+SEQ=S.dir==='down'?[...UP].reverse():UP;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const pts=(b,w)=>b===w?10+b:w;
+const $=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e};
+function btn(t,f,c,dis){const b=$('button',c||'',t);b.onclick=f;if(dis)b.disabled=true;return b}
+function stepper(label,val,max,set){
+  const l=$('div','line');l.appendChild($('div','',label));
+  const s=$('div','stepper');
+  s.appendChild(btn('−',()=>{if(val>0){set(val-1)}},'',val<=0));
+  s.appendChild($('span','',val));
+  s.appendChild(btn('+',()=>{if(val<max){set(val+1)}},'',val>=max));
+  l.appendChild(s);return l;
+}
+function totals(){const t=[0,0];S.rounds.forEach(r=>{t[0]+=pts(r.bids[0],r.won[0]);t[1]+=pts(r.bids[1],r.won[1])});return t}
+function editPanel(P){
+  const i=ed.i,n=SEQ[i],d=(S.fd+i)%2,first=1-d;
+  P.appendChild($('h2','',`Edit round ${i+1} (${n} card${n>1?'s':''} each)`));
+  [first,d].forEach(p=>P.appendChild(stepper(`${N[p]} bid`,ed.bids[p],n,v=>{ed.bids[p]=v;render()})));
+  P.appendChild(stepper(`${N[0]} won`,ed.won,n,v=>{ed.won=v;render()}));
+  const l=$('div','line');l.appendChild($('div','',`${N[1]} won`));l.appendChild($('div','stepper',`<span>${n-ed.won}</span>`));P.appendChild(l);
+  const bad=ed.bids[0]+ed.bids[1]===n;
+  if(bad)P.appendChild($('div','warn',`Bids can't add up to ${n}.`));
+  const b=$('div','btns');
+  b.appendChild(btn('Cancel',()=>{ed=null;render()},'ghost'));
+  b.appendChild(btn('Save changes',()=>{S.rounds[i]={bids:[...ed.bids],won:[ed.won,n-ed.won]};save();ed=null;render()},'gold',bad));
+  P.appendChild(b);
+}
+function render(){
+  const a=document.getElementById('app');a.innerHTML='';
+  const t=totals(),r=S.rounds.length,done=r>=SEQ.length;
+  const sc=$('div','scores');
+  [0,1].forEach(p=>sc.appendChild($('div','sc'+(t[p]>t[1-p]?' lead':''),`${N[p]}<b>${t[p]}</b>`)));
+  a.appendChild(sc);
+  if(!done){const dd=(S.fd+r)%2;a.appendChild($('div','turn',`<span>Leads: <b>${N[1-dd]}</b></span>`))}
+  const P=$('div','panel');
+  if(ed){editPanel(P)}else if(done){
+    P.appendChild($('h2','',t[0]===t[1]?'It is a tie':`${N[t[0]>t[1]?0:1]} wins`));
+    P.appendChild($('div','meta',`Final score: ${N[0]} ${t[0]}, ${N[1]} ${t[1]}.`));
+    P.appendChild(btn('New game',newGame,'gold'));
+  }else{
+    const n=SEQ[r],d=(S.fd+r)%2,first=1-d;
+    P.appendChild($('h2','',`Round ${r+1} of ${SEQ.length}: ${n} card${n>1?'s':''} each`));
+    P.appendChild($('div','meta',`Dealer: ${N[d]}. ${N[first]} bids first and leads. Deal ${n*2} cards, then turn over the next card for trump.`));
+    if(ph==='bid'){
+      [first,d].forEach(p=>P.appendChild(stepper(`${N[p]} bids`,bids[p],n,v=>{bids[p]=v;render()})));
+      const bad=bids[0]+bids[1]===n;
+      if(bad)P.appendChild($('div','warn',`Bids can't add up to ${n}. ${N[d]} needs to change the bid.`));
+      const b=$('div','btns');
+      b.appendChild(btn('Next: tricks won',()=>{ph='won';won=0;render()},'gold',bad));
+      P.appendChild(b);
+      if(r===0){
+        P.appendChild($('div','meta','Round order'));
+        const sg=$('div','seg');
+        ['up','down'].forEach(k=>sg.appendChild(btn(k==='up'?'1 to 13':'13 to 1',()=>{S.dir=k;SEQ=k==='down'?[...UP].reverse():UP;save();render()},(S.dir==='down')===(k==='down')?'on':'')));
+        P.appendChild(sg);
+        P.appendChild(btn(`First dealer: ${N[S.fd]} (tap to swap)`,()=>{S.fd=1-S.fd;save();render()},'ghost'));
+        P.appendChild(btn('Pick first dealer at random',()=>{S.fd=Math.random()<.5?0:1;pick=`${N[S.fd]} was picked to deal first.`;save();render()},'ghost'));
+        if(pick)P.appendChild($('div','meta',`<b>${pick}</b>`));
+      }
+    }else{
+      P.appendChild($('div','meta',`Bids: ${N[0]} ${bids[0]}, ${N[1]} ${bids[1]}. Enter tricks won.`));
+      P.appendChild(stepper(`${N[0]} won`,won,n,v=>{won=v;render()}));
+      const iw=n-won;
+      const l=$('div','line');l.appendChild($('div','',`${N[1]} won`));l.appendChild($('div','stepper',`<span>${iw}</span>`));P.appendChild(l);
+      const pn=pts(bids[0],won),pi=pts(bids[1],iw);
+      P.appendChild($('div','meta',`This round: ${N[0]} +${pn}, ${N[1]} +${pi}`));
+      const b=$('div','btns');
+      b.appendChild(btn('Back',()=>{ph='bid';render()},'ghost'));
+      b.appendChild(btn('Score round',()=>{S.rounds.push({bids:[...bids],won:[won,iw]});save();ph='bid';bids=[0,0];won=0;render()},'gold'));
+      P.appendChild(b);
+    }
+  }
+  a.appendChild(P);
+  if(S.rounds.length){
+    const w=$('div','wrap');
+    let h=`<table><tr><th>Rd</th><th>Cards</th><th>${N[0]} bid/won</th><th>Pts</th><th>${N[1]} bid/won</th><th>Pts</th></tr>`;
+    S.rounds.forEach((x,i)=>{
+      const p0=pts(x.bids[0],x.won[0]),p1=pts(x.bids[1],x.won[1]);
+      h+=`<tr><td>${i+1}</td><td>${SEQ[i]}</td><td>${x.bids[0]}/${x.won[0]}</td><td class="${x.bids[0]===x.won[0]?'hit':''}">${p0}</td><td>${x.bids[1]}/${x.won[1]}</td><td class="${x.bids[1]===x.won[1]?'hit':''}">${p1}</td></tr>`;
+    });
+    w.innerHTML=h+'</table>';
+    w.querySelectorAll('tr').forEach((tr,k)=>{if(k>0){tr.style.cursor='pointer';tr.onclick=()=>{const x=S.rounds[k-1];ed={i:k-1,bids:[...x.bids],won:x.won[0]};render();window.scrollTo(0,0)}}});
+    a.appendChild($('div','meta','Made a mistake? Tap any round below to edit it.'));a.appendChild(w);
+    const f=$('div','foot');
+    f.appendChild(btn('Undo last round',()=>{S.rounds.pop();ed=null;save();ph='bid';render()},'ghost'));
+    if(!done){
+      if(cfm){f.appendChild($('span','meta','Clear all scores?'));f.appendChild(btn('Yes, start over',()=>{cfm=false;newGame()},'gold'));f.appendChild(btn('Cancel',()=>{cfm=false;render()},'ghost'))}
+      else f.appendChild(btn('New game',()=>{cfm=true;render()},'ghost'));
+    }
+    a.appendChild(f);
+  }
+}
+function newGame(){ed=null;pick='';S={fd:1-S.fd,dir:S.dir,rounds:[]};ph='bid';bids=[0,0];won=0;save();render()}
+render();
+</script>
+</body>
+</html>
