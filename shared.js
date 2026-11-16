@@ -10,7 +10,8 @@ const minPreloaderTime = 1800;
 const initTime = Date.now();
 
 function dismissPreloader() {
-  const remaining = Math.max(0, minPreloaderTime - (Date.now() - initTime));
+  // PERF: count the minimum intro time from when the page started loading, not from when this script ran
+  const remaining = Math.max(0, minPreloaderTime - performance.now());
   setTimeout(() => {
     const pre = document.getElementById('preloader');
     if(pre) pre.classList.add('fade-out');
@@ -61,8 +62,12 @@ if (skipPreloader) {
     setTimeout(() => { document.body.style.opacity = '1'; }, 50);
   });
 } else {
-  if (document.readyState === 'complete') { dismissPreloader(); }
-  else { window.addEventListener('load', dismissPreloader); setTimeout(dismissPreloader, 6000); }
+  // PERF: dismiss once the page structure is ready, not after every image and video has downloaded.
+  // Media below the fold carries on loading in the background after the intro fades.
+  let preloaderDone = false;
+  const dismissOnce = () => { if (!preloaderDone) { preloaderDone = true; dismissPreloader(); } };
+  if (document.readyState !== 'loading') { dismissOnce(); }
+  else { document.addEventListener('DOMContentLoaded', dismissOnce); setTimeout(dismissOnce, 2500); }
 }
 
 // ── Header & Layout Logic ──
