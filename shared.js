@@ -66,8 +66,27 @@ if (skipPreloader) {
   // Media below the fold carries on loading in the background after the intro fades.
   let preloaderDone = false;
   const dismissOnce = () => { if (!preloaderDone) { preloaderDone = true; dismissPreloader(); } };
-  if (document.readyState !== 'loading') { dismissOnce(); }
-  else { document.addEventListener('DOMContentLoaded', dismissOnce); setTimeout(dismissOnce, 2500); }
+  // PERF: on the homepage, also wait for the first hero image so the box never fades in empty.
+  // Hard cap of 2.5s from page start, so a slow connection can't hold the intro up.
+  let heroPromise;
+  const heroReady = () => heroPromise || (heroPromise = loadHero().then(() => { if (box) box.classList.remove('hero-waiting'); }));
+  const loadHero = () => {
+    const first = IS_INDEX && document.querySelector('.slide-1');
+    const url = first && (getComputedStyle(first).backgroundImage.match(/url\(["']?(.*?)["']?\)/) || [])[1];
+    if (!url) return Promise.resolve();
+    const img = new Image();
+    img.src = url;
+    return (img.decode ? img.decode() : new Promise(r => { img.onload = img.onerror = r; })).catch(() => {});
+  };
+  // If the cap is hit first, the hero box stays hidden until its image arrives, then fades in
+  const box = IS_INDEX && document.querySelector('.square-box');
+  if (box) box.classList.add('hero-waiting');
+  const whenReady = () => Promise.race([
+    heroReady(),
+    new Promise(r => setTimeout(r, Math.max(0, 2500 - performance.now())))
+  ]).then(dismissOnce);
+  if (document.readyState !== 'loading') { whenReady(); }
+  else { document.addEventListener('DOMContentLoaded', whenReady); setTimeout(dismissOnce, 2500); }
 }
 
 // ── Header & Layout Logic ──
