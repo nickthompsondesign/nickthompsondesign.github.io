@@ -2528,3 +2528,8 @@ body .cs-eyebrow::before {
   background: linear-gradient(135deg, #6a4fc4, #dc26aa);
   box-shadow: none;
 }
+
+/* "View all projects" link: same arrow as the roundel buttons, rotates to point right on hover */
+.cs-more-head a { display: inline-flex; align-items: center; gap: 6px; }
+.cs-more-head a svg { width: 14px; height: 14px; margin: 0; vertical-align: middle; flex-shrink: 0; transition: rotate 0.5s var(--ease-out); }
+.cs-more-head a:hover svg, .cs-more-head a:focus-visible svg { rotate: 45deg; }
