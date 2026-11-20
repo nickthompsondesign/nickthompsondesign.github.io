@@ -12,8 +12,8 @@
   </script>
   
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>DRAFT · Nick Thompson Design</title>
 
   <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
@@ -21,7 +21,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">  
-  <link rel="stylesheet" href="shared-draft.css">
+  <link rel="stylesheet" href="shared.css">
+  <!-- PERF: start downloading the hero images straight away (they're CSS backgrounds, which the browser finds late) -->
+  <link rel="preload" as="image" href="/img/portfolio/Web-Design.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/img/showreel/dmt-flip-poster.jpg">
+  <link rel="preload" as="image" href="/img/portfolio/Logos-Showcase-2.webp" type="image/webp">
 
 <style>
   /* ── Variables ── */
@@ -91,10 +95,10 @@ html, body {
     <div class="hero-container">
       <div class="hero-text">
         <h1 class="crt2">
-          <span class="gradient-line" data-text="Web &amp; digital design">Web &amp; digital design</span>
+          <span class="gradient-line" data-text="UX &amp; digital design">UX &amp; digital design</span>
           <span class="indent-line" data-text="crafted with purpose.">crafted with purpose.</span>
         </h1>
-        <p class="hero-body reveal delay-2">Over a decade of digital design and build across web, UX, brand, and front-end development.</p>
+        <p class="hero-body reveal delay-2">I design and build accessible websites and digital products, from research and Figma prototypes through to design systems and live builds.</p>
         <div class="hero-btns reveal delay-3">
           <a href="#portfolio" class="btn btn-view">My Work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
           <a href="#contact" class="btn btn-touch">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
@@ -103,8 +107,9 @@ html, body {
       <div class="hero-visual">
         <div class="square-box">
           <div class="showreel-slide slide-1"></div>
+          <div class="showreel-slide slide-dmt"><video muted playsinline preload="metadata" poster="/img/showreel/dmt-flip-poster.jpg" src="/img/showreel/dmt-flip.mp4" aria-hidden="true"></video></div>
           <div class="showreel-slide slide-2"></div>
-          <div class="showreel-slide slide-3"></div>
+          <div class="showreel-slide slide-3"><video muted playsinline preload="metadata" poster="/img/showreel/tp-quote-poster.jpg" src="/img/showreel/tp-quote.mp4" aria-hidden="true"></video></div>
           <div class="showreel-slide slide-4"></div>
         </div>
       </div>
@@ -160,14 +165,15 @@ html, body {
         <h2 class="section-heading scroll-reveal sr-d1">My Work</h2>
         <p class="section-sub">A collection of work across web, digital design, branding, and motion.</p>
         <div class="portfolio-grid">
-          <a href="website-design-draft" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Web-Design.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · UX</span><h3>Website Design &amp; Build</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="asda-experiential-hubs-draft" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Product · UX Strategy</span><h3>Asda Experiential Hubs</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="asda-design-guidelines-draft" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-design-guidelines.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Strategy</span><h3>Asda Design Guidelines</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="asda-bespoke-web-pages-draft" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-branded-zones.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · Branding</span><h3>Asda Branded Zones</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="lha-london-ux" class="portfolio-card scroll-reveal sr-d2"> <div class="portfolio-card-img" style="background-image:url('/img/portfolio/UX%20design/lha-ux.jpg')"></div> <div class="portfolio-card-overlay"></div> <div class="portfolio-card-inner"> <span class="portfolio-tag">UX · Design</span> <h3>LHA London UX</h3> <div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div> </div> </a>
+          <a href="website-design" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Web-Design.webp')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · UX</span><h3>Website Design &amp; Build</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="treasured-possession" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-treasured-possession.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Research</span><h3>Treasured Possession Quote Form</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="asda-experiential-hubs" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Product · UX Strategy</span><h3>Asda Experiential Hubs</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="asda-design-guidelines" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-design-guidelines.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Strategy</span><h3>Asda Design Guidelines</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="asda-bespoke-web-pages" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-branded-zones.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · Branding</span><h3>Asda Branded Zones</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="lha-london-ux" class="portfolio-card scroll-reveal sr-d2"> <div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-lha.jpg')"></div> <div class="portfolio-card-overlay"></div> <div class="portfolio-card-inner"> <span class="portfolio-tag">UX · Design</span> <h3>LHA London UX</h3> <div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div> </div> </a>
           <a href="sushi-restaurant-app" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/sora-sushi/thumb-sora-sushi-2.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Branding</span><h3>UX Mobile App Design</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
           <a href="print-projects" class="portfolio-card scroll-reveal sr-d2" style="grid-row: span 1;"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-sheffield.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Print</span><h3>Print Projects</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="digital-design-logos" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Logos-Showcase-2.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Design · Motion</span><h3>Digital Design, Logos &amp; Motion Graphics</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
+          <a href="digital-design-logos" class="portfolio-card scroll-reveal sr-d3"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Logos-Showcase-2.webp')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Design · Motion</span><h3>Digital Design, Logos &amp; Motion Graphics</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
           <a href="masaco-branding" class="portfolio-card scroll-reveal sr-d2"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Masaco_Logo.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Branding · Logo</span><h3>Masaco Brand Development</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
           <a href="video-projects" class="portfolio-card scroll-reveal sr-d1"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-ready.png')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Video · Motion</span><h3>Video Projects</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
         </div>
@@ -181,18 +187,18 @@ html, body {
         <div class="testimonials-grid">
           <div class="testimonial-card scroll-reveal">
             <p class="testimonial-quote">Highly recommend Nick. We worked together to develop and push the boundaries of what was possible in our Cadbury brand zone. Nick was creative, adaptive, agile and knowledgeable of what could be possible, which allowed us to deliver an exceptional brand page — industry leading.</p>
-            <div class="testimonial-author"><img src="/img/thumbs/cadbury-logo.png" alt="Cadbury"><div><strong>Caroline Buchanan</strong><span>E-commerce Customer Development Manager, Mondelez (Cadbury)</span></div></div>
+            <div class="testimonial-author"><img loading="lazy" decoding="async" src="/img/thumbs/cadbury-logo.png" alt="Cadbury"><div><strong>Caroline Buchanan</strong><span>E-commerce Customer Development Manager, Mondelez (Cadbury)</span></div></div>
           </div>
           <div class="testimonial-card scroll-reveal sr-d2">
             <p class="testimonial-quote">Nick was great to work with! He balanced the ASDA Christmas campaign visuals and LEGO Holiday campaign visuals perfectly. Nick was adaptive, creative, and collaborative throughout this project and delivered an incredible digital activation. I hope to work with him again soon.</p>
-            <div class="testimonial-author"><img src="/img/thumbs/lego-logo.png" alt="Lego"><div><strong>Jonathan McRobb-Bishop</strong><span>Associate Trade Marketing Manager, The LEGO Group UK/I.</span></div></div>
+            <div class="testimonial-author"><img loading="lazy" decoding="async" src="/img/thumbs/lego-logo.png" alt="Lego"><div><strong>Jonathan McRobb-Bishop</strong><span>Associate Trade Marketing Manager, The LEGO Group UK/I.</span></div></div>
           </div>
         </div>
         
       <div class="testimonial-card testimonial-card--full scroll-reveal sr-d2">
         <p class="testimonial-quote">The new additions to the website have significantly improved how guests navigate and access information. The structure is much clearer, making the booking journey more intuitive and user-friendly. We've already seen more confident user engagement and higher-quality enquiries. Internally, the updates have also made content much easier for our team to manage and maintain.</p>
         <div class="testimonial-author">
-          <img src="/img/brand-logos/lha-logo.svg" alt="LHA London">
+          <img loading="lazy" decoding="async" src="/img/brand-logos/lha-logo.svg" alt="LHA London">
           <div>
             <strong>Aggie Leighton</strong>
             <span>Operations Support Manager, LHA London</span>
@@ -208,20 +214,20 @@ html, body {
         <div class="about-text">
           <div class="section-label scroll-reveal">About Me</div>
           <h2 class="section-heading">UX & Digital Design</h2>
-            <p>A UX and digital designer with over a decade of experience across web, product, and digital design. I focus on understanding user needs and translating them into clear, considered experiences — most recently leading Asda's design studio delivering work for global clients including P&G, Nestlé, and Coca-Cola.</p>
+            <p>A UX and digital designer with over ten years’ experience across web, product and digital design. At Asda, I was responsible for the UX design and build of supplier-funded pages across the website and app. I worked in the team that ran all funded media on the site, for global brands including P&amp;G, Nestlé and Coca-Cola. I’m now Lead Digital Designer at Infoserve, leading UX and web projects from research to launch.</p>
           <div class="about-tools">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" title="Figma">
-            <img src="/img/skills/adobe-illustrator-icon.webp" alt="Illustrator" title="Illustrator">
-            <img src="/img/skills/adobe-photoshop-icon.webp" alt="Photoshop" title="Photoshop">
-            <img src="/img/skills/adobe-after-effects-icon.webp" alt="After Effects" title="After Effects">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg" alt="WordPress" title="WordPress">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg" alt="Framer" title="Framer">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg" alt="Webflow" title="Webflow">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/elementor-icon.png" alt="Elementor" title="Elementor">
-            <img src="/img/skills/bricks-builder.svg" alt="Bricks Builder" title="Bricks Builder">
+            <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" title="Figma">
+            <img loading="lazy" decoding="async" src="/img/skills/adobe-illustrator-icon.webp" alt="Illustrator" title="Illustrator">
+            <img loading="lazy" decoding="async" src="/img/skills/adobe-photoshop-icon.webp" alt="Photoshop" title="Photoshop">
+            <img loading="lazy" decoding="async" src="/img/skills/adobe-after-effects-icon.webp" alt="After Effects" title="After Effects">
+            <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg" alt="WordPress" title="WordPress">
+            <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
+            <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
+            <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+            <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg" alt="Framer" title="Framer">
+            <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg" alt="Webflow" title="Webflow">
+            <img loading="lazy" decoding="async" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/elementor-icon.png" alt="Elementor" title="Elementor">
+            <img loading="lazy" decoding="async" src="/img/skills/bricks-builder.svg" alt="Bricks Builder" title="Bricks Builder">
           </div>
           <div class="about-btns">
             <a href="#contact" class="btn-solid">Contact Me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
