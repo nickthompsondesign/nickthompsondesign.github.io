@@ -2706,3 +2706,31 @@ html.sbx-on body .cs-eyebrow .sep { top: -0.04em; }
 .portfolio-tag .sep { margin-left: 0.15em; }
 html:not(.sbx-on) .project-hero .section-label .sep { margin-left: 0.11em; }
 html:not(.sbx-on) body .cs-eyebrow .sep { margin-left: calc(-3px - 0.16em); }
+
+/* =============================================
+   SANDBOX: case-study page suggestions (Treasured Possession first)
+   Only with the Suggested switch on. body.case-study marks these pages.
+   ============================================= */
+
+/* Chapter labels ("The Problem", "Research") are navigation through the story,
+   so they stay ABOVE the heading here; just solid colour and sentence case. */
+html.sbx-on .case-study .project-body { display: block; }
+html.sbx-on .case-study .project-body h2 { margin-bottom: 14px; }
+html.sbx-on body.case-study .cs-eyebrow { display: inline-block; margin-bottom: 10px; font-size: 15px; }
+
+/* Small labels up from 11px to 12px (Impeccable: undersized-ui-text) */
+html.sbx-on .case-study .cs-goals h5,
+html.sbx-on .case-study .cs-table thead th,
+html.sbx-on .case-study .cs-change small,
+html.sbx-on .case-study .cs-status { font-size: 12px; }
+html.sbx-on .case-study .cs-route li span i { font-size: 12px; }
+
+/* Grey text that failed WCAG AA (4.5:1) now passes */
+html.sbx-on .case-study .cs-change small { color: rgba(0,0,0,0.62); }        /* was ~3.3:1, now ~5.6:1 */
+html.sbx-on .case-study .cs-change .changed small { color: #5b3fc0; }        /* ~6.6:1 on the lilac */
+html.sbx-on .case-study .cs-table thead th { color: rgba(46,30,98,0.78); }  /* was ~3.7:1, now ~7:1 */
+html.sbx-on .case-study .cs-caption { color: rgba(0,0,0,0.62); }            /* was ~4.0:1, now ~5.9:1 */
+
+/* Comfortable reading width: paragraphs ran to ~135 characters a line */
+html.sbx-on .case-study .project-body p,
+html.sbx-on .case-study .rf p { max-width: 70ch; }
