@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Motion examples | Nick Thompson Design</title>
+  <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #4c3593;
+      --brand-deep: #1e1450;
+      --ink: #2e1e62;
+      --bg: #f4f5f8;
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1); /* the curve your site already uses */
+      --t: 1;                                       /* 1 = real speed, 4 = slow motion */
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.6; }
+    a { color: var(--brand); }
+
+    /* ---------- page ---------- */
+    .top { background: radial-gradient(circle at 70% 0%, #0a3cff 0%, #01042d 70%); color: #fff; padding: 56px 24px 48px; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .label { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 10px; }
+    .top .label { color: #ddd6fe; }
+    h1 { font-family: 'Fraunces', serif; font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; letter-spacing: -0.03em; margin: 0 0 14px; }
+    .top p { max-width: 640px; margin: 0 0 24px; color: rgba(255,255,255,0.85); font-size: 17px; }
+    .slow { display: inline-flex; align-items: center; gap: 12px; font-weight: 600; cursor: pointer; user-select: none; }
+    .slow input { width: 20px; height: 20px; accent-color: #a78bfa; }
+
+    main { padding: 24px; }
+    section.demo { background: #fff; border-radius: 22px; padding: 32px; margin: 0 auto 28px; max-width: 1100px; box-shadow: 0 2px 6px rgba(20,16,60,0.05); }
+    .demo h2 { font-family: 'Fraunces', serif; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 8px; }
+    .demo .num { color: var(--brand); margin-right: 6px; }
+    .demo .why { max-width: 760px; margin: 0 0 6px; font-size: 17px; }
+    .demo .how { font-size: 14px; color: rgba(46,30,98,0.7); margin: 0 0 22px; }
+    .demo .how code { background: #efecf8; padding: 2px 6px; border-radius: 6px; font-size: 13px; }
+
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 760px) { .pair { grid-template-columns: 1fr; } section.demo { padding: 22px; } }
+    .panel { border: 1.5px solid #e3e0ef; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .tag { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+    .tag.now { background: #eeeef2; color: #555; }
+    .tag.new { background: #ede9fe; color: #5b21b6; }
+    .stage { position: relative; height: 230px; border-radius: 12px; background: var(--bg); overflow: hidden; display: grid; place-items: center; }
+
+    .replay { font: inherit; font-size: 14px; font-weight: 600; color: var(--brand); background: none; border: 1.5px solid #d9d3ee; border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+    .replay:hover { border-color: var(--brand); }
+
+    /* ---------- a card that looks like yours ---------- */
+    .card { position: relative; width: 78%; height: 170px; border-radius: 18px; overflow: hidden; border: 2px solid #8b7bd8; background: #2e1e62; display: block; text-decoration: none; cursor: pointer; }
+    .card .img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .card .shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,4,30,0.85), transparent 65%); }
+    .card .txt { position: absolute; left: 16px; bottom: 14px; color: #fff; }
+    .card .txt small { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #e2c9eb; }
+    .card .txt strong { font-family: 'Fraunces', serif; font-size: 17px; }
+
+    /* ---------- 1. card reveal ---------- */
+    .reveal-now  { opacity: 0; transform: translateY(32px); filter: blur(3px); transition: transform calc(450ms * var(--t)) var(--ease-smooth), filter calc(450ms * var(--t)) var(--ease-smooth); }
+    .reveal-new  { opacity: 0; transform: translateY(32px); filter: blur(3px); transition: opacity calc(1600ms * var(--t)) var(--ease-smooth), transform calc(1600ms * var(--t)) var(--ease-smooth), filter calc(1600ms * var(--t)) var(--ease-smooth); }
+    .in .reveal-now, .in .reveal-new { opacity: 1; transform: none; filter: none; }
+
+    /* ---------- 2. hover lift ---------- */
+    .lift-now, .lift-new { transition: translate calc(450ms * var(--t)) var(--ease-smooth), box-shadow calc(450ms * var(--t)) var(--ease-smooth); }
+    .lift-now .img, .lift-new .img { transition: transform calc(650ms * var(--t)) var(--ease-smooth); }
+    @media (hover: hover) and (pointer: fine) {
+      .lift-now:hover .img, .lift-new:hover .img { transform: scale(1.06); }
+      .lift-new:hover { translate: 0 -6px; box-shadow: 0 24px 50px rgba(80,20,220,0.25); }
+    }
+
+    /* ---------- 3. press feedback ---------- */
+    .pill { font: inherit; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; padding: 3px 3px 3px 22px; border-radius: 999px; border: 1.5px solid var(--brand); background: #fff; color: var(--ink); cursor: pointer; }
+    .pill span { width: 38px; height: 38px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: 18px; }
+    .press-new { transition: scale calc(160ms * var(--t)) var(--ease-smooth); }
+    .press-new:active { scale: 0.97; }
+    .presscard-new { transition: scale calc(160ms * var(--t)) var(--ease-smooth); }
+    .presscard-new:active { scale: 0.985; }
+    .stage.col { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 18px; }
+    .stage.col .card { height: 110px; width: 70%; }
+
+    /* ---------- 4. lightbox open/close ---------- */
+    .thumbs { display: flex; gap: 10px; }
+    .thumb { width: 92px; height: 70px; border-radius: 10px; background-size: cover; background-position: center; border: 0; cursor: pointer; }
+    .lb { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .lb-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.85); }
+    .lb-img { position: relative; width: 74%; height: 76%; border-radius: 10px; background-size: cover; background-position: center; }
+    .lb-x { position: absolute; top: 10px; right: 12px; z-index: 2; font-size: 22px; color: #fff; background: none; border: 0; cursor: pointer; }
+    .lb-now { display: none; }
+    .lb-now.open { display: flex; }
+    .lb-new { pointer-events: none; }
+    .lb-new .lb-bg { opacity: 0; transition: opacity calc(150ms * var(--t)) ease-out; }
+    .lb-new .lb-img, .lb-new .lb-x { opacity: 0; scale: 0.96; transition: opacity calc(150ms * var(--t)) ease-out, scale calc(150ms * var(--t)) ease-out; }
+    .lb-new.open { pointer-events: auto; }
+    .lb-new.open .lb-bg { opacity: 1; transition-duration: calc(200ms * var(--t)); }
+    .lb-new.open .lb-img, .lb-new.open .lb-x { opacity: 1; scale: 1; transition: opacity calc(250ms * var(--t)) var(--ease-smooth), scale calc(250ms * var(--t)) var(--ease-smooth); }
+
+    /* ---------- 5. lightbox next/prev ---------- */
+    .gallery { position: relative; width: 100%; height: 100%; background: #0b0b14; display: flex; align-items: center; justify-content: center; }
+    .gallery .lb-img { width: 70%; height: 78%; }
+    .arrow { position: absolute; top: 50%; translate: 0 -50%; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.15); color: #fff; font-size: 18px; cursor: pointer; }
+    .arrow.prev { left: 10px; } .arrow.next { right: 10px; }
+
+    /* ---------- 6. reduced motion ---------- */
+    .rm-now { opacity: 0; transform: translateY(32px); filter: blur(3px); transition: opacity calc(1600ms * var(--t)) var(--ease-smooth), transform calc(1600ms * var(--t)) var(--ease-smooth), filter calc(1600ms * var(--t)) var(--ease-smooth); }
+    .rm-new { opacity: 0; transition: opacity calc(300ms * var(--t)) ease; }
+    .in .rm-now, .in .rm-new { opacity: 1; transform: none; filter: none; }
+
+    .foot { text-align: center; padding: 10px 24px 60px; font-size: 15px; }
+  </style>
+</head>
+<body>
+
+  <div class="top">
+    <div class="wrap">
+      <p class="label">Sandbox · motion examples</p>
+      <h1>Homepage animation suggestions</h1>
+      <p>Each example shows what your homepage does now next to the suggested version, using your own easing curve and project images. Press "Replay" to run an example again. Slow motion runs everything at a quarter speed, which makes the differences easier to see.</p>
+      <label class="slow"><input type="checkbox" id="slow"> Slow motion</label>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- 1 -->
+    <section class="demo" data-replay>
+      <h2><span class="num">1.</span>Cards fading in on scroll</h2>
+      <p class="why">Your cards are meant to fade in like the rest of the page. Their own transition list doesn't include opacity, so they jump from invisible to visible and only the slide is animated.</p>
+      <p class="how">Fix: add <code>opacity</code> to the card's transition so it matches <code>.scroll-reveal</code>.</p>
+      <div class="pair">
+        <div class="panel">
+          <div class="panel-head"><span class="tag now">Now</span><button class="replay">Replay</button></div>
+          <div class="stage"><a class="card reveal-now"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-lha.jpg')"></div><div class="shade"></div><div class="txt"><small>UX · Design</small><strong>LHA London UX</strong></div></a></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="tag new">Suggested</span><button class="replay">Replay</button></div>
+          <div class="stage"><a class="card reveal-new"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-lha.jpg')"></div><div class="shade"></div><div class="txt"><small>UX · Design</small><strong>LHA London UX</strong></div></a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="demo">
+      <h2><span class="num">2.</span>Card hover lift</h2>
+      <p class="why">Your CSS lifts cards by 6px on hover, but the scroll-reveal transform overrides it, so only the image zoom ever shows. Hover over both cards to compare.</p>
+      <p class="how">Fix: use <code>translate: 0 -6px</code> for the lift, which doesn't clash with the reveal. Both versions only run on a mouse or trackpad, so a tap on a phone no longer leaves the card stuck.</p>
+      <div class="pair">
+        <div class="panel">
+          <div class="panel-head"><span class="tag now">Now</span></div>
+          <div class="stage"><a class="card lift-now"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg')"></div><div class="shade"></div><div class="txt"><small>Product · UX Strategy</small><strong>Asda Experiential Hubs</strong></div></a></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="tag new">Suggested</span></div>
+          <div class="stage"><a class="card lift-new"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg')"></div><div class="shade"></div><div class="txt"><small>Product · UX Strategy</small><strong>Asda Experiential Hubs</strong></div></a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="demo">
+      <h2><span class="num">3.</span>Press feedback</h2>
+      <p class="why">Nothing happens at the moment you press a button or card. A very small squeeze tells people the click registered. Press and hold each one to compare.</p>
+      <p class="how">Suggested: <code>:active { scale: 0.97 }</code> over 160ms on buttons, and a smaller 0.985 on cards because they're bigger.</p>
+      <div class="pair">
+        <div class="panel">
+          <div class="panel-head"><span class="tag now">Now</span></div>
+          <div class="stage col">
+            <button class="pill">Get in touch <span>&#8599;</span></button>
+            <a class="card"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-treasured-possession.jpg')"></div><div class="shade"></div></a>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="tag new">Suggested</span></div>
+          <div class="stage col">
+            <button class="pill press-new">Get in touch <span>&#8599;</span></button>
+            <a class="card presscard-new"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-treasured-possession.jpg')"></div><div class="shade"></div></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="demo">
+      <h2><span class="num">4.</span>Lightbox opening and closing</h2>
+      <p class="why">On your project pages, the lightbox appears and disappears instantly. A quick fade and scale makes it clear where the image came from. Click a thumbnail, then close it.</p>
+      <p class="how">Suggested: opens from <code>scale(0.96)</code> and <code>opacity: 0</code> over 250ms with your curve, and closes faster, in 150ms. The lightbox stays centred, because it isn't tied to one trigger.</p>
+      <div class="pair">
+        <div class="panel">
+          <div class="panel-head"><span class="tag now">Now</span></div>
+          <div class="stage" data-lb="now">
+            <div class="thumbs">
+              <button class="thumb" style="background-image:url('/img/portfolio/thumbnail/thumb-n-branded-zones.jpg')" aria-label="Open image"></button>
+              <button class="thumb" style="background-image:url('/img/portfolio/thumbnail/thumb-n-design-guidelines.jpg')" aria-label="Open image"></button>
+            </div>
+            <div class="lb lb-now"><div class="lb-bg"></div><div class="lb-img"></div><button class="lb-x" aria-label="Close">&times;</button></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="tag new">Suggested</span></div>
+          <div class="stage" data-lb="new">
+            <div class="thumbs">
+              <button class="thumb" style="background-image:url('/img/portfolio/thumbnail/thumb-n-branded-zones.jpg')" aria-label="Open image"></button>
+              <button class="thumb" style="background-image:url('/img/portfolio/thumbnail/thumb-n-design-guidelines.jpg')" aria-label="Open image"></button>
+            </div>
+            <div class="lb lb-new"><div class="lb-bg"></div><div class="lb-img"></div><button class="lb-x" aria-label="Close">&times;</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="demo">
+      <h2><span class="num">5.</span>Lightbox next and previous</h2>
+      <p class="why">At the moment the image just swaps. A short fade with a small slide in the direction of the arrow shows which way you moved. Use the arrows to compare.</p>
+      <p class="how">Suggested: 200ms fade with a 12px slide, using the Web Animations API (one line of JS, no library).</p>
+      <div class="pair">
+        <div class="panel">
+          <div class="panel-head"><span class="tag now">Now</span></div>
+          <div class="stage"><div class="gallery" data-gallery="now"><div class="lb-img"></div><button class="arrow prev" aria-label="Previous">&larr;</button><button class="arrow next" aria-label="Next">&rarr;</button></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="tag new">Suggested</span></div>
+          <div class="stage"><div class="gallery" data-gallery="new"><div class="lb-img"></div><button class="arrow prev" aria-label="Previous">&larr;</button><button class="arrow next" aria-label="Next">&rarr;</button></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="demo" data-replay>
+      <h2><span class="num">6.</span>Reduced motion</h2>
+      <p class="why">Some people turn on "reduce motion" because movement makes them feel unwell. Your site already pauses the background loops for them, but the reveals still slide and blur. Here's how a reveal looks to someone with the setting on.</p>
+      <p class="how">Suggested: keep a short 300ms fade but drop the movement and the blur. Reduced motion should be gentler, not nothing at all.</p>
+      <div class="pair">
+        <div class="panel">
+          <div class="panel-head"><span class="tag now">Now, with reduce motion on</span><button class="replay">Replay</button></div>
+          <div class="stage"><a class="card rm-now"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-design-guidelines.jpg')"></div><div class="shade"></div><div class="txt"><small>UX · Strategy</small><strong>Asda Design Guidelines</strong></div></a></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span class="tag new">Suggested</span><button class="replay">Replay</button></div>
+          <div class="stage"><a class="card rm-new"><div class="img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-design-guidelines.jpg')"></div><div class="shade"></div><div class="txt"><small>UX · Strategy</small><strong>Asda Design Guidelines</strong></div></a></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <p class="foot">Tell me which numbers you'd like and I'll add them to the real site one at a time. <a href="/">Back to the homepage</a></p>
+
+  <script>
+    // slow motion: one multiplier for CSS and JS timings
+    let T = 1;
+    document.getElementById('slow').addEventListener('change', e => {
+      T = e.target.checked ? 4 : 1;
+      document.documentElement.style.setProperty('--t', T);
+    });
+
+    // replay: remove the "in" state, force a reflow, then add it back
+    function play(stage) {
+      stage.classList.remove('in');
+      void stage.offsetWidth;
+      requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.add('in')));
+    }
+    document.querySelectorAll('[data-replay] .panel').forEach(panel => {
+      const stage = panel.querySelector('.stage');
+      panel.querySelector('.replay').addEventListener('click', () => play(stage));
+      // first run when the example scrolls into view
+      new IntersectionObserver(([e], obs) => { if (e.isIntersecting) { play(stage); obs.disconnect(); } }, { threshold: 0.5 }).observe(stage);
+    });
+
+    // lightbox open/close
+    document.querySelectorAll('[data-lb]').forEach(stage => {
+      const lb = stage.querySelector('.lb'), img = lb.querySelector('.lb-img');
+      stage.querySelectorAll('.thumb').forEach(t => t.addEventListener('click', () => {
+        img.style.backgroundImage = t.style.backgroundImage;
+        lb.classList.add('open');
+      }));
+      lb.querySelectorAll('.lb-bg, .lb-x').forEach(el => el.addEventListener('click', () => lb.classList.remove('open')));
+    });
+
+    // lightbox next/prev
+    const pics = ['thumb-n-branded-zones.jpg', 'thumb-n-design-guidelines.jpg', 'thumb-n-experiential-hubs.jpg', 'thumb-n-lha.jpg']
+      .map(f => `url('/img/portfolio/thumbnail/${f}')`);
+    document.querySelectorAll('[data-gallery]').forEach(g => {
+      const img = g.querySelector('.lb-img'), animated = g.dataset.gallery === 'new';
+      let i = 0;
+      img.style.backgroundImage = pics[0];
+      const go = dir => {
+        i = (i + dir + pics.length) % pics.length;
+        img.style.backgroundImage = pics[i];
+        if (animated) {
+          img.animate(
+            [{ opacity: 0, transform: `translateX(${dir * 12}px)` }, { opacity: 1, transform: 'none' }],
+            { duration: 200 * T, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+          );
+        }
+      };
+      g.querySelector('.prev').addEventListener('click', () => go(-1));
+      g.querySelector('.next').addEventListener('click', () => go(1));
+    });
+  </script>
+</body>
+</html>
