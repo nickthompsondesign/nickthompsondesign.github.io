@@ -2536,3 +2536,110 @@ body .cs-eyebrow::before {
 
 /* PERF: homepage hero box waits for its first image (only on very slow connections), then fades in */
 body.index-page.loaded .square-box.hero-waiting { opacity: 0; transform: scale(0.96); }
+
+
+/* =============================================
+   15. LIGHTBOX MOTION (Nov 2026, from Emil Kowalski's design-engineering skill)
+   Opens: fade + scale from 0.96, 250ms. Closes faster: 150ms.
+   Stays centred (a modal isn't tied to its trigger).
+   Existing arrow transitions (width, background) are kept as they were;
+   opacity is only added to them.
+   ============================================= */
+.lightbox {
+  display: flex;               /* was display:none / flex, which can't animate */
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility 0s linear 150ms;   /* stay visible until the fade-out ends */
+}
+.lightbox.is-open {
+  visibility: visible;
+  pointer-events: auto;
+  transition: visibility 0s;
+}
+.lightbox-backdrop {
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+.lightbox.is-open .lightbox-backdrop {
+  opacity: 1;
+  transition: opacity 200ms ease-out;
+}
+.lightbox-panel {
+  opacity: 0;
+  scale: 0.96;
+  transition: opacity 150ms ease-out, scale 150ms ease-out;
+}
+.lightbox.is-open .lightbox-panel {
+  opacity: 1;
+  scale: 1;
+  transition: opacity 250ms cubic-bezier(0.16, 1, 0.3, 1), scale 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lightbox-arrow {
+  opacity: 0;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 150ms ease-out;
+}
+.lightbox.is-open .lightbox-arrow {
+  opacity: 1;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Escape closes instantly: keyboard actions shouldn't wait for an animation */
+.lightbox.lb-instant,
+.lightbox.lb-instant * { transition-duration: 0s !important; transition-delay: 0s !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-panel,
+  .lightbox.is-open .lightbox-panel { scale: 1; }   /* fade only, no movement */
+}
+
+/* Lightbox waits for its media.
+   While the first video frame / image loads, only the backdrop is shown.
+   A small spinner appears only if loading takes longer than 200ms. */
+.lightbox.is-open.is-waiting .lightbox-panel { opacity: 0; scale: 0.96; }
+.lightbox-video.is-loading,
+.lightbox-image.is-loading { opacity: 0; }
+.lightbox::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  animation: lb-spin 0.8s linear infinite;
+  transition: opacity 150ms ease-out;
+}
+.lightbox.is-waiting::after,
+.lightbox:has(.is-loading)::after { opacity: 1; transition-delay: 200ms; }
+@keyframes lb-spin { to { transform: rotate(360deg); } }
+
+/* =============================================
+   16. DOT SEPARATORS in tags and labels ("Web · UX") (Nov 2026)
+   Drawn as a small circle so size and centring are exact in every font and browser.
+   0.24em across, centred on the capitals (cap height ~0.7em, middle at 0.35em).
+   ============================================= */
+.sep {
+  display: inline-block;
+  width: 0.24em;
+  height: 0.24em;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 0.23em;        /* bottom at 0.23em, so the centre sits at 0.35em */
+  margin: 0 0.25em;
+}
+/* uppercase labels have letter-spacing, which adds a little space before the dot */
+.portfolio-tag .sep { margin-left: 0.15em; }
+.project-hero .section-label .sep { margin-left: 0.11em; }
+/* case-study labels: a flex row with its own gap, gradient text (transparent colour),
+   and flex centring that sits the dot slightly low; all measured and corrected */
+body .cs-eyebrow .sep {
+  flex: none;
+  position: relative;
+  top: -0.1em;
+  margin: 0 -3px 0 calc(-3px - 0.16em);
+  background: #8a3fd0;           /* the gradient's middle colour */
+}
