@@ -2734,3 +2734,29 @@ html.sbx-on .case-study .cs-caption { color: rgba(0,0,0,0.62); }            /* w
 /* Comfortable reading width: paragraphs ran to ~135 characters a line */
 html.sbx-on .case-study .project-body p,
 html.sbx-on .case-study .rf p { max-width: 70ch; }
+
+/* ---- Treasured Possession, suggestion 1: the finished design leads ----
+   Suggested mode shows the finished desktop + phone mockup straight under the hero,
+   overlapping the gradient the way the intro card did, and the final section
+   opens with the before/after pair instead (no picture shown twice). */
+.sbx-only { display: none; }
+html.sbx-on .sbx-only { display: block; }
+html.sbx-on .sbx-hide { display: none !important; }
+
+html.sbx-on .case-study .project-hero { padding-bottom: 150px; }
+.cs-hero-work { position: relative; z-index: 20; margin: -170px 0 56px; }
+/* keep laptop + phone side by side at every width */
+.cs-hero-work .device-row { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cs-hero-work .tile--desktop { grid-column: span 2; }
+.cs-hero-work .tile--mobile { grid-column: span 1; }
+.cs-hero-work .tile--desktop::before { padding-top: 62.5%; }
+.cs-hero-work .tile--mobile::before { display: none; }
+@media (max-width: 1023px) {
+  html.sbx-on .case-study .project-hero { padding-bottom: 80px; }
+  .cs-hero-work { margin-top: -60px; margin-bottom: 32px; }
+  .cs-hero-work .device-row { gap: 8px; }
+}
+/* the intro card normally overlaps the hero; in Suggested the mockup does, so the card sits below it */
+html.sbx-on .case-study .project-meta-light { margin-top: 0 !important; }
+/* keep the "Designed, prototyped and tested" line last in the reordered hero */
+html.sbx-on .project-hero .content-inner > div { order: 4; margin-top: 18px; }
