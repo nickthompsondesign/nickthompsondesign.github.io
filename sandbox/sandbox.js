@@ -270,6 +270,8 @@ if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
     let rafId = null;
 
     box.addEventListener('mousemove', e => {
+      // SANDBOX: no tilt in "Suggested" mode (Taste Skill: no tilt)
+      if (document.documentElement.classList.contains('sbx-on')) return;
       const rect = box.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width  - 0.5;
       const y = (e.clientY - rect.top)  / rect.height - 0.5;

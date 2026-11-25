@@ -2536,3 +2536,61 @@ body .cs-eyebrow::before {
 
 /* PERF: homepage hero box waits for its first image (only on very slow connections), then fades in */
 body.index-page.loaded .square-box.hero-waiting { opacity: 0; transform: scale(0.96); }
+
+
+/* =============================================
+   SANDBOX ONLY: Impeccable + Taste Skill suggestions
+   Everything above this line is an exact copy of shared.css.
+   Every rule below only applies when <html> has .sbx-on
+   (the "Suggested" side of the switch). No transitions are
+   changed here, so existing hover effects keep their timing.
+   ============================================= */
+
+/* 1. Small text up to readable sizes (Impeccable: undersized-ui-text) */
+html.sbx-on .portfolio-tag        { font-size: 12px; }
+html.sbx-on .contact-item strong  { font-size: 12px; color: rgba(255,255,255,0.62); }
+html.sbx-on .cs-meta-details dt   { font-size: 12px; }
+html.sbx-on .ba-label             { font-size: 12px; }
+
+/* 2. Labels that repeat the heading under them (Impeccable: kicker-above-heading)
+      Homepage: "Projects I've worked on" > "My Work" etc. say the same thing twice. */
+html.sbx-on body.index-page .section-label,
+html.sbx-on .contact-section .section-label { display: none; }
+
+/* 3. Labels that carry real information move under their heading as a plain
+      meta line, in one solid colour (Impeccable: hero-eyebrow, gradient-text) */
+html.sbx-on .project-hero .content-inner { display: flex; flex-direction: column; }
+html.sbx-on .project-hero h1             { order: 1; margin-bottom: 10px; }
+html.sbx-on .project-hero .section-label { order: 2; margin: 0 0 18px; font-size: 15px; font-weight: 400;
+                                           text-transform: none; letter-spacing: 0; color: #ddd6fe; }
+html.sbx-on .project-hero .section-sub   { order: 3; }
+
+html.sbx-on .project-body                { display: flex; flex-direction: column; }
+html.sbx-on .project-body h2             { order: 1; margin-bottom: 6px; }
+html.sbx-on body .cs-eyebrow             { order: 2; margin-bottom: 14px; background: none; color: var(--accent-text, #6d28d9);
+                                           font-size: 14px; font-weight: 600; text-transform: none; letter-spacing: 0; }
+html.sbx-on body .cs-eyebrow::before     { display: none; }
+html.sbx-on .project-body > p            { order: 3; }
+
+/* 4. Comfortable line length, about 65-70 characters (Impeccable: line-length) */
+html.sbx-on .testimonial-card--full .testimonial-quote { max-width: 65ch; }
+html.sbx-on .project-body > p                          { max-width: 70ch; }
+
+/* 5. Decorative glows off (Impeccable: radial-halo, dark-glow) */
+html.sbx-on .testimonials-section::before,
+html.sbx-on .testimonials-section::after,
+html.sbx-on .contact-section::before,
+html.sbx-on .cs-quote::before { display: none; }
+html.sbx-on :is(h2, h3, .section-heading) { filter: none; } /* heading drop-shadow; hero h1 keeps its legibility shadow */
+
+/* 6. Calmer card hover zoom (Taste Skill: photo zooms 1.02-1.03). Value only, timing untouched. */
+html.sbx-on .portfolio-card:hover .portfolio-card-img { transform: scale(1.03); }
+
+/* ---- the Current / Suggested switch itself ---- */
+.sbx-switch { position: fixed; left: 50%; bottom: 20px; translate: -50% 0; z-index: 100002; display: flex; gap: 4px; padding: 4px;
+              border-radius: 999px; background: rgba(12,9,48,0.88); box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+              -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-family: 'Outfit', sans-serif; }
+.sbx-switch button { font: inherit; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); background: none;
+                     border: 0; border-radius: 999px; padding: 8px 18px; cursor: pointer; }
+.sbx-switch button[aria-pressed="true"] { background: #fff; color: #2e1e62; }
+.sbx-switch button:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }

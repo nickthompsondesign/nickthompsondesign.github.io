@@ -8,12 +8,12 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
   
-    // analytics disabled on test pages
+    // analytics disabled on sandbox pages
   </script>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nick Thompson Design (motion test)</title>
+  <title>Nick Thompson Design (sandbox)</title>
   <meta name="robots" content="noindex">
 
   <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
@@ -21,7 +21,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">  
-  <link rel="stylesheet" href="/sandbox/shared-animate.css">
+    <!-- SANDBOX: suggestions on/off. Set before the CSS loads so there's no flash. -->
+  <script>(function(){var on=true;try{on=localStorage.getItem('sbxOn')!=='0'}catch(e){}document.documentElement.classList.toggle('sbx-on',on);})();</script>
+  <link rel="stylesheet" href="/sandbox/sandbox.css">
   <!-- PERF: start downloading the hero images straight away (they're CSS backgrounds, which the browser finds late) -->
   <link rel="preload" as="image" href="/img/portfolio/Web-Design.webp" type="image/webp" fetchpriority="high">
   <link rel="preload" as="image" href="/img/showreel/dmt-flip-poster.jpg">
@@ -276,5 +278,11 @@ html, body {
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-outline" id="cursorOutline"></div>
   
+  <!-- SANDBOX: Current / Suggested switch -->
+  <div class="sbx-switch" role="group" aria-label="Compare designs">
+    <button type="button" data-sbx="0">Current</button>
+    <button type="button" data-sbx="1">Suggested</button>
+  </div>
+  <script>(function(){var h=document.documentElement,b=document.querySelectorAll('.sbx-switch button');function set(on){h.classList.toggle('sbx-on',on);b.forEach(function(x){x.setAttribute('aria-pressed',String((x.dataset.sbx==='1')===on))});try{localStorage.setItem('sbxOn',on?'1':'0')}catch(e){}}b.forEach(function(x){x.addEventListener('click',function(){set(x.dataset.sbx==='1')})});set(h.classList.contains('sbx-on'));})();</script>
 </body>
 </html>
