@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">
   <!-- SANDBOX: suggestions on/off. Set before the CSS loads so there's no flash. -->
   <script>(function(){var on=true;try{on=localStorage.getItem('sbxOn')!=='0'}catch(e){}document.documentElement.classList.toggle('sbx-on',on);})();</script>
-  <link rel="stylesheet" href="/sandbox/sandbox.css?v=1795649553">
+  <link rel="stylesheet" href="/sandbox/sandbox.css?v=1795649676">
 
   <style>
     /* ===== Case study v2 — page-specific styles (shared.css untouched) ===== */
@@ -490,17 +490,17 @@
       <div class="project-meta-light scroll-reveal sr-d3">
         <div class="cs-meta-top">
           <div class="meta-col">
-            <h4>The Brief</h4>
+            <h4 role="heading" aria-level="2">The Brief</h4>
             <p>Treasured Possession cleans and preserves wedding dresses across the UK. They could see people starting the price form and not finishing it, and once someone left there was no way to contact them. They asked us to make getting a price as easy as possible, and to turn every quote into a lead they could follow up.</p>
           </div>
           <div class="meta-col meta-col--role">
-            <h4>My Role</h4>
+            <h4 role="heading" aria-level="2">My Role</h4>
             <p>Lead designer. I ran the research, designed the flow and visuals in Figma, and built the working prototype with Claude Code. A developer at Infoserve is turning it into a WordPress plugin.</p>
           </div>
         </div>
         <div class="cs-goals">
           <div>
-            <h5>What success looks like</h5>
+            <h5 role="heading" aria-level="3">What success looks like</h5>
             <ul>
               <li>A price with less effort</li>
               <li>A lead for every quote</li>
@@ -508,7 +508,7 @@
             </ul>
           </div>
           <div>
-            <h5>Constraints</h5>
+            <h5 role="heading" aria-level="3">Constraints</h5>
             <ul>
               <li>Fixed agency budget for design, build and testing</li>
               <li>WooCommerce with an existing product-options plugin</li>
@@ -636,7 +636,7 @@
         <span class="cs-eyebrow scroll-reveal">The Insight</span>
         <h2 class="scroll-reveal">Three principles for the redesign</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The findings led to three principles: show the price early, ask fewer questions, and give customers a reason to share their email.</p>
-        <ul class="cs-findings scroll-reveal sr-d2">
+        <ul class="cs-findings cs-principles scroll-reveal sr-d2">
           <li><span class="cs-num cs-num--plain">1</span><div><b>Show the price from the first choice.</b> Every option shows what it costs, and a running total follows the customer through the flow.</div></li>
           <li><span class="cs-num cs-num--plain">2</span><div><b>Ask only what changes the price.</b> Required questions before a price dropped from five to two: dress style and value.</div></li>
           <li><span class="cs-num cs-num--plain">3</span><div><b>Earn the email by saving the quote.</b> Instead of a gate at the start, the email saves the quote and holds the price for 30 days. If the customer doesn't book, a follow-up email after 7 days offers 10% off, and a reminder arrives before the price hold ends.</div></li>
@@ -777,7 +777,7 @@
         <span class="cs-eyebrow scroll-reveal">What's Next</span>
         <h2 class="scroll-reveal">What we'll measure</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The form hasn't launched yet. Eight weeks after launch, these measures will be compared with the same period last year.</p>
-        <ul class="cs-findings scroll-reveal sr-d2">
+        <ul class="cs-findings cs-measures scroll-reveal sr-d2">
           <li><span class="cs-num cs-num--plain">1</span><div><b>Quote-page visitors who place an order</b>, before and after.</div></li>
           <li><span class="cs-num cs-num--plain">2</span><div><b>Contactable leads captured</b> from saved quotes, where previously there were none.</div></li>
           <li><span class="cs-num cs-num--plain">3</span><div><b>Orders recovered by the follow-up emails</b> for saved quotes and abandoned baskets.</div></li>
@@ -867,7 +867,7 @@
     <button type="button" class="cs-viewer-nav cs-viewer-next" id="viewerNext" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
   </div>
 
-  <script src="/sandbox/sandbox.js?v=1795649553"></script>
+  <script src="/sandbox/sandbox.js?v=1795649676"></script>
   <script>
     document.querySelectorAll('.cs-flow--journey .cs-flow-scroll, .cs-flow--wide .cs-flow-scroll').forEach(function (el) {
       var down = false, startX = 0, startLeft = 0;

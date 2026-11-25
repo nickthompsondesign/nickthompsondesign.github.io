@@ -2760,3 +2760,70 @@ html.sbx-on .case-study .project-hero { padding-bottom: 150px; }
 html.sbx-on .case-study .project-meta-light { margin-top: 0 !important; }
 /* keep the "Designed, prototyped and tested" line last in the reordered hero */
 html.sbx-on .project-hero .content-inner > div { order: 4; margin-top: 18px; }
+
+/* ---- Treasured Possession, suggestion 2: accessibility ----
+   Headings: The Brief / My Role announced as level 2, their sub-labels as level 3
+   (role + aria-level in the HTML, so they look exactly the same).
+   Tap targets: at least 44px tall on phones. Padding grows the tappable area and an
+   equal negative margin keeps everything where it was. */
+@media (max-width: 1023px) {
+  html.sbx-on .case-study .nav-logo,
+  html.sbx-on .case-study .footer-logo,
+  html.sbx-on .case-study .privacy,
+  html.sbx-on .case-study .contact-item a,
+  html.sbx-on .case-study .more-work-link,
+  html.sbx-on .case-study a.scroll-reveal[href="/#portfolio"] {
+    display: inline-block;
+    padding-block: 15px;
+    margin-block: -15px;
+  }
+  html.sbx-on .case-study .cs-flow-btn { min-height: 44px; }
+}
+
+/* ---- Treasured Possession, suggestion 3: type and rhythm ---- */
+/* The standfirst under each heading: a real step between heading and body,
+   regular weight in the ink colour instead of bold purple at body size */
+html.sbx-on .case-study .cs-takeaway {
+  font-size: clamp(19px, 1.6vw, 21px);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: #2e1e62;
+  max-width: 34em;
+}
+/* Order-data stats: the numbers carry the chapter, so they're set big, without boxes */
+html.sbx-on .case-study .rf-stats { gap: 20px; }
+html.sbx-on .case-study .rf-stats div { background: none; border-radius: 0; padding: 14px 0 0; border-top: 1px solid #e6e0f7; }
+html.sbx-on .case-study .rf-stats strong { font-size: clamp(34px, 3.2vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
+html.sbx-on .case-study .rf-stats small { font-size: 14px; color: rgba(0,0,0,0.68); }
+
+/* The three principles: a type moment, not three identical cards */
+html.sbx-on .case-study .cs-principles { gap: 0; margin-top: 28px; }
+html.sbx-on .case-study .cs-principles li {
+  background: none; border: 0; box-shadow: none; border-radius: 0;
+  border-top: 1px solid #e6e0f7;
+  padding: 26px 0;
+  grid-template-columns: 64px 1fr;
+  font-size: 16px; color: rgba(0,0,0,0.72);
+}
+html.sbx-on .case-study .cs-principles li:last-child { border-bottom: 1px solid #e6e0f7; }
+html.sbx-on .case-study .cs-principles .cs-num {
+  width: auto; height: auto; background: none; border-radius: 0;
+  font-family: var(--font-heading); font-size: clamp(30px, 3vw, 40px); font-weight: 800; line-height: 1;
+  color: #6a4fc4; justify-content: flex-start;
+}
+html.sbx-on .case-study .cs-principles li b {
+  display: block; margin-bottom: 8px;
+  font-family: var(--font-heading); font-size: clamp(22px, 2.2vw, 28px); font-weight: 700;
+  line-height: 1.2; letter-spacing: -0.02em; color: #2e1e62;
+}
+/* What we'll measure: a plain list with rules, matching the principles' rhythm */
+html.sbx-on .case-study .cs-measures { gap: 0; }
+html.sbx-on .case-study .cs-measures li {
+  background: none; border: 0; box-shadow: none; border-radius: 0;
+  border-top: 1px solid #e6e0f7; padding: 16px 0; font-size: 17px;
+}
+html.sbx-on .case-study .cs-measures li:last-child { border-bottom: 1px solid #e6e0f7; }
+html.sbx-on .case-study .cs-measures .cs-num { background: #f1edff; color: #4c3593; }
+html.sbx-on .case-study .cs-principles li > div,
+html.sbx-on .case-study .cs-measures li > div { max-width: 70ch; }
