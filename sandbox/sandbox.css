@@ -2680,14 +2680,29 @@ body:has(.lightbox.is-open) .sbx-switch { display: none; }
 @keyframes lb-spin { to { transform: rotate(360deg); } }
 
 /* SANDBOX: dot separators in tags and labels ("Web · UX").
-   The dot is centred on the lowercase letters, so next to capitals it looks low.
-   Lift it slightly and give it a little more room. Applies in both modes. */
+   Drawn as a small circle so size and centring are exact in every font and browser.
+   0.24em across (a little bigger than the text dot), centred on the capital letters
+   (cap height is about 0.7em, so its middle is at 0.35em). Applies in both modes. */
 .sep {
   display: inline-block;
-  position: relative;
-  top: -0.08em;
-  margin: 0 0.2em;
+  width: 0.24em;
+  height: 0.24em;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 0.23em;        /* bottom at 0.23em, so the centre sits at 0.35em */
+  margin: 0 0.25em;
 }
-/* project labels are a flex row with a 10px gap: the gap already spaces the dot,
-   and flex centring already lifts it, so undo most of the general rule there */
-.cs-eyebrow .sep { top: 0; margin: 0 -3px; }
+/* project labels are a flex row with a gap that already spaces the dot */
+.cs-eyebrow .sep { margin: 0 -3px; flex: none; }
+/* the Current-mode project label is gradient text with a transparent colour,
+   so currentColor would hide the dot: use the gradient's middle colour */
+body .cs-eyebrow .sep { background: #8a3fd0; }
+html.sbx-on body .cs-eyebrow .sep { background: currentColor; }
+/* flex centring puts the dot slightly below the capitals' middle: measured and corrected */
+body .cs-eyebrow .sep { position: relative; top: -0.1em; }
+html.sbx-on body .cs-eyebrow .sep { top: -0.04em; }
+/* uppercase labels have letter-spacing, which adds a little extra space before the dot:
+   take that off the left side so both sides match */
+.portfolio-tag .sep { margin-left: 0.15em; }
+html:not(.sbx-on) .project-hero .section-label .sep { margin-left: 0.11em; }
+html:not(.sbx-on) body .cs-eyebrow .sep { margin-left: calc(-3px - 0.16em); }
