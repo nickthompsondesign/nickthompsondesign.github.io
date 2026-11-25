@@ -329,8 +329,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var currentTiles = [];
   var currentIndex = 0;
+  // SANDBOX: motion helpers
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var clearTimer = null;
 
-  function showSlide(index) {
+  // SANDBOX: short fade + 12px slide in the direction of travel (arrow clicks only)
+  function slideIn(el, dir) {
+    if (!el || !el.animate) return;
+    var from = reduceMotion.matches ? 'none' : 'translateX(' + (dir * 12) + 'px)';
+    el.animate([{ opacity: 0, transform: from }, { opacity: 1, transform: 'none' }],
+               { duration: 200, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+  }
+
+  function showSlide(index, dir) {
     if (!currentTiles.length) return;
     currentIndex = (index + currentTiles.length) % currentTiles.length;
     var tile = currentTiles[currentIndex];
@@ -348,6 +359,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if(caption) caption.textContent = label;
 
+    // SANDBOX: animate only when moved with the on-screen arrows (dir is 1 or -1)
+    if (dir) {
+      var shown = type === 'image' ? image : video;
+      if (type === 'image' && image && image.decode) {
+        image.decode().then(function () { slideIn(image, dir); }, function () { slideIn(image, dir); });
+      } else {
+        slideIn(shown, dir);
+      }
+    }
+
     // Show or hide arrows depending on if we have multiple items
     var multiple = currentTiles.length > 1;
     if(prevBtn) prevBtn.style.display = multiple ? 'flex' : 'none';
@@ -356,16 +377,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function openLightbox(tiles, startIndex) {
     currentTiles = tiles;
+    clearTimeout(clearTimer);              // SANDBOX: reopened before the close finished
+    lightbox.classList.remove('lb-instant');
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
     showSlide(startIndex);
   }
 
-  function closeLightbox() {
+  // SANDBOX: instant = true for Escape; otherwise the media stays until the 150ms fade-out ends
+  function closeLightbox(instant) {
+    if (instant === true) lightbox.classList.add('lb-instant');
     lightbox.classList.remove('is-open');
     lightbox.setAttribute('aria-hidden', 'true');
-    if(video) { video.pause(); video.removeAttribute('src'); video.load(); }
-    if(image) { image.removeAttribute('src'); }
+    if(video) { video.pause(); }
+    clearTimeout(clearTimer);
+    clearTimer = setTimeout(function () {
+      if (lightbox.classList.contains('is-open')) return;
+      lightbox.classList.remove('lb-instant');
+      if(video) { video.removeAttribute('src'); video.load(); }
+      if(image) { image.removeAttribute('src'); }
+    }, instant === true ? 0 : 160);
   }
 
   // Find all tiles and bind the click event
@@ -381,18 +412,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Bind Arrows
-  if(prevBtn) prevBtn.addEventListener('click', function () { showSlide(currentIndex - 1); });
-  if(nextBtn) nextBtn.addEventListener('click', function () { showSlide(currentIndex + 1); });
+  if(prevBtn) prevBtn.addEventListener('click', function () { showSlide(currentIndex - 1, -1); });
+  if(nextBtn) nextBtn.addEventListener('click', function () { showSlide(currentIndex + 1, 1); });
 
   // Bind Close Buttons
   lightbox.querySelectorAll('[data-close]').forEach(function (el) {
-    el.addEventListener('click', closeLightbox);
+    el.addEventListener('click', function () { closeLightbox(); });
   });
 
   // Keyboard controls
   document.addEventListener('keydown', function (e) {
     if (!lightbox.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'Escape') closeLightbox(true);   // SANDBOX: instant, keyboard action
     if (e.key === 'ArrowRight' && currentTiles.length > 1) showSlide(currentIndex + 1);
     if (e.key === 'ArrowLeft' && currentTiles.length > 1) showSlide(currentIndex - 1);
   });
