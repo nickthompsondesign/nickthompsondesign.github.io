@@ -7,149 +7,98 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
-    gtag('config', 'G-SH6GMRGSM5', { page_title: '404', page_location: location.href });
+    gtag('config', 'G-SH6GMRGSM5', { page_title: '404' });
   </script>
-  
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page not found | Nick Thompson Design</title>
   <meta name="robots" content="noindex">
-
+  <title>Page not found | Nick Thompson Design</title>
   <link rel="icon" type="image/png" href="/img/portfolio/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">  
-  <link rel="stylesheet" href="/shared.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-  /* ── Variables ── */
-:root {
-  --color-bg1: rgb(2,2,6);
-  --color-bg2: rgb(0,0,5);
-  --color1: 0,20,255;
-  --color2: 20,0,200;
-  --color3: 50,0,255;
-  --color5: 0,50,255;
-  --color-interactive: 0,30,255;
-  --blending: screen;
-  --font-heading: 'Fraunces', serif;
-  --font-body: 'Outfit', sans-serif; /* SWAPPED TO OUTFIT */
-  --blue-accent: #36109b;
-  --tracking-tight: -0.03em;
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --max-w-index: 1500px;
-  --max-w: 1200px;
-}
-
-
-/* =============================================
-   RESET & BASE
-   ============================================= */
-
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  font-family: var(--font-body);
-  font-weight: 300; /* SETS THE NEW LIGHTER WEIGHT */
-  color: white;
-  overflow-x: hidden;
-}
-</style>
-
-  
-
-<style>
-  /* 404 only */
-  .notfound-hero .hero-container { min-height: 72vh; min-height: 72svh; padding-top: 140px; }
-  .notfound-hero .hero-text { max-width: 760px; }
-  .notfound-code { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #e2c9eb; margin-bottom: 18px; }
-  .notfound-hero h1 { font-size: clamp(44px, 7vw, 96px); line-height: 1.02; margin: 0 0 24px; }
-  .notfound-hero .hero-body { margin: 0 auto 36px; }
-  .notfound-work { padding: 90px 0 110px; }
-  .notfound-work .portfolio-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 280px; }
-  .notfound-work .portfolio-card { grid-row: auto !important; grid-column: auto !important; }
-  @media (max-width: 1024px) { .notfound-work .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px)  { .notfound-work .portfolio-grid { grid-template-columns: 1fr; grid-auto-rows: 260px; } }
-</style>
-<!-- skip the 1.8s intro: someone on a broken link shouldn't wait to find that out -->
-<script>try { sessionStorage.setItem('ntdIntroSeen', '1'); } catch (e) {}</script>
+  <style>
+    :root {
+      --brand: #4c3593;
+      --brand-ink: #2e1e62;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: 32px 24px;
+      background: #f4f5f8;
+      color: var(--brand-ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+    }
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--brand-ink);
+      text-decoration: none;
+    }
+    .logo span { font-style: italic; font-weight: 400; color: var(--brand); }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .code {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin: 0 0 12px;
+    }
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+    p { font-size: 18px; line-height: 1.6; margin: 0 0 32px; max-width: 440px; }
+    .link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 200ms ease, scale 160ms var(--ease-out);
+    }
+    .link:hover { background: var(--brand-ink); }
+    .link:active { scale: 0.97; }
+    .link:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+  </style>
 </head>
-<body class="index-page">
+<body>
+  <a href="/" class="logo">NickThompson<span>Design</span></a>
 
-  <header>
-    <a href="/" class="nav-logo">NickThompson<span>Design</span></a>
-    <nav id="nav-list">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/#portfolio">My Work</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
-        <li><a href="/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn btn-cv">Download CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></li>
-      </ul>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
-  </header>
-
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="/">Home</a>
-    <a href="/#portfolio">My Work</a>
-    <a href="/#about">About</a>
-    <a href="/#contact">Contact</a>
-    <a href="/img/cv/Nick%20Thompson%20CV.pdf" target="_blank" class="btn btn-cv btn-cv-mobile">Download CV <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-  </div>
-
-  <main class="hero-wrapper notfound-hero">
-    <div class="hero-container">
-      <div class="hero-text">
-        <span class="notfound-code">Error 404</span>
-        <h1>
-          <span class="gradient-line">This page has</span>
-          <span class="indent-line">wandered off.</span>
-        </h1>
-        <p class="hero-body">The link might be old, or the address may have a typo. Everything else is still here, so pick up from one of the options below.</p>
-        <div class="hero-btns">
-          <a href="/" class="btn btn-touch">Back to home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-          <a href="/#portfolio" class="btn btn-view">See my work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </div>
-      </div>
-    </div>
-
-  <div class="gradient-bg">
-    <div class="gradients-container">
-      <div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g5"></div><div class="interactive"></div>
-    </div>
-  </div>
-
+  <main>
+    <p class="code">Error 404</p>
+    <h1>Page not found</h1>
+    <p>This page doesn't exist or has moved.</p>
+    <a href="/#portfolio" class="link">See all my work &rarr;</a>
   </main>
-
-  <section class="content-section">
-
-    <div class="portfolio-section notfound-work">
-      <div class="content-inner">
-        <div class="section-label">You might be looking for</div>
-        <h2 class="section-heading">Popular projects</h2>
-        <div class="portfolio-grid">
-          <a href="/website-design" class="portfolio-card"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/Web-Design.webp')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Web · UX</span><h3>Website Design &amp; Build</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="/treasured-possession" class="portfolio-card"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-treasured-possession.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">UX · Research</span><h3>Treasured Possession Quote Form</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="/asda-experiential-hubs" class="portfolio-card"><div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-experiential-hubs.jpg')"></div><div class="portfolio-card-overlay"></div><div class="portfolio-card-inner"><span class="portfolio-tag">Product · UX Strategy</span><h3>Asda Experiential Hubs</h3><div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div></div></a>
-          <a href="/lha-london-ux" class="portfolio-card"> <div class="portfolio-card-img" style="background-image:url('/img/portfolio/thumbnail/thumb-n-lha.jpg')"></div> <div class="portfolio-card-overlay"></div> <div class="portfolio-card-inner"> <span class="portfolio-tag">UX · Design</span> <h3>LHA London UX</h3> <div class="portfolio-card-arrow">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div> </div> </a>
-        </div>
-      </div>
-    </div>
-
-    <footer class="site-footer">
-      <div class="content-inner footer-inner">
-        <a href="/" class="footer-logo">NickThompson<em>Design</em></a>
-        <p>© 2026 Nick Thompson. All rights reserved.</p>
-        <a href="/privacy-policy" class="privacy">Privacy Policy</a>
-      </div>
-    </footer>
-
-  </section>
-
-  <script src="/shared.js"></script>
 </body>
 </html>
