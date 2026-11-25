@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@200;300;400;700&display=swap" rel="stylesheet">
   <!-- SANDBOX: suggestions on/off. Set before the CSS loads so there's no flash. -->
   <script>(function(){var on=true;try{on=localStorage.getItem('sbxOn')!=='0'}catch(e){}document.documentElement.classList.toggle('sbx-on',on);})();</script>
-  <link rel="stylesheet" href="/sandbox/sandbox.css?v=1795649676">
+  <link rel="stylesheet" href="/sandbox/sandbox.css?v=1795649810">
 
   <style>
     /* ===== Case study v2 — page-specific styles (shared.css untouched) ===== */
@@ -524,7 +524,7 @@
       </div>
 
       <!-- 1. THE PROBLEM -->
-      <article class="project-body">
+      <article class="project-body" id="ch-the-problem">
         <span class="cs-eyebrow scroll-reveal">The Problem</span>
         <h2 class="scroll-reveal">Getting a price was hard work</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The form was confusing, and customers only saw a price once they reached the basket.</p>
@@ -543,7 +543,7 @@
       <div class="divider"></div>
 
       <!-- 2. WHAT I FOUND -->
-      <article class="project-body">
+      <article class="project-body" id="ch-research">
         <span class="cs-eyebrow scroll-reveal">Research</span>
         <h2 class="scroll-reveal">What the research found</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The price was hidden, some questions could be answered from order data, and competitors show a price within two clicks.</p>
@@ -632,7 +632,7 @@
       <div class="divider"></div>
 
       <!-- 3. THE INSIGHT -->
-      <article class="project-body">
+      <article class="project-body" id="ch-the-insight">
         <span class="cs-eyebrow scroll-reveal">The Insight</span>
         <h2 class="scroll-reveal">Three principles for the redesign</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The findings led to three principles: show the price early, ask fewer questions, and give customers a reason to share their email.</p>
@@ -646,7 +646,7 @@
       <div class="divider"></div>
 
       <!-- 4. THE NEW FLOW -->
-      <article class="project-body">
+      <article class="project-body" id="ch-the-new-flow">
         <span class="cs-eyebrow scroll-reveal">The New Flow</span>
         <h2 class="scroll-reveal">A new flow based on what the customer is sending</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The first question decides which steps each customer sees, and the quote is shown before any dates are asked for.</p>
@@ -704,7 +704,7 @@
       <div class="divider"></div>
 
       <!-- 5. TESTING -->
-      <article class="project-body">
+      <article class="project-body" id="ch-testing">
         <span class="cs-eyebrow scroll-reveal">Testing</span>
         <h2 class="scroll-reveal">Changes made after testing</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">I tested a working prototype with real prices. It showed three places where people hesitated, and the client agreed the changes.</p>
@@ -738,7 +738,7 @@
       <div class="divider"></div>
 
       <!-- 6. FINAL DESIGN -->
-      <article class="project-body">
+      <article class="project-body" id="ch-final-design">
         <span class="cs-eyebrow scroll-reveal">Final Design</span>
         <h2 class="scroll-reveal">The finished quote form</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The tested flow in Treasured Possession's brand style, built as a working prototype for desktop and mobile.</p>
@@ -773,7 +773,7 @@
       <div class="divider"></div>
 
       <!-- 7. WHAT HAPPENS NEXT -->
-      <article class="project-body">
+      <article class="project-body" id="ch-what-s-next">
         <span class="cs-eyebrow scroll-reveal">What's Next</span>
         <h2 class="scroll-reveal">What we'll measure</h2>
         <p class="cs-takeaway scroll-reveal sr-d2">The form hasn't launched yet. Eight weeks after launch, these measures will be compared with the same period last year.</p>
@@ -867,7 +867,7 @@
     <button type="button" class="cs-viewer-nav cs-viewer-next" id="viewerNext" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
   </div>
 
-  <script src="/sandbox/sandbox.js?v=1795649676"></script>
+  <script src="/sandbox/sandbox.js?v=1795649810"></script>
   <script>
     document.querySelectorAll('.cs-flow--journey .cs-flow-scroll, .cs-flow--wide .cs-flow-scroll').forEach(function (el) {
       var down = false, startX = 0, startLeft = 0;
@@ -945,6 +945,45 @@
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-outline" id="cursorOutline"></div>
 
+  <!-- SANDBOX (Suggested only): chapter navigation -->
+  <nav class="cs-chapters sbx-only" aria-label="Case study chapters">
+    <ol>
+      <li><a href="#ch-the-problem">The problem</a></li>
+      <li><a href="#ch-research">Research</a></li>
+      <li><a href="#ch-the-insight">The insight</a></li>
+      <li><a href="#ch-the-new-flow">The new flow</a></li>
+      <li><a href="#ch-testing">Testing</a></li>
+      <li><a href="#ch-final-design">Final design</a></li>
+      <li><a href="#ch-what-s-next">What's next</a></li>
+    </ol>
+  </nav>
+  <script>(function () {
+    var nav = document.querySelector('.cs-chapters'); if (!nav) return;
+    var list = nav.querySelector('ol');
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var secs = links.map(function (a) { return document.getElementById(a.hash.slice(1)); });
+    var header = document.querySelector('header');
+    var current = -1, ticking = false;
+    function update() {
+      ticking = false;
+      var hb = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      nav.style.setProperty('--hdr', hb + 'px');
+      var vh = window.innerHeight;
+      var first = secs[0].getBoundingClientRect().top, last = secs[secs.length - 1].getBoundingClientRect().bottom;
+      nav.classList.toggle('is-visible', first < vh * 0.6 && last > vh * 0.3);
+      var cur = 0;
+      secs.forEach(function (sec, i) { if (sec.getBoundingClientRect().top < vh * 0.35) cur = i; });
+      if (cur !== current) {
+        current = cur;
+        links.forEach(function (a, i) { if (i === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        // phones: keep the current chip in view (instant, no animation)
+        if (list.scrollWidth > list.clientWidth) list.scrollLeft = links[cur].parentNode.offsetLeft - 20;
+      }
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();</script>
   <!-- SANDBOX: Current / Suggested switch -->
   <div class="sbx-switch" role="group" aria-label="Compare designs">
     <button type="button" data-sbx="0">Current</button>

@@ -2827,3 +2827,65 @@ html.sbx-on .case-study .cs-measures li:last-child { border-bottom: 1px solid #e
 html.sbx-on .case-study .cs-measures .cs-num { background: #f1edff; color: #4c3593; }
 html.sbx-on .case-study .cs-principles li > div,
 html.sbx-on .case-study .cs-measures li > div { max-width: 70ch; }
+
+/* ---- Treasured Possession, suggestion 4: chapter navigation ----
+   Fixed (the page body clips overflow, so sticky can't work), shown by a small script
+   once the reader reaches the first chapter, current chapter highlighted.
+   Under 1400px: a row of chips under the header. 1400px and up: a list in the left margin. */
+.cs-chapters ol { list-style: none; margin: 0; padding: 0; }
+.cs-chapters a { text-decoration: none; font-family: 'Outfit', sans-serif; }
+html.sbx-on .case-study .cs-chapters {
+  position: fixed;
+  left: 0; right: 0;
+  top: var(--hdr, 64px);
+  z-index: 900;
+  padding: 8px 0;
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ece7f8;
+  opacity: 0;
+  translate: 0 -6px;
+  pointer-events: none;
+  transition: opacity 200ms ease-out, translate 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.sbx-on .case-study .cs-chapters.is-visible { opacity: 1; translate: 0 0; pointer-events: auto; }
+.cs-chapters ol { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 0 20px; }
+.cs-chapters ol::-webkit-scrollbar { display: none; }
+.cs-chapters a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px;
+  border-radius: 999px; border: 1px solid #e2dafb; white-space: nowrap;
+  font-size: 14px; font-weight: 600; color: #4c3593;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.cs-chapters a[aria-current="true"] { background: #2e1e62; border-color: #2e1e62; color: #fff; }
+.cs-chapters a:focus-visible { outline: 2px solid #6a4fc4; outline-offset: 2px; }
+/* chapter headings land below the header and the chip row */
+html.sbx-on .case-study .project-body[id] { scroll-margin-top: 190px; }
+@media (prefers-reduced-motion: no-preference) { html.sbx-on:has(.case-study) { scroll-behavior: smooth; } }
+
+@media (min-width: 1400px) {
+  html.sbx-on .case-study .cs-chapters {
+    left: max(16px, calc((100vw - 1200px) / 2 - 104px));
+    right: auto;
+    top: 50%;
+    width: 164px;
+    padding: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 0;
+    translate: -6px -50%;
+  }
+  html.sbx-on .case-study .cs-chapters.is-visible { translate: 0 -50%; }
+  .cs-chapters ol { flex-direction: column; gap: 2px; overflow: visible; padding: 0; }
+  .cs-chapters a {
+    display: flex; min-height: 36px; padding: 0 12px; border: 0; border-radius: 10px;
+    font-weight: 500; color: rgba(46, 30, 98, 0.62);
+  }
+  @media (hover: hover) and (pointer: fine) { .cs-chapters a:hover { background: #f6f3ff; color: #2e1e62; } }
+  .cs-chapters a[aria-current="true"] { background: #f1edff; color: #2e1e62; font-weight: 600; }
+  html.sbx-on .case-study .project-body[id] { scroll-margin-top: 130px; }
+}
+/* chips start on the page text line (equal edges) */
+@media (max-width: 1399px) { .cs-chapters ol { padding: 0 max(20px, calc((100vw - 1080px) / 2)); } }
