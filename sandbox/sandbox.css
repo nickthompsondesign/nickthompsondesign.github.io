@@ -2811,7 +2811,7 @@ html.sbx-on .case-study .cs-principles .cs-num {
 html.sbx-on .case-study .cs-principles li b {
   display: block; margin-bottom: 8px;
   font-family: var(--font-heading); font-size: clamp(22px, 2.2vw, 28px); font-weight: 700;
-  line-height: 1.2; letter-spacing: -0.02em; color: #2e1e62;
+  line-height: 1.2; letter-spacing: -0.02em; color: #4c3593;   /* same purple as the section headings */
 }
 /* What we'll measure: a plain list with rules, matching the principles' rhythm */
 html.sbx-on .case-study .cs-measures { gap: 0; }
