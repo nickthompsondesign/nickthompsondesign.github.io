@@ -2652,3 +2652,29 @@ html.sbx-on .portfolio-card:hover .portfolio-card-img { transform: scale(1.03); 
 
 /* sandbox switch: hide while the lightbox is open */
 body:has(.lightbox.is-open) .sbx-switch { display: none; }
+
+/* SANDBOX: lightbox waits for its media.
+   While the first video frame / image loads, only the backdrop is shown.
+   A small spinner appears only if loading takes longer than 200ms. */
+.lightbox.is-open.is-waiting .lightbox-panel { opacity: 0; scale: 0.96; }
+.lightbox-video.is-loading,
+.lightbox-image.is-loading { opacity: 0; }
+.lightbox::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  animation: lb-spin 0.8s linear infinite;
+  transition: opacity 150ms ease-out;
+}
+.lightbox.is-waiting::after,
+.lightbox:has(.is-loading)::after { opacity: 1; transition-delay: 200ms; }
+@keyframes lb-spin { to { transform: rotate(360deg); } }

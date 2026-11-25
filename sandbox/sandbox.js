@@ -332,6 +332,35 @@ document.addEventListener('DOMContentLoaded', function() {
   // SANDBOX: motion helpers
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var clearTimer = null;
+  var slideToken = 0;   // ignores "ready" events from an item the visitor has already moved past
+
+  // SANDBOX: call done() once the first frame / image is ready to show (max 10s wait)
+  function whenReady(el, type, done) {
+    var called = false;
+    function finish() { if (!called) { called = true; done(); } }
+    setTimeout(finish, 10000);   // last resort on a very slow connection
+    if (type === 'image') {
+      if (el.complete && el.naturalWidth) return finish();
+      if (el.decode) el.decode().then(finish, finish); else el.addEventListener('load', finish, { once: true });
+    } else {
+      if (el.readyState >= 2) return finish();
+      el.addEventListener('loadeddata', finish, { once: true });
+      el.addEventListener('error', finish, { once: true });
+    }
+  }
+
+  // SANDBOX: start loading a video when the pointer moves onto its tile, so it's ready sooner
+  if (window.matchMedia('(hover: hover)').matches) {
+    var warm = document.createElement('video');
+    warm.preload = 'auto';
+    warm.muted = true;
+    document.querySelectorAll('.tile[data-type="video"][data-src]').forEach(function (t) {
+      t.addEventListener('pointerenter', function () {
+        var src = t.getAttribute('data-src');
+        if (warm.getAttribute('src') !== src) { warm.src = src; warm.load(); }
+      }, { passive: true });
+    });
+  }
 
   // SANDBOX: short fade + 12px slide in the direction of travel (arrow clicks only)
   function slideIn(el, dir) {
@@ -341,33 +370,37 @@ document.addEventListener('DOMContentLoaded', function() {
                { duration: 200, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
   }
 
-  function showSlide(index, dir) {
+  function showSlide(index, dir, opening) {
     if (!currentTiles.length) return;
+    var token = ++slideToken;
     currentIndex = (index + currentTiles.length) % currentTiles.length;
     var tile = currentTiles[currentIndex];
     var type = tile.getAttribute('data-type');
     var src = tile.getAttribute('data-src');
     var label = tile.getAttribute('data-label') || '';
 
+    // SANDBOX: hold the reveal until the media can actually be shown
+    var shown = type === 'image' ? image : video;
+    if (opening) lightbox.classList.add('is-waiting');      // panel waits; backdrop fades in now
+    else if (shown) shown.classList.add('is-loading');       // next/prev: hide until ready
+
     if (type === 'image') {
       if(video) { video.pause(); video.removeAttribute('src'); video.style.display = 'none'; }
       if(image) { image.src = src; image.alt = label; image.style.display = 'block'; }
     } else {
       if(image) { image.style.display = 'none'; }
-      if(video) { video.style.display = 'block'; video.src = src; video.setAttribute('aria-label', label); video.play(); }
+      if(video) { video.style.display = 'block'; video.src = src; video.setAttribute('aria-label', label); var pp = video.play(); if (pp && pp.catch) pp.catch(function () {}); }
     }
     
     if(caption) caption.textContent = label;
 
-    // SANDBOX: animate only when moved with the on-screen arrows (dir is 1 or -1)
-    if (dir) {
-      var shown = type === 'image' ? image : video;
-      if (type === 'image' && image && image.decode) {
-        image.decode().then(function () { slideIn(image, dir); }, function () { slideIn(image, dir); });
-      } else {
-        slideIn(shown, dir);
-      }
-    }
+    // SANDBOX: reveal when ready. Arrow buttons (dir 1 / -1) fade + slide; keyboard is instant.
+    if (shown) whenReady(shown, type, function () {
+      if (token !== slideToken) return;
+      lightbox.classList.remove('is-waiting');
+      shown.classList.remove('is-loading');
+      if (dir) slideIn(shown, dir);
+    });
 
     // Show or hide arrows depending on if we have multiple items
     var multiple = currentTiles.length > 1;
@@ -381,13 +414,16 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.classList.remove('lb-instant');
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
-    showSlide(startIndex);
+    showSlide(startIndex, 0, true);
   }
 
   // SANDBOX: instant = true for Escape; otherwise the media stays until the 150ms fade-out ends
   function closeLightbox(instant) {
     if (instant === true) lightbox.classList.add('lb-instant');
-    lightbox.classList.remove('is-open');
+    slideToken++;
+    lightbox.classList.remove('is-open', 'is-waiting');
+    if (image) image.classList.remove('is-loading');
+    if (video) video.classList.remove('is-loading');
     lightbox.setAttribute('aria-hidden', 'true');
     if(video) { video.pause(); }
     clearTimeout(clearTimer);
