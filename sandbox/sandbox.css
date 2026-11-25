@@ -2759,7 +2759,7 @@ html.sbx-on .case-study .project-hero { padding-bottom: 150px; }
 /* the intro card normally overlaps the hero; in Suggested the mockup does, so the card sits below it */
 html.sbx-on .case-study .project-meta-light { margin-top: 0 !important; }
 /* keep the "Designed, prototyped and tested" line last in the reordered hero */
-html.sbx-on .project-hero .content-inner > div { order: 4; margin-top: 18px; }
+html.sbx-on .project-hero .content-inner > div { order: 4; margin-top: 0; }
 
 /* ---- Treasured Possession, suggestion 2: accessibility ----
    Headings: The Brief / My Role announced as level 2, their sub-labels as level 3
@@ -2889,3 +2889,33 @@ html.sbx-on .case-study .project-body[id] { scroll-margin-top: 190px; }
 }
 /* chips start on the page text line (equal edges) */
 @media (max-width: 1399px) { .cs-chapters ol { padding: 0 max(20px, calc((100vw - 1080px) / 2)); } }
+
+/* ---- Treasured Possession, suggestion 5: polish ---- */
+/* Captions that only explain how to use the page: the buttons and hints already say it.
+   Descriptive captions stay. */
+html.sbx-on .sbx-hide-inline { display: none; }
+
+/* One radius scale: 14px small, 22px cards and frames, pill for buttons and chips.
+   (The phone frame keeps its device shape, the notched tiles keep theirs.) */
+html.sbx-on .case-study .project-meta-light { border-radius: 22px; }
+html.sbx-on .case-study .meta-col--role { border-radius: 14px; }
+html.sbx-on .case-study .cs-frame:not(.cs-phone),
+html.sbx-on .case-study .cs-flow { border-radius: 22px; }
+html.sbx-on .case-study .cs-change .found,
+html.sbx-on .case-study .cs-change .changed { border-radius: 14px; }
+
+/* Motion (Emil + Taste Skill): only the chapter labels and headings reveal on scroll;
+   cards, tables, images and paragraphs are simply there, so the page skims faster. */
+html.sbx-on .case-study .project-feature .scroll-reveal:not(h2):not(.cs-eyebrow) {
+  opacity: 1 !important; transform: none !important; filter: none !important;
+}
+
+/* Hover (Taste Skill): image tiles lift 2px on a mouse. Their image zoom stays off,
+   as the site already decided (it would push the image past the notch). */
+@media (hover: hover) and (pointer: fine) {
+  html.sbx-on .case-study .project-feature .tile { transition: translate 250ms cubic-bezier(0.16, 1, 0.3, 1); }
+  html.sbx-on .case-study .project-feature .tile:hover { translate: 0 -2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.sbx-on .case-study .project-feature .tile:hover { translate: none; }
+}
