@@ -2678,3 +2678,16 @@ body:has(.lightbox.is-open) .sbx-switch { display: none; }
 .lightbox.is-waiting::after,
 .lightbox:has(.is-loading)::after { opacity: 1; transition-delay: 200ms; }
 @keyframes lb-spin { to { transform: rotate(360deg); } }
+
+/* SANDBOX: dot separators in tags and labels ("Web · UX").
+   The dot is centred on the lowercase letters, so next to capitals it looks low.
+   Lift it slightly and give it a little more room. Applies in both modes. */
+.sep {
+  display: inline-block;
+  position: relative;
+  top: -0.08em;
+  margin: 0 0.2em;
+}
+/* project labels are a flex row with a 10px gap: the gap already spaces the dot,
+   and flex centring already lifts it, so undo most of the general rule there */
+.cs-eyebrow .sep { top: 0; margin: 0 -3px; }
