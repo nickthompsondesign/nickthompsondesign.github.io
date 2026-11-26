@@ -2920,6 +2920,6 @@ html.sbx-on .case-study .project-feature .scroll-reveal:not(h2):not(.cs-eyebrow)
    headings. Headings get a tighter line height so the space above the letters shrinks too
    (it also tightens two-line headings). */
 html.sbx-on body.case-study .cs-eyebrow { margin-bottom: 0; }
-html.sbx-on .case-study .project-body h2 { margin-top: -10px; line-height: 1.15; }
+html.sbx-on .case-study .project-body h2 { margin-top: -3px; line-height: 1.15; }
 html.sbx-on .case-study .rf-kicker { margin-bottom: 0; }
-html.sbx-on .case-study .rf h3 { line-height: 1.2; margin-top: -9px; }
+html.sbx-on .case-study .rf h3 { line-height: 1.2; margin-top: -2px; }
