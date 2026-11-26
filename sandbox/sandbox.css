@@ -2827,7 +2827,9 @@ html.sbx-on .case-study .cs-measures li > div { max-width: 70ch; }
 /* ---- Treasured Possession, suggestion 4: chapter navigation ----
    Fixed (the page body clips overflow, so sticky can't work), shown by a small script
    once the reader reaches the first chapter, current chapter highlighted.
-   Under 1400px: a row of chips under the header. 1400px and up: a list in the left margin. */
+   A list pinned to the left edge of the window, only where the margin is wide enough that it
+   never covers content (1640px and up: the 1200px content leaves 220px each side).
+   Narrower: a row of chips under the header. */
 .cs-chapters ol { list-style: none; margin: 0; padding: 0; }
 .cs-chapters a { text-decoration: none; font-family: 'Outfit', sans-serif; }
 html.sbx-on .case-study .cs-chapters {
@@ -2860,9 +2862,9 @@ html.sbx-on .case-study .cs-chapters.is-visible { opacity: 1; translate: 0 0; po
 html.sbx-on .case-study .project-body[id] { scroll-margin-top: 190px; }
 @media (prefers-reduced-motion: no-preference) { html.sbx-on:has(.case-study) { scroll-behavior: smooth; } }
 
-@media (min-width: 1400px) {
+@media (min-width: 1640px) {
   html.sbx-on .case-study .cs-chapters {
-    left: max(16px, calc((100vw - 1200px) / 2 - 104px));
+    left: 24px;
     right: auto;
     top: 50%;
     width: 164px;
@@ -2884,7 +2886,7 @@ html.sbx-on .case-study .project-body[id] { scroll-margin-top: 190px; }
   html.sbx-on .case-study .project-body[id] { scroll-margin-top: 130px; }
 }
 /* chips start on the page text line (equal edges) */
-@media (max-width: 1399px) { .cs-chapters ol { padding: 0 max(20px, calc((100vw - 1080px) / 2)); } }
+@media (max-width: 1639px) { .cs-chapters ol { padding: 0 max(20px, calc((100vw - 1080px) / 2)); } }
 
 /* ---- Treasured Possession, suggestion 5: polish ---- */
 /* Captions that only explain how to use the page: the buttons and hints already say it.
@@ -2923,3 +2925,21 @@ html.sbx-on body.case-study .cs-eyebrow { margin-bottom: 0; }
 html.sbx-on .case-study .project-body h2 { margin-top: -3px; line-height: 1.15; }
 html.sbx-on .case-study .rf-kicker { margin-bottom: 0; }
 html.sbx-on .case-study .rf h3 { line-height: 1.2; margin-top: -2px; }
+
+/* Small labels: sentence case, no wide letter-spacing (the spaced-out capitals read as
+   template / AI styling). Slightly bigger to keep them readable without capitals. */
+html.sbx-on .case-study :is(.cs-goals h5, .cs-meta-details dt, .rf-kicker, .cs-table thead th, .cs-change small, .contact-item strong) {
+  text-transform: none;
+  letter-spacing: 0;
+}
+html.sbx-on .case-study .cs-goals h5 { font-size: 14px; }
+html.sbx-on .case-study .cs-meta-details dt { font-size: 13px; }
+html.sbx-on .case-study .rf-kicker { font-size: 14px; font-weight: 600; }
+html.sbx-on .case-study .cs-table thead th { font-size: 13px; }
+html.sbx-on .case-study .cs-change small { font-size: 13px; }
+html.sbx-on .case-study .contact-item strong { font-size: 13px; }
+
+/* More room under the numbered card labels: the number's circle sits lower than the text,
+   so the label needs its own space before the card heading */
+html.sbx-on .case-study .rf-kicker { margin-bottom: 14px; }
+html.sbx-on .case-study .rf h3 { margin-top: 0; }
