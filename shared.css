@@ -2710,8 +2710,8 @@ body.cs .rf h3 { margin-top: 0; line-height: 1.2; }
 
 /* ---- Standfirst under each heading ---- */
 body.cs .cs-takeaway {
-  font-size: clamp(19px, 1.6vw, 21px);
-  font-weight: 400; line-height: 1.45; letter-spacing: -0.005em;
+  font-size: 18px;
+  font-weight: 600; line-height: 1.5; letter-spacing: 0;
   color: #2e1e62; max-width: 34em;
 }
 
