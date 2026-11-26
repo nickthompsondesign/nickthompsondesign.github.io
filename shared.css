@@ -2643,3 +2643,211 @@ body .cs-eyebrow .sep {
   margin: 0 -3px 0 calc(-3px - 0.16em);
   background: #8a3fd0;           /* the gradient's middle colour */
 }
+
+
+/* =============================================
+   17. DESIGN REFRESH (Nov 2026)
+   From reviews with Impeccable, Taste Skill and Emil Kowalski's design-engineering skill.
+   Tested in sandbox/ first. body.cs = the project / case-study pages.
+   ============================================= */
+
+/* ---- Readable small text ---- */
+.portfolio-tag { font-size: 12px; }
+.ba-label { font-size: 12px; }
+body.cs .cs-route li span i { font-size: 12px; }
+
+/* Small labels in sentence case, no wide letter-spacing (spaced capitals read as template styling) */
+.contact-item strong,
+body.cs :is(.cs-goals h5, .cs-meta-details dt, .rf-kicker, .cs-table thead th, .cs-change small) {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.contact-item strong { font-size: 13px; color: rgba(255,255,255,0.62); }
+body.cs .cs-goals h5 { font-size: 14px; }
+body.cs .cs-meta-details dt { font-size: 13px; }
+body.cs .rf-kicker { font-size: 14px; font-weight: 600; margin-bottom: 14px; }
+body.cs .cs-table thead th { font-size: 13px; }
+body.cs .cs-change small { font-size: 13px; }
+body.cs .cs-status { font-size: 12px; }
+
+/* ---- Contrast: grey text that failed WCAG AA (4.5:1) ---- */
+body.cs .cs-change small { color: rgba(0,0,0,0.62); }            /* was ~3.3:1, now ~6:1 */
+body.cs .cs-change .changed small { color: #5b3fc0; }
+body.cs .cs-table thead th { color: rgba(46,30,98,0.78); }      /* was ~3.5:1, now ~7:1 */
+body.cs .cs-caption { color: rgba(0,0,0,0.62); }                /* was ~4.0:1, now ~6:1 */
+
+/* ---- Labels that only repeat the heading under them are removed ---- */
+body.index-page .section-label,
+.contact-section .section-label { display: none; }
+
+/* ---- Project hero: title first, its category as a plain line under it ---- */
+.project-hero .content-inner { display: flex; flex-direction: column; }
+.project-hero h1 { order: 1; margin-bottom: 10px; }
+.project-hero .section-label {
+  order: 2; margin: 0 0 18px;
+  font-size: 15px; font-weight: 400; text-transform: none; letter-spacing: 0; color: #ddd6fe;
+}
+.project-hero .section-sub { order: 3; }
+.project-hero .content-inner > div { order: 4; margin-top: 0; }
+.project-hero .section-label .sep { margin: 0 0.25em; }
+
+/* ---- Chapter labels ("The Problem"): above the heading, solid colour, sentence case ---- */
+body .cs-eyebrow {
+  display: inline-block;
+  margin: 0;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--accent-text, #6d28d9);
+  font-size: 15px; font-weight: 600;
+  text-transform: none; letter-spacing: 0;
+}
+body .cs-eyebrow::before { display: none; }
+body .cs-eyebrow .sep { flex: none; position: static; margin: 0 0.25em; background: currentColor; }
+/* labels sit about 14px above their headings (measured with Fraunces) */
+body.cs .project-body h2 { margin-top: -3px; line-height: 1.15; }
+body.cs .rf h3 { margin-top: 0; line-height: 1.2; }
+
+/* ---- Standfirst under each heading ---- */
+body.cs .cs-takeaway {
+  font-size: clamp(19px, 1.6vw, 21px);
+  font-weight: 400; line-height: 1.45; letter-spacing: -0.005em;
+  color: #2e1e62; max-width: 34em;
+}
+
+/* ---- Comfortable reading width (~70 characters) ---- */
+body.cs .project-body p,
+body.cs .rf p,
+body.cs .cs-principles li > div,
+body.cs .cs-measures li > div { max-width: 70ch; }
+.testimonial-card--full .testimonial-quote { max-width: 65ch; }
+
+/* ---- Stats set big, without boxes ---- */
+body.cs .rf-stats { gap: 20px; }
+body.cs .rf-stats div { background: none; border-radius: 0; padding: 14px 0 0; border-top: 1px solid #e6e0f7; }
+body.cs .rf-stats strong { font-size: clamp(34px, 3.2vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
+body.cs .rf-stats small { font-size: 14px; color: rgba(0,0,0,0.68); }
+
+/* ---- Principles as a type moment; measures as a ruled list (classes on the list) ---- */
+body.cs .cs-principles { gap: 0; margin-top: 28px; }
+body.cs .cs-principles li {
+  background: none; border: 0; box-shadow: none; border-radius: 0;
+  border-top: 1px solid #e6e0f7; padding: 26px 0;
+  grid-template-columns: 64px 1fr; font-size: 16px; color: rgba(0,0,0,0.72);
+}
+body.cs .cs-principles li:last-child { border-bottom: 1px solid #e6e0f7; }
+body.cs .cs-principles .cs-num {
+  width: auto; height: auto; background: none; border-radius: 0; justify-content: flex-start;
+  font-family: var(--font-heading); font-size: clamp(30px, 3vw, 40px); font-weight: 800; line-height: 1; color: #6a4fc4;
+}
+body.cs .cs-principles li b {
+  display: block; margin-bottom: 8px;
+  font-family: var(--font-heading); font-size: clamp(22px, 2.2vw, 28px); font-weight: 700;
+  line-height: 1.2; letter-spacing: -0.02em; color: #4c3593;
+}
+body.cs .cs-measures { gap: 0; }
+body.cs .cs-measures li {
+  background: none; border: 0; box-shadow: none; border-radius: 0;
+  border-top: 1px solid #e6e0f7; padding: 16px 0; font-size: 17px;
+}
+body.cs .cs-measures li:last-child { border-bottom: 1px solid #e6e0f7; }
+body.cs .cs-measures .cs-num { background: #f1edff; color: #4c3593; }
+
+/* ---- Finished design shown straight after the project details ---- */
+.cs-hero-work { position: relative; z-index: 20; margin: 0 0 64px; }
+.cs-hero-work .device-row { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cs-hero-work .tile--desktop { grid-column: span 2; }
+.cs-hero-work .tile--mobile { grid-column: span 1; }
+.cs-hero-work .tile--desktop::before { padding-top: 62.5%; }
+.cs-hero-work .tile--mobile::before { display: none; }
+@media (max-width: 1023px) {
+  .cs-hero-work { margin-bottom: 40px; }
+  .cs-hero-work .device-row { gap: 8px; }
+}
+
+/* ---- One radius scale: 14px small, 22px cards and frames, pill for buttons ---- */
+body.cs .project-meta-light { border-radius: 22px; }
+body.cs .meta-col--role { border-radius: 14px; }
+body.cs .cs-frame:not(.cs-phone),
+body.cs .cs-flow { border-radius: 22px; }
+body.cs .cs-change .found,
+body.cs .cs-change .changed { border-radius: 14px; }
+
+/* ---- Decorative glows off ---- */
+.testimonials-section::before,
+.testimonials-section::after,
+.contact-section::before,
+.cs-quote::before { display: none; }
+:is(h2, h3, .section-heading) { filter: none; }   /* the hero h1 keeps its legibility shadow */
+
+/* ---- Motion and hover ---- */
+/* project pages: only chapter labels and headings reveal on scroll; the rest is simply there */
+body.cs .project-feature .scroll-reveal:not(h2):not(.cs-eyebrow) {
+  opacity: 1 !important; transform: none !important; filter: none !important;
+}
+.portfolio-card:hover .portfolio-card-img { transform: scale(1.03); }   /* calmer zoom */
+@media (hover: hover) and (pointer: fine) {
+  body.cs .project-feature .tile { transition: translate 250ms cubic-bezier(0.16, 1, 0.3, 1); }
+  body.cs .project-feature .tile:hover { translate: 0 -2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.cs .project-feature .tile:hover { translate: none; }
+}
+
+/* ---- Tap targets at least 44px tall on phones (padding grows the target, margin keeps the layout) ---- */
+@media (max-width: 1023px) {
+  .nav-logo, .footer-logo, .privacy, .contact-item a, a.scroll-reveal[href="/#portfolio"] {
+    display: inline-block; padding-block: 15px; margin-block: -15px;
+  }
+  body.cs .cs-flow-btn { min-height: 44px; }
+}
+
+/* ---- Chapter navigation (built by shared.js on pages with 3+ chapters) ----
+   1640px and up: a list pinned to the left edge, where the margin always clears the content.
+   Narrower: a row of chips under the header. */
+.cs-chapters ol { list-style: none; margin: 0; padding: 0; }
+.cs-chapters a { text-decoration: none; font-family: 'Outfit', sans-serif; }
+.cs-chapters {
+  position: fixed; left: 0; right: 0; top: var(--hdr, 64px); z-index: 900;
+  padding: 8px 0;
+  background: rgba(255,255,255,0.94);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ece7f8;
+  opacity: 0; translate: 0 -6px; pointer-events: none;
+  transition: opacity 200ms ease-out, translate 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cs-chapters.is-visible { opacity: 1; translate: 0 0; pointer-events: auto; }
+.cs-chapters ol { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 0 max(20px, calc((100vw - 1080px) / 2)); }
+.cs-chapters ol::-webkit-scrollbar { display: none; }
+.cs-chapters a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px;
+  border-radius: 999px; border: 1px solid #e2dafb; white-space: nowrap;
+  font-size: 14px; font-weight: 600; color: #4c3593;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.cs-chapters a[aria-current="true"] { background: #2e1e62; border-color: #2e1e62; color: #fff; }
+.cs-chapters a:focus-visible { outline: 2px solid #6a4fc4; outline-offset: 2px; }
+body.cs .project-body[id] { scroll-margin-top: 190px; }
+@media (prefers-reduced-motion: no-preference) { html:has(body.cs) { scroll-behavior: smooth; } }
+@media (min-width: 1640px) {
+  .cs-chapters {
+    left: 24px; right: auto; top: 50%; width: 164px; padding: 0;
+    background: none; -webkit-backdrop-filter: none; backdrop-filter: none; border: 0;
+    translate: -6px -50%;
+  }
+  .cs-chapters.is-visible { translate: 0 -50%; }
+  .cs-chapters ol { flex-direction: column; gap: 2px; overflow: visible; padding: 0; }
+  .cs-chapters a {
+    display: flex; min-height: 36px; padding: 0 12px; border: 0; border-radius: 10px;
+    font-weight: 500; color: rgba(46,30,98,0.62);
+  }
+  @media (hover: hover) and (pointer: fine) { .cs-chapters a:hover { background: #f6f3ff; color: #2e1e62; } }
+  .cs-chapters a[aria-current="true"] { background: #f1edff; color: #2e1e62; font-weight: 600; }
+  body.cs .project-body[id] { scroll-margin-top: 130px; }
+}
+
+/* Page-specific labels in the same style: sentence case, 12px */
+body.cs .ba-label,
+body.cs .pets-option-tag,
+body.cs .pets-decision-label { font-size: 12px; text-transform: none; letter-spacing: 0; }
+body.cs .pets-scale span { text-transform: none; letter-spacing: 0; font-size: 12px; }

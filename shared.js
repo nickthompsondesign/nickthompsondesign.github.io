@@ -270,6 +270,7 @@ if (window.innerWidth >= 1024 && !('ontouchstart' in window)) {
     let rafId = null;
 
     box.addEventListener('mousemove', e => {
+      return; // Nov 2026: tilt switched off (Taste Skill: no tilt). Delete this line to bring it back.
       const rect = box.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width  - 0.5;
       const y = (e.clientY - rect.top)  / rect.height - 0.5;
@@ -581,3 +582,66 @@ document.querySelectorAll('.gradient-bg, .hero-bg-wrapper').forEach(function (bg
     }, 100);
   });
 })();
+
+
+// Chapter navigation (Nov 2026): on project pages with 3 or more chapters, builds a list of
+// chapters (left edge on wide screens, chips under the header elsewhere; styles in shared.css 17).
+// Each chapter is a .project-body with a .cs-eyebrow label. The label names the chapter, unless it
+// is a tech list ("Music · WordPress"), in which case the chapter's heading is used.
+document.addEventListener('DOMContentLoaded', function () {
+  if (!document.body.classList.contains('cs')) return;
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.project-feature .project-body'))
+    .filter(function (a) { return a.querySelector('.cs-eyebrow') && a.querySelector('h2'); });
+  if (chapters.length < 3) return;
+
+  var nav = document.createElement('nav');
+  nav.className = 'cs-chapters';
+  nav.setAttribute('aria-label', 'Page sections');
+  var list = document.createElement('ol');
+  var used = {};
+  var links = chapters.map(function (sec, i) {
+    var eyebrow = sec.querySelector('.cs-eyebrow');
+    var text = eyebrow.querySelector('.sep') ? sec.querySelector('h2').textContent : eyebrow.textContent;
+    text = text.replace(/\s+/g, ' ').trim();
+    // sentence case, keeping acronyms such as UX or UI
+    if (!eyebrow.querySelector('.sep')) text = text.split(' ').map(function (w, i) {
+      return (i === 0 || /^[A-Z0-9&]{2,}$/.test(w)) ? w : w.toLowerCase();
+    }).join(' ');
+    if (!sec.id) {
+      var id = 'ch-' + text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      if (used[id] || document.getElementById(id)) id += '-' + (i + 1);
+      used[id] = true;
+      sec.id = id;
+    }
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + sec.id;
+    a.textContent = text;
+    li.appendChild(a);
+    list.appendChild(li);
+    return a;
+  });
+  nav.appendChild(list);
+  document.body.appendChild(nav);
+
+  var header = document.querySelector('header');
+  var current = -1, ticking = false;
+  function update() {
+    ticking = false;
+    nav.style.setProperty('--hdr', (header ? Math.max(0, header.getBoundingClientRect().bottom) : 0) + 'px');
+    var vh = window.innerHeight;
+    var first = chapters[0].getBoundingClientRect().top;
+    var last = chapters[chapters.length - 1].getBoundingClientRect().bottom;
+    nav.classList.toggle('is-visible', first < vh * 0.6 && last > vh * 0.3);
+    var cur = 0;
+    chapters.forEach(function (sec, i) { if (sec.getBoundingClientRect().top < vh * 0.35) cur = i; });
+    if (cur !== current) {
+      current = cur;
+      links.forEach(function (a, i) { if (i === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+      if (list.scrollWidth > list.clientWidth) list.scrollLeft = links[cur].parentNode.offsetLeft - 20;   // instant, no animation
+    }
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+});
